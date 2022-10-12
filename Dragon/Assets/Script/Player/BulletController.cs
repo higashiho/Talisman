@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    //private float bulletSpeed = 10.0f;      // 弾の移動速度
     [SerializeField] private GameObject bulletObj;
     [SerializeField] private Transform player;      // Playerの位置を取得するため
     private Vector3 bulletPoint;    // 弾を生成する位置
@@ -18,10 +17,10 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bulletShoot();
+        bulletGenerate();
     }
 
-    private void bulletShoot()
+    private void bulletGenerate()       // 弾の生成
     {
         bulletPoint = player.position;      // 弾を生成する座標にプレイヤーの位置座標を代入
         if (Input.GetMouseButtonDown(0))    // 左クリックした瞬間
