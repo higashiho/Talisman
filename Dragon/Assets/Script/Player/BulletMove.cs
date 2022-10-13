@@ -8,6 +8,9 @@ public class BulletMove : MonoBehaviour
     private Vector2 mousePos;      // マウス座標を代入する変数
     private float bulletSpeed = 10.0f;      // 弾の移動速度
 
+    // to-do 弾をリジッドボディで動かす
+    // to-do 時間か敵に当たると消える
+
     // Start is called before the first frame update
     void Start()
     {
