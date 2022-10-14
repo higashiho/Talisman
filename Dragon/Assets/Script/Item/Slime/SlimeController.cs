@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlimeController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] prefabSlime;   // ƒXƒ‰ƒCƒ€”z—ñ
+    private GameObject[] prefabSlime;   // ã‚¹ãƒ©ã‚¤ãƒ é…åˆ—
     [SerializeField]
     private float sponTime = 10f;
     [SerializeField]

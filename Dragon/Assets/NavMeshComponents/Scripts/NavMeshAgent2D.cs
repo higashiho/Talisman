@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class NavMeshAgent2D : MonoBehaviour
-{
-    [Header("Steering")]
+{[Header("Steering")]
     public float speed = 1.0f;
     public float stoppingDistance = 0;
 
     [HideInInspector]//常にUnityエディタから非表示
-    private Vector2 trace_area = Vector2.zero;
+    private Vector2 trace_area=Vector2.zero;
     public Vector2 destination
     {
         get { return trace_area; }

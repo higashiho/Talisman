@@ -5,16 +5,16 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] prefabItem;    // ƒAƒCƒeƒ€”z—ñ
+    private GameObject[] prefabItem;    // ã‚¢ã‚¤ãƒ†ãƒ é…åˆ—
     [SerializeField]
-    private float sponTime = 5.0f;      // ƒAƒCƒeƒ€ƒXƒ|[ƒ“ŠÔŠu(s)
+    private float sponTime = 5.0f;      // ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒãƒ¼ãƒ³é–“éš”(s)
     [SerializeField]
-    private float pos_z = 0;            // •`‰æ‡’¼‚¹‚é—p
-    private int item_number;            // ƒ‰ƒ“ƒ_ƒ€¶¬—pindex
+    private float pos_z = 0;            // æç”»é †ç›´ã›ã‚‹ç”¨
+    private int item_number;            // ãƒ©ãƒ³ãƒ€ãƒ ç”Ÿæˆç”¨index
 
-    private int item_counter;           // ƒV[ƒ““à‚ÌƒAƒCƒeƒ€”ƒJƒEƒ“ƒg—p
+    private int item_counter;           // ã‚·ãƒ¼ãƒ³å†…ã®ã‚¢ã‚¤ãƒ†ãƒ æ•°ã‚«ã‚¦ãƒ³ãƒˆç”¨
     [SerializeField]
-    private int item_Max = 10;               // ƒV[ƒ““à‚ÌƒAƒCƒeƒ€”Å‘å’l
+    private int item_Max = 10;               // ã‚·ãƒ¼ãƒ³å†…ã®ã‚¢ã‚¤ãƒ†ãƒ æ•°æœ€å¤§å€¤
     private float pos_x = 50f;           
     private float pos_y = 50f;
 
@@ -33,8 +33,8 @@ public class ItemController : MonoBehaviour
     private void random()
     {
         // TODO 
-        // ŽžŠÔ‚Å¶¬‘¬“x‚ðƒRƒ“ƒgƒ[ƒ‹
-        // •Ï”‚ÅŠÇ—
+        // æ™‚é–“ã§ç”Ÿæˆé€Ÿåº¦ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+        // å¤‰æ•°ã§ç®¡ç†
         item_number = Random.Range(0, prefabItem.Length);
 
         float x = Random.Range(-pos_x, pos_x);
