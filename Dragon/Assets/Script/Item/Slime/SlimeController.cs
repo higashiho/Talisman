@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlimeController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] prefabSlime;   // �X���C���z��
+    private GameObject[] prefabSlime;   // スライム配列
     [SerializeField]
     private float sponTime = 10f;
     [SerializeField]
@@ -17,6 +17,10 @@ public class SlimeController : MonoBehaviour
     private int slime_Max = 10;
     private float pos_x = 50f;
     private float pos_y = 50f;
+    private Vector3 spon_pos;
+
+    private bool isInsideCamera;    // カメラの範囲内にいるか
+
     void Start()
     {
         Slime_counter = 0;
@@ -26,25 +30,36 @@ public class SlimeController : MonoBehaviour
     void Update()
     {
         if (Slime_counter < slime_Max)
-            random();
+            spon_pos = random();
+        // 画面内にいるときspon
+        if (isInsideCamera)
+            StartCoroutine("spon");
     }
 
-    private void random()
+    private Vector3 random()
     {
         slime_number = Random.Range(0, prefabSlime.Length);
         float x = Random.Range(-pos_x, pos_x);
         float y = Random.Range(-pos_y, pos_y);
 
         Vector3 pos = new Vector3(x, y, pos_z);
-        StartCoroutine("spon");
+        return pos;
+    }
+    private IEnumerator spon(Vector3 pos)
+    {
+        yield return new WaitForSeconds(sponTime);  
         Instantiate(prefabSlime[slime_number], pos, Quaternion.identity);
         Slime_counter++;
-    }
-    private IEnumerator spon()
-    {
-
-        yield return new WaitForSeconds(sponTime);
         //Instantiate(prefabItem[item_number], pos, Quaternion.identity);
+    }
+
+    private void OnBecameInvisible()   // カメラから外れた
+    {
+        isInsideCamera = false;
+    }
+    private void OnBecameVisible()     // カメラ内に入った
+    {
+        isInsideCamera = true;
     }
 
 }

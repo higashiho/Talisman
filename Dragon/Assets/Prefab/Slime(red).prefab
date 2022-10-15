@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3594783277272977637}
   - component: {fileID: 1861162973771561969}
   - component: {fileID: 232791492012878582}
-  - component: {fileID: 4164549932455580546}
   m_Layer: 0
   m_Name: SearchRange
   m_TagString: Untagged
@@ -47,9 +46,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.5
 --- !u!114 &232791492012878582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,30 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf587248ac96d44ba266ef85aa6be43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3348665536933014961, guid: 87034981183c3c74ca89603e99d7c177, type: 3}
   slime: {fileID: 3135608018598009832}
   forward: {x: 1, y: -0, z: 0}
---- !u!50 &4164549932455580546
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 41930031377744893}
-  m_BodyType: 0
-  m_Simulated: 0
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &3135608018598009832
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 3135608018598009832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3594783277272977637}
