@@ -7,28 +7,28 @@ public class Shot_Enemy : MonoBehaviour
     enum ShotType
     {
         NONE = 0,
-        AIM,            // ƒvƒŒƒCƒ„[‚ğ‘_‚¤
-        THREE_WAY,      // ‚R•ûŒü
+        AIM,            // è‡ªæ©Ÿç‹™ã„
+        THREE_WAY,      // ï¼“æ–¹å‘
     }
 
     [System.Serializable]
     struct ShotData
     {
-        public int frame;
-        public ShotType type;
-        public Bullet_Enemy bullet;
+        public int frame;            // ç™ºå°„é–“éš”
+        public ShotType type;       //ç™ºå°„ãƒ¢ãƒ¼ãƒ‰
+        public Bullet_Enemy bullet; 
     }
 
-    // ƒVƒ‡ƒbƒgƒf[ƒ^
+    // ã‚·ãƒ§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
     [SerializeField] ShotData shotData = new ShotData { frame = 60, type = ShotType.NONE, bullet = null };
 
-    GameObject playerObj = null;    // ƒvƒŒƒCƒ„[ƒIƒuƒWƒFƒNƒg
-    int shotFrame = 0;              // ƒtƒŒ[ƒ€
+    GameObject playerObj = null;    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    int shotFrame = 0;              // ãƒ•ãƒ¬ãƒ¼ãƒ 
 
     // Start is called before the first frame update
     void Start()
     {
-        // ƒvƒŒƒCƒ„[ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
         switch (shotData.type)
         {
             case ShotType.AIM:
@@ -42,7 +42,7 @@ public class Shot_Enemy : MonoBehaviour
     {
         Shot();
     }
-    // ƒVƒ‡ƒbƒgˆ—i‚±‚ê‚ğUpdate‚È‚Ç‚ÅŒÄ‚Ôj
+    // å¼¾ã‚’ç™ºå°„ã™ã‚‹
     void Shot()
     {
         ++shotFrame;
@@ -50,7 +50,7 @@ public class Shot_Enemy : MonoBehaviour
         {
             switch (shotData.type)
             {
-                // ƒvƒŒƒCƒ„[‚ğ‘_‚¤
+                // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç‹™ã†
                 case ShotType.AIM:
                     {
                         if (playerObj == null) { break; }
@@ -63,7 +63,7 @@ public class Shot_Enemy : MonoBehaviour
                     }
                     break;
 
-                // ‚R•ûŒü
+                // ï¼“æ–¹å‘
                 case ShotType.THREE_WAY:
                     {
                         Bullet_Enemy bullet = (Bullet_Enemy)Instantiate(
@@ -80,6 +80,15 @@ public class Shot_Enemy : MonoBehaviour
             }
 
             shotFrame = 0;
+        }
+    }
+
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å½“ãŸã£ãŸã‚‰æ¶ˆãˆã‚‹
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+    if(other.gameObject.tag == "Player")
+        {
+            Destroy(this.gameObject);
         }
     }
 }
