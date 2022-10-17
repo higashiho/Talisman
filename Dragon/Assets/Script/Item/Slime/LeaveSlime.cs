@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LeaveSlime : MonoBehaviour
 {
-   private Vector2 player;
-   private Vector2 slime;
+  
 
     void Start()
     {
