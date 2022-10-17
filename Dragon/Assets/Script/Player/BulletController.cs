@@ -19,13 +19,13 @@ public class BulletController : MonoBehaviour
         bulletPos = transform.position;     // 生成された位置を代入
         getMousePos();     // マウスカーソルの座標を取得
         calculateDistance();    // 2点の距離とx座標とy座標それぞれの距離を計算
+                Destroy(gameObject, destroyTime);
     }
 
     // Update is called once per frame
     void Update()
     {
         bulletMove();       // 弾を移動
-        Destroy(gameObject, destroyTime);
     }
 
     private void calculateDistance(){    // 弾とマウスカーソルの距離を計算する
