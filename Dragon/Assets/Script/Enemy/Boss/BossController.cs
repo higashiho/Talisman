@@ -11,13 +11,16 @@ public class BossController : MonoBehaviour
     [HeaderAttribute("NavMeshAgent2D"), SerializeField]
    private NavMeshAgent2D agent; //NavMeshAgent2Dを使用するための変数
 
-    [SerializeField]
+    [SerializeField, ]
    private int randomNumber = 0;        // list　index指定用
 
+   
    private int minNumber = 1;           // rondomNumber最小値
    private int numericPreservation;      // 前回randoNumber保存用
 
+    [SerializeField, HeaderAttribute("初期移動時間")]
    private int startTime = 60;    // 初期ランダムナンバー設定時間
+   [SerializeField, HeaderAttribute("定期移動時間")]
    private int waitTime = 30;     // ２回目以降待ち時間
 
    [SerializeField]
