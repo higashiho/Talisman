@@ -9,7 +9,7 @@ public class NavMeshSourceTag2D : MonoBehaviour
     public static List<NavMeshSourceTag2D> tags = new List<NavMeshSourceTag2D>();
 
     public int area;
-    private Collider2D collider2D;
+    private new Collider2D collider2D;
 
     Mesh cachedMesh;
     uint shapeHash;
