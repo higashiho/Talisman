@@ -28,15 +28,17 @@ public class BossController : MonoBehaviour
 
    private int attackTime = 15;   // アタック間隔
 
+   private float posX = 44.0f, posY = 44.0f;        // 座標
+
     // Start is called before the first frame update
     void Awake()
     {
         destinations = new List<Vector3>();
         destinations.Add(new Vector3(0,0,0));               // 初期値
-        destinations.Add(new Vector3(44.0f, 44.0f, 0));     // 右上
-        destinations.Add(new Vector3(44.0f, -44.0f, 0));     // 右下
-        destinations.Add(new Vector3(-44.0f, 44.0f, 0));     // 左上
-        destinations.Add(new Vector3(-44.0f, -44.0f, 0));   // 左下
+        destinations.Add(new Vector3(posX, posY, 0));     // 右上
+        destinations.Add(new Vector3(posX, -posY, 0));     // 右下
+        destinations.Add(new Vector3(-posX, posY, 0));     // 左上
+        destinations.Add(new Vector3(-posX, -posY, 0));   // 左下
     }
     void Start()
     {
