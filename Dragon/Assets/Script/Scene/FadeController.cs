@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class FadeController : MonoBehaviour
@@ -8,7 +9,7 @@ public class FadeController : MonoBehaviour
     private bool isFadeOut = false; //フェードアウトフラグ
     private bool isFadeIn = true;   //フェードインフラグ
     private float fadeSpeed = 0.75f;    //フェイドアウトスピード
-    //[SerializeField] private Image fadeImage = default;
+    [SerializeField] private Image fadeImage = default;
     private float red, green, blue, alpha;  // 赤, 緑, 青, 透明度
     private string afterScene;
     public SceneController sceneController;
@@ -58,7 +59,7 @@ public class FadeController : MonoBehaviour
 
     private void SetColor()     // 色代入関数
     {
-        //fadeImage.color = new Color(red, green, blue, alpha);
+        fadeImage.color = new Color(red, green, blue, alpha);
     }
 
     private void SetRGBA(int r, int g, int b, int a)    // 色の値を設定する関数
