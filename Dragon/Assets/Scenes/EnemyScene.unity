@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotData:
-    frame: 500
-    type: 2
+    frame: 100
+    type: 1
     bullet: {fileID: 6733831298390765637, guid: 6b283a0eeb57ee445bdca85b7377ee17, type: 3}
 --- !u!212 &1106702726
 SpriteRenderer:
