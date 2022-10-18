@@ -9,7 +9,14 @@ public class PlayerMove : MonoBehaviour
 
 
     public int Hp;                  //ヒットポイント
+    private int heel = 2;           //シールドが割れた時点での回復
     private bool onShield = true;       //シールドがあるか
+
+    private Vector2 noShieldSpeed = new Vector2(2.0f, 2.0f);       //シールドがない時の移動スピード
+    private Vector2 nomalPlayerSpeed = new Vector2(5.0f, 5.0f);
+
+    [SerializeField, HeaderAttribute("シールド回復時間")]
+    private float heelSheld = 5.0f;         //シールド回復時間
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +27,9 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         move();
+
+        if(!onShield)
+            shield();
     }
 
     private void move()
@@ -44,8 +54,22 @@ public class PlayerMove : MonoBehaviour
         transform.position = pos;
     }
 
+    //シールドがある時Hpを下回る攻撃を受けた場合
     private void shield()
     {
-
+        onShield = false;
+        Hp = heel;
+        PlayerSpeed = noShieldSpeed;
+    }
+    // シールド回復
+    private void shieldHeel()
+    {
+        heelSheld -= Time.deltaTime;
+        if(heelSheld <= 0)
+        {
+            onShield = true;
+            PlayerSpeed = nomalPlayerSpeed;
+            heelSheld = default;
+        }
     }
 }

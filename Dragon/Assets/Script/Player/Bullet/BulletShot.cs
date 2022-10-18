@@ -23,7 +23,7 @@ public class BulletShot : MonoBehaviour
     private float reloadPoint = 0.0f;           // リロード用
     private float mag = 5.0f;                   // 倍率
 
-    [SerializeField,HeaderAttribute("player")]
+    [SerializeField, HeaderAttribute("player")]
     private PlayerMove playerMove;          //スクリプト格納用
 
     private Vector2 reloadSoeed = new Vector2(2.0f, 2.0f);  //リロード中の遅延量
@@ -89,7 +89,7 @@ public class BulletShot : MonoBehaviour
         // 弾数が最大値よりも大きくなるとリロードをやめる
         if(count >= countMax)
         {
-            playerMove.PlayerSpeed += reloadSoeed;
+            playerMove.PlayerSpeed = reloadSoeed;
             reloadPoint = 0;
             reload = false;
         }

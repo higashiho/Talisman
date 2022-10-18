@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: {x: 5, y: 5}
+  Hp: 3
 --- !u!50 &1841200581054410835
 Rigidbody2D:
   serializedVersion: 4
