@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerSpeed: {x: 5, y: 5}
 --- !u!50 &1841200581054410835
 Rigidbody2D:
   serializedVersion: 4
@@ -246,7 +247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletObj: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
   player: {fileID: 1841200581054410847}
-  delay: 0
-  count: 0
-  count_Max: 10
-  reloadTime: 2
+  count: 10
+  countMax: 10
+  reload: 0
+  reloadPoint: 0
+  playerMove: {fileID: 1841200581054410846}
