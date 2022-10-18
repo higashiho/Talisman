@@ -13,6 +13,8 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float destroyTime = 3.0f;      // 弾を消すまでの時間
 
+    public int Attack = 5;          // 攻撃力 
+
     // Start is called before the first frame update
     void Start()
     {
