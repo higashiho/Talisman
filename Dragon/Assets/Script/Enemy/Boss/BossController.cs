@@ -33,8 +33,8 @@ public class BossController : MonoBehaviour
 
    private float posX = 44.0f, posY = 44.0f;        // 座標
 
-   [HeaderAttribute("ヒットポイント"), SerializeField]
-   private int hp;
+   [HeaderAttribute("ヒットポイント")]
+   public int Hp;
 
     // Start is called before the first frame update
     void Awake()
