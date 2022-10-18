@@ -11,13 +11,16 @@ public class BossController : MonoBehaviour
     [HeaderAttribute("NavMeshAgent2D"), SerializeField]
    private NavMeshAgent2D agent; //NavMeshAgent2Dを使用するための変数
 
-    [SerializeField]
+    [SerializeField, ]
    private int randomNumber = 0;        // list　index指定用
 
+   
    private int minNumber = 1;           // rondomNumber最小値
    private int numericPreservation;      // 前回randoNumber保存用
 
+    [SerializeField, HeaderAttribute("初期移動時間")]
    private int startTime = 60;    // 初期ランダムナンバー設定時間
+   [SerializeField, HeaderAttribute("定期移動時間")]
    private int waitTime = 30;     // ２回目以降待ち時間
 
    [SerializeField]
@@ -28,15 +31,20 @@ public class BossController : MonoBehaviour
 
    private int attackTime = 15;   // アタック間隔
 
+   private float posX = 44.0f, posY = 44.0f;        // 座標
+
+   [HeaderAttribute("ヒットポイント")]
+   public int Hp;
+
     // Start is called before the first frame update
     void Awake()
     {
         destinations = new List<Vector3>();
         destinations.Add(new Vector3(0,0,0));               // 初期値
-        destinations.Add(new Vector3(44.0f, 44.0f, 0));     // 右上
-        destinations.Add(new Vector3(44.0f, -44.0f, 0));     // 右下
-        destinations.Add(new Vector3(-44.0f, 44.0f, 0));     // 左上
-        destinations.Add(new Vector3(-44.0f, -44.0f, 0));   // 左下
+        destinations.Add(new Vector3(posX, posY, 0));     // 右上
+        destinations.Add(new Vector3(posX, -posY, 0));     // 右下
+        destinations.Add(new Vector3(-posX, posY, 0));     // 左上
+        destinations.Add(new Vector3(-posX, -posY, 0));   // 左下
     }
     void Start()
     {
@@ -73,6 +81,8 @@ public class BossController : MonoBehaviour
     {
         Instantiate(meteorite, player.position, Quaternion.identity);
     }
+
+    
     void OnDestroy()
     {
         destinations.Clear();
