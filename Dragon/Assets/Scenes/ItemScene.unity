@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabEnemy:
+  - {fileID: 3135608018598009832, guid: 82e785e2d81e0ce4e81dc16953609ce0, type: 3}
   - {fileID: 3135608018598009832, guid: 1f0b309579c46a14aaad9bcc22a60405, type: 3}
   - {fileID: 2415827260650019710, guid: df2d5adfda5d5514e8b3e45c24e49583, type: 3}
   count: 5
