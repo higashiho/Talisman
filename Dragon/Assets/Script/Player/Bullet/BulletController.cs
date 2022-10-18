@@ -49,11 +49,4 @@ public class BulletController : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // マウスの画面座標をワールド座標に変換して代入
         }
     }
-
-    // 敵に当たると消える
-    private void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.CompareTag("Enemy")){
-            Destroy(gameObject);
-        }
-    }
 }
