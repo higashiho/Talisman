@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 5870908815402319978}
   - component: {fileID: 4806220815090910703}
   - component: {fileID: 1263777376608953089}
-  - component: {fileID: 5307571712961443374}
   m_Layer: 0
   m_Name: AttackBoss
   m_TagString: Untagged
@@ -191,18 +190,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   stoppingDistance: 0
---- !u!114 &5307571712961443374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3135608018598009832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e16a8f6ebface48a1402407f171c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinations: []
-  agent: {fileID: 1263777376608953089}
-  randomNumber: 0

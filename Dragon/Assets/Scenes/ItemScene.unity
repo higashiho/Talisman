@@ -347,7 +347,6 @@ GameObject:
   m_Component:
   - component: {fileID: 657400966}
   - component: {fileID: 657400968}
-  - component: {fileID: 657400967}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -370,14 +369,6 @@ Transform:
   m_Father: {fileID: 15064560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &657400967
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 657400965}
-  m_Enabled: 1
 --- !u!20 &657400968
 Camera:
   m_ObjectHideFlags: 0
@@ -615,9 +606,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabEnemy:
-  - {fileID: 2415827260650019710, guid: df2d5adfda5d5514e8b3e45c24e49583, type: 3}
   - {fileID: 3135608018598009832, guid: 1f0b309579c46a14aaad9bcc22a60405, type: 3}
-  count: 0
+  - {fileID: 2415827260650019710, guid: df2d5adfda5d5514e8b3e45c24e49583, type: 3}
+  count: 5
+  timer: 15
 --- !u!1 &884867936
 GameObject:
   m_ObjectHideFlags: 0
@@ -15031,6 +15023,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519420032, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1841200581054410835, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: m_Constraints
       value: 4
