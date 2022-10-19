@@ -16,10 +16,13 @@ public class MeteoriteController : MonoBehaviour
     private float scaleUp = -0.5f;       // だんだん大きくする用
     private float scaleZ = 1.0f;         // scaleのz値用
 
-    [HeaderAttribute("Meteproteの親オブジェクト"), SerializeField]
-    private GameObject Ring = default;      // Meteproteの親オブジェクト
 
-    private float destroyTime = 2.5f;           //削除までの時間
+    private float destroyTime = 2.5f;           // 削除までの時間
+
+    public int Damege = 3;      // プレイヤーに当たった時に与えるダメージ  
+    
+    [HeaderAttribute("Meteproteの親オブジェクト")]
+    public GameObject Ring = default;      // Meteproteの親オブジェクト  
     // Start is called before the first frame update
     void Start()
     {
@@ -52,11 +55,5 @@ public class MeteoriteController : MonoBehaviour
         Destroy(Ring.gameObject, destroyTime);
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            Destroy(Ring.gameObject);
-        }
-    }
+    
 }
