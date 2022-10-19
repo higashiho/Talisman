@@ -13,6 +13,8 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float destroyTime = 3.0f;      // 弾を消すまでの時間
 
+    public int Attack = 5;          // 攻撃力 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,13 +47,6 @@ public class BulletController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))      // 左クリックされた瞬間
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // マウスの画面座標をワールド座標に変換して代入
-        }
-    }
-
-    // 敵に当たると消える
-    private void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.CompareTag("Enemy")){
-            Destroy(gameObject);
         }
     }
 }
