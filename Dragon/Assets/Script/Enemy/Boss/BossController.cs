@@ -61,6 +61,7 @@ public class BossController : MonoBehaviour
         // if(randomNumber != 0)
             // move();
 
+        move();
 
     }
 
