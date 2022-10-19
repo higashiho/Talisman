@@ -94,10 +94,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1841200581054410847}
   - component: {fileID: 1841200581054410840}
-  - component: {fileID: 1841200581054410846}
   - component: {fileID: 1841200581054410835}
   - component: {fileID: 1841200581054410844}
   - component: {fileID: 40881846706390982}
+  - component: {fileID: 1861904027}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 1841200581054410842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 519420032}
@@ -173,19 +173,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1841200581054410846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841200581054410842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerSpeed: {x: 5, y: 5}
 --- !u!50 &1841200581054410835
 Rigidbody2D:
   serializedVersion: 4
@@ -251,4 +238,20 @@ MonoBehaviour:
   countMax: 10
   reload: 0
   reloadPoint: 0
-  playerMove: {fileID: 1841200581054410846}
+  playerController: {fileID: 1861904027}
+--- !u!114 &1861904027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841200581054410842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeed: {x: 5, y: 5}
+  Hp: 3
+  onShield: 1
+  heelSheld: 5
