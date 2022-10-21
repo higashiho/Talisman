@@ -17,7 +17,7 @@ public class MeteoriteController : MonoBehaviour
     private float scaleZ = 1.0f;         // scaleのz値用
 
 
-    private float destroyTime = 2.5f;           // 削除までの時間
+    private float destroyTime = 1f;           // 削除までの時間
 
     public int Damege = 3;      // プレイヤーに当たった時に与えるダメージ  
     
@@ -36,7 +36,7 @@ public class MeteoriteController : MonoBehaviour
     {
         if(alpha < alphaMax)
             addColorGradually();
-        else if(collider.enabled != true)
+        else if(!collider.enabled)
             onCollider();
     }
 
