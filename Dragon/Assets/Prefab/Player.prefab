@@ -173,6 +173,8 @@ GameObject:
   - component: {fileID: 1841200581054410844}
   - component: {fileID: 1861904027}
   - component: {fileID: 1506668396}
+  - component: {fileID: 1506668391}
+  - component: {fileID: 1506668392}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -323,3 +325,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b4fe5672592d54baaed2e4eff43b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1506668391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841200581054410842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3c95bb0d0217f41904c7b3d6b52e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1506668392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841200581054410842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skills: 0000000000000000000000000000000000000000
+  nowSkiil: 0101010101
