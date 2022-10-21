@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class SwordContorooler : MonoBehaviour
 {
+    
+    /// @breif 剣を振り回すスクリプト
+    /// @note  playerの子のSwordにアタッチ
+    /// @note  右クリックで回転開始
+    /// @note  AttackWaitで攻撃頻度変更可能
+    /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
+    /// @note　オンにして表示と当たり判定を行う
 
-    private float rotAngleZ = 5.0f; //回転速度
+    private float rotAngleZ = 10.0f; //回転速度
     private bool coroutineBool = false;  //回転中か判断用
-    private float StopRotation = 18.0f; //回転ストップ
-    private float startAngleZ = 50.0f;
+    private float StopRotation = 15.0f; //回転ストップ
+    private float startAngleZ = 150.0f;  // 最初の位置に戻す
+
+    private float waitTime = 0.01f;       // 回転遅延用
+    [HeaderAttribute("攻撃間隔"), SerializeField]
+    private float attackWait;      // 攻撃遅延用
+
+    [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
+    private new SpriteRenderer renderer;        // SpriteRendere格納用
+    [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
+    private new BoxCollider2D collider;
     // Start is called before the first frame update
     void Start()
     {
-        
+        renderer.enabled = false;
+        collider.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,14 +47,21 @@ public class SwordContorooler : MonoBehaviour
                 }
     }
     
+    // 回す処理、動いている最中のみレンダラーと当たり判定がオン
     IEnumerator Shake()
     {
+        collider.enabled = true;
+        renderer.enabled = true;
         for (int turn = 0; turn < StopRotation; turn++)
         {
             transform.Rotate(0, 0, -rotAngleZ);
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(waitTime);
         }
+        
+        transform.Rotate(0, 0, startAngleZ);
+        renderer.enabled = false;
+        collider.enabled = false;
+        yield return new WaitForSeconds(attackWait);
         coroutineBool = false;
-        this.transform.rotation = Quaternion.Euler(0f, 0f, startAngleZ);
     }
 }
