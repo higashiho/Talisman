@@ -4,85 +4,94 @@ using UnityEngine;
 
 public class CreateRandom : MonoBehaviour
 {
-   [HeaderAttribute("Prefab生成配列"), SerializeField]
-   private GameObject [] prefabEnemy;  
-   [HeaderAttribute("生成数最大値"), SerializeField]
-   private int count = 5;
-   [HeaderAttribute("生成待機時間"), SerializeField]
-   private int timer = 15;
+    /**
+    * @breif 中ボスを生成するスクリプト
+    * @note  RandomCreaterにアタッチ
+    * @note  ボスの座標取得 => エリア判定 => 中ボスの生成位置設定
+    * @note  => 生成する中ボスを設定 => 中ボス生成(30s毎)
+    */
+    [HeaderAttribute("Prefab生成配列"), SerializeField]
+    private GameObject [] prefabEnemy;  // 中ボス配列
+    [SerializeField]
+    private GameObject _boss; // Bossアタッチ用
+    [SerializeField]
+    private Vector3 _pos;    // bossの座標
+
+    private Vector3 _createPos;  // 中ボス生成座標
+
+    // ボスのいるエリア判定用
+    private float _AREA0 = 0f;
+    private float _AREA1 = 75f;
+    private float _AREA2 = 150f;
+    private float _AREA3 = 225f;  
+
+    private float _FIELDHEIGHT = 44f;  // フィールドの高さ
+
+    [HeaderAttribute("生成数最大値"), SerializeField]
+    private int count = 5;
+    [HeaderAttribute("生成待機時間"), SerializeField]
+    private int timer = 30;
   
 
-   private int number;  // Index指定用
+    private int number;  // Index指定用
 
-   private float posX = 44f;   // 画面内生成制限用
-   private float posY = 44f;   // 画面内生成制限用
-   private float posZ = 0f;    // 画面内生成制限用
-    [SerializeField]
-   private Vector3 [] sponPos = new Vector3 [0] ; // 中ボスのスポーン位置管理配列
-
-   void Awake()
-   { // 中ボスの位置管理配列にマップの座標を登録
-      
-        
-   }
 
     void Start()
     {
-        sponPos [0] = new Vector3(posX,posY,posZ);     // マップ右上
-        sponPos [1] = new Vector3(-posX,posY,posZ);    // マップ左上
-        sponPos [2] = new Vector3(-posX,-posY,posZ);   // マップ左下
-        sponPos [3] = new Vector3(posX,-posY,posZ);    // マップ右下
+        InvokeRepeating("Timer", timer, timer);
     }
 
-   
     void Update()
     {
-       if(count > 0)
-            StartCoroutine("Timer");
     }
 
     /**
     * @brief Prefab配列からランダムで、エリアのランダム位置に生成する関数
     */
-    private void randomMiddleBoss(int index)
+    private void randomMiddleBoss()
     {
-        
         // 生成する中ボスをPrefab配列の中からランダムに選んでnumberにindexを登録
         number = Random.Range(0,prefabEnemy.Length); 
-        Vector3 pos = sponPos[index];
-        Instantiate(prefabEnemy[number], pos, Quaternion.identity);// 設定したposにPrefab生成
+        Instantiate(prefabEnemy[number], _createPos, Quaternion.identity);// 設定したposにPrefab生成
         count--;  // 生成数++
     }
 
     /**
-    * @brief 中ボスの出現位置を登録する関数
-    * @note フィールドに最初に出現する中ボスの出現位置は
-    *       ４つ角からランダムで選ぶ。２体目以降は反時計回り
-    *       に４つ角からスポーン
+    * @brief  中ボスを生成する位置を決める関数
+    * @note   ボスの座標を取得 => エリアを判定 
+    * @note   => そのエリアの中でランダムの座標を設定 => ボスがいるエリアに生成
     */
-    private int randomIndex()
+    private void createMiddleBoss()
     {
-        int counter = 0;
-        int index = 0;
-        if(counter == 0)
-            index = (int)Random.Range(0, sponPos.Length);  // 生成位置を中ボスの生成位置管理配列からランダムに選ぶ
-        else
-        {
-            if(index == sponPos.Length)
-                index = 0;
-            else
-                index++;
-        }
-        counter++;
-        return index;
+        // 生成座標作成用
+        float posX = 0;  
+        float posY = Random.Range(-_FIELDHEIGHT, _FIELDHEIGHT);
+        float posZ = 0;
+
+        _createPos = new Vector3(0,0,0);  // 中ボス生成座標格納用
+        _pos = _boss.transform.position;  // ボスの座標取得
+
+        // 中ボス生成x座標を作成
+        if(_pos.x < _AREA1)// エリア１にボスがいるとき
+            posX = Random.Range(_AREA0, _AREA1);
+        else if(_pos.x < _AREA2)// エリア２
+            posX = Random.Range(_AREA1, _AREA2);
+        else if(_pos.x < _AREA3)// エリア３
+            posX = Random.Range(_AREA2, _AREA3);
+
+        _createPos = new Vector3(posX, posY, posZ); // 中ボス生成座標設定
     }
 
-    // Timerコルーチン
-    // 生成待機時間後 => random()呼び出し => random()の中で生成
-    IEnumerator Timer()
+    // invokeで指定時間ごとに呼び出す用
+    private void Timer()
     {
-        yield return new WaitForSeconds(timer);
-        int index = randomIndex();
-        randomMiddleBoss(index);
+        if(count > 0)
+        {
+        createMiddleBoss();  // 中ボスを生成する位置を決める関数
+        randomMiddleBoss();  // 中ボスをランダムに選んでフィールドに生成する関数
+        }
     }
+
 }
+
+
