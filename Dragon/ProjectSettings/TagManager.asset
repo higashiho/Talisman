@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Boss
   - MiddleBoss
+  - Sword
   layers:
   - Default
   - TransparentFX
