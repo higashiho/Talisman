@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chase_Enemy : MonoBehaviour
+public class ChaseEnemy : MonoBehaviour
 {
 
     [SerializeField]
@@ -43,14 +43,10 @@ public class Chase_Enemy : MonoBehaviour
     //プレイヤーに当たったら消える
     private void OnTriggerEnter2D(Collider2D other)
     {
-    if(other.gameObject.tag == "Bullet")
+    if(other.gameObject)
         {
+            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
     }
 }

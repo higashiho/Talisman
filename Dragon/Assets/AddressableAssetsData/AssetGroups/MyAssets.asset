@@ -22,11 +22,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - MiddleBoss1
-  - m_GUID: 1f0b309579c46a14aaad9bcc22a60405
-    m_Address: Assets/Prefab/middleBoss2.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - MiddleBoss1
   - m_GUID: df2d5adfda5d5514e8b3e45c24e49583
     m_Address: Assets/Prefab/middleBoss3.prefab
     m_ReadOnly: 0
