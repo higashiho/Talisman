@@ -13,51 +13,45 @@ public class CreateRandom : MonoBehaviour
     * @note  ボスの座標取得 => エリア判定 => 中ボスの生成位置設定
     * @note  => 生成する中ボスを設定 => 中ボス生成(30s毎)
     */
-    [HeaderAttribute("Prefab生成配列"), SerializeField]
-    private GameObject [] prefabEnemy;  // 中ボス配列
+
     [SerializeField]
     private GameObject _boss; // Bossアタッチ用
     [SerializeField]
     private Vector3 _pos;    // bossの座標
+    [HeaderAttribute("生成した中ボスの数"), SerializeField]
+    public int _Counter;
 
+    // 中ボスのインスタンスのリスト
     private List<GameObject> EnemyInstances = new List<GameObject>();
 
     private Vector3 _createPos;  // 中ボス生成座標
 
-    // ボスのいるエリア判定用
-    private float _AREA0 = 0f;
-    private float _AREA1 = 75f;
-    private float _AREA2 = 150f;
-    private float _AREA3 = 225f;  
-
-    private float _FIELDHEIGHT = 44f;  // フィールドの高さ
+    private float _AREAHEIGHT = 44f;  // 生成エリアの高さ
+    private float _AREAWIDTH_LEFT = 10f;   // 生成エリアの横の左側
+    private float _AREAWIDTH_RIGHT = 50f;   // 生成エリアの横の右側
 
     [HeaderAttribute("生成数最大値"), SerializeField]
     private int count = 1;
     [HeaderAttribute("生成待機時間"), SerializeField]
     private float timer = 30;
-    private float _time = 0;
+    private float _time = 0;  // スキル発動カウントダウン
   
+    private string _key;      // addressablesのアドレス指定用
+    AsyncOperationHandle<GameObject> loadOp; // addressables用ハンドル
+    private bool create = false;         // 生成可能フラグ
 
-    private int number;  // Index指定用
-    public string key;
-    AsyncOperationHandle<GameObject> loadOp;
-
-    private enum MIDDLE_BOSS_TYPE
+    private string[] _keyName = new string[] 
     {
-        MIDDLEBOSS_1,
-        MIDDLEBOSS_2,
-        MIDDLEBOSS_3
-    }
-
-    private MIDDLE_BOSS_TYPE _type;
-    private bool create = false;
+        "MiddleBoss1",
+        "MiddleBoss2",
+        "MiddleBoss3"
+    };
 
 
     void Start()
     {
-       key = "MiddleBoss1";
-
+       //key = "MiddleBoss1";
+       _Counter = 0;
         //InvokeRepeating("Timer", timer, timer);
     }
     /*IEnumerator Start()
@@ -76,11 +70,21 @@ public class CreateRandom : MonoBehaviour
         }
         if(create)
         {
+            settingKey();
             Timer();
             _time = 0;
             create = false;
         }
         
+    }
+    
+    /**
+    * @brief keyを設定する関数
+    */
+    private void settingKey()
+    {
+        int number = UnityEngine.Random.Range(0,_keyName.Length);
+        _key = _keyName[number];
     }
 
     /**
@@ -119,28 +123,24 @@ public class CreateRandom : MonoBehaviour
     */
     private void createMiddleBoss()
     {
+         _pos = _boss.transform.position;  // ボスの座標取得
         // 生成座標作成用
-        float posX = 0;  
-        float posY = UnityEngine.Random.Range(-_FIELDHEIGHT, _FIELDHEIGHT);
+        float posX = UnityEngine.Random.Range(_pos.x + _AREAWIDTH_LEFT, _pos.x + _AREAWIDTH_RIGHT);  
+        float posY = UnityEngine.Random.Range(-_AREAHEIGHT, _AREAHEIGHT);
         float posZ = 0;
 
         _createPos = new Vector3(0,0,0);  // 中ボス生成座標格納用
-        _pos = _boss.transform.position;  // ボスの座標取得
+       
 
         // 中ボス生成x座標を作成
-        if(_pos.x < _AREA1)// エリア１にボスがいるとき
-            posX = UnityEngine.Random.Range(_AREA0, _AREA1);
-        else if(_pos.x < _AREA2)// エリア２
-            posX = UnityEngine.Random.Range(_AREA1, _AREA2);
-        else if(_pos.x < _AREA3)// エリア３
-            posX = UnityEngine.Random.Range(_AREA2, _AREA3);
+       
 
         _createPos = new Vector3(posX, posY, posZ); // 中ボス生成座標設定
     }
 
     public IEnumerator Load()
     {
-        loadOp = Addressables.LoadAssetAsync<GameObject>(key); 
+        loadOp = Addressables.LoadAssetAsync<GameObject>(_key); 
         
         
         yield return loadOp;
@@ -149,6 +149,7 @@ public class CreateRandom : MonoBehaviour
         {
            // yield return new WaitForSeconds(5) ;
             Instantiate(loadOp.Result, _createPos, Quaternion.identity);
+            _Counter++;
         }
     }
 
