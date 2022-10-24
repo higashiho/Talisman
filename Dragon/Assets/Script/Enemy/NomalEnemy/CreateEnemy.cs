@@ -25,6 +25,11 @@ public class CreateEnemy : MonoBehaviour
     // 生成エリア指定用
     private float _height = 30f;  // ボスの上下
     private float _front = 30f;   // ボスの前
+
+    // 生成座標
+    private float _posX;
+    private float _posY;
+    private float _posZ;
  
     // Start is called before the first frame update
     void Start()
@@ -44,27 +49,26 @@ public class CreateEnemy : MonoBehaviour
     private void settingPos()
     {
         _pos = _boss.transform.position;  // ボスの座標取得
-        float posX;
-        float posY;
+       
         // ボスがエリア１にいるとき
         // ボスの真上に生成エリアをつくる
         if(_pos.x < _bosscontroller.areas[2])
         {
-           // posX = _pos.x;
-           // posY = _pos.y + _height;
+           _posX = _pos.x;
+           _posY = _pos.y + _height;
         }
         // ボスがエリア２にいるとき
         // ボスの前方に生成エリアをつくる
         else if(_pos.x < _bosscontroller.areas[3])
         {
-           // posX = _pos.x + _front;
-           // posY = _pos.y;
+           _posX = _pos.x + _front;
+           _posY = _pos.y;
         }
         // ボスがエリア３にいるとき
         else if(_pos.x < _bosscontroller.areas[4])
         {
-            //posX = _pos.x;
-            //posY = _pos.y - _height;
+            _posX = _pos.x;
+            _posY = _pos.y - _height;
         }
         // ボスがエリア４にいるとき
         else
@@ -80,7 +84,7 @@ public class CreateEnemy : MonoBehaviour
         //生成するPrefubのIndexを配列の要素の中からランダムに設定
         number = Random.Range(0,prefabEnemy.Length);
         //ランダム生成
-        //Instantiate(prefabEnemy[number],new Vector3(posX,posY,posZ),Quaternion.identity);
+        Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
         spawnCount--;
     }
 
