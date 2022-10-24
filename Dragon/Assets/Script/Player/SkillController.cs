@@ -13,7 +13,7 @@ public class SkillController : MonoBehaviour
     public enum SkilType {
         lockonBullet,
         Speed,
-        Skill3,
+        RotateSword,
         Skill4,
         Skill5
     }
@@ -32,7 +32,8 @@ public class SkillController : MonoBehaviour
     [HeaderAttribute("ターゲティング中の敵")]
     public string target = default;                 // ターゲットのタグ
 
-    public bool SpeedUp = false;
+    public bool SpeedUp = false;                    // スピードアップしてるかどうか
+    public bool OnRotateSword = false;              // 回転斬りが出来るかどうか
     // Awake is called before the first frame update
     void Awake()
     {
@@ -61,15 +62,15 @@ public class SkillController : MonoBehaviour
         if(Skills[1] > 0 && nowSkiil[1])
         {
             nowSkiil[1] = false;    
-
             Invoke("usingSkill2", waitTime);
         }
 
-        if(Skills[2] > 0 && nowSkiil[2])
+        if(Skills[2] > 0)
         {
-            nowSkiil[2] = false;    
-            Invoke("usingSkill3", waitTime);
+            OnRotateSword = true;
         }
+        else
+            OnRotateSword = false;
 
         if(Skills[3] > 0 && nowSkiil[3])
         {
@@ -108,12 +109,6 @@ public class SkillController : MonoBehaviour
         nowSkiil[1] = true;
         SpeedUp = true;
         Skills[1]--;
-    }
-
-    private void usingSkill3()
-    {
-        nowSkiil[2] = true;
-        Skills[2]--;
     }
 
     private void usingSkill4()

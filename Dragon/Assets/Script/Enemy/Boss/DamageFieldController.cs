@@ -15,7 +15,7 @@ public class DamageFieldController : MonoBehaviour
     private float destroyTime = 5.0f;        // 消えるまでの時間
 
     public bool Damage = false;         // ダメージを与えられるかどうか
-    private int damage = 1;         // ダメージの値
+    private int giveDamage = 1;         // ダメージの値
     private bool startDamage = false;        // ダメージ処理に入ったかどうか
 
 
@@ -61,7 +61,7 @@ public class DamageFieldController : MonoBehaviour
     private IEnumerator onDamage()
     {
         startDamage = true;
-        playerController.Hp -= damage;
+        playerController.Hp -= giveDamage;
         yield return new WaitForSeconds(waitTime) ;
         startDamage = false;
     }
