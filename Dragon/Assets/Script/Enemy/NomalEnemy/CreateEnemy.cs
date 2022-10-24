@@ -48,20 +48,20 @@ public class CreateEnemy : MonoBehaviour
         float posY;
         // ボスがエリア１にいるとき
         // ボスの真上に生成エリアをつくる
-        if(_pos.x < _bosscontroller.areas[2])
+        if(_pos.x < _bosscontroller.Areas[2])
         {
            // posX = _pos.x;
            // posY = _pos.y + _height;
         }
         // ボスがエリア２にいるとき
         // ボスの前方に生成エリアをつくる
-        else if(_pos.x < _bosscontroller.areas[3])
+        else if(_pos.x < _bosscontroller.Areas[3])
         {
            // posX = _pos.x + _front;
            // posY = _pos.y;
         }
         // ボスがエリア３にいるとき
-        else if(_pos.x < _bosscontroller.areas[4])
+        else if(_pos.x < _bosscontroller.Areas[4])
         {
             //posX = _pos.x;
             //posY = _pos.y - _height;
