@@ -17,7 +17,7 @@ public class MeteoriteController : MonoBehaviour
     private float scaleZ = 1.0f;         // scaleのz値用
 
 
-    private float destroyTime = 1f;           // 削除までの時間
+    private float destroyTime = 0.3f;           // 削除までの時間
 
     public int Damege = 3;      // プレイヤーに当たった時に与えるダメージ  
     

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -59,24 +60,28 @@ public class BossController : MonoBehaviour
 
     private void move()
     {
+        pos = transform.position;
         agent.SetDestination(targetCoordinates);
+
+        if(pos.x >= targetCoordinates.x)
+            SceneManager.LoadScene("EndScene");
     }
     // 攻撃挙動
     private void attack()
     {
         pos = this.transform.position;
         // エリア４にいるときの敵の攻撃
-        if(pos.x < areas[3])
+        if(pos.x > areas[3])
         {
             ;
         }
         // エリア３にいるときの敵の攻撃
-        else if(pos.x < areas[2])
+        else if(pos.x > areas[2])
         {
             ;
         }
         // エリア２にいるときの敵の攻撃
-        else if(pos.x < areas[1])
+        else if(pos.x > areas[1])
         {
             Instantiate(attackSkill[1], player.position, Quaternion.identity);
         }
