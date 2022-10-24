@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DragonScene.unity
     guid: 4785e9ecf4a78c345be79e49e7059633
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 66e91fbee4397fc4cb8131ae9f15f2ce, type: 2}
