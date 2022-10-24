@@ -11,11 +11,11 @@ public class SkillController : MonoBehaviour
 
     // Inspectorに表示させたいEnum
     public enum SkilType {
-        lockonBullet,
-        Skill2,
-        Skill3,
-        Skill4,
-        Skill5
+        lockonBullet = 0,
+        Speed = 1,
+        Skill3 = 2,
+        Skill4 = 3,
+        Skill5 = 4
     }
     [HeaderAttribute("Skill未定のため確定後変数名変更"), EnumIndex(typeof(SkilType))]
     public int[] Skills = new int[5];
@@ -47,13 +47,13 @@ public class SkillController : MonoBehaviour
     /// @note スキル用のif文の量が増えるため直接updateの中に記入は避ける
     private void skillControl()
     {
-        if(Skills[0] > 0 && nowSkiil[0])
+        if(Skills[lockonBullet] > 0 && nowSkiil[0])
         {
-            nowSkiil[0] = false;   
+            nowSkiil[lockonBullet] = false;   
             targeting = true; 
             Invoke("usingSkill1", waitTime);
         }
-        else if(Skills[0] < 0)
+        else if(Skills[lockonBullet] < 0)
             targeting = false;
 
         if(Skills[1] > 0 && nowSkiil[1])
@@ -96,9 +96,9 @@ public class SkillController : MonoBehaviour
     // 以下スキル使用関数
     private void usingSkill1()
     {
-        nowSkiil[0] = true;
+        nowSkiil[lockonBullet] = true;
         bulletShot.ShotBullet();
-        Skills[0]--;
+        Skills[lockonBullet]--;
     }
     private void usingSkill2()
     {

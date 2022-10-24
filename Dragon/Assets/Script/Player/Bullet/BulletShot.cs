@@ -63,6 +63,12 @@ public class BulletShot : MonoBehaviour
     {
         bullet = Instantiate(bulletObj, this.transform.position, Quaternion.identity);
         target = GameObject.FindWithTag(skillController.target);
+
+        if(target == null)
+        {
+            skillController.target = "Boss";
+            target = GameObject.FindWithTag(skillController.target);
+        }
         bullet.GetComponent<TargetingBullet>().GetVector(transform.position, target.transform.position);
     }
 
