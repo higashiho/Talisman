@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9bd0668afd13d409781fc4fdc75828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleUpSpeed: {x: 0, y: 0, z: 6}
+  scaleUpSpeed: {x: 0, y: 0, z: 8}
   Damege: 3
-  destroyTime: 7
+  destroyTime: 3
   beamLine: {fileID: 1275688412}
 --- !u!1 &5659572086008325085
 GameObject:

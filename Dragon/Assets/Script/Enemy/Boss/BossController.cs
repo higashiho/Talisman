@@ -42,6 +42,7 @@ public class BossController : MonoBehaviour
 
    private GameObject attackObject = default;           //攻撃スキルオブジェクト
 
+    private float attackSpeed = 5.0f;                   // ラストエリア時の攻撃間隔
     // Start is called before the first frame update
     void Awake()
     {
@@ -75,7 +76,7 @@ public class BossController : MonoBehaviour
         // エリア４にいるときの敵の攻撃
         if(pos.x > Areas[3])
         {
-            ;
+            StartCoroutine(lastAreaSkill());
         }
         // エリア３にいるときの敵の攻撃
         else if(pos.x > Areas[2])
@@ -87,14 +88,26 @@ public class BossController : MonoBehaviour
         // エリア２にいるときの敵の攻撃
         else if(pos.x > Areas[1])
         {
-            Instantiate(attackSkill[1], player.position, Quaternion.identity);
+            attackObject = Instantiate(attackSkill[1], transform.position, Quaternion.identity);
+            attackObject.transform.parent = this.gameObject.transform;
         }
         // エリア１にいるときの敵の攻撃
         else
         {
            Instantiate(attackSkill[0], player.position, Quaternion.identity);
         }
-}
+    }
+
+    private IEnumerator lastAreaSkill()
+    {
+        Instantiate(attackSkill[0], player.position, Quaternion.identity);
+        yield return new WaitForSeconds(attackSpeed);
+        attackObject = Instantiate(attackSkill[1], this.transform.position, Quaternion.identity);
+        attackObject.transform.parent = this.gameObject.transform;
+        yield return new WaitForSeconds(attackSpeed);
+        attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
+        attackObject.transform.parent = this.gameObject.transform;
+    }
 
     
     void OnDestroy()

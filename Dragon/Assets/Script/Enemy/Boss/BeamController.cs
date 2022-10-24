@@ -13,6 +13,8 @@ public class BeamController : MonoBehaviour
     [SerializeField]
     private Vector3 scaleUpSpeed;    // scaleの拡大スピード
 
+    private Vector3 startScale = new Vector3(0.1f, 0.1f, 0.1f);      // 初期の大きさ
+
     public int Damege = 3;           // playerに与えるダメージ
 
     [SerializeField, HeaderAttribute("消えるまでの時間")]
@@ -20,7 +22,7 @@ public class BeamController : MonoBehaviour
     [SerializeField]
     private GameObject beamLine;        // ビームラインオブジェクト
 
-    private float waitTime = 2.0f;      // ビームが伸びるまでの時間
+    private float waitTime = 1.0f;      // ビームが伸びるまでの時間
     private bool wait = false;          // ビームが伸びれるか
 
     // Start is called before the first frame update
@@ -29,7 +31,7 @@ public class BeamController : MonoBehaviour
         Player = GameObject.FindWithTag("Player");
         transform.LookAt(Player.transform.position);
         Destroy(this.gameObject,destroyTime);
-
+        this.transform.localScale = startScale;
        StartCoroutine(offWate());
     }
 
