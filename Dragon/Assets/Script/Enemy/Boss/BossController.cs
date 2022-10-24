@@ -34,8 +34,8 @@ public class BossController : MonoBehaviour
    private int attackTime = 15;   // アタック間隔
 
 
-   [SerializeField, HeaderAttribute("ステージのエリア座標"),  EnumIndex(typeof(SkilType))]
-    public float[] areas = new float[4];    // ステージのエリア分け用
+   [HeaderAttribute("ステージのエリア座標"),  EnumIndex(typeof(SkilType))]
+    public float[] Areas = new float[4];    // ステージのエリア分け用
 
    [HeaderAttribute("ヒットポイント")]
    public int Hp;
