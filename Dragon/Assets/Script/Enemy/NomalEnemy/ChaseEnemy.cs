@@ -57,6 +57,11 @@ public class ChaseEnemy : MonoBehaviour
             Destroy(this.gameObject);
             //flash();
         }
+
+        if(col.gameObject.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void flash()
