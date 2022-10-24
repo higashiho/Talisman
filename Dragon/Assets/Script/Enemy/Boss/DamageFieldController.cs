@@ -14,6 +14,7 @@ public class DamageFieldController : MonoBehaviour
 
     private float destroyTime = 5.0f;        // 消えるまでの時間
 
+    public bool Damage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class DamageFieldController : MonoBehaviour
         if(onScaleUp)
             sizeUp();
             
+        if()
             
     }
 
