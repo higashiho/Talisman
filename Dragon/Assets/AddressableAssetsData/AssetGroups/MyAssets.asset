@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MyAssets
+  m_EditorClassIdentifier: 
+  m_GroupName: MyAssets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3b9e56344afaa6e4eb3ca47bccd46e20
+  m_SerializeEntries:
+  - m_GUID: 82e785e2d81e0ce4e81dc16953609ce0
+    m_Address: Assets/Prefab/middleBoss1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MiddleBoss1
+  - m_GUID: 1f0b309579c46a14aaad9bcc22a60405
+    m_Address: Assets/Prefab/middleBoss2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MiddleBoss1
+  - m_GUID: df2d5adfda5d5514e8b3e45c24e49583
+    m_Address: Assets/Prefab/middleBoss3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MiddleBoss1
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f817c02bf85d6a448aa342c0fc1c45a9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3ce7dfcdb082dcb4e802018497f744f3, type: 2}
+    - {fileID: 11400000, guid: fc7cac46a95d31c43b670b3b72dca530, type: 2}
