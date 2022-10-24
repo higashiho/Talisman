@@ -34,6 +34,8 @@ public class CreateEnemy : MonoBehaviour
     private float _posX;
     private float _posY;
     private float _posZ;
+
+    public float _Speed = 1;
  
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,7 @@ public class CreateEnemy : MonoBehaviour
     
     void Update()
     {
-        if(_timerScript._Timer % spawnTimer == 0)
+        if(_timerScript._Timer % spawnTimer * _Speed == 0)
         {
             if(spawnCount > 0)
             {  
