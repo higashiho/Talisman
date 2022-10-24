@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HPManger : MonoBehaviour
 {
-    private int lifeCount;      // HPをカウントする     // あとでpublicに変更する
+    public int LifeCount;      // HPをカウントする
     private int maxLife = 3;
     [SerializeField]
     private GameObject[] lifeArray = new GameObject[3];
@@ -13,15 +13,32 @@ public class HPManger : MonoBehaviour
     void Start()
     {
         for(int i=0; i<maxLife; i++){
-            lifeArray[i].gameObject.SetActive(false);
+            lifeArray[i].gameObject.SetActive(true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*for(int i=0; i<lifeCount; i++){
-            lifeArray[i].gameObject.SetActive(true);
-        }*/     // ここまだ途中
+        if(LifeCount == 3){
+            lifeArray[0].gameObject.SetActive(true);
+            lifeArray[1].gameObject.SetActive(true);
+            lifeArray[2].gameObject.SetActive(true);
+        }
+        if(LifeCount == 2){
+            lifeArray[0].gameObject.SetActive(true);
+            lifeArray[1].gameObject.SetActive(true);
+            lifeArray[2].gameObject.SetActive(false);
+        }
+        if(LifeCount == 1){
+            lifeArray[0].gameObject.SetActive(true);
+            lifeArray[1].gameObject.SetActive(false);
+            lifeArray[2].gameObject.SetActive(false);
+        }
+        if(LifeCount == 0){
+            lifeArray[0].gameObject.SetActive(false);
+            lifeArray[1].gameObject.SetActive(false);
+            lifeArray[2].gameObject.SetActive(false);
+        }
     }
 }
