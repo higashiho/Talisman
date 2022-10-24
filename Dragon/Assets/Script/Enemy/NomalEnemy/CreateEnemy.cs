@@ -53,11 +53,7 @@ public class CreateEnemy : MonoBehaviour
        
         // ボスがエリア１にいるとき
         // ボスの真上に生成エリアをつくる
-<<<<<<< HEAD
-        if(_pos.x < _bosscontroller.areas[2] || _isArea4)
-=======
         if(_pos.x < _bosscontroller.Areas[2])
->>>>>>> develop
         {
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
            number = Random.Range(0,prefabEnemy.Length);
@@ -68,11 +64,7 @@ public class CreateEnemy : MonoBehaviour
         }
         // ボスがエリア２にいるとき
         // ボスの前方に生成エリアをつくる
-<<<<<<< HEAD
-        else if(_pos.x < _bosscontroller.areas[3] || _isArea4)
-=======
         else if(_pos.x < _bosscontroller.Areas[3])
->>>>>>> develop
         {
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
            number = Random.Range(0,prefabEnemy.Length);
@@ -82,11 +74,7 @@ public class CreateEnemy : MonoBehaviour
            spawnCount--;
         }
         // ボスがエリア３にいるとき
-<<<<<<< HEAD
-        else if(_pos.x < _bosscontroller.areas[4] || _isArea4)
-=======
         else if(_pos.x < _bosscontroller.Areas[4])
->>>>>>> develop
         {
             //生成するPrefubのIndexを配列の要素の中からランダムに設定
             number = Random.Range(0,prefabEnemy.Length);
