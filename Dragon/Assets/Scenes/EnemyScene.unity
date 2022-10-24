@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: skillController
+      value: 
+      objectReference: {fileID: 194963768}
     - target: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: m_Name
       value: Player
@@ -185,6 +189,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 194963765}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &194963768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1506668392, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 194963765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194963766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &420870900
 GameObject:
   m_ObjectHideFlags: 0

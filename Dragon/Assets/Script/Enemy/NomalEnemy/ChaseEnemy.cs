@@ -19,13 +19,13 @@ public class ChaseEnemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        StartCoroutine("destroyTimer");
+        Destroy(this.gameObject,destroytimer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        destroytimer -= Time.deltaTime;
+       
     }
     //一定時間ごとに処理
     //遠いほど早く近いほど遅く追いかける
@@ -37,15 +37,6 @@ public class ChaseEnemy : MonoBehaviour
         EnemyPosition.x += (PlayerPosition.x - EnemyPosition.x) * Time.deltaTime;
         EnemyPosition.y += (PlayerPosition.y - EnemyPosition.y) * Time.deltaTime;
         transform.position = EnemyPosition;
-    }
-
-    private IEnumerator destroyTimer()
-    {
-        yield return new WaitForSeconds(destroytimer);
-        if(destroytimer <= 0)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     //プレイヤーに当たったら消える
