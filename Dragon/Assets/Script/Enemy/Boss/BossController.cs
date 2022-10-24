@@ -40,6 +40,8 @@ public class BossController : MonoBehaviour
    [HeaderAttribute("ヒットポイント")]
    public int Hp;
 
+   private GameObject attackObject = default;           //攻撃スキルオブジェクト
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -78,7 +80,9 @@ public class BossController : MonoBehaviour
         // エリア３にいるときの敵の攻撃
         else if(pos.x > areas[2])
         {
-            ;
+            attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
+            attackObject.transform.parent = this.gameObject.transform;
+            
         }
         // エリア２にいるときの敵の攻撃
         else if(pos.x > areas[1])
@@ -87,8 +91,10 @@ public class BossController : MonoBehaviour
         }
         // エリア１にいるときの敵の攻撃
         else
-            Instantiate(attackSkill[0], player.position, Quaternion.identity);
-    }
+        {
+           Instantiate(attackSkill[0], player.position, Quaternion.identity);
+        }
+}
 
     
     void OnDestroy()
