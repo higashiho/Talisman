@@ -232,42 +232,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 953655963}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &581746250 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 581746250, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-  m_PrefabInstance: {fileID: 953655963}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &581746252 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 581746252, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-  m_PrefabInstance: {fileID: 953655963}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &581746253
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581746250}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &669937716
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,18 +444,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-      propertyPath: collider
-      value: 
-      objectReference: {fileID: 581746253}
-    - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-      propertyPath: renderer
-      value: 
-      objectReference: {fileID: 581746252}
-    - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-      propertyPath: attackWait
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3915,9 +3867,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1660692135}
   - component: {fileID: 1660692134}
-  - component: {fileID: 1660692136}
   - component: {fileID: 1660692138}
   - component: {fileID: 1660692137}
+  - component: {fileID: 1660692136}
   - component: {fileID: 1660692139}
   - component: {fileID: 1660692140}
   m_Layer: 0
@@ -4012,6 +3964,11 @@ MonoBehaviour:
   agent: {fileID: 1660692139}
   player: {fileID: 1506668390}
   meteorite: {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
+  areas:
+  - 0
+  - 75
+  - 150
+  - 225
   Hp: 100
 --- !u!50 &1660692137
 Rigidbody2D:
@@ -4077,7 +4034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57568e4ec9692b64db1a472181ac6fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   stoppingDistance: 0
 --- !u!114 &1660692140
 MonoBehaviour:
