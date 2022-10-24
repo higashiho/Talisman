@@ -15,10 +15,22 @@ public class DamageFieldController : MonoBehaviour
     private float destroyTime = 5.0f;        // 消えるまでの時間
 
     public bool Damage = false;         // ダメージを与えられるかどうか
+    private int damage = 1;         // ダメージの値
+    private bool startDamage = false;        // ダメージ処理に入ったかどうか
+
+
+    
+    private GameObject player;                      // プレイヤー格納用
+    private PlayerController playerController;      // スクリプト格納用
+
+    private float waitTime = 2.0f;                  // 遅延時間
+
     // Start is called before the first frame update
     void Start()
     {
         
+        player = GameObject.FindWithTag("Player");
+        playerController = player.gameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -27,8 +39,8 @@ public class DamageFieldController : MonoBehaviour
         if(onScaleUp)
             sizeUp();
             
-        if(Damage)
-                ;
+        if(Damage && !startDamage)
+            StartCoroutine(onDamage());
             
     }
 
@@ -46,8 +58,11 @@ public class DamageFieldController : MonoBehaviour
         }
     }
 
-    private void onDamage()
+    private IEnumerator onDamage()
     {
-        ;
+        startDamage = true;
+        playerController.Hp -= damage;
+        yield return new WaitForSeconds(waitTime) ;
+        startDamage = false;
     }
 }
