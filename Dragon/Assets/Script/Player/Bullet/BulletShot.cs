@@ -69,7 +69,7 @@ public class BulletShot : MonoBehaviour
             skillController.target = "Boss";
             target = GameObject.FindWithTag(skillController.target);
         }
-        bullet.GetComponent<TargetingBullet>().GetVector(transform.position, target.transform.position);
+        bullet.GetComponent<Targeting>().GetVector(transform.position, target.transform.position);
     }
 
     private void attackManage(){    // 攻撃のディレイと回数を管理

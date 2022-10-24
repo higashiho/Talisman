@@ -448,6 +448,10 @@ PrefabInstance:
       propertyPath: Skills.Array.data[0]
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: skillController
+      value: 
+      objectReference: {fileID: 1506668392}
     - target: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: m_Name
       value: Player
@@ -710,6 +714,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1841200581054410847, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 953655963}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1506668392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1506668392, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 953655963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374352619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610631651
 GameObject:
   m_ObjectHideFlags: 0
@@ -4156,5 +4171,13 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1506668390}
+    - target: {fileID: 9060541169768609610, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+      propertyPath: attackSkill.Array.data[0]
+      value: 
+      objectReference: {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
+    - target: {fileID: 9060541169768609610, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+      propertyPath: attackSkill.Array.data[1]
+      value: 
+      objectReference: {fileID: 5659572085952152628, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
