@@ -15450,7 +15450,8 @@ MonoBehaviour:
   _boss: {fileID: 114097562}
   _pos: {x: 0, y: 0, z: 0}
   count: 5
-  timer: 15
+  timer: 5
+  key: 
 --- !u!4 &552417940330769524
 Transform:
   m_ObjectHideFlags: 0

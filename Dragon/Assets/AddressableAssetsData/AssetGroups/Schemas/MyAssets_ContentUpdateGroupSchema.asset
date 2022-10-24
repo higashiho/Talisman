@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a189bb168d8d90478a09ea08c2f3d72, type: 3}
-  m_Name: DefaultObject
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: MyAssets_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  m_AddressableAssetSettingsGuid: 9bcf2c112babdbb439888d712d706c62
-=======
-  m_AddressableAssetSettingsGuid: f817c02bf85d6a448aa342c0fc1c45a9
->>>>>>> develop
+  m_Group: {fileID: 11400000, guid: 12525d066a4be4942b8e01d290b689a9, type: 2}
+  m_StaticContent: 0
