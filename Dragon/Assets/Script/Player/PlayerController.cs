@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector2 PlayerSpeed = new Vector2(5.0f, 5.0f);    // Playerの移動速度
+    public Vector2 PlayerSpeed;    // Playerの移動速度
     private Vector2 pos;    // playerの位置を保存する変数
 
 
@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     private bool onShield = true;       //シールドがあるか
 
     private Vector2 noShieldSpeed = new Vector2(2.0f, 2.0f);       //シールドがない時の移動スピード
-    private Vector2 nomalPlayerSpeed = new Vector2(5.0f, 5.0f);
+    private Vector2 nomalPlayerSpeed = new Vector2(5.0f, 5.0f);     //  通常時スピード
+    private Vector2 highPlayerSpeed = new Vector2(7.0f, 7.0f);       // スピードアップスキル取得時スピード
 
     [SerializeField, HeaderAttribute("シールド回復時間")]
     private float heelSheld = 5.0f;         //シールド回復時間
@@ -24,6 +25,10 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;      // スプライトレンダラー格納用
 
     private float downAngleZ = -90.0f, upAngleZ = 90.0f, leftANgleZ = 180.0f;       // 移動時プレイヤーの向き
+
+    [SerializeField]
+    private SkillController skillController;            // スクリプト格納用
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,8 +47,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void speed()
+    {
+        if(skillController.SpeedUp && onShield)
+            PlayerSpeed = highPlayerSpeed;
+        else if(onShield)
+            PlayerSpeed = nomalPlayerSpeed;
+    }
+
     private void move()
     {
+        speed();
         pos = transform.position;   // 現在の位置を保存
 
         if (Input.GetKey(KeyCode.W)){       // Wキーを押している間

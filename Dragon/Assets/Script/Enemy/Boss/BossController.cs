@@ -27,8 +27,8 @@ public class BossController : MonoBehaviour
    [SerializeField]
    private Transform player;       // player格納用
 
-   [HeaderAttribute("攻撃用隕石"), SerializeField]
-   private GameObject meteorite;    // 隕石
+   [HeaderAttribute("攻撃スキル"), SerializeField]
+   private GameObject[] attackSkill = new GameObject[3];    // 攻撃スキル
 
    private int attackTime = 15;   // アタック間隔
 
@@ -78,11 +78,11 @@ public class BossController : MonoBehaviour
         // エリア２にいるときの敵の攻撃
         else if(pos.x < areas[1])
         {
-            ;
+            Instantiate(attackSkill[1], player.position, Quaternion.identity);
         }
         // エリア１にいるときの敵の攻撃
         else
-            Instantiate(meteorite, player.position, Quaternion.identity);
+            Instantiate(attackSkill[0], player.position, Quaternion.identity);
     }
 
     
