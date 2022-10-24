@@ -31,6 +31,8 @@ public class SkillController : MonoBehaviour
     private bool targeting = false;                 // ターゲットを変更できるか
     [HeaderAttribute("ターゲティング中の敵")]
     public string target = default;                 // ターゲットのタグ
+
+    public bool SpeedUp = false;
     // Awake is called before the first frame update
     void Awake()
     {
@@ -59,6 +61,7 @@ public class SkillController : MonoBehaviour
         if(Skills[1] > 0 && nowSkiil[1])
         {
             nowSkiil[1] = false;    
+
             Invoke("usingSkill2", waitTime);
         }
 
@@ -103,6 +106,7 @@ public class SkillController : MonoBehaviour
     private void usingSkill2()
     {
         nowSkiil[1] = true;
+        SpeedUp = true;
         Skills[1]--;
     }
 

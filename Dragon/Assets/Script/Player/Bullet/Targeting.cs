@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetingBullet : MonoBehaviour
+public class Targeting : MonoBehaviour
 {
 
 
@@ -11,7 +11,7 @@ public class TargetingBullet : MonoBehaviour
     private Vector3 addVector;             // ベクトル代入用
 
     [SerializeField]
-    private float speed;                // 弾速
+    private float speed;                // スピード
 
     // Start is called before the first frame update
     void Start()
