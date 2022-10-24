@@ -7,14 +7,20 @@ public class Chase_Enemy : MonoBehaviour
 
     [SerializeField]
     private GameObject player;        //プレイヤーを取得
+    private Vector3 PlayerPosition;   //プレイヤーの位置
+    private Vector3 EnemyPosition;    //エネミーの位置
 
-    //プレイヤーを追いかけるスピードの減速補正
-    private float enemyChaseSpeed = 0.2f;
+    [SerializeField]
+    private GameObject ItemPrefab;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
 
+        PlayerPosition = player.transform.position;
+        EnemyPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -22,45 +28,18 @@ public class Chase_Enemy : MonoBehaviour
     {
 
     }
-
     //一定時間ごとに処理
+    //遠いほど早く近いほど遅く追いかける
     private void FixedUpdate()
     {
+        PlayerPosition = player.transform.position;
+        EnemyPosition = transform.position;
 
-        Vector3 playerv = player.transform.position;//プレイヤーの位置
-        Vector3 enemyv = transform.position;        //敵の位置
- 
-        float p_vX = playerv.x - enemyv.x;          //プレイヤーと敵のx座標位置の差
-        float p_vY = playerv.y - enemyv.y;          //プレイヤーと敵のy座標位置の差
- 
-        float vx = 0f;
-        float vy = 0f;
- 
-        float movespeed = 10f;//移動読度
- 
-        // 減算した結果がマイナスであればXは減算処理
-        if ( p_vX < 0 ) 
-        {
-            vx -= movespeed * enemyChaseSpeed;
-        } 
-        else 
-        {
-            vx = movespeed * enemyChaseSpeed;
-        }
- 
-        // 減算した結果がマイナスであればYは減算処理
-        if ( p_vY < 0 ) 
-        {
-            vy -= movespeed * enemyChaseSpeed;
-        } 
-        else
-         {
-            vy = movespeed * enemyChaseSpeed;
-        }
- 
-        transform.Translate(vx/50, vy/50, 0);
- 
+        EnemyPosition.x += (PlayerPosition.x - EnemyPosition.x) * 0.012f;
+        EnemyPosition.y += (PlayerPosition.y - EnemyPosition.y) * 0.012f;
+        transform.position = EnemyPosition;
     }
+
     //プレイヤーに当たったら消える
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -68,5 +47,10 @@ public class Chase_Enemy : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
     }
 }
