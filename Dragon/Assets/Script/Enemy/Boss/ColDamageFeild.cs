@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColDamageFeild : MonoBehaviour
 {
 
+    [SerializeField]
     private DamageFieldController damageFieldController;            // スクリプト格納用
     // Start is called before the first frame update
     void Start()

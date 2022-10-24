@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5866518532598467318}
   - component: {fileID: 5866518532598467080}
   - component: {fileID: 5866518532598467083}
+  - component: {fileID: -6978494975945648849}
   m_Layer: 0
   m_Name: DamageField
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704a738ae15813443957d4bb07c1c750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 0
 --- !u!58 &5866518532598467083
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.0001
+--- !u!114 &-6978494975945648849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5866518532598467319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8868133421dc3bb469e0680815da4cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageFieldController: {fileID: 5866518532598467080}
