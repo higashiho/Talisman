@@ -35,7 +35,7 @@ public class BossController : MonoBehaviour
 
 
    [SerializeField, HeaderAttribute("ステージのエリア座標"),  EnumIndex(typeof(SkilType))]
-    private float[] areas = new float[4];    // ステージのエリア分け用
+    public float[] areas = new float[4];    // ステージのエリア分け用
 
    [HeaderAttribute("ヒットポイント")]
    public int Hp;

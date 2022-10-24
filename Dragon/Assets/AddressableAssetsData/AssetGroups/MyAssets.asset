@@ -26,7 +26,12 @@ MonoBehaviour:
     m_Address: Assets/Prefab/middleBoss3.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MiddleBoss1
+    - MiddleBoss3
+  - m_GUID: 0f8d76871980c4742ba534306c85f8a0
+    m_Address: Assets/Prefab/middleBoss2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MiddleBoss2
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f817c02bf85d6a448aa342c0fc1c45a9, type: 2}
   m_SchemaSet:
