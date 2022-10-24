@@ -10,7 +10,8 @@ public class Chase_Enemy : MonoBehaviour
     private Vector3 PlayerPosition;   //プレイヤーの位置
     private Vector3 EnemyPosition;    //エネミーの位置
 
-
+    [SerializeField]
+    private GameObject ItemPrefab;
 
 
     // Start is called before the first frame update
@@ -42,9 +43,14 @@ public class Chase_Enemy : MonoBehaviour
     //プレイヤーに当たったら消える
     private void OnTriggerEnter2D(Collider2D other)
     {
-    if(other.gameObject.tag == "Player")
+    if(other.gameObject.tag == "Bullet")
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
     }
 }
