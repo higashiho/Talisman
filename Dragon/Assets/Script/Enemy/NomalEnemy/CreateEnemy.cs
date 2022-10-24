@@ -19,6 +19,8 @@ public class CreateEnemy : MonoBehaviour
     [SerializeField]
     private GameObject _timer;  // timerアタッチ用
 
+    public float Speed;  // 生成スピード
+
     private bool _isArea4;       // ボスがエリア４にいるかどうか
     private Timer _timerScript;  // Timerスクリプトアタッチ用
 
