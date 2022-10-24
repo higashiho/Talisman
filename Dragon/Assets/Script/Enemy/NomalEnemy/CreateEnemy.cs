@@ -9,14 +9,18 @@ public class CreateEnemy : MonoBehaviour
     [HeaderAttribute("沸き最大数"),SerializeField]
     private int spawnCount = 30;
     [HeaderAttribute("次に生成するまでの時間"),SerializeField]
-    private int spawnTimer = 15;
+    private float spawnTimer = 3;
     [SerializeField]
     private GameObject _boss;  // Bossアタッチ用
     [SerializeField]
     private Vector3 _pos;      // Bossの座標
     [SerializeField]
     private BossController _bosscontroller;  // bosscontrollerアタッチ用
-    private bool _isArea4;
+    [SerializeField]
+    private GameObject _timer;  // timerアタッチ用
+
+    private bool _isArea4;       // ボスがエリア４にいるかどうか
+    private Timer _timerScript;  // Timerスクリプトアタッチ用
 
     private int number;         //Index指定用
 
@@ -34,18 +38,29 @@ public class CreateEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // スクリプトアタッチ
         _bosscontroller = _boss.GetComponent<BossController>();
-        _isArea4 = false;
+        _timerScript = _timer.GetComponent<Timer>();
+        // エリア4にボスがいないから最初にfalseにしとく
+        _isArea4 = false;  
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        if(spawnCount > 0)
-        {  
-            settingPos();
+        if(_timerScript._Timer % spawnTimer == 0)
+        {
+            if(spawnCount > 0)
+            {  
+                settingPos();
+            }
         }
     }
+
+    /**
+    * @breif 雑魚キャラにposを設定してprefabを生成する関数
+    * @note  ボスのいるエリアごとに生成posを設定 => instance化まで行う
+    */
 
     private void settingPos()
     {
@@ -53,7 +68,7 @@ public class CreateEnemy : MonoBehaviour
        
         // ボスがエリア１にいるとき
         // ボスの真上に生成エリアをつくる
-        if(_pos.x < _bosscontroller.Areas[2])
+        if(_pos.x < _bosscontroller.Areas[2] || _isArea4)
         {
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
            number = Random.Range(0,prefabEnemy.Length);
@@ -64,7 +79,7 @@ public class CreateEnemy : MonoBehaviour
         }
         // ボスがエリア２にいるとき
         // ボスの前方に生成エリアをつくる
-        else if(_pos.x < _bosscontroller.Areas[3])
+        else if(_pos.x < _bosscontroller.Areas[3] || _isArea4)
         {
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
            number = Random.Range(0,prefabEnemy.Length);
@@ -74,7 +89,7 @@ public class CreateEnemy : MonoBehaviour
            spawnCount--;
         }
         // ボスがエリア３にいるとき
-        else if(_pos.x < _bosscontroller.Areas[4])
+        else if(_pos.x < _bosscontroller.Areas[4] || _isArea4)
         {
             //生成するPrefubのIndexを配列の要素の中からランダムに設定
             number = Random.Range(0,prefabEnemy.Length);
@@ -87,7 +102,6 @@ public class CreateEnemy : MonoBehaviour
         else
         {
             _isArea4 = true;
-            // また考える
         }
 
     }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private float timer;            // タイマー
+    public float _Timer;            // タイマー
     [SerializeField]
     private Text timerText = default;       //タイマーテキスト
     // Start is called before the first frame update
@@ -17,8 +17,8 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        _Timer += Time.deltaTime;
 
-        timerText.text = "" + timer.ToString("f2");
+        timerText.text = "" + _Timer.ToString("f2");
     }
 }
