@@ -73,19 +73,19 @@ public class BossController : MonoBehaviour
     {
         pos = this.transform.position;
         // エリア４にいるときの敵の攻撃
-        if(pos.x > areas[3])
+        if(pos.x > Areas[3])
         {
             ;
         }
         // エリア３にいるときの敵の攻撃
-        else if(pos.x > areas[2])
+        else if(pos.x > Areas[2])
         {
             attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
             attackObject.transform.parent = this.gameObject.transform;
             
         }
         // エリア２にいるときの敵の攻撃
-        else if(pos.x > areas[1])
+        else if(pos.x > Areas[1])
         {
             Instantiate(attackSkill[1], player.position, Quaternion.identity);
         }
