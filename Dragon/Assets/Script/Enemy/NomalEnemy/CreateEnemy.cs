@@ -16,7 +16,7 @@ public class CreateEnemy : MonoBehaviour
     private Vector3 _pos;      // Bossの座標
     [SerializeField]
     private BossController _bosscontroller;  // bosscontrollerアタッチ用
-
+    private bool _isArea4;
 
     private int number;         //Index指定用
 
@@ -35,6 +35,7 @@ public class CreateEnemy : MonoBehaviour
     void Start()
     {
         _bosscontroller = _boss.GetComponent<BossController>();
+        _isArea4 = false;
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class CreateEnemy : MonoBehaviour
     {
         if(spawnCount > 0)
         {  
-            StartCoroutine("Timer");
+            settingPos();
         }
     }
 
@@ -54,43 +55,40 @@ public class CreateEnemy : MonoBehaviour
         // ボスの真上に生成エリアをつくる
         if(_pos.x < _bosscontroller.Areas[2])
         {
+           //生成するPrefubのIndexを配列の要素の中からランダムに設定
+           number = Random.Range(0,prefabEnemy.Length);
            _posX = _pos.x;
            _posY = _pos.y + _height;
+           Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
+           spawnCount--;
         }
         // ボスがエリア２にいるとき
         // ボスの前方に生成エリアをつくる
         else if(_pos.x < _bosscontroller.Areas[3])
         {
+           //生成するPrefubのIndexを配列の要素の中からランダムに設定
+           number = Random.Range(0,prefabEnemy.Length);
            _posX = _pos.x + _front;
            _posY = _pos.y;
+           Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
+           spawnCount--;
         }
         // ボスがエリア３にいるとき
         else if(_pos.x < _bosscontroller.Areas[4])
         {
+            //生成するPrefubのIndexを配列の要素の中からランダムに設定
+            number = Random.Range(0,prefabEnemy.Length);
             _posX = _pos.x;
             _posY = _pos.y - _height;
+            Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
+            spawnCount--;
         }
         // ボスがエリア４にいるとき
         else
         {
-            ;
+            _isArea4 = true;
             // また考える
         }
 
-    }
-
-    private void spawnEnemy()
-    {
-        //生成するPrefubのIndexを配列の要素の中からランダムに設定
-        number = Random.Range(0,prefabEnemy.Length);
-        //ランダム生成
-        Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
-        spawnCount--;
-    }
-
-    private IEnumerator Timer()
-    {
-        yield return new WaitForSeconds(spawnTimer);
-        spawnEnemy();
     }
 }
