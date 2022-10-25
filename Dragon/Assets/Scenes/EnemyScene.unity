@@ -208,6 +208,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &194963772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 194963765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194963766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &420870900
 GameObject:
   m_ObjectHideFlags: 0
@@ -3489,6 +3500,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 705064875765133953, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
+      propertyPath: playercontroller
+      value: 
+      objectReference: {fileID: 194963772}
     - target: {fileID: 705064875765134075, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_Name
       value: EnemyChase5
@@ -3554,6 +3569,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 4172620401796351171, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: playercontroller
+      value: 
+      objectReference: {fileID: 194963772}
     - target: {fileID: 4172620401796351193, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_Name
       value: EnemyChase3
@@ -3623,6 +3642,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 5564865708596339353, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: playercontroller
+      value: 
+      objectReference: {fileID: 194963772}
     - target: {fileID: 5564865708596339357, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: player
       value: 
@@ -3736,6 +3759,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 6687482055835503293, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: playercontroller
+      value: 
+      objectReference: {fileID: 194963772}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
 --- !u!1001 &8123549338826626999
@@ -3801,5 +3828,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 8123549337994771038, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: playercontroller
+      value: 
+      objectReference: {fileID: 194963772}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
