@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HPManger : MonoBehaviour
 {
+    /*
+    * @memo 半分のハート使わないならmaxLifeとlifeArrayの数字変える
+    */
     public int LifeCount;      // HPをカウントする
     private int maxLife = 6;
     [SerializeField]
