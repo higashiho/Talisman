@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;      // スプライトレンダラー格納用
 
-    private float downAngleZ = -90.0f, upAngleZ = 90.0f, leftANgleZ = 180.0f;       // 移動時プレイヤーの向き
+    private bool oneHeel = true;                 //ヒール一回だけ処理
 
     [SerializeField]
     private SkillController skillController;            // スクリプト格納用
@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
         if(!onShield)
         {
-            shield();
             shieldHeel();
         }
     }
@@ -65,22 +64,21 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W)){       // Wキーを押している間
             pos.y += PlayerSpeed.y * Time.deltaTime;    // 上移動
-            this.transform.rotation = Quaternion.Euler(0f, 0f, upAngleZ);
+            
         }
         else if (Input.GetKey(KeyCode.S))   // Sキー
         {
             pos.y -= PlayerSpeed.y * Time.deltaTime;    // 下移動
-            this.transform.rotation = Quaternion.Euler(0f, 0f, downAngleZ);
         }
         if (Input.GetKey(KeyCode.A))        // Aキー
         {
             pos.x -= PlayerSpeed.x * Time.deltaTime;    // 左移動
-            this.transform.rotation = Quaternion.Euler(0f, 0f, leftANgleZ);
+            
         }
         else if (Input.GetKey(KeyCode.D))   // Dキー
         {
             pos.x += PlayerSpeed.x * Time.deltaTime;    // 右移動
-            this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            
         }
         transform.position = pos;
 
@@ -99,6 +97,11 @@ public class PlayerController : MonoBehaviour
     // シールド回復
     private void shieldHeel()
     {
+        if(oneHeel)
+        {
+            shield();
+            oneHeel = false;
+        }
         heelSheld -= Time.deltaTime;
         if(heelSheld <= 0)
         {
@@ -106,6 +109,7 @@ public class PlayerController : MonoBehaviour
             onShield = true;
             PlayerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;
+            oneHeel = true;
         }
     }
 
