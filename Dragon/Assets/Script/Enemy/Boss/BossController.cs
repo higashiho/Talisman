@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossController : MonoBehaviour
 {
@@ -33,12 +34,15 @@ public class BossController : MonoBehaviour
    private int attackTime = 15;   // アタック間隔
 
 
-   [SerializeField, HeaderAttribute("ステージのエリア座標"),  EnumIndex(typeof(SkilType))]
-    private float[] areas = new float[4];    // ステージのエリア分け用
+   [HeaderAttribute("ステージのエリア座標"),  EnumIndex(typeof(SkilType))]
+    public float[] Areas = new float[4];    // ステージのエリア分け用
 
    [HeaderAttribute("ヒットポイント")]
    public int Hp;
 
+   private GameObject attackObject = default;           //攻撃スキルオブジェクト
+
+    private float attackSpeed = 5.0f;                   // ラストエリア時の攻撃間隔
     // Start is called before the first frame update
     void Awake()
     {
@@ -59,30 +63,50 @@ public class BossController : MonoBehaviour
 
     private void move()
     {
+        pos = transform.position;
         agent.SetDestination(targetCoordinates);
+
+        if(pos.x >= targetCoordinates.x)
+            SceneManager.LoadScene("EndScene");
     }
     // 攻撃挙動
     private void attack()
     {
         pos = this.transform.position;
         // エリア４にいるときの敵の攻撃
-        if(pos.x < areas[3])
+        if(pos.x > Areas[3])
         {
-            ;
+            StartCoroutine(lastAreaSkill());
         }
         // エリア３にいるときの敵の攻撃
-        else if(pos.x < areas[2])
+        else if(pos.x > Areas[2])
         {
-            ;
+            attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
+            attackObject.transform.parent = this.gameObject.transform;
+            
         }
         // エリア２にいるときの敵の攻撃
-        else if(pos.x < areas[1])
+        else if(pos.x > Areas[1])
         {
-            Instantiate(attackSkill[1], player.position, Quaternion.identity);
+            attackObject = Instantiate(attackSkill[1], transform.position, Quaternion.identity);
+            attackObject.transform.parent = this.gameObject.transform;
         }
         // エリア１にいるときの敵の攻撃
         else
-            Instantiate(attackSkill[0], player.position, Quaternion.identity);
+        {
+           Instantiate(attackSkill[0], player.position, Quaternion.identity);
+        }
+    }
+
+    private IEnumerator lastAreaSkill()
+    {
+        Instantiate(attackSkill[0], player.position, Quaternion.identity);
+        yield return new WaitForSeconds(attackSpeed);
+        attackObject = Instantiate(attackSkill[1], this.transform.position, Quaternion.identity);
+        attackObject.transform.parent = this.gameObject.transform;
+        yield return new WaitForSeconds(attackSpeed);
+        attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
+        attackObject.transform.parent = this.gameObject.transform;
     }
 
     

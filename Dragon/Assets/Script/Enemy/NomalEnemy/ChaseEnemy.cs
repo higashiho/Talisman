@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class ChaseEnemy : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject player;        //プレイヤーを取得
+
     private Vector3 PlayerPosition;   //プレイヤーの位置
     private Vector3 EnemyPosition;    //エネミーの位置
 
     [SerializeField]
-    private GameObject ItemPrefab;    //プレハブ呼び出し
+    private float delayTime;
 
-    [SerializeField]
-    private float destroytimer;     //敵が自動消滅する時間
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        StartCoroutine("destroyTimer");
     }
 
-    // Update is called once per frame
+    // Upda結果、 is called once per frame
     void Update()
     {
-        destroytimer -= Time.deltaTime;
+        
     }
     //一定時間ごとに処理
     //遠いほど早く近いほど遅く追いかける
@@ -34,30 +31,8 @@ public class ChaseEnemy : MonoBehaviour
         PlayerPosition = player.transform.position;
         EnemyPosition = transform.position;
 
-        EnemyPosition.x += (PlayerPosition.x - EnemyPosition.x) * Time.deltaTime;
-        EnemyPosition.y += (PlayerPosition.y - EnemyPosition.y) * Time.deltaTime;
+        EnemyPosition.x += (PlayerPosition.x - EnemyPosition.x) * delayTime;
+        EnemyPosition.y += (PlayerPosition.y - EnemyPosition.y) * delayTime;
         transform.position = EnemyPosition;
     }
-
-    private IEnumerator destroyTimer()
-    {
-        yield return new WaitForSeconds(destroytimer);
-        if(destroytimer <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    //プレイヤーに当たったら消える
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.name == "Sword")
-        {
-            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
-            Destroy(this.gameObject);
-        }
-    }
-
-    
-    
 }

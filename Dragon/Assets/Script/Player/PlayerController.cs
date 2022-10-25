@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, HeaderAttribute("シールド回復時間")]
     private float heelSheld = 5.0f;         //シールド回復時間
 
+    private float startHeelStrage;          // シールド回復初期時間保管用
+
     private SpriteRenderer spriteRenderer;      // スプライトレンダラー格納用
 
     private float downAngleZ = -90.0f, upAngleZ = 90.0f, leftANgleZ = 180.0f;       // 移動時プレイヤーの向き
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+        startHeelStrage = heelSheld;
     }
 
     // Update is called once per frame
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             onShield = true;
             PlayerSpeed = nomalPlayerSpeed;
-            heelSheld = default;
+            heelSheld = startHeelStrage;
         }
     }
 
