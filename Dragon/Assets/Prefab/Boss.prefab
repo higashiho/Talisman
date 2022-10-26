@@ -158,8 +158,11 @@ MonoBehaviour:
   targetCoordinates: {x: 300, y: 0, z: 0}
   agent: {fileID: 9060541169768609609}
   player: {fileID: 0}
-  meteorite: {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
-  areas:
+  attackSkill:
+  - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
+  - {fileID: 5659572085952152628, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
+  - {fileID: 5866518532598467319, guid: 60046c826c0b8e945b0312b7b1474359, type: 3}
+  Areas:
   - 0
   - 75
   - 150
