@@ -3512,6 +3512,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 705064875765134077, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
+      propertyPath: delayTime
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 705064875765134079, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3625,6 +3629,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 4172620401796351199, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: delayTime
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
 --- !u!1001 &5564865707755042844
@@ -3650,6 +3658,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 5564865708596339357, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: delayTime
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339359, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3707,6 +3719,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 6687482055835503281, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: delayTime
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 6687482055835503283, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3776,6 +3792,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 194963766}
+    - target: {fileID: 8123549337994771025, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: delayTime
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771028, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_RootOrder
       value: 2
