@@ -13,5 +13,9 @@ public class ColBoss : MonoBehaviour
         {
             bossController.Hp -= other.gameObject.GetComponent<BulletController>().Attack;
         }
+        if(other.gameObject.name == "Sword")
+        {
+            bossController.Hp--;
+        }
     }
 }

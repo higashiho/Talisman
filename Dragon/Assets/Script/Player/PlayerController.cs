@@ -37,6 +37,14 @@ public class PlayerController : MonoBehaviour
     private float unrivaledTimer = 0;                   // 無敵時間用タイマー
     [SerializeField, HeaderAttribute("無敵時間最大値")]
     private float maxTimer = 2.0f;                      // 無敵がオフになる時間
+    
+    [SerializeField]
+    private Renderer thisRenderer;                      // 自身のレンダラー格納用
+   
+    [SerializeField, HeaderAttribute("点滅周期")]
+    private float flashingCycle;                        // 回転周期
+
+    private float delay = 0.5f;                         // 遅延時間
     // Start is called before the first frame update
     void Start()
     {
@@ -133,8 +141,16 @@ public class PlayerController : MonoBehaviour
     private void unrivaled()
     {
         unrivaledTimer += Time.deltaTime;
+
+        // 周期cycleで繰り返す値の取得
+        // 0～cycleの範囲の値が得られる
+        var repeatValue = Mathf.Repeat(unrivaledTimer, flashingCycle);
+        
+        // 内部時刻timeにおける明滅状態を反映
+        thisRenderer.enabled = repeatValue >= flashingCycle * delay;
         if(unrivaledTimer >= maxTimer)
         {
+            thisRenderer.enabled = true;
             unrivaledTimer = default;
             OnUnrivaled = false;
         }
