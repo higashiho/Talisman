@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         move();
+        gameOver();
 
         if(!onShield)
         {

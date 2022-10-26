@@ -43,6 +43,8 @@ public class BossController : MonoBehaviour
    private GameObject attackObject = default;           //攻撃スキルオブジェクト
 
     private float attackSpeed = 5.0f;                   // ラストエリア時の攻撃間隔
+
+    private static string Judgment = "GameOver";        // クリアか失敗か
     // Start is called before the first frame update
     void Awake()
     {
@@ -59,6 +61,8 @@ public class BossController : MonoBehaviour
     {
         move();
 
+        if(Hp <= 0)
+            gameClear();
     }
 
     private void move()
@@ -96,6 +100,12 @@ public class BossController : MonoBehaviour
         {
            Instantiate(attackSkill[0], player.position, Quaternion.identity);
         }
+    }
+
+    private void gameClear()
+    {
+        Judgment = "GameClear";
+        Destroy(this.gameObject);
     }
 
     private IEnumerator lastAreaSkill()
