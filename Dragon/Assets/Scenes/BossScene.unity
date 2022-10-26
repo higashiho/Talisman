@@ -249,7 +249,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 14.575759
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -469,6 +469,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1506668391, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 953655964}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: maxTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: thisRenderer
+      value: 
+      objectReference: {fileID: 1506668398}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: flashingCycle
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: m_Name
       value: Player
@@ -519,6 +535,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+--- !u!114 &953655964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 953655963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374352619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &960924101
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +999,11 @@ RectTransform:
 --- !u!4 &1506668390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1841200581054410847, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 953655963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1506668398 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1841200581054410840, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 953655963}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1610631651
