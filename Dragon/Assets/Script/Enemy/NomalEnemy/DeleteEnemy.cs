@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DeleteEnemy : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player;        //プレイヤーを取得
 
     [SerializeField]
     private GameObject ItemPrefab;    //プレハブ呼び出し
@@ -13,9 +11,11 @@ public class DeleteEnemy : MonoBehaviour
     [SerializeField]
     private float destroytimer;     //敵が自動消滅する時間
 
-    [SerializeField]
-    private float delayTime;
+    private int hitDamage = 1;      //エネミーがプレイヤーに当たった時のダメージ
 
+    [SerializeField]
+    PlayerController playercontroller;
+    
     void Start()
     {
     
@@ -43,6 +43,7 @@ public class DeleteEnemy : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
+            playercontroller.Hp -= hitDamage;
             Destroy(this.gameObject);
         }
     }
