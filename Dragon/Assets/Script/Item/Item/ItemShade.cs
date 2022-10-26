@@ -13,7 +13,7 @@ public class ItemShade : MonoBehaviour
 
     private int itemNumber;
 
-    [SerializeField]
+
     private SkillController skillController;        //スクリプト格納用
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class ItemShade : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         agent = GetComponent<NavMeshAgent2D>();
+        skillController = player.GetComponent<SkillController>();
     }
 
     // Update is called once per frame

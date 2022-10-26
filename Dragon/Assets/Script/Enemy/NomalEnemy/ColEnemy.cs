@@ -12,12 +12,15 @@ public class ColEnemy : MonoBehaviour
 
     private int hitDamage = 1;      //エネミーがプレイヤーに当たった時のダメージ
 
-    [SerializeField]
-    PlayerController playercontroller;
+    
+    private PlayerController playerController;//スクリプト格納用
+
+    private GameObject player;                  //プレイヤー格納用
     
     void Start()
     {
-    
+        player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
     
     }
 
@@ -38,11 +41,15 @@ public class ColEnemy : MonoBehaviour
     }
     //プレイヤーに当たったら消える
     private void OnCollisionEnter2D(Collision2D col)
-    {
+    {   //無敵中でないなら消える・被ダメする
         if(col.gameObject.tag == "Player")
         {
-            playercontroller.Hp -= hitDamage;
-            Destroy(this.gameObject);
+            if(!playerController.OnUnrivaled)
+            {
+                playerController.Hp -= hitDamage;
+                Destroy(this.gameObject);
+            }
+            
         }
     }
 }
