@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteEnemy : MonoBehaviour
+public class ColEnemy : MonoBehaviour
 {
 
     [SerializeField]
     private GameObject ItemPrefab;    //プレハブ呼び出し
 
-    [SerializeField]
-    private float destroytimer;     //敵が自動消滅する時間
+    
 
     private int hitDamage = 1;      //エネミーがプレイヤーに当たった時のダメージ
 
@@ -19,8 +18,7 @@ public class DeleteEnemy : MonoBehaviour
     void Start()
     {
     
-    Destroy(this.gameObject, destroytimer);
-
+    
     }
 
     // Update is called once per frame
