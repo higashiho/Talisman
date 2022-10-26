@@ -477,6 +477,11 @@ MonoBehaviour:
   onShield: 1
   heelSheld: 5
   skillController: {fileID: 1506668392}
+  Damage: 0
+  OnUnrivaled: 0
+  maxTimer: 1
+  thisRenderer: {fileID: 1841200581054410840}
+  flashingCycle: 0.5
 --- !u!114 &1506668396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3c95bb0d0217f41904c7b3d6b52e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 1861904027}
 --- !u!114 &1506668392
 MonoBehaviour:
   m_ObjectHideFlags: 0
