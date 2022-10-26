@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   agent: {fileID: -6009813727421525116}
+  itemNumber: 1
 --- !u!114 &-6009813727421525116
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ public class ColEnemy : MonoBehaviour
         {
             if(!playerController.OnUnrivaled)
             {
+                playerController.OnUnrivaled = true;
                 playerController.Hp -= hitDamage;
                 Destroy(this.gameObject);
             }

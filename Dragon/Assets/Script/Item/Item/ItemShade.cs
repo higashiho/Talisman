@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ItemShade : MonoBehaviour
 {
-    //プレイヤー取得
+    
     [SerializeField]
-    private GameObject player;
+    private GameObject player;                      //プレイヤー取得
     //NavMesh
     [SerializeField]
     private NavMeshAgent2D agent;
 
+    [SerializeField]
     private int itemNumber;
+
+    private int indexAjast = 1;                     //アイテムindex調整用
 
 
     private SkillController skillController;        //スクリプト格納用
@@ -34,7 +37,7 @@ public class ItemShade : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            skillController.Skills[itemNumber]++;
+            skillController.Skills[itemNumber - indexAjast]++;
             Destroy(this.gameObject);
         }
     }

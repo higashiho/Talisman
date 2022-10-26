@@ -478,7 +478,7 @@ MonoBehaviour:
   heelSheld: 5
   skillController: {fileID: 1506668392}
   OnUnrivaled: 0
-  maxTimer: 1
+  maxTimer: 2
   thisRenderer: {fileID: 1841200581054410840}
   flashingCycle: 0.5
 --- !u!114 &1506668396
