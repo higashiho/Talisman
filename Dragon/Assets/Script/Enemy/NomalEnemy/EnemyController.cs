@@ -2,37 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseEnemy : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;        //プレイヤーを取得
 
     private Vector3 PlayerPosition;   //プレイヤーの位置
     private Vector3 EnemyPosition;    //エネミーの位置
+    //NavMesh
+    [SerializeField]
+    private NavMeshAgent2D agent;
+
 
     [SerializeField]
-    private float delayTime;
+    private float destroytimer;     //敵が自動消滅する時間
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+         agent = GetComponent<NavMeshAgent2D>();
+         Destroy(this.gameObject, destroytimer);
+
     }
 
     // Upda結果、 is called once per frame
     void Update()
     {
-        
+        attractEnemy();
     }
-    //一定時間ごとに処理
-    //遠いほど早く近いほど遅く追いかける
-    private void FixedUpdate()
-    {
-        PlayerPosition = player.transform.position;
-        EnemyPosition = transform.position;
+    
 
-        EnemyPosition.x += (PlayerPosition.x - EnemyPosition.x) * delayTime;
-        EnemyPosition.y += (PlayerPosition.y - EnemyPosition.y) * delayTime;
-        transform.position = EnemyPosition;
+    private void attractEnemy()
+    {
+        agent.SetDestination(player.transform.position);
     }
 }

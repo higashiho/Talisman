@@ -477,7 +477,6 @@ MonoBehaviour:
   onShield: 1
   heelSheld: 5
   skillController: {fileID: 1506668392}
-  Damage: 0
   OnUnrivaled: 0
   maxTimer: 1
   thisRenderer: {fileID: 1841200581054410840}
