@@ -44,7 +44,8 @@ public class BossController : MonoBehaviour
 
     private float attackSpeed = 5.0f;                   // ラストエリア時の攻撃間隔
 
-    private static string Judgment = "GameOver";        // クリアか失敗か
+    public static string Judgment = "GameOver";        // クリアか失敗か
+    
     // Start is called before the first frame update
     void Awake()
     {

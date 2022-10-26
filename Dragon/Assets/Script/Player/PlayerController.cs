@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     private SkillController skillController;            // スクリプト格納用
 
 
-    public bool Damage = false;                         // ダメージを与えられるか
     public bool OnUnrivaled = false;                    // 無敵中か
     private float unrivaledTimer = 0;                   // 無敵時間用タイマー
     [SerializeField, HeaderAttribute("無敵時間最大値")]
@@ -56,7 +55,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         move();
-        gameOver();
 
         if(!onShield)
         {
@@ -102,7 +100,9 @@ public class PlayerController : MonoBehaviour
 
         // シールドがある場合でHpが０になった場合
         if(Hp <= 0 && onShield)
-            onShield = false;
+            onShield = false; 
+        else 
+            gameOver();
     }
 
     //シールドがある時Hpを下回る攻撃を受けた場合
