@@ -49,7 +49,6 @@ public class CreateEnemy : MonoBehaviour
     void Update()
     {
         _time += Time.deltaTime;
-        Debug.Log(_time);
        if(_time > spawnTimer)
         {
             if(spawnCount > 0)
@@ -68,12 +67,11 @@ public class CreateEnemy : MonoBehaviour
     private void settingPos()
     {
         _pos = _boss.transform.position;  // ボスの座標取得
-       Debug.Log(_pos);
         // ボスがエリア１にいるとき
         // ボスの真上に生成エリアをつくる
         if(_pos.x < _bosscontroller.Areas[1] || _isArea4)
         {
-            Debug.Log("a");
+            //Debug.Log("a");
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
            number = Random.Range(0,prefabEnemy.Length);
            _posX = _pos.x;

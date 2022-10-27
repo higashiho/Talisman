@@ -17,14 +17,12 @@ public class StatusMiddleBossSpeed : MonoBehaviour
     private NavMeshAgent2D _navmeshagent2d;
     private bool _deth = false;  // 死んだかどうか
     private bool _invoke = false;  // skillを発動するスイッチ
-    private bool _once;        // スピードアップスイッチ
     private float _speedPrev;  // スピード保管用
 
     private float _time;  // 生成されてからの時間計測用
     
     void Start()
     {
-        _once = true;
         _time = 0;
         _navmeshagent2d = _boss.GetComponent<NavMeshAgent2D>();
     }
@@ -45,13 +43,8 @@ public class StatusMiddleBossSpeed : MonoBehaviour
     */
     private void SpeedUp()
     {
-        if(_once)
-        {
-            _speedPrev = _navmeshagent2d.speed;
-            _navmeshagent2d.speed *= _navmeshagent2d.speed * acceleration;
-            _once = false;
-        }
-        
+        _speedPrev = _navmeshagent2d.speed;
+        _navmeshagent2d.speed = _navmeshagent2d.speed * acceleration;
     }
 
     private void judgeSkill()
@@ -64,7 +57,6 @@ public class StatusMiddleBossSpeed : MonoBehaviour
         {
                 // スピードアップスキルを持っているやつが死んだとき
                 _navmeshagent2d.speed = _speedPrev;
-                _once = true;
         }
     }
 
