@@ -5197,11 +5197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92af770c22e0a4d41b1fe275e0bce3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeCount: 0
+  LifeCount: 3
   lifeArray:
-  - {fileID: 2074684368}
-  - {fileID: 1370663183}
-  - {fileID: 774194870}
+  - {fileID: 2074684370}
+  - {fileID: 1370663185}
+  - {fileID: 774194872}
 --- !u!4 &2027978440
 Transform:
   m_ObjectHideFlags: 0

@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HPManger : MonoBehaviour
 {
     public int LifeCount;      // HPをカウントする
     private int maxLife = 3;
     [SerializeField]
-    private GameObject[] lifeArray = new GameObject[3];
+    private Image[] lifeArray = new Image[3];
+    private Color color1, color2;
     
     // Start is called before the first frame update
     void Start()
     {
-        for(int i=0; i<maxLife; i++){
-            lifeArray[i].gameObject.SetActive(false);
-        }
+        color1 = new Color(1, 1, 1, 1);     // 表示
+        color2 = new Color(1, 1, 1, 0);     // 非表示
     }
 
     // Update is called once per frame
@@ -25,23 +26,23 @@ public class HPManger : MonoBehaviour
 
     private void displayHeart(){
         if(LifeCount == 3){     // ハート3個
-            lifeArray[0].gameObject.SetActive(true);
-            lifeArray[1].gameObject.SetActive(true);
-            lifeArray[2].gameObject.SetActive(true);
+            for(int i=0; i<maxLife; i++){
+                lifeArray[i].color = color1;
+            }
         }
         if(LifeCount == 2){     // ハート2個
-            lifeArray[0].gameObject.SetActive(true);
-            lifeArray[1].gameObject.SetActive(true);
-            lifeArray[2].gameObject.SetActive(false);
+            lifeArray[0].color = color1;
+            lifeArray[1].color = color1;
+            lifeArray[2].color = color2;
         }
         if(LifeCount == 1){     // ハート1個
-            lifeArray[0].gameObject.SetActive(true);
-            lifeArray[1].gameObject.SetActive(false);
-            lifeArray[2].gameObject.SetActive(false);
+            lifeArray[0].color = color1;
+            lifeArray[1].color = color2;
+            lifeArray[2].color = color2;
         }
         if(LifeCount == 0){     // ハート0個
             for(int i=0; i<maxLife; i++){
-                lifeArray[i].gameObject.SetActive(false);
+                lifeArray[i].color = color2;
             }
         }
     }
