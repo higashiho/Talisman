@@ -7,7 +7,7 @@ public class CreateEnemy : MonoBehaviour
     [HeaderAttribute("Prefab生成配列"),SerializeField]
     private GameObject[] prefabEnemy;
     [HeaderAttribute("沸き最大数"),SerializeField]
-    private int spawnCount = 30;
+    public int spawnCount = 30;
     [HeaderAttribute("次に生成するまでの時間")]
     public float spawnTimer = 3;
     [SerializeField]
