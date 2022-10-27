@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
          agent = GetComponent<NavMeshAgent2D>();
-         Destroy(this.gameObject, destroytimer);
+         Destroy(this.gameObject, destroytimer);        //一定時間後、消滅
 
     }
 
@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
         attractEnemy();
     }
     
-
+    //自動で追いかける
     private void attractEnemy()
     {
         agent.SetDestination(player.transform.position);

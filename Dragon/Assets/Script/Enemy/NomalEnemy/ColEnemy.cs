@@ -6,22 +6,24 @@ public class ColEnemy : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject ItemPrefab;    //プレハブ呼び出し
+    private GameObject ItemPrefab;              //プレハブ呼び出し
 
-    
+    private int hitDamage = 1;                  //エネミーがプレイヤーに当たった時のダメージ
 
-    private int hitDamage = 1;      //エネミーがプレイヤーに当たった時のダメージ
-
-    
-    private PlayerController playerController;//スクリプト格納用
+    private PlayerController playerController;  //スクリプト格納用
 
     private GameObject player;                  //プレイヤー格納用
+
+    private CreateEnemy createEnemy;            //スクリプト格納用
+
+    private GameObject mobcreater;                  //モブ作り格納用
     
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-    
+        mobcreater = GameObject.Find("MobCreater");
+        createEnemy = mobcreater.GetComponent<CreateEnemy>();
     }
 
     // Update is called once per frame
@@ -30,18 +32,19 @@ public class ColEnemy : MonoBehaviour
         
     }
 
-    //プレイヤーの剣攻撃に当たったら消える
+    //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.name == "Sword")
         {
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
+            createEnemy.spawnCount++;
         }
     }
-    //プレイヤーに当たったら消える
+    //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである
     private void OnCollisionEnter2D(Collision2D col)
-    {   //無敵中でないなら消える・被ダメする
+    {   
         if(col.gameObject.tag == "Player")
         {
             if(!playerController.OnUnrivaled)
@@ -49,6 +52,7 @@ public class ColEnemy : MonoBehaviour
                 playerController.OnUnrivaled = true;
                 playerController.Hp -= hitDamage;
                 Destroy(this.gameObject);
+                createEnemy.spawnCount++;
             }
             
         }
