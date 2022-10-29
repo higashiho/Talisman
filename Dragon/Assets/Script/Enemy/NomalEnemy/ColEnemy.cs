@@ -39,7 +39,7 @@ public class ColEnemy : MonoBehaviour
         {
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
-            createEnemy.spawnCount++;
+            createEnemy.spawnCount+=1;
         }
     }
     //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである
@@ -52,7 +52,7 @@ public class ColEnemy : MonoBehaviour
                 playerController.OnUnrivaled = true;
                 playerController.Hp -= hitDamage;
                 Destroy(this.gameObject);
-                createEnemy.spawnCount++;
+                createEnemy.spawnCount+=1;
             }
             
         }
