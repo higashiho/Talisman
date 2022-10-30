@@ -12,13 +12,17 @@ public class ColMiddleBoss : MonoBehaviour
     private int SWORD_DAMAGE = 1;
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
     private int ROTATESWORD_DAMAGE = 2;
+    [SerializeField]
+    private GameObject MiddleBoss;
     private GameObject MiddleBossCreater;
     private CreateRandom createrandom;
+    private MoveMiddleBoss movemiddleboss;
 
     void Start()
     {
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
         createrandom = MiddleBossCreater.GetComponent<CreateRandom>();
+        movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
     }
     void Update()
     {
@@ -38,6 +42,15 @@ public class ColMiddleBoss : MonoBehaviour
         if(other.gameObject.name == "RotateSword")
         {
                 _hp -= ROTATESWORD_DAMAGE;
+        }
+        if(movemiddleboss.Marge_OK)
+        {
+            Debug.Log(movemiddleboss.Marge_OK);
+            if(other.gameObject.tag == "Boss")
+            {
+                // なんか融合させるためのフラグとか???
+                Destroy(this.gameObject);
+            }
         }
     }
     
