@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 408925712988996644}
   - component: {fileID: 2771675253428168761}
   - component: {fileID: 5178432686175178636}
+  - component: {fileID: -5907075165351134732}
   m_Layer: 0
   m_Name: middleBoss2
   m_TagString: MiddleBoss
@@ -129,6 +130,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mobEnemy: {fileID: 0}
   _Timer: 3
+--- !u!114 &-5907075165351134732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415827260650019710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59526b886eee6f549b34d6668b39d8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: 5
+  SWORD_DAMAGE: 1
+  ROTATESWORD_DAMAGE: 2
 --- !u!1 &2590414157763423083
 GameObject:
   m_ObjectHideFlags: 0

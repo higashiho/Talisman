@@ -31,10 +31,10 @@ public class CreateRandom : MonoBehaviour
     private float _AREAWIDTH_RIGHT = 50f;   // 生成エリアの横の右側
 
     [HeaderAttribute("生成数最大値"), SerializeField]
-    private int count = 1;
+    private int count = 5;
     [HeaderAttribute("生成待機時間"), SerializeField]
     private float timer = 30;
-    private float _time = 0;  // スキル発動カウントダウン
+    public float _time = 0;  // スキル発動カウントダウン
   
     private string _key;      // addressablesのアドレス指定用
     AsyncOperationHandle<GameObject> loadOp; // addressables用ハンドル
@@ -58,7 +58,8 @@ public class CreateRandom : MonoBehaviour
         _time += Time.deltaTime;
         if(_time > timer)
         {
-            create = true;
+            if(_Counter < count)
+                create = true;
         }
         if(create)
         {
