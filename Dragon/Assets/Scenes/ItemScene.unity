@@ -3618,7 +3618,7 @@ MonoBehaviour:
   _pos: {x: 0, y: 0, z: 0}
   _Counter: 0
   count: 5
-  timer: 5
+  timer: 30
   _time: 0
 --- !u!4 &552417940330769524
 Transform:
