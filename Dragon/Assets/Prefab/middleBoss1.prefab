@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 5870908815402319978}
   - component: {fileID: 4806220815090910703}
   - component: {fileID: 1784467050160105582}
+  - component: {fileID: 7970563220509289178}
   m_Layer: 0
   m_Name: middleBoss1
   m_TagString: MiddleBoss
@@ -191,3 +192,18 @@ MonoBehaviour:
   _Timer: 3
   acceleration: 1.5
   _boss: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+--- !u!114 &7970563220509289178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135608018598009832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59526b886eee6f549b34d6668b39d8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: 5
+  SWORD_DAMAGE: 1
+  ROTATESWORD_DAMAGE: 2
