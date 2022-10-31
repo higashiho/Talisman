@@ -84,11 +84,6 @@ public class SkillController : MonoBehaviour
         else 
             OnWallSkill = false;
 
-        if(Skills[4] > 0 && nowSkiil[4])
-        {
-            nowSkiil[4] = false;    
-            Invoke("usingSkill5", waitTime);
-        }
 
         if(targeting)
             changeTarget();
@@ -122,12 +117,5 @@ public class SkillController : MonoBehaviour
         nowSkiil[3] = true;
         Skills[3]--;
     }
-
-    private void usingSkill5()
-    {
-        nowSkiil[4] = true;
-        Skills[4]--;
-    }
-
     
 }
