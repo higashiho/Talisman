@@ -12,6 +12,7 @@ TagManager:
   - MobCreater
   - MiddleBossCreater
   - Wall
+  - MiddleBossItem
   layers:
   - Default
   - TransparentFX
