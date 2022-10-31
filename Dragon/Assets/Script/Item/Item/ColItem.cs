@@ -9,7 +9,6 @@ public class ColItem : MonoBehaviour
     [SerializeField]
     private GameObject player;
     private SkillController skillcontroller;
-    private bool done = false;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
