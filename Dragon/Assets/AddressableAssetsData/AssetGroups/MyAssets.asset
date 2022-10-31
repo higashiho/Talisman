@@ -32,6 +32,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - MiddleBoss2
+  - m_GUID: c8de41c9fee6d904fa6e2c70ac1067a0
+    m_Address: Assets/Prefab/EnemyChase.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyChase
+  - m_GUID: 66ffb69c7cbd558438eebae1dbffa958
+    m_Address: Assets/Prefab/EnemyChase2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyChase2
+  - m_GUID: f60819c9b52aa3a4eaaa9fa02b0916e1
+    m_Address: Assets/Prefab/EnemyChase3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyChase3
+  - m_GUID: e569b715e84ca784d8fbe4b6dcc58746
+    m_Address: Assets/Prefab/EnemyChase4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyChase4
+  - m_GUID: 0a3c0f674f3831344bf7d8d3ac001a92
+    m_Address: Assets/Prefab/EnemyChase5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EnemyChase5
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f817c02bf85d6a448aa342c0fc1c45a9, type: 2}
   m_SchemaSet:
