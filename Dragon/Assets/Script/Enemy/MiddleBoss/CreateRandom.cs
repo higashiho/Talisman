@@ -21,6 +21,8 @@ public class CreateRandom : MonoBehaviour
     [HeaderAttribute("生成した中ボスの数"), SerializeField]
     public int _Counter;
 
+    private BossController bosscontroller;
+
     // 中ボスのインスタンスのリスト
     private List<GameObject> EnemyInstances = new List<GameObject>();
 
@@ -51,6 +53,7 @@ public class CreateRandom : MonoBehaviour
     void Start()
     {
        _Counter = 0;
+       bosscontroller = _boss.GetComponent<BossController>();
     }
 
     void Update()
