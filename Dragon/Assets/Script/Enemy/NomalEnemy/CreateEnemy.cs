@@ -11,13 +11,13 @@ public class CreateEnemy : MonoBehaviour
     [HeaderAttribute("沸き最大数"),SerializeField]
     public int spawnCount = 30;
     [HeaderAttribute("次に生成するまでの時間")]
-    private float spawnTimer = 1;
+    private float spawnTimer = 1.5f;
     [SerializeField]
     private GameObject _boss;  // Bossアタッチ用
     [SerializeField]
     private BossController _bosscontroller;  // bosscontrollerアタッチ用
 
-    private bool startStringEnemy = true;  //エネミー４・５出現フラグ
+    private bool startStringEnemy = false;  //エネミー４・５出現フラグ
 
     private Vector3 _pos;
     private float _time;
@@ -181,6 +181,7 @@ public class CreateEnemy : MonoBehaviour
            _posX = _pos.x;
            _posY = _pos.y + _height;
            spawnCount--;
+           startStringEnemy = false;
         }
         // ボスがエリア２にいるとき
         // ボスの前方に生成エリアをつくる
@@ -191,7 +192,7 @@ public class CreateEnemy : MonoBehaviour
            _posY = _pos.y;
            spawnCount--;
            spawnTimer = 3;
-           startStringEnemy = false;
+           startStringEnemy = true;
         }
         // ボスがエリア３にいるとき
         else if(_pos.x < _bosscontroller.Areas[3] || _isArea4)
@@ -200,7 +201,6 @@ public class CreateEnemy : MonoBehaviour
             _posX = _pos.x;
             _posY = _pos.y - _height;
             spawnCount--;
-            startStringEnemy = true;
             spawnTimer = 1;
         }
         // ボスがエリア４にいるとき
