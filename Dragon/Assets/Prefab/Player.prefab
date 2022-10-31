@@ -208,6 +208,8 @@ MonoBehaviour:
   attackWait: 0.3
   renderer: {fileID: 581746252}
   collider: {fileID: 581746253}
+  ShockWavePrefab: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+  skillController: {fileID: 1506668392}
 --- !u!1 &1003857935
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills: 00000000000000000a0000000a00000000000000
+  Skills: 0000000000000000000000000000000000000000
   nowSkiil: 0101010101
   bulletShot: {fileID: 1061806794458946392}
   targeting: 0
@@ -515,6 +517,7 @@ MonoBehaviour:
   SpeedUp: 0
   OnRotateSword: 0
   OnWallSkill: 0
+  UsingWallSkill: 5
 --- !u!114 &1061806794458946392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 5386916061415496316, guid: e7c0ace0a959d134ab7faf09fffc5b90, type: 3}
+  skillController: {fileID: 1506668392}
 --- !u!114 &1506668401
 MonoBehaviour:
   m_ObjectHideFlags: 0

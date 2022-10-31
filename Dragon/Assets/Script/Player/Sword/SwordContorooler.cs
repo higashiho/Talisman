@@ -35,8 +35,6 @@ public class SwordContorooler : MonoBehaviour
     private int OnShockSkill = 2;                   // スキルを使うためのアイテム量
 
     private GameObject waveObj;             // ゲームオブジェクト格納用
-    private Vector3 mousePos;                       // Mouseの位置
-    private float posZ = 10.0f;                     // Mouseのｚ軸調整
     // Start is called before the first frame update
     void Start()
     {
