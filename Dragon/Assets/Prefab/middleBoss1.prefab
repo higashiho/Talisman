@@ -193,7 +193,7 @@ MonoBehaviour:
   _Timer: 1
   acceleration: 1.5
   _boss: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
-  _speedPrev: 0
+  _speedPrev: 1
 --- !u!114 &7970563220509289178
 MonoBehaviour:
   m_ObjectHideFlags: 0
