@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2771675253428168761}
   - component: {fileID: 8903048424890727191}
   - component: {fileID: 1931489285937711290}
-  - component: {fileID: -4521209720544711711}
   m_Layer: 0
   m_Name: middleBoss3
   m_TagString: MiddleBoss
@@ -129,10 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59526b886eee6f549b34d6668b39d8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 5
+  _hp: 1
   SWORD_DAMAGE: 1
   ROTATESWORD_DAMAGE: 2
-  _Boss: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+  item: {fileID: 3721836383163939786, guid: 796ab927e13caff45a1dd5da7037532d, type: 3}
+  _Boss: {fileID: 0}
   bosscontroller: {fileID: 0}
   MiddleBoss: {fileID: 2415827260650019710}
 --- !u!114 &1931489285937711290
@@ -147,32 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c54f72c189c73243b823dbaccf0e4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Boss: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+  _Boss: {fileID: 0}
   speed: 10
-  _margeTime: 5
+  _margeTime: 10
   Marge_OK: 0
   _bossPos: {x: 0, y: 0, z: 0}
---- !u!50 &-4521209720544711711
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2415827260650019710}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &2590414157763423083
 GameObject:
   m_ObjectHideFlags: 0
