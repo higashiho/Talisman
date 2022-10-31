@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9060541169768609608}
   - component: {fileID: 9060541169768609611}
   - component: {fileID: 9060541169768609610}
-  - component: {fileID: 9060541169768609609}
   - component: {fileID: 9060541169768609614}
   m_Layer: 0
   m_Name: Boss
@@ -155,8 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495875c8b009a1b4e85b2cbf1259a8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 0
   targetCoordinates: {x: 300, y: 0, z: 0}
-  agent: {fileID: 9060541169768609609}
+  agent: {fileID: 0}
   player: {fileID: 0}
   attackSkill:
   - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
@@ -168,20 +168,6 @@ MonoBehaviour:
   - 150
   - 225
   Hp: 100
---- !u!114 &9060541169768609609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9060541169768609607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57568e4ec9692b64db1a472181ac6fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  stoppingDistance: 0
 --- !u!114 &9060541169768609614
 MonoBehaviour:
   m_ObjectHideFlags: 0
