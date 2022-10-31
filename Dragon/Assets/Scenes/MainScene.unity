@@ -1978,12 +1978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38abcf44486418c4189d6b4fa6741b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabEnemy:
-  - {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
-  - {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-  - {fileID: 4172620401796351193, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
-  - {fileID: 6687482055835503287, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
-  - {fileID: 705064875765134075, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
   spawnCount: 30
   spawnTimer: 3
   _boss: {fileID: 466474971}
@@ -5414,6 +5408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027978440}
   - component: {fileID: 2027978439}
+  - component: {fileID: 2027978441}
   m_Layer: 0
   m_Name: HPManager
   m_TagString: Untagged
@@ -5453,6 +5448,20 @@ Transform:
   m_Father: {fileID: 346662619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2027978441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027978438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c79a3c824dc554abbaece37e6a612c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpPos: {fileID: 2051887591}
+  shakePower: 5
 --- !u!1 &2051887590
 GameObject:
   m_ObjectHideFlags: 0
@@ -5489,8 +5498,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 51, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 190, y: -50}
+  m_SizeDelta: {x: 393.2698, y: 100}
   m_Pivot: {x: 0.50000024, y: 0.5}
 --- !u!1 &2074684368
 GameObject:
