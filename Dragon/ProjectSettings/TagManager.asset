@@ -11,6 +11,7 @@ TagManager:
   - Sword
   - MobCreater
   - MiddleBossCreater
+  - Wall
   layers:
   - Default
   - TransparentFX
