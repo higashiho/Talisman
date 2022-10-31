@@ -13,6 +13,10 @@ public class ColMiddleBoss : MonoBehaviour
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
     private int ROTATESWORD_DAMAGE = 2;
     [SerializeField]
+    private GameObject _Boss;
+    [SerializeField]
+    private BossController bosscontroller;  //スクリプトアタッチ用
+    [SerializeField]
     private GameObject MiddleBoss;
     private GameObject MiddleBossCreater;
     private CreateRandom createrandom;
@@ -20,6 +24,8 @@ public class ColMiddleBoss : MonoBehaviour
 
     void Start()
     {
+        _Boss = GameObject.FindWithTag("Boss");
+        bosscontroller = _Boss.GetComponent<BossController>();
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
         createrandom = MiddleBossCreater.GetComponent<CreateRandom>();
         movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
@@ -49,6 +55,7 @@ public class ColMiddleBoss : MonoBehaviour
             if(other.gameObject.tag == "Boss")
             {
                 // なんか融合させるためのフラグとか???
+                bosscontroller.Hp += _hp;   // 中ボスの残りHPをボスのHPに加算
                 Destroy(this.gameObject);
             }
         }
