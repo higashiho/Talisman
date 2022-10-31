@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCount: 30
-  spawnTimer: 3
   _boss: {fileID: 765882002}
   _bosscontroller: {fileID: 765882001}
   _CreateSpeed: 1
