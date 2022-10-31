@@ -37,14 +37,16 @@ public class CreateEnemy : MonoBehaviour
     private float _posY;
     private float _posZ;
 
+    //生成速度
     public float _CreateSpeed = 1;
 
-    //private List<int> spawnList = new List<int>(2);  //リストの初期化
-
+    //index格納用
     private int index = 0;
     private string _key;
+    //リスト
     AsyncOperationHandle<GameObject> loadOp;
     private List<GameObject> EnemyInstances = new List<GameObject>();
+    //エネミーの種類
     private string[] _keyName = new string[]
     {
         "EnemyChase",
@@ -100,17 +102,14 @@ public class CreateEnemy : MonoBehaviour
         number = Random.Range(0,5);
         if(number == 0 || number == 1)
         {
-            //enemy.add("ENEMY1");
             index = 0;
         }
         else if(number == 2 || number == 3)
         {
-            //enemy.add("ENEMY2");
             index = 1;
         }
         else if(number == 4)
         {
-            //enemy.add("ENEMY3");
             index = 2;
         }
     }
@@ -121,17 +120,14 @@ public class CreateEnemy : MonoBehaviour
         number = Random.Range(0,9);
         if(number == 0 || number == 1)
         {
-            //enemy.add("ENEMY1");
             index = 0;
         }
         else if(number == 2 || number == 3)
         {
-            //enemy.add("ENEMY2");
             index = 1;
         }
         else if(number == 4)
         {
-            //enemy.add("ENEMY3");
             index = 2;
         }
         else if(number == 5 || number == 6)
@@ -144,11 +140,6 @@ public class CreateEnemy : MonoBehaviour
         }
     }
 
-    /*private void randomPos()
-    {
-        index = spawnList[0];
-        spawnList.RemoveAt(0);
-    }*/
 
     //アセットをロードしてきてインスタンス化する関数
     private IEnumerator enemyLoad()
@@ -159,11 +150,10 @@ public class CreateEnemy : MonoBehaviour
         if(loadOp.Result != null)
         {
             Instantiate(loadOp.Result,new Vector3(_posX,_posY,_posZ),Quaternion.identity);
-            //_Counter++;
         }
     }
 
-    //古い枠を消して枠を開ける
+    //古い枠を消して空ける
     private void Delete()
     {
         foreach(var item in EnemyInstances)
@@ -190,7 +180,6 @@ public class CreateEnemy : MonoBehaviour
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
            _posX = _pos.x;
            _posY = _pos.y + _height;
-           //Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
            spawnCount--;
         }
         // ボスがエリア２にいるとき
@@ -198,10 +187,8 @@ public class CreateEnemy : MonoBehaviour
         else if(_pos.x < _bosscontroller.Areas[2] || _isArea4)
         {
            //生成するPrefubのIndexを配列の要素の中からランダムに設定
-           //number = Random.Range(0,prefabEnemy.Length);
            _posX = _pos.x + _front;
            _posY = _pos.y;
-           //Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
            spawnCount--;
            startStringEnemy = true;
         }
@@ -209,10 +196,8 @@ public class CreateEnemy : MonoBehaviour
         else if(_pos.x < _bosscontroller.Areas[3] || _isArea4)
         {
             //生成するPrefubのIndexを配列の要素の中からランダムに設定
-            //number = Random.Range(0,prefabEnemy.Length);
             _posX = _pos.x;
             _posY = _pos.y - _height;
-            //Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
             spawnCount--;
         }
         // ボスがエリア４にいるとき
