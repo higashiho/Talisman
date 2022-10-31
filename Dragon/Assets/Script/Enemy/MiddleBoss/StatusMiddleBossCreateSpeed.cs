@@ -16,7 +16,6 @@ public class StatusMiddleBossCreateSpeed : MonoBehaviour
     private float _Timer = 3;
     private CreateEnemy createEnemy;     // スクリプト参照用
 
-    private bool _deth = false;  // 死んだかどうか
     private bool _invoke = false;  // skillを発動するスイッチ
     private bool _once = true;  // 1回だけ実行するためのスイッチ
 
@@ -57,7 +56,6 @@ public class StatusMiddleBossCreateSpeed : MonoBehaviour
         if(_once)
         {
         _speedPrev = _speed;  // もとの生成速度を一時保存
-        Debug.Log(_speedPrev);
         _speed *= rate;
         createEnemy._CreateSpeed = _speed;
         _once = false;
