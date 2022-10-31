@@ -17,6 +17,8 @@ public class CreateEnemy : MonoBehaviour
     [SerializeField]
     private BossController _bosscontroller;  // bosscontrollerアタッチ用
 
+    private bool startStringEnemy = false;  //エネミー４・５出現フラグ
+
     private Vector3 _pos;
     private float _time;
 
@@ -47,9 +49,9 @@ public class CreateEnemy : MonoBehaviour
     {
         "EnemyChase",
         "EnemyChase2",
-        "EnemyChase3"
-        //"EnemyChase4",
-        //"EnemyChase5"
+        "EnemyChase3",
+        "EnemyChase4",
+        "EnemyChase5"
     };
  
     // Start is called before the first frame update
@@ -72,17 +74,26 @@ public class CreateEnemy : MonoBehaviour
             {  
                 settingPos();
                 settingKey();
-                randomIndex();
+                if(startStringEnemy)
+                {
+                    randomIndexLater();
+                }
+                else
+                {
+                    randomIndex();
+                }
                 StartCoroutine(enemyLoad());
             }
             _time = default;
         }
     }
 
+    //キーを用意
     private void settingKey()
     {
         _key = _keyName[index];
     }
+
     //敵の沸き調整（敵３が出にくく、１，２が出やすい）
     private void randomIndex()
     {
@@ -101,6 +112,35 @@ public class CreateEnemy : MonoBehaviour
         {
             //enemy.add("ENEMY3");
             index = 2;
+        }
+    }
+
+    //全敵出現
+    private void randomIndexLater()
+    {
+        number = Random.Range(0,9);
+        if(number == 0 || number == 1)
+        {
+            //enemy.add("ENEMY1");
+            index = 0;
+        }
+        else if(number == 2 || number == 3)
+        {
+            //enemy.add("ENEMY2");
+            index = 1;
+        }
+        else if(number == 4)
+        {
+            //enemy.add("ENEMY3");
+            index = 2;
+        }
+        else if(number == 5 || number == 6)
+        {
+            index = 3;
+        }
+        else if(number == 7 || number == 8)
+        {
+            index = 4;
         }
     }
 
@@ -123,6 +163,7 @@ public class CreateEnemy : MonoBehaviour
         }
     }
 
+    //古い枠を消して枠を開ける
     private void Delete()
     {
         foreach(var item in EnemyInstances)
@@ -162,6 +203,7 @@ public class CreateEnemy : MonoBehaviour
            _posY = _pos.y;
            //Instantiate(prefabEnemy[number],new Vector3(_posX,_posY,_posZ),Quaternion.identity);
            spawnCount--;
+           startStringEnemy = true;
         }
         // ボスがエリア３にいるとき
         else if(_pos.x < _bosscontroller.Areas[3] || _isArea4)
