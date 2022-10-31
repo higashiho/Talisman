@@ -337,6 +337,8 @@ GameObject:
   - component: {fileID: 1506668392}
   - component: {fileID: 1061806794458946392}
   - component: {fileID: 1506668395}
+  - component: {fileID: 1506668400}
+  - component: {fileID: 1506668401}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -518,13 +520,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills: 0000000000000000000000000000000000000000
+  Skills: 00000000000000000a0000000a00000000000000
   nowSkiil: 0101010101
   bulletShot: {fileID: 1061806794458946392}
   targeting: 0
   target: 
   SpeedUp: 0
   OnRotateSword: 0
+  OnWallSkill: 0
 --- !u!114 &1061806794458946392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,3 +557,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2956491d5fec340abe5d0924c00959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1506668400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841200581054410842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038b67cc9b333f2458d00e353378d8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallPrefab: {fileID: 5386916061415496316, guid: e7c0ace0a959d134ab7faf09fffc5b90, type: 3}
+--- !u!114 &1506668401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841200581054410842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc2b68eca36f934b91fd2e0bffbd67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillController: {fileID: 1506668392}
+  usingWall: 0
+  usingSowrd: 0
+  mouseWheel: 0
+  rotateSwordController: {fileID: 337276076}
+  wallSkill: {fileID: 1506668400}
