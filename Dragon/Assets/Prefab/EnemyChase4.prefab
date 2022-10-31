@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6687482055835503281}
   - component: {fileID: 6687482055835503280}
   - component: {fileID: 6687482055835503292}
-  - component: {fileID: 6687482055835503293}
   - component: {fileID: 1744688066}
+  - component: {fileID: -2009659526877216756}
   m_Layer: 0
   m_Name: EnemyChase4
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6687482055835503287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.6, y: 3.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9108771, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -153,19 +153,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6687482055835503293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6687482055835503287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d87cae0daf73d0f46b4b78db23733bf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemPrefab: {fileID: 8153124814632954653, guid: 7e168c560c392134497575fe040a13c2, type: 3}
 --- !u!114 &1744688066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +167,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   stoppingDistance: 0
+--- !u!114 &-2009659526877216756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6687482055835503287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab9d738931c63a4389a4e93f5c37778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefab: {fileID: 8153124814632954653, guid: 7e168c560c392134497575fe040a13c2, type: 3}
