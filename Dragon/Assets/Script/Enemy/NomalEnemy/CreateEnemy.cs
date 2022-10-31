@@ -81,7 +81,7 @@ public class CreateEnemy : MonoBehaviour
 
     private void settingKey()
     {
-        _key = _keyName[number];
+        _key = _keyName[index];
     }
     //敵の沸き調整（敵３が出にくく、１，２が出やすい）
     private void randomIndex()
