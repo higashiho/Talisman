@@ -19,9 +19,6 @@ public class BossController : MonoBehaviour
     private Vector3 targetCoordinates;
     // private List<Vector3> destinations;     //目標座標
 
-    [HeaderAttribute("NavMeshAgent2D"), SerializeField]
-   private NavMeshAgent2D agent; //NavMeshAgent2Dを使用するための変数
-
    private int numericPreservation;      // 前回randoNumber保存用
 
     private Vector3 pos;        // 自身の座標

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659e2cdc359b0864ba195b123d15469c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mobEnemy: {fileID: 0}
+  _mobEnemy: {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
   _Timer: 3
 --- !u!114 &-5907075165351134732
 MonoBehaviour:
