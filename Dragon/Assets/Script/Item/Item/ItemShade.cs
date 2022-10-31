@@ -7,9 +7,10 @@ public class ItemShade : MonoBehaviour
     
     [SerializeField]
     private GameObject player;                      //プレイヤー取得
-    //NavMesh
-    [SerializeField]
-    private NavMeshAgent2D agent;
+
+    private Vector2 Pos;
+
+    private Vector2 playerPos;
 
     [SerializeField]
     private int itemNumber;
@@ -19,11 +20,13 @@ public class ItemShade : MonoBehaviour
 
     private SkillController skillController;        //スクリプト格納用
 
+    [SerializeField]
+    private float itemMoveSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        agent = GetComponent<NavMeshAgent2D>();
         skillController = player.GetComponent<SkillController>();
     }
 
@@ -44,6 +47,9 @@ public class ItemShade : MonoBehaviour
 
     private void attractItem()
     {
-        agent.SetDestination(player.transform.position);
+        Pos = transform.position;
+        playerPos = player.transform.position;
+
+        transform.position = Vector2.MoveTowards(Pos , playerPos , itemMoveSpeed * Time.deltaTime);
     }
 }

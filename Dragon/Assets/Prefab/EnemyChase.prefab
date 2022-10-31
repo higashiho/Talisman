@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8123549337994771024}
   - component: {fileID: 8123549337994771039}
   - component: {fileID: 8123549337994771038}
-  - component: {fileID: 2123492988}
   m_Layer: 0
   m_Name: EnemyChase
   m_TagString: Untagged
@@ -102,8 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-  agent: {fileID: 2123492988}
   destroytimer: 60
+  enemyMoveSpeed: 5
 --- !u!60 &8123549337994771024
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -166,17 +165,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 2352975664675091290, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
---- !u!114 &2123492988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8123549337994771031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57568e4ec9692b64db1a472181ac6fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  stoppingDistance: 0
