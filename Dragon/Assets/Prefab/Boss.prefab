@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495875c8b009a1b4e85b2cbf1259a8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 1
   targetCoordinates: {x: 300, y: 0, z: 0}
   agent: {fileID: 0}
   player: {fileID: 0}
@@ -168,6 +168,7 @@ MonoBehaviour:
   - 150
   - 225
   Hp: 100
+  colBoss: {fileID: 9060541169768609614}
 --- !u!114 &9060541169768609614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossController: {fileID: 9060541169768609610}
+  speedGain: 0
+  OnWall: 0
+  WallObj: {fileID: 0}
 --- !u!1 &9060541169972423429
 GameObject:
   m_ObjectHideFlags: 0

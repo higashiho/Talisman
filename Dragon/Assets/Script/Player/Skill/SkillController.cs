@@ -37,10 +37,12 @@ public class SkillController : MonoBehaviour
     
     public bool OnWallSkill;                                // 壁置けるか
     
+    public int UsingWallSkill = 5;                              // 壁設置スキルを使用できるまでの個数
     // Awake is called before the first frame update
     void Awake()
     {
         bool[] nowSkiil = {true, true, true, true, true};
+        int[] Skills = {0, 0, 0, 0, 0};
         target = "Boss";
     }
 
@@ -75,7 +77,7 @@ public class SkillController : MonoBehaviour
         else
             OnRotateSword = false;
 
-        if(Skills[3] > 0)
+        if(Skills[3] >= UsingWallSkill)
         {
             OnWallSkill = true;
         }   

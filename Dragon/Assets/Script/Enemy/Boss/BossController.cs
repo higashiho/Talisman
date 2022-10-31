@@ -47,6 +47,8 @@ public class BossController : MonoBehaviour
 
     public static string Judgment = "GameOver";        // クリアか失敗か
     
+    [SerializeField]
+    private ColBoss colBoss;                            // スクリプト格納用
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,6 +66,9 @@ public class BossController : MonoBehaviour
 
         if(Hp <= 0)
             gameClear();
+
+        if(colBoss.WallObj == null && colBoss.OnWall)
+            reset();
     }
 
     private void move()
@@ -106,6 +111,12 @@ public class BossController : MonoBehaviour
     {
         Judgment = "GameClear";
         Destroy(this.gameObject);
+    }
+
+    private void reset()
+    {
+        colBoss.OnWall = false;
+        Speed = colBoss.speedGain;
     }
 
     private IEnumerator lastAreaSkill()

@@ -32,7 +32,7 @@ public class BeamController : MonoBehaviour
         transform.LookAt(Player.transform.position);
         Destroy(this.gameObject,destroyTime);
         this.transform.localScale = startScale;
-       StartCoroutine(offWate());
+        StartCoroutine(offWate());
     }
 
     // Update is called once per frame
