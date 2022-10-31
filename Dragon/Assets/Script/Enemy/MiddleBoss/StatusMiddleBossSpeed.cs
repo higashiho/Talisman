@@ -14,27 +14,33 @@ public class StatusMiddleBossSpeed : MonoBehaviour
     private float acceleration = 1.5f;
     [SerializeField]
     private GameObject _boss;
-    private NavMeshAgent2D _navmeshagent2d;
+    private BossController bosscontroller;
     private bool _deth = false;  // 死んだかどうか
     private bool _invoke = false;  // skillを発動するスイッチ
+
+    [SerializeField]
     private float _speedPrev;  // スピード保管用
+
 
     private float _time;  // 生成されてからの時間計測用
     
     void Start()
     {
-        _time = 0;
-        _navmeshagent2d = _boss.GetComponent<NavMeshAgent2D>();
+        //_time = 0;
+        _boss = GameObject.FindWithTag("Boss");
+        bosscontroller = _boss.GetComponent<BossController>();
+        Invoke("SpeedUp", _Timer);
     }
 
     
     void Update()
     {
-        _time += Time.deltaTime;
-        if(_time > _Timer)  
-            _invoke = true;
-
-        judgeSkill();
+        //_time += Time.deltaTime;
+        //if(_time > _Timer)  
+        //    _invoke = true;
+        //if(_invoke)
+        //    SpeedUp();
+            
     }
 
     /**
@@ -43,11 +49,12 @@ public class StatusMiddleBossSpeed : MonoBehaviour
     */
     private void SpeedUp()
     {
-        _speedPrev = _navmeshagent2d.speed;
-        _navmeshagent2d.speed = _navmeshagent2d.speed * acceleration;
+        _speedPrev = bosscontroller.Speed;
+        bosscontroller.Speed = bosscontroller.Speed * acceleration;
+        //Debug.Log(bosscontroller.Speed);
     }
 
-    private void judgeSkill()
+    /*private void judgeSkill()
     {
         if(_invoke)
         {
@@ -56,12 +63,12 @@ public class StatusMiddleBossSpeed : MonoBehaviour
         if(_deth)
         {
                 // スピードアップスキルを持っているやつが死んだとき
-                _navmeshagent2d.speed = _speedPrev;
+                bosscontroller.Speed = _speedPrev;
         }
-    }
+    }*/
 
     private void OnDestroy()
     {
-        _deth = true;
+       bosscontroller.Speed = _speedPrev;
     }
 }

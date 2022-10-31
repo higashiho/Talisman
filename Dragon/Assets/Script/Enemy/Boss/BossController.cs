@@ -14,14 +14,10 @@ public class BossController : MonoBehaviour
         Area4,
     }
     [HeaderAttribute("移動速度")]
-    public float Speed;                                     // 自身のスピード
+    public float Speed = 1;                                     // 自身のスピード
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
     // private List<Vector3> destinations;     //目標座標
-
-    [HeaderAttribute("NavMeshAgent2D"), SerializeField]
-   private NavMeshAgent2D agent; //NavMeshAgent2Dを使用するための変数
-
    private int numericPreservation;      // 前回randoNumber保存用
 
     private Vector3 pos;        // 自身の座標
