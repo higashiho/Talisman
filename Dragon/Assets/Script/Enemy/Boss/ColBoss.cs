@@ -5,8 +5,10 @@ using UnityEngine;
 public class ColBoss : MonoBehaviour
 {
     [SerializeField]
-    private BossController bossController;      //スクリプト格納用
+    private BossController bossController;              // スクリプト格納用
 
+    private float speedGain;                            // スピード格納
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Bullet")
@@ -18,4 +20,21 @@ public class ColBoss : MonoBehaviour
             bossController.Hp--;
         }
     }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "wall")
+        {
+            speedGain = bossController.Speed;
+            bossController.Speed = 0;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "wall")
+        {
+            speedGain = bossController.Speed;
+            bossController.Speed = 0;
+        }
+    }
+    
 }
