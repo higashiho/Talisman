@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   agent: {fileID: 1744688066}
   destroytimer: 60
 --- !u!60 &6687482055835503280
