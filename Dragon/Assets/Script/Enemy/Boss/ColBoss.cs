@@ -25,6 +25,10 @@ public class ColBoss : MonoBehaviour
         {
             bossController.Hp--;
         }
+        if(other.gameObject.tag == "ShockWave")
+        {
+            bossController.Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+        }
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
