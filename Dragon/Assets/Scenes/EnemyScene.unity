@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCount: 30
-  spawnTimer: 3
   _boss: {fileID: 765882002}
   _bosscontroller: {fileID: 765882001}
   _CreateSpeed: 1
@@ -278,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9060541169768609605, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 186.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9060541169768609605, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -320,14 +319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9060541169768609610, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1989685728}
+      objectReference: {fileID: 1989685719}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
 --- !u!114 &765882001 stripped
@@ -3697,7 +3692,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 1587613823}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1989685728 stripped
+--- !u!4 &1989685719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1841200581054410847, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 1587613823}
