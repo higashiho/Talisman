@@ -63,7 +63,8 @@ public class CreateEnemy : MonoBehaviour
         // スクリプトアタッチ
         _bosscontroller = _boss.GetComponent<BossController>();
         // エリア4にボスがいないから最初にfalseにしとく
-        _isArea4 = false;  
+        _isArea4 = false;
+        _boss = GameObject.FindWithTag("Boss");
     }
 
     

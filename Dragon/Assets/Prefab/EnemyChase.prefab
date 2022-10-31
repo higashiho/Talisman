@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.5981132, g: 0.8366361, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.9619756, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,9 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   destroytimer: 60
-  enemyMoveSpeed: 5
+  enemyMoveSpeed: 4
 --- !u!60 &8123549337994771024
 PolygonCollider2D:
   m_ObjectHideFlags: 0

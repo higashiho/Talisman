@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   destroytimer: 60
-  enemyMoveSpeed: 5
+  enemyMoveSpeed: 4
 --- !u!60 &6687482055835503280
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
     private GameObject player;
 
     private Vector2 Pos;
@@ -21,13 +20,14 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
          Destroy(this.gameObject, destroytimer);        //一定時間後、消滅
+         player = GameObject.FindWithTag("Player");
     }
+    
 
     // Upda結果、 is called once per frame
     void Update()
     {
         attractEnemy();
-        player = GameObject.FindWithTag("Player");
     }
     
     //自動で追いかける
