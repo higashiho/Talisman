@@ -14,26 +14,29 @@ public class SkillController : MonoBehaviour
         lockonBullet,
         Speed,
         RotateSword,
-        Skill4,
+        WallGene,
         Skill5
     }
     [HeaderAttribute("Skill未定のため確定後変数名変更"), EnumIndex(typeof(SkilType))]
     public int[] Skills = new int[5];
     
     [SerializeField, EnumIndex(typeof(SkilType))]
-    private bool[] nowSkiil = new bool[5];        // スキルを使っているか
+    private bool[] nowSkiil = new bool[5];                      // スキルを使っているか
 
-    private float waitTime = 1.0f;      // 関数使用遅延用
+    private float waitTime = 1.0f;                              // 関数使用遅延用
 
     [HeaderAttribute("Attach to Player"), SerializeField]
-    private BulletShot bulletShot;              //スクリプト格納用
+    private BulletShot bulletShot;                              //スクリプト格納用
     [SerializeField]
-    private bool targeting = false;                 // ターゲットを変更できるか
+    private bool targeting = false;                             // ターゲットを変更できるか
     [HeaderAttribute("ターゲティング中の敵")]
-    public string target = default;                 // ターゲットのタグ
+    public string target = default;                             // ターゲットのタグ
 
-    public bool SpeedUp = false;                    // スピードアップしてるかどうか
-    public bool OnRotateSword = false;              // 回転斬りが出来るかどうか
+    public bool SpeedUp = false;                                // スピードアップしてるかどうか
+    public bool OnRotateSword = false;                          // 回転斬りが出来るかどうか
+    
+    public bool OnWallSkill;                                // 壁置けるか
+    
     // Awake is called before the first frame update
     void Awake()
     {
@@ -72,11 +75,12 @@ public class SkillController : MonoBehaviour
         else
             OnRotateSword = false;
 
-        if(Skills[3] > 0 && nowSkiil[3])
+        if(Skills[3] > 0)
         {
-            nowSkiil[3] = false;    
-            Invoke("usingSkill4", waitTime);
+            OnWallSkill = true;
         }   
+        else 
+            OnWallSkill = false;
 
         if(Skills[4] > 0 && nowSkiil[4])
         {

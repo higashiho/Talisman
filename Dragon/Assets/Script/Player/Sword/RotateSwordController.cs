@@ -39,11 +39,9 @@ public class RotateSwordController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(skillController.OnRotateSword)
-            attack();
     }
 
-    private void attack()
+    public void Attack()
     {
         if (!coroutineBool && Input.GetMouseButtonDown(1))
         {
