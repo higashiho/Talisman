@@ -102,6 +102,11 @@ MonoBehaviour:
     - MiddleBoss1
     - MiddleBoss2
     - MiddleBoss3
+    - EnemyChase
+    - EnemyChase2
+    - EnemyChase3
+    - EnemyChase4
+    - EnemyChase5
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 3c159ffbb94e67d4d8d5f4154ed4f509, type: 2}
