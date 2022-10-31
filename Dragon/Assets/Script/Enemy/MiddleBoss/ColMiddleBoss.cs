@@ -12,6 +12,8 @@ public class ColMiddleBoss : MonoBehaviour
     private int SWORD_DAMAGE = 1;
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
     private int ROTATESWORD_DAMAGE = 2;
+    [HeaderAttribute("アイテム"), SerializeField]
+    private GameObject item;
     [SerializeField]
     private GameObject _Boss;
     [SerializeField]
@@ -21,6 +23,7 @@ public class ColMiddleBoss : MonoBehaviour
     private GameObject MiddleBossCreater;
     private CreateRandom createrandom;
     private MoveMiddleBoss movemiddleboss;
+    
 
     void Start()
     {
@@ -34,9 +37,11 @@ public class ColMiddleBoss : MonoBehaviour
     {
         if(_hp <= 0)
         {
-            Destroy(this.gameObject);
+            Instantiate(item, this.transform.position, Quaternion.identity);
             createrandom._time = 0;
             createrandom._Counter--;
+            Destroy(this.gameObject);
+            
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

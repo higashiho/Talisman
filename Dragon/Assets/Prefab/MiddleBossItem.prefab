@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5865999951041160243}
   - component: {fileID: 4726079060149343758}
   - component: {fileID: 1790998658714074398}
+  - component: {fileID: 13185700824926229}
+  - component: {fileID: -1807479968470502285}
   m_Layer: 0
   m_Name: MiddleBossItem
   m_TagString: MiddleBossItem
@@ -111,3 +113,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &13185700824926229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721836383163939786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d0a90ec16606b459a0a6ff904ebf0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 5
+  timer: 2
+  time: 0
+--- !u!114 &-1807479968470502285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721836383163939786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71ebc17740ec434d8350aef1e019e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  point: 5
+  player: {fileID: 0}
