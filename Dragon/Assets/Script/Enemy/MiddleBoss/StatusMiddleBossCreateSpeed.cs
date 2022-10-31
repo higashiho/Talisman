@@ -41,7 +41,6 @@ public class StatusMiddleBossCreateSpeed : MonoBehaviour
         _time += Time.deltaTime;
         
             if(_time > _Timer) 
-            Debug.Log("a");
                 _invoke = true;  // スキル発動スイッチON
                 //_once = false;
         
