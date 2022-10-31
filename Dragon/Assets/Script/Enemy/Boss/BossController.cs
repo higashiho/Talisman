@@ -13,7 +13,8 @@ public class BossController : MonoBehaviour
         Area3,
         Area4,
     }
-
+    [HeaderAttribute("移動速度")]
+    public float Speed;                                     // 自身のスピード
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
     // private List<Vector3> destinations;     //目標座標
@@ -53,7 +54,6 @@ public class BossController : MonoBehaviour
     }
     void Start()
     {
-        agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
         InvokeRepeating("attack", attackTime, attackTime);
     }
 
@@ -68,8 +68,7 @@ public class BossController : MonoBehaviour
 
     private void move()
     {
-        pos = transform.position;
-        agent.SetDestination(targetCoordinates);
+        transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, Speed * Time.deltaTime);
 
         if(pos.x >= targetCoordinates.x)
             SceneManager.LoadScene("EndScene");

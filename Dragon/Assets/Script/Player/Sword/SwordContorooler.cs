@@ -46,7 +46,6 @@ public class SwordContorooler : MonoBehaviour
             coroutineBool = true;
             StartCoroutine("Shake");
         }
-
     }
     
     // 回す処理、動いている最中のみレンダラーと当たり判定がオン
