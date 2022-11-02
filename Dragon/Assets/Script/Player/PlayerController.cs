@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     private bool onShield = true;                       //シールドがあるか
 
     private Vector2 noShieldSpeed = new Vector2(2.0f, 2.0f);            //シールドがない時の移動スピード
-    private Vector2 nomalPlayerSpeed = new Vector2(5.0f, 5.0f);         //  通常時スピード
-    private Vector2 highPlayerSpeed = new Vector2(7.0f, 7.0f);          // スピードアップスキル取得時スピード
+    private Vector2 nomalPlayerSpeed = new Vector2(7.0f, 7.0f);         //  通常時スピード
+    private Vector2 highPlayerSpeed = new Vector2(10.0f, 10.0f);          // スピードアップスキル取得時スピード
 
     [SerializeField, HeaderAttribute("シールド回復時間")]
     private float heelSheld;                     //シールド回復時間

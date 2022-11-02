@@ -22,12 +22,22 @@ public class DebugBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bossMoveArea();
+        if(boss != null)
+            bossMoveArea();
     }
 
+    public void FindBoss()
+    {
+        if(boss == null)
+        {
+            boss = GameObject.FindWithTag("Boss");
+            bossController = boss.GetComponent<BossController>();
+        }
+    }
     // エリア転移
     private void bossMoveArea()
     {
+        
         // posYの初期化
         pos.y = 0;
 
