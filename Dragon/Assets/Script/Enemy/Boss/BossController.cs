@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour
     private Vector3 pos;                                    // 自身の座標
 
    [SerializeField]
-   private Transform player;                                // player格納用
+   private GameObject player;                                // player格納用
 
    [HeaderAttribute("攻撃スキル"), SerializeField]
    private GameObject[] attackSkill = new GameObject[3];    // 攻撃スキル
@@ -53,6 +53,8 @@ public class BossController : MonoBehaviour
     void Awake()
     {
         float[] areas = {0.0f, 75.0f, 150.0f, 225.0f};
+
+        player = GameObject.FindWithTag("Player");
     }
     void Start()
     {
@@ -105,7 +107,7 @@ public class BossController : MonoBehaviour
         // エリア１にいるときの敵の攻撃
         else
         {
-           Instantiate(attackSkill[0], player.position, Quaternion.identity);
+           Instantiate(attackSkill[0], player.transform.position, Quaternion.identity);
         }
     }
 
@@ -123,7 +125,7 @@ public class BossController : MonoBehaviour
 
     private IEnumerator lastAreaSkill()
     {
-        Instantiate(attackSkill[0], player.position, Quaternion.identity);
+        Instantiate(attackSkill[0], player.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(attackSpeed);
         attackObject = Instantiate(attackSkill[1], this.transform.position, Quaternion.identity);
         attackObject.transform.parent = this.gameObject.transform;

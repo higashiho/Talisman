@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9060541169768609610}
   - component: {fileID: 9060541169768609614}
   - component: {fileID: 512418799}
+  - component: {fileID: -3959097060460838189}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -195,6 +196,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f70811c05b060b47ae86cfeabd56829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3959097060460838189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060541169768609607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8337a7010b89bd3458fe18b3d3675ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9060541170134570888
