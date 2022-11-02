@@ -19,8 +19,8 @@ public class CreateEnemy : MonoBehaviour
 
     private bool startStringEnemy = false;  //エネミー４・５出現フラグ
 
-    private Vector3 _pos;
-    private float _time;
+    private Vector3 _pos;        //現在位置
+    private float _time;         //経過時間
 
     private bool _isArea4;       // ボスがエリア４にいるかどうか
 

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private GameObject player;
+    private GameObject player;      //プレーヤー取得
 
-    private Vector2 Pos;
+    private Vector2 Pos;            //現在位置
 
-    private Vector2 playerPos;
+    private Vector2 playerPos;      //プレイヤーの位置
 
     [SerializeField]
     private float destroytimer;     //敵が自動消滅する時間
 
     [SerializeField]
-    private float enemyMoveSpeed;
+    private float enemyMoveSpeed;   //エネミー移動速度
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +24,12 @@ public class EnemyController : MonoBehaviour
     }
     
 
-    // Upda結果、 is called once per frame
     void Update()
     {
         attractEnemy();
     }
     
-    //自動で追いかける
+    //プレーヤーを追いかける
     private void attractEnemy()
     {
         Pos = transform.position;

@@ -16,7 +16,7 @@ public class ColEnemy : MonoBehaviour
 
     private CreateEnemy createEnemy;            //スクリプト格納用
 
-    private GameObject mobcreater;                  //モブ作り格納用
+    private GameObject mobcreater;              //モブ作り格納用
     
     void Start()
     {
@@ -32,15 +32,17 @@ public class ColEnemy : MonoBehaviour
         
     }
 
-    //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
         if(other.gameObject.name == "Sword")
         {
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
             createEnemy.spawnCount++;
         }
+        //ショックウェーブに当たったら消える
         if(other.gameObject.tag == "ShockWave")
         {
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);

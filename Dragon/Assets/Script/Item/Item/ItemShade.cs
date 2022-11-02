@@ -8,12 +8,12 @@ public class ItemShade : MonoBehaviour
     [SerializeField]
     private GameObject player;                      //プレイヤー取得
 
-    private Vector2 Pos;
+    private Vector2 Pos;                            //アイテムの現在位置
 
-    private Vector2 playerPos;
+    private Vector2 playerPos;                      //プレイヤーの位置
 
     [SerializeField]
-    private int itemNumber;
+    private int itemNumber;                         //アイテムプレハブ
 
     private int indexAjast = 1;                     //アイテムindex調整用
 
@@ -21,7 +21,7 @@ public class ItemShade : MonoBehaviour
     private SkillController skillController;        //スクリプト格納用
 
     [SerializeField]
-    private float itemMoveSpeed;
+    private float itemMoveSpeed;                    //アイテムの移動速度
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +45,7 @@ public class ItemShade : MonoBehaviour
         }
     }
 
+    //プレイヤーを追いかける
     private void attractItem()
     {
         Pos = transform.position;
