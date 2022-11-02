@@ -46,6 +46,13 @@ public class ColStringEnemy : MonoBehaviour
                 Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
                 createEnemy.spawnCount++;
             }
+            
+        }
+        if(other.gameObject.tag == "ShockWave")
+        {
+            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+            Destroy(this.gameObject);
+            createEnemy.spawnCount++;
         }
     }
     //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである

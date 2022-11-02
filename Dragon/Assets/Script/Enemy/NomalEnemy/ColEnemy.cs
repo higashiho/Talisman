@@ -41,6 +41,12 @@ public class ColEnemy : MonoBehaviour
             Destroy(this.gameObject);
             createEnemy.spawnCount++;
         }
+        if(other.gameObject.tag == "ShockWave")
+        {
+            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+            Destroy(this.gameObject);
+            createEnemy.spawnCount++;
+        }
     }
     //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである
     private void OnCollisionEnter2D(Collision2D col)
