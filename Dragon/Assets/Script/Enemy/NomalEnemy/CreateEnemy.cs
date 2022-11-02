@@ -22,15 +22,15 @@ public class CreateEnemy : MonoBehaviour
     private Vector3 _pos;        //現在位置
     private float _time;         //経過時間
 
-    private bool _isArea4;       // ボスがエリア４にいるかどうか
+    //private bool _isArea4;       // ボスがエリア４にいるかどうか
 
     private int number;         //Index指定用
 
     private Vector3 _createPos;   // モブ敵生成座標
 
     // 生成エリア指定用
-    private float _height = 30f;  // ボスの上下
-    private float _front = 30f;   // ボスの前
+    //private float _height = 30f;  // ボスの上下
+    //private float _front = 30f;   // ボスの前
 
     // 生成座標
     private float _posX;
@@ -60,15 +60,15 @@ public class CreateEnemy : MonoBehaviour
         "EnemyChase5"
     };
 
-    private enum createPos
+    /*private enum createPos
     {
         AREA1,
         AREA2,
         AREA3,
         AREA4
-    };
+    };*/
 
-    private createPos area = createPos.AREA1;
+    //private createPos area = createPos.AREA1;
  
     // Start is called before the first frame update
     void Start()
@@ -77,7 +77,7 @@ public class CreateEnemy : MonoBehaviour
         // スクリプトアタッチ
         _bosscontroller = _boss.GetComponent<BossController>();
         // エリア4にボスがいないから最初にfalseにしとく
-        _isArea4 = false;
+        //_isArea4 = false;
         _boss = GameObject.FindWithTag("Boss");
     }
 

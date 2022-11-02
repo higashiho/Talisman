@@ -13,8 +13,6 @@ public class MoveMiddleBoss : MonoBehaviour
     private GameObject _Boss;
     [HeaderAttribute("移動スピード"), SerializeField]
     private float speed = 1.0f;
-    //[HeaderAttribute("NavMeshAgent2D"), SerializeField]
-    //private NavMeshAgent2D agent;   //NavMeshAgent2Dを使用するため
 
     private float _time;    // 時間計測用
     [HeaderAttribute("融合開始までの時間"), SerializeField]
