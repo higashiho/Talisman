@@ -15,7 +15,7 @@ public class SkillController : MonoBehaviour
         Speed,
         RotateSword,
         WallGene,
-        Skill5
+        ShockWave
     }
     [HeaderAttribute("Skill未定のため確定後変数名変更"), EnumIndex(typeof(SkilType))]
     public int[] Skills = new int[5];
@@ -38,6 +38,9 @@ public class SkillController : MonoBehaviour
     public bool OnWallSkill;                                // 壁置けるか
     
     public int UsingWallSkill = 5;                              // 壁設置スキルを使用できるまでの個数
+    
+    private GameObject boss;                                    // ボス参照用
+    private BossController bossController;                      // スクリプト参照用
     // Awake is called before the first frame update
     void Awake()
     {
@@ -46,10 +49,17 @@ public class SkillController : MonoBehaviour
         target = "Boss";
     }
 
+    public void FindBoss()
+    {
+        boss = GameObject.FindWithTag("Boss");
+        bossController = boss.GetComponent<BossController>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        skillControl();
+        if(boss != null)
+            skillControl();
     }
 
     /// @note スキル用のif文の量が増えるため直接updateの中に記入は避ける
