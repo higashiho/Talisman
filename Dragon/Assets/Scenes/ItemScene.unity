@@ -155,6 +155,8 @@ MonoBehaviour:
   spawnCount: 30
   _boss: {fileID: 352474105}
   _bosscontroller: {fileID: 352474104}
+  HEIGHT: 35
+  WIDTH: 35
   _CreateSpeed: 1
 --- !u!4 &248250568
 Transform:
@@ -3883,7 +3885,7 @@ MonoBehaviour:
   _pos: {x: 0, y: 0, z: 0}
   _Counter: 0
   count: 5
-  timer: 5
+  timer: 30
   _time: 0
 --- !u!4 &946255781
 Transform:

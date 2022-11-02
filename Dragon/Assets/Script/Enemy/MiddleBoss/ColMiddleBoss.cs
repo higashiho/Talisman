@@ -20,9 +20,15 @@ public class ColMiddleBoss : MonoBehaviour
     private BossController bosscontroller;  //スクリプトアタッチ用
     [SerializeField]
     private GameObject MiddleBoss;
+
+    private GameObject bullet;  // プレイヤーが放つホーミング弾
     private GameObject MiddleBossCreater;
+
+    // 以下スクリプト参照用
     private CreateRandom createrandom;
     private MoveMiddleBoss movemiddleboss;
+    private BulletController bulletcontroller;
+    
     
 
     void Start()
@@ -48,11 +54,15 @@ public class ColMiddleBoss : MonoBehaviour
     {
         if(other.gameObject.name == "Sword")
         {
-                _hp -= SWORD_DAMAGE;
+            _hp -= SWORD_DAMAGE;
         }
         if(other.gameObject.name == "RotateSword")
         {
-                _hp -= ROTATESWORD_DAMAGE;
+            _hp -= ROTATESWORD_DAMAGE;
+        }
+        if(other.gameObject.tag == "Bullet")
+        {
+            _hp -= bulletcontroller.Attack; 
         }
         if(movemiddleboss.Marge_OK)
         {
@@ -61,6 +71,7 @@ public class ColMiddleBoss : MonoBehaviour
             {
                 // なんか融合させるためのフラグとか???
                 bosscontroller.Hp += _hp;   // 中ボスの残りHPをボスのHPに加算
+                createrandom._Counter--;
                 Destroy(this.gameObject);
             }
         }
