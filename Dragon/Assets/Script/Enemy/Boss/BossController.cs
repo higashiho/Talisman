@@ -17,35 +17,38 @@ public class BossController : MonoBehaviour
     public float Speed;                                     // 自身のスピード
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
-    // private List<Vector3> destinations;     //目標座標
+    // private List<Vector3> destinations;                  //目標座標
 
-   private int numericPreservation;      // 前回randoNumber保存用
+   private int numericPreservation;                         // 前回randoNumber保存用
 
-    private Vector3 pos;        // 自身の座標
+    private Vector3 pos;                                    // 自身の座標
 
    [SerializeField]
-   private Transform player;       // player格納用
+   private Transform player;                                // player格納用
 
    [HeaderAttribute("攻撃スキル"), SerializeField]
    private GameObject[] attackSkill = new GameObject[3];    // 攻撃スキル
 
-   private int attackTime = 15;   // アタック間隔
+   private int attackTime = 15;                             // アタック間隔
 
 
    [HeaderAttribute("ステージのエリア座標"),  EnumIndex(typeof(SkilType))]
-    public float[] Areas = new float[4];    // ステージのエリア分け用
+    public float[] Areas = new float[4];                    // ステージのエリア分け用
 
-   [HeaderAttribute("ヒットポイント")]
+   [HeaderAttribute("ヒットポイント"), Range(300, 1000)]
    public int Hp;
 
-   private GameObject attackObject = default;           //攻撃スキルオブジェクト
+   private GameObject attackObject = default;               // 攻撃スキルオブジェクト
 
-    private float attackSpeed = 5.0f;                   // ラストエリア時の攻撃間隔
+    private float attackSpeed = 5.0f;                       // ラストエリア時の攻撃間隔
 
-    public static string Judgment = "GameOver";        // クリアか失敗か
+    public static string Judgment = "GameOver";             // クリアか失敗か
     
     [SerializeField]
-    private ColBoss colBoss;                            // スクリプト格納用
+    private ColBoss colBoss;                                // スクリプト格納用
+
+    [SerializeField]
+    private RandomBossHp randomBossHp;                      // スクリプト格納用
     // Start is called before the first frame update
     void Awake()
     {
@@ -54,6 +57,8 @@ public class BossController : MonoBehaviour
     void Start()
     {
         InvokeRepeating("attack", attackTime, attackTime);
+
+        Hp = randomBossHp.RandomHp();
     }
 
     // Update is called once per frame
