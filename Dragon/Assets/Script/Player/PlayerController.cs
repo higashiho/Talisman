@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
     private float flashingCycle;                        // 回転周期
 
     private float delay = 0.5f;                         // 遅延時間
+
+    private float limitPosY = 43.0f;                     // y座標限界値
+    private float minPosX = -48.0f;                      // 左座標限界値
+    private float maxPosX = 327.0f;                      // 右座標限界値
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +100,20 @@ public class PlayerController : MonoBehaviour
             pos.x += PlayerSpeed.x * Time.deltaTime;    // 右移動
             
         }
+
+        // 右座標
+        if(pos.x >= maxPosX)
+            pos.x = maxPosX;
+        // 左座標
+        else if(pos.x <= minPosX)
+            pos.x = minPosX;
+        // 上座標
+        if(pos.y >= limitPosY)
+            pos.y = limitPosY;
+        // 下座標
+        if(pos.y <= -limitPosY)
+            pos.y = -limitPosY;
+        
         transform.position = pos;
 
         // シールドがある場合でHpが０になった場合
