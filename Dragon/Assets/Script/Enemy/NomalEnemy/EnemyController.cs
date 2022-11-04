@@ -16,17 +16,22 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float enemyMoveSpeed;   //エネミー移動速度
 
+    [SerializeField]
+    private ColEnemy colEnemy;              //スクリプト参照
+
     // Start is called before the first frame update
     void Start()
     {
          Destroy(this.gameObject, destroytimer);        //一定時間後、消滅
          player = GameObject.FindWithTag("Player");
+
     }
     
 
     void Update()
     {
-        attractEnemy();
+        if(!colEnemy.FadeFlag)
+            attractEnemy();
     }
     
     //プレーヤーを追いかける

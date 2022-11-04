@@ -46,6 +46,7 @@ public class ColStringEnemy : MonoBehaviour
                 Destroy(this.gameObject);
                 Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
                 createEnemy.spawnCount++;
+                Destroy(GetComponent<PolygonCollider2D>());
             }
             
         }
@@ -55,6 +56,7 @@ public class ColStringEnemy : MonoBehaviour
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             Destroy(this.gameObject);
             createEnemy.spawnCount++;
+            Destroy(GetComponent<PolygonCollider2D>());
         }
     }
     //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである
