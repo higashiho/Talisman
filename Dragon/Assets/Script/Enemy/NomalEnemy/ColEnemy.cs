@@ -25,6 +25,13 @@ public class ColEnemy : MonoBehaviour
 
     private EfectEnemy efectEnemy;              //スクリプト格納用
 
+    [SerializeField]
+    private int enemyHp;                        //敵エネミー体力
+
+    [SerializeField]
+    private string hitDeleteName;               //プレイヤーに当たったら消えるやつの名前
+
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -46,13 +53,27 @@ public class ColEnemy : MonoBehaviour
         //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
         if(other.gameObject.name == "Sword")
         {    
+            enemyHp--;
+            if(enemyHp <= 0)
+            {
+                FadeFlag = true;
+                Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+                createEnemy.spawnCount++;
+                Destroy(GetComponent<PolygonCollider2D>());
+            }
+        }
+        //ショックウェーブに当たったら消える
+        if(other.gameObject.tag == "ShockWave")
+        {
             FadeFlag = true;
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
+
         }
-        //ショックウェーブに当たったら消える
-        if(other.gameObject.tag == "ShockWave")
+
+        //回転切りにあったら消える
+        if(other.gameObject.name == "RptateSword")
         {
             FadeFlag = true;
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
@@ -69,9 +90,9 @@ public class ColEnemy : MonoBehaviour
             {
             playerController.OnUnrivaled = true;
             playerController.Hp -= hitDamage; 
-            FadeFlag = true;
             createEnemy.spawnCount++;
-            Destroy(this.gameObject);
+            if(hitDeleteName == "Enemy")
+                Destroy(this.gameObject);
             }
         }
     }
