@@ -165,7 +165,7 @@ MonoBehaviour:
   - 75
   - 150
   - 225
-  Hp: 100
+  Hp: 500
   colBoss: {fileID: 9060541169768609614}
 --- !u!114 &9060541169768609614
 MonoBehaviour:
