@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: {x: 5, y: 5}
+  PlayerSpeed: {x: 6, y: 6}
   Hp: 3
   onShield: 1
   heelSheld: 5
