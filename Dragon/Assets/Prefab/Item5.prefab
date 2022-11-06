@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5913059001467009226}
   - component: {fileID: 1922390355091068507}
   - component: {fileID: -44567593812355691}
-  - component: {fileID: -2143521175902562668}
   m_Layer: 0
   m_Name: Item5
   m_TagString: Untagged
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8153124814632954653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3899858, y: -1.357263, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.64166594, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7709ec640ce4b740b539ce68ca75f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  agent: {fileID: -2143521175902562668}
+  player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   itemNumber: 5
+  itemMoveSpeed: 3
 --- !u!58 &-44567593812355691
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,17 +117,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-2143521175902562668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153124814632954653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57568e4ec9692b64db1a472181ac6fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  stoppingDistance: 0

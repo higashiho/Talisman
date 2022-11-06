@@ -25,7 +25,16 @@ public class SwordContorooler : MonoBehaviour
     private new SpriteRenderer renderer;        // SpriteRendere格納用
     [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
     private new BoxCollider2D collider;
-    
+
+    [SerializeField, HeaderAttribute("衝撃波prefab")]
+    private GameObject ShockWavePrefab = default;
+
+    [SerializeField]
+    private SkillController skillController;        //スクリプト格納用
+
+    private int OnShockSkill = 2;                   // スキルを使うためのアイテム量
+
+    private GameObject waveObj;             // ゲームオブジェクト格納用
     // Start is called before the first frame update
     void Start()
     {
@@ -39,13 +48,23 @@ public class SwordContorooler : MonoBehaviour
         attack();
     }
 
+    //　攻撃挙動
     private void attack()
     {
         if (!coroutineBool && Input.GetMouseButtonDown(0))
         {
             coroutineBool = true;
             StartCoroutine("Shake");
+            // スキルアイテムが指定個数ある時衝撃波生成
+            if(skillController.Skills[4] >= OnShockSkill)
+                shockWave();
         }
+    }
+
+    private void shockWave()
+    {
+        Instantiate(ShockWavePrefab, this.transform.position, Quaternion.identity);
+        skillController.Skills[4] -= OnShockSkill;
     }
     
     // 回す処理、動いている最中のみレンダラーと当たり判定がオン

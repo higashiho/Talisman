@@ -16,7 +16,7 @@ public class ColStringEnemy : MonoBehaviour
 
     private CreateEnemy createEnemy;            //スクリプト格納用
 
-    private GameObject mobcreater;                  //モブ作り格納用
+    private GameObject mobcreater;              //モブ作り格納用
 
     private int enemyHp = 2;                    //敵エネミー体力
     
@@ -34,9 +34,10 @@ public class ColStringEnemy : MonoBehaviour
         
     }
 
-    //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
         if(other.gameObject.name == "Sword")
         {
             enemyHp--;
@@ -45,7 +46,17 @@ public class ColStringEnemy : MonoBehaviour
                 Destroy(this.gameObject);
                 Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
                 createEnemy.spawnCount++;
+                Destroy(GetComponent<PolygonCollider2D>());
             }
+            
+        }
+        //ショックウェーブに当たったら消える
+        if(other.gameObject.tag == "ShockWave")
+        {
+            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+            Destroy(this.gameObject);
+            createEnemy.spawnCount++;
+            Destroy(GetComponent<PolygonCollider2D>());
         }
     }
     //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである

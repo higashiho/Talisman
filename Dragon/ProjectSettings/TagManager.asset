@@ -12,6 +12,8 @@ TagManager:
   - MobCreater
   - MiddleBossCreater
   - Wall
+  - MiddleBossItem
+  - ShockWave
   layers:
   - Default
   - TransparentFX

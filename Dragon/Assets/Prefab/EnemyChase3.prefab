@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4172620401796351199}
   - component: {fileID: 4172620401796351198}
   - component: {fileID: 4172620401796351170}
+  - component: {fileID: -355773353677930571}
   - component: {fileID: 4172620401796351171}
-  - component: {fileID: 796811039}
   m_Layer: 0
   m_Name: EnemyChase3
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4172620401796351193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.92, y: -2.63, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
-  agent: {fileID: 796811039}
   destroytimer: 60
+  enemyMoveSpeed: 4
+  colEnemy: {fileID: 5564865708596339353, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
 --- !u!60 &4172620401796351198
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,6 +153,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-355773353677930571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172620401796351193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1586487351bdc654cb5c052974b9eaa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaOffFlag: 0
 --- !u!114 &4172620401796351171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,17 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 8153124814632954653, guid: 51530d003c449284f994f707bdceb924, type: 3}
---- !u!114 &796811039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4172620401796351193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57568e4ec9692b64db1a472181ac6fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  stoppingDistance: 0
+  FadeFlag: 0
+  enemyChase: {fileID: 4172620401796351193}
+  enemyHp: 1
+  hitDeleteName: Enemy

@@ -75,8 +75,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581746250}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.25, y: -0, z: 0}
-  m_LocalScale: {x: 0.5100001, y: 2.3925009, z: 1}
+  m_LocalPosition: {x: 1.89, y: 0.25, z: 0}
+  m_LocalScale: {x: 0.75, y: 3.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 619360195}
@@ -184,7 +184,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619360194}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
   m_LocalPosition: {x: 0.44, y: 0.38, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -192,7 +192,7 @@ Transform:
   - {fileID: 581746251}
   m_Father: {fileID: 1841200581054410847}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!114 &619360196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +208,8 @@ MonoBehaviour:
   attackWait: 0.3
   renderer: {fileID: 581746252}
   collider: {fileID: 581746253}
+  ShockWavePrefab: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+  skillController: {fileID: 1506668392}
 --- !u!1 &1003857935
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,8 +236,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003857935}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.77, y: 0, z: 0}
-  m_LocalScale: {x: 0.5100001, y: 3.558845, z: 1}
+  m_LocalPosition: {x: 2.8222, y: 0.0412, z: 0}
+  m_LocalScale: {x: 0.75, y: 5.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337276075}
@@ -332,7 +334,6 @@ GameObject:
   - component: {fileID: 1841200581054410835}
   - component: {fileID: 1841200581054410844}
   - component: {fileID: 1861904027}
-  - component: {fileID: 1506668396}
   - component: {fileID: 1506668391}
   - component: {fileID: 1506668392}
   - component: {fileID: 1061806794458946392}
@@ -474,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: {x: 5, y: 5}
+  PlayerSpeed: {x: 6, y: 6}
   Hp: 3
   onShield: 1
   heelSheld: 5
@@ -483,18 +484,6 @@ MonoBehaviour:
   maxTimer: 2
   thisRenderer: {fileID: 1841200581054410840}
   flashingCycle: 0.5
---- !u!114 &1506668396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841200581054410842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b4fe5672592d54baaed2e4eff43b45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1506668391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills: 00000000000000000a0000000a00000000000000
+  Skills: 0000000000000000000000000000000000000000
   nowSkiil: 0101010101
   bulletShot: {fileID: 1061806794458946392}
   targeting: 0
@@ -528,6 +517,7 @@ MonoBehaviour:
   SpeedUp: 0
   OnRotateSword: 0
   OnWallSkill: 0
+  UsingWallSkill: 5
 --- !u!114 &1061806794458946392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 5386916061415496316, guid: e7c0ace0a959d134ab7faf09fffc5b90, type: 3}
+  skillController: {fileID: 1506668392}
 --- !u!114 &1506668401
 MonoBehaviour:
   m_ObjectHideFlags: 0

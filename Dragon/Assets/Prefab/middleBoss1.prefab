@@ -190,9 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992e2caaf2e7e7d4bae0dfa4524a10b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Timer: 3
+  _Timer: 1
   acceleration: 1.5
   _boss: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+  _speedPrev: 1
 --- !u!114 &7970563220509289178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,9 +206,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59526b886eee6f549b34d6668b39d8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 5
+  _hp: 1
   SWORD_DAMAGE: 1
   ROTATESWORD_DAMAGE: 2
+  item: {fileID: 3721836383163939786, guid: 796ab927e13caff45a1dd5da7037532d, type: 3}
+  _Boss: {fileID: 0}
+  bosscontroller: {fileID: 0}
   MiddleBoss: {fileID: 3135608018598009832}
 --- !u!114 &7540069425482552921
 MonoBehaviour:
@@ -223,6 +227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Boss: {fileID: 0}
   speed: 10
-  _margeTime: 5
+  _margeTime: 10
   Marge_OK: 0
   _bossPos: {x: 0, y: 0, z: 0}

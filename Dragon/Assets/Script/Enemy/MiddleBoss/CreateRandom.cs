@@ -21,6 +21,8 @@ public class CreateRandom : MonoBehaviour
     [HeaderAttribute("生成した中ボスの数"), SerializeField]
     public int _Counter;
 
+    private BossController bosscontroller;
+
     // 中ボスのインスタンスのリスト
     private List<GameObject> EnemyInstances = new List<GameObject>();
 
@@ -39,6 +41,7 @@ public class CreateRandom : MonoBehaviour
     private string _key;      // addressablesのアドレス指定用
     AsyncOperationHandle<GameObject> loadOp; // addressables用ハンドル
     private bool create = false;         // 生成可能フラグ
+    private bool checkPos = false;       // ボスがエリア2にいるかどうか
 
     private string[] _keyName = new string[] 
     {
@@ -51,17 +54,19 @@ public class CreateRandom : MonoBehaviour
     void Start()
     {
        _Counter = 0;
+       bosscontroller = _boss.GetComponent<BossController>();
     }
 
     void Update()
     {
         _time += Time.deltaTime;
+        checkCreate();
         if(_time > timer)
         {
             if(_Counter < count)
                 create = true;
         }
-        if(create)
+        if(create && checkPos)
         {
             settingKey();
             createMiddleBossPos();
@@ -79,6 +84,13 @@ public class CreateRandom : MonoBehaviour
     {
         int number = UnityEngine.Random.Range(0,_keyName.Length);
         _key = _keyName[number];
+    }
+
+    private void checkCreate()
+    {
+        if(_boss.transform.position.x > bosscontroller.Areas[1])
+            checkPos = true;
+
     }
 
     /**

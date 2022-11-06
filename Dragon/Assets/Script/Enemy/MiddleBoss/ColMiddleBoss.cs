@@ -12,15 +12,24 @@ public class ColMiddleBoss : MonoBehaviour
     private int SWORD_DAMAGE = 1;
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
     private int ROTATESWORD_DAMAGE = 2;
+    [HeaderAttribute("アイテム"), SerializeField]
+    private GameObject item;
     [SerializeField]
     private GameObject _Boss;
     [SerializeField]
     private BossController bosscontroller;  //スクリプトアタッチ用
     [SerializeField]
     private GameObject MiddleBoss;
+
+    private GameObject bullet;  // プレイヤーが放つホーミング弾
     private GameObject MiddleBossCreater;
+
+    // 以下スクリプト参照用
     private CreateRandom createrandom;
     private MoveMiddleBoss movemiddleboss;
+    private BulletController bulletcontroller;
+    
+    
 
     void Start()
     {
@@ -34,20 +43,26 @@ public class ColMiddleBoss : MonoBehaviour
     {
         if(_hp <= 0)
         {
-            Destroy(this.gameObject);
+            Instantiate(item, this.transform.position, Quaternion.identity);
             createrandom._time = 0;
             createrandom._Counter--;
+            Destroy(this.gameObject);
+            
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.name == "Sword")
         {
-                _hp -= SWORD_DAMAGE;
+            _hp -= SWORD_DAMAGE;
         }
         if(other.gameObject.name == "RotateSword")
         {
-                _hp -= ROTATESWORD_DAMAGE;
+            _hp -= ROTATESWORD_DAMAGE;
+        }
+        if(other.gameObject.tag == "Bullet")
+        {
+            _hp -= bulletcontroller.Attack; 
         }
         if(movemiddleboss.Marge_OK)
         {
@@ -56,6 +71,7 @@ public class ColMiddleBoss : MonoBehaviour
             {
                 // なんか融合させるためのフラグとか???
                 bosscontroller.Hp += _hp;   // 中ボスの残りHPをボスのHPに加算
+                createrandom._Counter--;
                 Destroy(this.gameObject);
             }
         }
