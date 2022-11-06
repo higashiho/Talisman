@@ -293,6 +293,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
   m_PrefabInstance: {fileID: 174095132}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &174095137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 174095132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174095134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &302683155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,9 +1990,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCount: 30
-  spawnTimer: 3
   _boss: {fileID: 466474971}
   _bosscontroller: {fileID: 466474970}
+  HEIGHT: 0
+  WIDTH: 0
   _CreateSpeed: 1
 --- !u!4 &1563607010
 Transform:
@@ -5428,11 +5440,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92af770c22e0a4d41b1fe275e0bce3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeCount: 3
   lifeArray:
   - {fileID: 2074684370}
   - {fileID: 1370663185}
   - {fileID: 774194872}
+  playerController: {fileID: 174095137}
 --- !u!4 &2027978440
 Transform:
   m_ObjectHideFlags: 0
@@ -5462,6 +5474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpPos: {fileID: 2051887591}
   shakePower: 5
+  playerController: {fileID: 174095137}
 --- !u!1 &2051887590
 GameObject:
   m_ObjectHideFlags: 0
