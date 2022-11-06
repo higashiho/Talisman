@@ -9,6 +9,8 @@ public class HPShake : MonoBehaviour
     [SerializeField]
     private float shakePower = 0;     // 揺れの強さ
     private Vector3 hpInitPos;
+    [SerializeField]
+    public bool ShakeFlag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,8 @@ public class HPShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpPos.position = hpInitPos + Random.insideUnitSphere * shakePower;      // ランダムに揺らす
+        if(ShakeFlag){
+            hpPos.position = hpInitPos + Random.insideUnitSphere * shakePower;      // ランダムに揺らす
+        }
     }
 }
