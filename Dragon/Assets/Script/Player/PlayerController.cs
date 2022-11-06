@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
     public int Hp;                                      //ヒットポイント
     private int heel = 2;                               //シールドが割れた時点での回復
 
-    [SerializeField]
-    private bool onShield = true;                       //シールドがあるか
+    public bool OnShield = true;                       //シールドがあるか
 
     private Vector2 noShieldSpeed = new Vector2(2.0f, 2.0f);            //シールドがない時の移動スピード
     private Vector2 nomalPlayerSpeed = new Vector2(7.0f, 7.0f);         //  通常時スピード
@@ -60,7 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         move();
 
-        if(!onShield)
+        if(!OnShield)
         {
             shieldHeel();
         }
@@ -71,9 +70,9 @@ public class PlayerController : MonoBehaviour
 
     private void speed()
     {
-        if(skillController.SpeedUp && onShield)
+        if(skillController.SpeedUp && OnShield)
             PlayerSpeed = highPlayerSpeed;
-        else if(onShield)
+        else if(OnShield)
             PlayerSpeed = nomalPlayerSpeed;
     }
 
@@ -117,8 +116,8 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
 
         // シールドがある場合でHpが０になった場合
-        if(Hp <= 0 && onShield)
-            onShield = false; 
+        if(Hp <= 0 && OnShield)
+            OnShield = false; 
         else 
             gameOver();
     }
@@ -142,7 +141,7 @@ public class PlayerController : MonoBehaviour
         if(heelSheld <= 0)
         {
             spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            onShield = true;
+            OnShield = true;
             PlayerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;
             oneHeel = true;
@@ -151,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
     private void gameOver()
     {
-        if(!onShield && Hp <= 0)
+        if(!OnShield && Hp <= 0)
         {
             SceneManager.LoadScene("EndScene");
         }

@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class HPManger : MonoBehaviour
 {
-    public int LifeCount;      // HPをカウントする
+    private int LifeCount;      // HPをカウントする
     private int maxLife = 3;
     [SerializeField]
     private Image[] lifeArray = new Image[3];
     private Color color1, color2;
+
+    [SerializeField]
+    private PlayerController playerController;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class HPManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LifeCount = playerController.Hp;
         displayHeart();
     }
 
