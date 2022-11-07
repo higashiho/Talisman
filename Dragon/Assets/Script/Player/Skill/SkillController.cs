@@ -32,6 +32,7 @@ public class SkillController : MonoBehaviour
     [HeaderAttribute("ターゲティング中の敵")]
     public string target = default;                             // ターゲットのタグ
 
+    [SerializeField]
     private bool speedUp = false;                                // スピードアップしてるかどうか
     private bool onRotateSword = false;                          // 回転斬りが出来るかどうか
     
@@ -91,6 +92,7 @@ public class SkillController : MonoBehaviour
             nowSkiil[1] = false;    
             Invoke("usingSkill2", waitTime);
         }
+        else if(Skills[1] <= 0) speedUp = false;
 
         if(Skills[2] > 0)
         {

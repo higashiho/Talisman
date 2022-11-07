@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 nomalPlayerSpeed = new Vector2(7.0f, 7.0f);         //  通常時スピード
     private Vector2 highPlayerSpeed = new Vector2(10.0f, 10.0f);          // スピードアップスキル取得時スピード
 
+    private const int MAX_HP = 3;                                           // HP最大値
     [SerializeField, HeaderAttribute("シールド回復時間")]
     private float heelSheld;                     //シールド回復時間
 
@@ -145,6 +146,7 @@ public class PlayerController : MonoBehaviour
             PlayerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;
             oneHeel = true;
+            Hp = MAX_HP;
         }
     }
 
