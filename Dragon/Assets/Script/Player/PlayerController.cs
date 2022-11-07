@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void speed()
     {
-        if(skillController.SpeedUp && OnShield)
+        if(skillController.GetSpeedUp() && OnShield)
             PlayerSpeed = highPlayerSpeed;
         else if(OnShield)
             PlayerSpeed = nomalPlayerSpeed;

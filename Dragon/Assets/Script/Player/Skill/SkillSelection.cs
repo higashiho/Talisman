@@ -12,6 +12,11 @@ public class SkillSelection : MonoBehaviour
     [HeaderAttribute("どちらのスキルを使うか"), SerializeField]
     private bool usingWall = false, usingSowrd = false;         // どちらのスキルを使うか
 
+
+    // 変数取得用
+    public bool GetUsingWall() {return usingWall;}
+    public bool GetUsingSowrd(){return usingSowrd;}
+
     [SerializeField]
     private float mouseWheel = 0;                               //ホイール取得用
 
@@ -30,6 +35,9 @@ public class SkillSelection : MonoBehaviour
     void Update()
     {
         select();
+
+        if(usingWall || usingSowrd)
+            onSkill();
     }
 
     // どちらのスキルを使うか
@@ -47,18 +55,18 @@ public class SkillSelection : MonoBehaviour
             usingWall = false;   usingSowrd = true;
             mouseWheel = default;
         }
+    }
 
-        
-        
-        
+    private void onSkill()
+    {
         if(usingWall)
         {
-            if(skillController.OnWallSkill)
+            if(skillController.GetOnWallSkill())
                 wallSkill.WallGeneration();
         }
         if(usingSowrd)
         {
-            if(skillController.OnRotateSword)
+            if(skillController.GetOnRotateSword())
                 rotateSwordController.Attack();
         }
     }
