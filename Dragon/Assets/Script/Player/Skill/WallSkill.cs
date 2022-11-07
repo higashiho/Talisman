@@ -14,9 +14,7 @@ public class WallSkill : MonoBehaviour
     [SerializeField]
     private SkillController skillController;        //スクリプト格納用
 
-    // オブジェクト変数取得用
-    private GameObject GetWallPrefab(){return wallPrefab;}
-    
+    public bool GetWallObj() {return wallObj == null;}
     // Start is called before the first frame update
     void Start()
     {
