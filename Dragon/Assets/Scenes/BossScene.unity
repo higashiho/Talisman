@@ -1640,6 +1640,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1506668392, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: Skills.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: PlayerSpeed.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: PlayerSpeed.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1841200581054410842, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: m_Name
       value: Player

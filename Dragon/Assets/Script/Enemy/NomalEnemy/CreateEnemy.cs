@@ -60,8 +60,6 @@ public class CreateEnemy : MonoBehaviour
         "EnemyChase5"
     };
 
-    [SerializeField]
-    private FindBoss findBoss;
     /*private enum createPos
     {
         AREA1,
@@ -77,42 +75,33 @@ public class CreateEnemy : MonoBehaviour
     {
         _time = 0;
         // スクリプトアタッチ
+        _bosscontroller = _boss.GetComponent<BossController>();
         // エリア4にボスがいないから最初にfalseにしとく
         //_isArea4 = false;
+        _boss = GameObject.FindWithTag("Boss");
     }
 
     
     void Update()
     {
-        if(_boss != null)
+        _time += Time.deltaTime;
+       if(_time > spawnTimer)
         {
-            _time += Time.deltaTime;
-            if(_time > spawnTimer)
-            {
-                if(spawnCount > 0)
-                {  
-                    settingPos();
-                    settingKey();
-                    if(startStringEnemy)
-                    {
-                        randomIndexLater();
-                    }
-                    else
-                    {
-                        randomIndex();
-                    }
-                    StartCoroutine(enemyLoad());
+            if(spawnCount > 0)
+            {  
+                settingPos();
+                settingKey();
+                if(startStringEnemy)
+                {
+                    randomIndexLater();
                 }
-                _time = default;
+                else
+                {
+                    randomIndex();
+                }
+                StartCoroutine(enemyLoad());
             }
-        }
-        if(findBoss != null)
-        {
-            if(findBoss.GetOnFind())
-            {
-                _boss = findBoss.GetBoss();
-                _bosscontroller = findBoss.GetBossController();
-            }
+            _time = default;
         }
     }
 

@@ -50,42 +50,31 @@ public class CreateRandom : MonoBehaviour
         "MiddleBoss3"
     };
 
-    [SerializeField]
-    private FindBoss findBoss;          // スクリプト取得用
 
     void Start()
     {
        _Counter = 0;
+       bosscontroller = _boss.GetComponent<BossController>();
     }
 
     void Update()
     {
-        if(_boss != null)
-            {
-            _time += Time.deltaTime;
-            checkCreate();
-            if(_time > timer)
-            {
-                if(_Counter < count)
-                    create = true;
-            }
-            if(create && checkPos)
-            {
-                settingKey();
-                createMiddleBossPos();
-                StartCoroutine(Load());
-                _time = 0;
-                create = false;
-            }
-        }
-        if(findBoss != null)
+        _time += Time.deltaTime;
+        checkCreate();
+        if(_time > timer)
         {
-            if(findBoss.GetOnFind())
-            {
-                _boss = findBoss.GetBoss();
-                bosscontroller = findBoss.GetBossController();
-            }
+            if(_Counter < count)
+                create = true;
         }
+        if(create && checkPos)
+        {
+            settingKey();
+            createMiddleBossPos();
+            StartCoroutine(Load());
+            _time = 0;
+            create = false;
+        }
+        
     }
     
     /**

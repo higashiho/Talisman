@@ -475,7 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: {x: 7, y: 7}
+  PlayerSpeed: {x: 6, y: 6}
   Hp: 3
   OnShield: 1
   heelSheld: 5
@@ -514,6 +514,10 @@ MonoBehaviour:
   bulletShot: {fileID: 1061806794458946392}
   targeting: 0
   target: 
+  SpeedUp: 0
+  OnRotateSword: 0
+  OnWallSkill: 0
+  UsingWallSkill: 5
 --- !u!114 &1061806794458946392
 MonoBehaviour:
   m_ObjectHideFlags: 0

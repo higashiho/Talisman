@@ -32,6 +32,7 @@ public class SkillController : MonoBehaviour
     [HeaderAttribute("ターゲティング中の敵")]
     public string target = default;                             // ターゲットのタグ
 
+    [SerializeField]
     private bool speedUp = false;                                // スピードアップしてるかどうか
     private bool onRotateSword = false;                          // 回転斬りが出来るかどうか
     
@@ -45,12 +46,9 @@ public class SkillController : MonoBehaviour
     public bool GetOnWallSkill() {return onWallSkill;}
     public int GetUsingWallSkill() {return usingWallSkill;}
 
-    [SerializeField]
+    
     private GameObject boss;                                    // ボス参照用
     private BossController bossController;                      // スクリプト参照用
-
-    [SerializeField]
-    private FindBoss findBoss;                                  // スクリプト取得用
     // Awake is called before the first frame update
     void Awake()
     {
@@ -59,19 +57,17 @@ public class SkillController : MonoBehaviour
         target = "Boss";
     }
 
+    public void FindBoss()
+    {
+        boss = GameObject.FindWithTag("Boss");
+        bossController = boss.GetComponent<BossController>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         if(boss != null)
             skillControl();
-
-            
-        if(findBoss.GetOnFind())
-        {
-            boss = findBoss.GetBoss();
-            bossController = findBoss.GetBossController();
-        }
     }
 
     /// @note スキル用のif文の量が増えるため直接updateの中に記入は避ける
@@ -91,20 +87,20 @@ public class SkillController : MonoBehaviour
             nowSkiil[1] = false;    
             Invoke("usingSkill2", waitTime);
         }
+        else if(Skills[1] <= 0) speedUp = false;
+
 
         if(Skills[2] > 0)
         {
             onRotateSword = true;
         }
-        else
-            onRotateSword = false;
+        else onRotateSword = false;
 
         if(Skills[3] >= usingWallSkill)
         {
             onWallSkill = true;
         }   
-        else 
-            onWallSkill = false;
+        else onWallSkill = false;
 
 
         if(targeting)

@@ -29,7 +29,7 @@ public class ColMiddleBoss : MonoBehaviour
     private MoveMiddleBoss movemiddleboss;
     private BulletController bulletcontroller;
     
-    
+    private GameObject player;
 
     void Start()
     {
@@ -38,6 +38,9 @@ public class ColMiddleBoss : MonoBehaviour
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
         createrandom = MiddleBossCreater.GetComponent<CreateRandom>();
         movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
+
+        player = GameObject.FindWithTag("Player");
+        bulletcontroller = player.GetComponent<BulletController>();
     }
     void Update()
     {

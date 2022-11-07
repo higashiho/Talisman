@@ -1089,7 +1089,7 @@ GameObject:
   - component: {fileID: 398653376}
   m_Layer: 0
   m_Name: MiddleBossCreater
-  m_TagString: Untagged
+  m_TagString: MiddleBossCreater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3198,6 +3198,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1398843203}
     - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: heelSheld
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: skillController
       value: 
       objectReference: {fileID: 1713731363}
@@ -3579,7 +3583,7 @@ GameObject:
   - component: {fileID: 1563607009}
   m_Layer: 0
   m_Name: MobCreater
-  m_TagString: Untagged
+  m_TagString: MobCreater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
