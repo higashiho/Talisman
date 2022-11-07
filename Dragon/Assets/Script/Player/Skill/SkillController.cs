@@ -45,9 +45,12 @@ public class SkillController : MonoBehaviour
     public bool GetOnWallSkill() {return onWallSkill;}
     public int GetUsingWallSkill() {return usingWallSkill;}
 
-    
+    [SerializeField]
     private GameObject boss;                                    // ボス参照用
     private BossController bossController;                      // スクリプト参照用
+
+    [SerializeField]
+    private FindBoss findBoss;                                  // スクリプト取得用
     // Awake is called before the first frame update
     void Awake()
     {
@@ -56,17 +59,19 @@ public class SkillController : MonoBehaviour
         target = "Boss";
     }
 
-    public void FindBoss()
-    {
-        boss = GameObject.FindWithTag("Boss");
-        bossController = boss.GetComponent<BossController>();
-    }
 
     // Update is called once per frame
     void Update()
     {
         if(boss != null)
             skillControl();
+
+            
+        if(findBoss.GetOnFind())
+        {
+            boss = findBoss.GetBoss();
+            bossController = findBoss.GetBossController();
+        }
     }
 
     /// @note スキル用のif文の量が増えるため直接updateの中に記入は避ける

@@ -13,6 +13,9 @@ public class DebugBoss : MonoBehaviour
     private GameObject boss;                        // boss
     private Vector3 pos;                            // 座標
     private float playerPosY = 11.0f;               // 転移時プレイヤーのｙ座標
+
+    [SerializeField]
+    private FindBoss findBoss;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,16 +27,18 @@ public class DebugBoss : MonoBehaviour
     {
         if(boss != null)
             bossMoveArea();
-    }
-
-    public void FindBoss()
-    {
-        if(boss == null)
+        
+        if(findBoss != null)
         {
-            boss = GameObject.FindWithTag("Boss");
-            bossController = boss.GetComponent<BossController>();
+            if(findBoss.GetOnFind())
+            {
+                boss = findBoss.GetBoss();
+                bossController = findBoss.GetBossController();
+            }
         }
     }
+
+   
     // エリア転移
     private void bossMoveArea()
     {

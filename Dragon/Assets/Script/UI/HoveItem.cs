@@ -12,6 +12,7 @@ public class HoveItem : MonoBehaviour
     private Text[] notSkills;                        // テキスト取得用
 
     private Color notSkill,onSkill;                 // 色取得用
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,7 @@ public class HoveItem : MonoBehaviour
         else
             notSkills[m_speed].color = notSkill;
     
-        if(itemCountTtext.GetItemCountArray(m_wave) != 0)
+        if(itemCountTtext.GetItemCountArray(m_wave) / m_wave != 0)
             notSkills[m_wave].color = onSkill;
         else
             notSkills[m_wave].color = notSkill;
