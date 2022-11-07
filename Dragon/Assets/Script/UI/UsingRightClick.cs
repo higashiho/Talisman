@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UsingRightClick : MonoBehaviour
 {
@@ -15,20 +16,47 @@ public class UsingRightClick : MonoBehaviour
 
     private float speed = 5000.0f;                 // 格納スピード
 
+    private Color notSkill, onSkill;                // スキルカラー変更用
+
     [SerializeField]
-    private Color notWall, notSword;                // スキルがあるかオブジェクトのカラー取得
+    private Text[] notSkillImage;
+
+    // スクリプト取得用
+    [SerializeField]
+    private WallSkill wallSkill;
+    [SerializeField]
+    private SkillController skillController;
     // Start is called before the first frame update
     void Start()
     {
         startPos = sowrdPos.position;
+
+        notSkill = new Color(1, 1, 0, 1);
+        onSkill = new Color(1, 1, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        onSkills();
         judgSkill();
     }
 
+    // スキルがあるか判断用
+    private void onSkills()
+    {
+        if(wallSkill.GetWallObj()
+            && skillController.GetOnWallSkill())
+            notSkillImage[0].color = onSkill;
+        else 
+            notSkillImage[0].color = notSkill;
+        
+        if(skillController.GetOnRotateSword())
+            notSkillImage[1].color = onSkill;
+        else 
+            notSkillImage[1].color = notSkill;
+        
+    }
 
     private void judgSkill()
     {
