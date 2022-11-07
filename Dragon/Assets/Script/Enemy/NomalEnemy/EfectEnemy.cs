@@ -13,8 +13,6 @@ public class EfectEnemy : MonoBehaviour
 
     private ColEnemy colEnemy;              //スクリプト参照
 
-    public bool alphaOffFlag = false;       //消滅完了フラグ
-
     // Start is called before the first frame update
     void Start()
     {

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6687482055835503283}
   - component: {fileID: 6687482055835503282}
-  - component: {fileID: 6687482055835503281}
   - component: {fileID: 6687482055835503280}
   - component: {fileID: 6687482055835503292}
+  - component: {fileID: 6687482055835503281}
   - component: {fileID: -9215204387431056145}
   - component: {fileID: 2482571049504065521}
   m_Layer: 0
@@ -89,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6687482055835503281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6687482055835503287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroytimer: 60
-  enemyMoveSpeed: 4
-  colEnemy: {fileID: -9215204387431056145}
 --- !u!60 &6687482055835503280
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,6 +138,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6687482055835503281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6687482055835503287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroytimer: 60
+  enemyMoveSpeed: 4
+  colEnemy: {fileID: -9215204387431056145}
 --- !u!114 &-9215204387431056145
 MonoBehaviour:
   m_ObjectHideFlags: 0
