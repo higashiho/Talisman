@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8123549337994771028}
   - component: {fileID: 8123549337994771029}
-  - component: {fileID: 8123549337994771025}
   - component: {fileID: 8123549337994771024}
   - component: {fileID: 8123549337994771039}
-  - component: {fileID: 800965925411393824}
+  - component: {fileID: 8123549337994771025}
   - component: {fileID: 8123549337994771038}
+  - component: {fileID: 800965925411393824}
   m_Layer: 0
   m_Name: EnemyChase
   m_TagString: Untagged
@@ -89,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8123549337994771025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8123549337994771031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroytimer: 60
-  enemyMoveSpeed: 4
-  colEnemy: {fileID: 8123549337994771038}
 --- !u!60 &8123549337994771024
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +138,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &800965925411393824
+--- !u!114 &8123549337994771025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,10 +147,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8123549337994771031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1586487351bdc654cb5c052974b9eaa2, type: 3}
+  m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alphaOffFlag: 0
+  destroytimer: 60
+  enemyMoveSpeed: 4
+  colEnemy: {fileID: 8123549337994771038}
 --- !u!114 &8123549337994771038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +170,16 @@ MonoBehaviour:
   enemyChase: {fileID: 8123549337994771031}
   enemyHp: 1
   hitDeleteName: Enemy
+--- !u!114 &800965925411393824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8123549337994771031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1586487351bdc654cb5c052974b9eaa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaOffFlag: 0

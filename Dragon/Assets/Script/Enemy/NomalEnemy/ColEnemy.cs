@@ -18,7 +18,7 @@ public class ColEnemy : MonoBehaviour
 
     private GameObject mobcreater;              //モブ作り格納用
 
-    public bool FadeFlag = false;              //フェードアウトフラグ、EfectEnemyで参照
+    private bool fadeFlag = false;              //フェードアウトフラグ、EfectEnemyで参照
     
     [SerializeField]
     private GameObject enemyChase;              //エネミー取得
@@ -31,21 +31,56 @@ public class ColEnemy : MonoBehaviour
     [SerializeField]
     private string hitDeleteName;               //プレイヤーに当たったら消えるやつの名前
 
+    private Rigidbody2D rb2D;                   //rigidbody2D格納用
+
+    private Vector2 playerPos;                  //プレイヤーの位置
+
+    private Vector2 pos;                        //エネミーの位置
+
+    private bool nockbackflag = false;          //ノックバックフラグ
+
+    private float nockbackTime = 0.2f;          //ノックバックしている時間
+
+    public bool FadeFlag{                       //カプセル化
+    get { return  fadeFlag ; }
+    private set { fadeFlag = value;}
+    }
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        playerPos = player.transform.position;  //プレイヤーの位置
+        pos = transform.position;               //エネミーの位置
         mobcreater = GameObject.Find("MobCreater");
         createEnemy = mobcreater.GetComponent<CreateEnemy>();
-        //enemyChase = GameObject.Find("EnemyChase");
         efectEnemy = enemyChase.GetComponent<EfectEnemy>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(nockbackflag)
+            nockback();
+    }
+
+    //エネミーのノックバック
+    private void nockback()
+    {
+        float Power = 20.0f * Time.deltaTime;
+        if(pos.x <= playerPos.x)
+            transform.Translate(Vector3.left * Power);
+        if(pos.x > playerPos.x)
+            transform.Translate(Vector3.right * Power);
+        if(pos.y <= playerPos.y)
+            transform.Translate(Vector3.down * Power);
+        if(pos.y > playerPos.y)
+            transform.Translate(Vector3.up * Power);
+
+        nockbackTime -= Time.deltaTime;
+        if(nockbackTime <= 0)
+            nockbackflag = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,9 +89,11 @@ public class ColEnemy : MonoBehaviour
         if(other.gameObject.name == "Sword")
         {    
             enemyHp--;
+            nockbackflag = true;
+            
             if(enemyHp <= 0)
             {
-                FadeFlag = true;
+                fadeFlag = true;
                 Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
                 createEnemy.spawnCount++;
                 Destroy(GetComponent<PolygonCollider2D>());
@@ -65,17 +102,17 @@ public class ColEnemy : MonoBehaviour
         //ショックウェーブに当たったら消える
         if(other.gameObject.tag == "ShockWave")
         {
-            FadeFlag = true;
+        
+            fadeFlag = true;
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
-
         }
 
         //回転切りにあったら消える
-        if(other.gameObject.name == "RptateSword")
+        if(other.gameObject.name == "RotateSword")
         {
-            FadeFlag = true;
+            fadeFlag = true;
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
