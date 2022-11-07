@@ -32,12 +32,19 @@ public class SkillController : MonoBehaviour
     [HeaderAttribute("ターゲティング中の敵")]
     public string target = default;                             // ターゲットのタグ
 
-    public bool SpeedUp = false;                                // スピードアップしてるかどうか
-    public bool OnRotateSword = false;                          // 回転斬りが出来るかどうか
+    private bool speedUp = false;                                // スピードアップしてるかどうか
+    private bool onRotateSword = false;                          // 回転斬りが出来るかどうか
     
-    public bool OnWallSkill;                                // 壁置けるか
+    private bool onWallSkill;                                // 壁置けるか
     
-    public int UsingWallSkill = 5;                              // 壁設置スキルを使用できるまでの個数
+    private int usingWallSkill = 5;                              // 壁設置スキルを使用できるまでの個数
+
+    // 変数取得用
+    public bool GetSpeedUp() {return speedUp;}
+    public bool GetOnRotateSword() {return onRotateSword;}
+    public bool GetOnWallSkill() {return onWallSkill;}
+    public int GetUsingWallSkill() {return usingWallSkill;}
+
     
     private GameObject boss;                                    // ボス参照用
     private BossController bossController;                      // スクリプト参照用
@@ -82,17 +89,17 @@ public class SkillController : MonoBehaviour
 
         if(Skills[2] > 0)
         {
-            OnRotateSword = true;
+            onRotateSword = true;
         }
         else
-            OnRotateSword = false;
+            onRotateSword = false;
 
-        if(Skills[3] >= UsingWallSkill)
+        if(Skills[3] >= usingWallSkill)
         {
-            OnWallSkill = true;
+            onWallSkill = true;
         }   
         else 
-            OnWallSkill = false;
+            onWallSkill = false;
 
 
         if(targeting)
@@ -118,7 +125,7 @@ public class SkillController : MonoBehaviour
     private void usingSkill2()
     {
         nowSkiil[1] = true;
-        SpeedUp = true;
+        speedUp = true;
         Skills[1]--;
     }
 

@@ -13,6 +13,9 @@ public class WallSkill : MonoBehaviour
     private GameObject wallObj = default;           // 壁オブジェクト格納用
     [SerializeField]
     private SkillController skillController;        //スクリプト格納用
+
+    // オブジェクト変数取得用
+    private GameObject GetWallPrefab(){return wallPrefab;}
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,7 @@ public class WallSkill : MonoBehaviour
             mousePos = Input.mousePosition;
             mousePos.z = posZ;
             wallObj = Instantiate(wallPrefab,Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
-            skillController.Skills[3] -= skillController.UsingWallSkill;
+            skillController.Skills[3] -= skillController.GetUsingWallSkill();
         }
     }
 
