@@ -22,7 +22,11 @@ public class HPShake : MonoBehaviour
     void Update()
     {
         if(!playerController.OnShield){
-            hpPos.position = hpInitPos + Random.insideUnitSphere * shakePower;      // ランダムに揺らす
+            shakeHp();
         }
+    }
+
+    private void shakeHp(){
+        hpPos.position = hpInitPos + Random.insideUnitSphere * shakePower;      // ランダムに揺らす
     }
 }

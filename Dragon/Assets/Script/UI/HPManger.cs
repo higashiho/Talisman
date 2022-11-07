@@ -24,7 +24,7 @@ public class HPManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LifeCount = playerController.Hp;
+        LifeCount = playerController.Hp;    // PlayerControllerの変数の値を代入
         displayHeart();
     }
 
