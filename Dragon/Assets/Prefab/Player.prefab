@@ -477,7 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpeed: {x: 6, y: 6}
   Hp: 3
-  onShield: 1
+  OnShield: 1
   heelSheld: 5
   skillController: {fileID: 1506668392}
   OnUnrivaled: 0
