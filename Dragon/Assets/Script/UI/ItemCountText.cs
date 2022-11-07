@@ -10,6 +10,9 @@ public class ItemCountText : MonoBehaviour
     [SerializeField]
     private Text[] itemCountTextArray = new Text[3];
 
+    [SerializeField]
+    private SkillController skillController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +22,14 @@ public class ItemCountText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 所持しているアイテムの数を表示する
+        displayItemCount();
+    }
+
+    private void displayItemCount(){    // 所持しているアイテムの数を表示する
+        ItemCountArray[0] = skillController.Skills[0];
+        ItemCountArray[1] = skillController.Skills[1];
+        ItemCountArray[2] = skillController.Skills[4];
+        
         for(int i=0; i<itemType; i++){
             itemCountTextArray[i].text = ItemCountArray[i].ToString();
         }
