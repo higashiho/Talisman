@@ -13,6 +13,8 @@ public class ItemCountText : MonoBehaviour
     [SerializeField]
     private SkillController skillController;
 
+
+    public int GetItemCountArray(int i) {return ItemCountArray[i];}
     // Start is called before the first frame update
     void Start()
     {

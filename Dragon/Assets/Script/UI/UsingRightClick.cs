@@ -45,16 +45,17 @@ public class UsingRightClick : MonoBehaviour
     // スキルがあるか判断用
     private void onSkills()
     {
+        int m_wall = 0, m_sword = 1;
         if(wallSkill.GetWallObj()
             && skillController.GetOnWallSkill())
-            notSkillImage[0].color = onSkill;
+            notSkillImage[m_wall].color = onSkill;
         else 
-            notSkillImage[0].color = notSkill;
+            notSkillImage[m_wall].color = notSkill;
         
         if(skillController.GetOnRotateSword())
-            notSkillImage[1].color = onSkill;
+            notSkillImage[m_sword].color = onSkill;
         else 
-            notSkillImage[1].color = notSkill;
+            notSkillImage[m_sword].color = notSkill;
         
     }
 
