@@ -13,15 +13,28 @@ public class Targeting : MonoBehaviour
     [SerializeField]
     private float speed;                // スピード
 
+    private ColBullet colBullet;
+    
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
     // Start is called before the first frame update
     void Start()
     {
+        objectPool = transform.parent.GetComponent<Factory>();
+        gameObject.SetActive(false);
+        colBullet = this.GetComponent<ColBullet>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+
+    }
+
+    // 自身を回収
+    public void HideFromStage()
+    {
+        objectPool.Collect(this);
     }
 
     // 弾の挙動
@@ -39,4 +52,11 @@ public class Targeting : MonoBehaviour
     {
         direction = new Vector3(to.x - flom.x, to.y - flom.y, to.z - flom.z);
     }
+
+    // 生成座標
+    public void ShowInStage(Vector3 _pos)
+    {
+        transform.position = _pos;
+    }
+
 }
