@@ -22,11 +22,19 @@ public class BulletShot : MonoBehaviour
     private Vector2 reloadSoeed = new Vector2(2.0f, 2.0f);  //リロード中の遅延量
 
 
-    private GameObject bullet;                      // 弾
+    private Targeting bullet;                      // 弾
+    
+    public void SetBullet(Targeting obj) {bullet = obj;}
+    
     [SerializeField]
     private GameObject target;                      // 狙う相手
     [SerializeField, HeaderAttribute("スキル用スクリプト")]
     private SkillController skillController;            // スクリプト格納用
+    
+    [SerializeField]
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,32 +44,13 @@ public class BulletShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //     if(!reload)
-    //         bulletShot();
-    //     else 
-    //         nowReload();
     }
-
-    // private void bulletShot()       // 弾の生成
-    // {
-    //     //if(attack == true && reload == false){    // 攻撃可能flagがtrueかつリロードflagがfalseのとき
-    //         bulletPoint = player.position;      // 弾を生成する座標にプレイヤーの位置座標を代入
-    //         if (Input.GetMouseButtonDown(0))    // 左クリックした瞬間
-    //         {
-    //             Instantiate(bulletObj, bulletPoint, Quaternion.identity);     // 弾を生成, 取得した座標, 回転なし
-    //             attackManage();      // 攻撃のディレイの回数を管理
-    //         }
-    //         if(count <= 0)
-    //         {   // 攻撃回数が0になると
-    //             reload = true;
-    //             playerController.PlayerSpeed -= reloadSoeed;
-    //         }
-    // }
 
     // スキルポイントがある場合の弾生成用
     public void ShotBullet()
     {
-        bullet = Instantiate(bulletObj, this.transform.position, Quaternion.identity);
+        //オブジェクトプールのLaunch関数呼び出し
+        objectPool.Launch(transform.position);
         target = GameObject.FindWithTag(skillController.target);
 
         if(target == null)
