@@ -223,3 +223,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   Attack: 2
+  onSizeUp: 0
