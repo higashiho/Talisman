@@ -41,7 +41,6 @@ public class SwordContoroller : MonoBehaviour
 
     private ShockWave shockWaveObj;         // 衝撃波オブジェク
 
-    private void GetShockWaveObj(ShockWave thisWave) {shockWaveObj = thisWave;}
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +91,7 @@ public class SwordContoroller : MonoBehaviour
     // 衝撃波を出す攻撃
     private void shockWave()
     {
-        objectPool.LaunchShockWave(this.transform.position);
+        shockWaveObj = objectPool.LaunchShockWave(this.transform.position);
 
         skillController.Skills[4] -= OnShockSkill;
         

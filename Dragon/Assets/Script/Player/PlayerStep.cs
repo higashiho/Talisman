@@ -33,95 +33,67 @@ public class PlayerStep : MonoBehaviour
 
     private void onStep()
     {
-        if(Input.GetKeyUp("w"))
+        if(Input.GetKeyUp("w") && !onSteps[0])
         {
             onSteps[0] = true;
         }
-        if(Input.GetKeyUp("a"))
+        if(Input.GetKeyUp("a") && !onSteps[1])
         {
             onSteps[1] = true;
         }
-        if(Input.GetKeyUp("s"))
+        if(Input.GetKeyUp("s") && !onSteps[2])
         {
             onSteps[2] = true;
         }
-        if(Input.GetKeyUp("d"))
+        if(Input.GetKeyUp("d") && !onSteps[3])
         {
             onSteps[3] = true;
         }
     }
 
+    private void stepControl(int num, string str)
+    {
+        string m_up = "w", m_down = "s", m_right = "d";
+        float power = 100.0f;
+        if(onSteps[num])
+        {
+            onTimer[num] += Time.deltaTime;
+            if(onTimer[num] <= maxTimer && Input.GetKeyDown(str))
+            {
+                onSteps[num] = false;
+                if(str == m_up)
+                    rd2D.velocity = Vector3.up * power;  
+                else if(str == m_down)
+                    rd2D.velocity = Vector3.down * power;  
+                else if(str == m_right)
+                    rd2D.velocity = Vector3.right * power;  
+                else 
+                    rd2D.velocity = Vector3.left * power;  
+
+                onTimer[num] = default;
+                nowStep = true;
+            }
+            else if(onTimer[num] >= maxTimer)
+            {
+                onSteps[num] = false;
+                onTimer[num] = default;
+            }
+        }
+    }
+
     private void step()
     {
-        float power = 100.0f;
         onStep();
 
-        if(onSteps[0])
-        {
-            onTimer[0] += Time.deltaTime;
-            if(onTimer[0] <= maxTimer && Input.GetKeyDown("w"))
-            {
-                onSteps[0] = false;
-                rd2D.velocity = Vector3.up * power;            
-                onTimer[0] = default;
-                nowStep = true;
-            }
-            else if(onTimer[0] >= maxTimer)
-            {
-                onSteps[0] = false;
-                onTimer[0] = default;
-            }
-        }
-        if(onSteps[1])
-        { 
-            onTimer[1] = Time.deltaTime;
-            if(onTimer[1] <= maxTimer && Input.GetKeyDown("a"))
-            {
-                onSteps[1] = false;
-                rd2D.velocity = Vector3.left * power;        
-                onTimer[1] = default;
-                nowStep = true;
-            }
-            else if(onTimer[1] >= maxTimer)
-            {
-                onSteps[1] = false;
-                onTimer[1] = default;
-            }
-        }
-        if(onSteps[2])
-        {
-             onTimer[2] += Time.deltaTime;
-            if(onTimer[2] <= maxTimer && Input.GetKeyDown("s"))
-            {
-                onSteps[2] = false;
-                rd2D.velocity = Vector3.down * power;            
-          
-                onTimer[2] = default;
-                nowStep = true;
+        int m_up = 0, m_left = 1, m_down = 2, m_right = 3;
 
-            }
-            else if(onTimer[2] >= maxTimer)
-            {
-                onSteps[2] = false;
-                onTimer[2] = default;
-            }
-        }
-        if(onSteps[3])
-        {
-             onTimer[3] += Time.deltaTime;
-            if(onTimer[3] <= maxTimer && Input.GetKeyDown("d"))
-            {
-                onSteps[3] = false;
-                rd2D.velocity = Vector3.right * power;           
-                onTimer[3] = default;
-                nowStep = true;
-            }
-            else if(onTimer[3] >= maxTimer)
-            {
-                onSteps[3] = false;
-                onTimer[3] = default;
-            }
-        }
+        
+
+        stepControl(m_up, "w");
+        stepControl(m_left, "a");
+        stepControl(m_down, "s");
+        stepControl(m_right, "d");
+
 
         if(nowStep)
         {
