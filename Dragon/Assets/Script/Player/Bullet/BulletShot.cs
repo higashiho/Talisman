@@ -19,7 +19,7 @@ public class BulletShot : MonoBehaviour
     [SerializeField, HeaderAttribute("player")]
     private PlayerController playerController;          //スクリプト格納用
 
-    private Vector2 reloadSoeed = new Vector2(2.0f, 2.0f);  //リロード中の遅延量
+    private Vector3 reloadSoeed = new Vector3(2.0f, 2.0f);  //リロード中の遅延量
 
 
     private Targeting bullet;                      // 弾
