@@ -11,6 +11,14 @@ public class ShockWave : MonoBehaviour
     private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
 
     public void SetObjectPool(Factory obj) {objectPool = obj;}
+
+    // チャージ時間が足りてるか
+    [SerializeField, HeaderAttribute("拡大するか")]
+    private bool onSizeUp = false;
+    public void SetOnSizeUp(bool b) {onSizeUp = b; }
+    public bool GetOnSizeUp() {return onSizeUp;}
+    
+    private Vector3 scaleChange = new Vector3(0.8f, 0.2f, 0);     // 大きくなる速さ
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +29,9 @@ public class ShockWave : MonoBehaviour
     void Update()
     {
         move();
+
+        if(onSizeUp)
+            sizeUp();
     }
 
     private void move()
@@ -29,6 +40,10 @@ public class ShockWave : MonoBehaviour
         gameObject.transform.position += velocity * Time.deltaTime;
     }
 
+    private void sizeUp()
+    {
+        this.transform.localScale += scaleChange;
+    }
     
     // 画面外に出たらオブジェクト非表示
     private void OnBecameInvisible()

@@ -34,6 +34,14 @@ public class SwordContoroller : MonoBehaviour
 
     [SerializeField]
     private Factory objectPool;             // オブジェクトプール用コントローラー格納
+
+    [SerializeField, HeaderAttribute("貯め時間")]
+    private float onTime = 0;               // 押している時間
+    private float maxTime = 5.0f;           // 衝撃波が変わる時間
+
+    private ShockWave shockWaveObj;         // 衝撃波オブジェク
+
+    private void GetShockWaveObj(ShockWave thisWave) {shockWaveObj = thisWave;}
     // Start is called before the first frame update
     void Start()
     {
@@ -50,23 +58,60 @@ public class SwordContoroller : MonoBehaviour
     //　攻撃挙動
     private void attack()
     {
-        if (!coroutineBool && Input.GetMouseButtonDown(0))
+        // スキルアイテムがない場合
+        if(skillController.Skills[4] <= OnShockSkill)
         {
-            coroutineBool = true;
-            StartCoroutine("Shake");
-            // スキルアイテムが指定個数ある時衝撃波生成
-            if(skillController.Skills[4] >= OnShockSkill)
+            if (!coroutineBool && Input.GetMouseButtonDown(0))
+            {
+                nomalAttack();
+            }
+        }
+        // スキルアイテムが指定個数ある場合
+        else
+        {
+            if(Input.GetMouseButton(0))
+            {
+                onTime += Time.deltaTime;
+            }
+
+            if(!coroutineBool && Input.GetMouseButtonUp(0))
+            {
+                nomalAttack();
                 shockWave();
+            }
         }
     }
 
+    // 普段の攻撃
+    private void nomalAttack()
+    {
+        coroutineBool = true;
+        StartCoroutine("Shake");
+    }
+
+    // 衝撃波を出す攻撃
     private void shockWave()
     {
         objectPool.LaunchShockWave(this.transform.position);
 
         skillController.Skills[4] -= OnShockSkill;
+        
+        // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
+        if(onTime >= maxTime)
+        {
+            shockWaveObj.SetOnSizeUp(true);
+                    
+            Vector3 startScale = new Vector3(0.8f, 0.2f,1.0f);      // 最初の大きさ
+            shockWaveObj.transform.localScale = startScale;
 
+            skillController.Skills[4] -= OnShockSkill;
+        }
+            
+
+        onTime = default;
     }
+
+
     
     // 回す処理、動いている最中のみレンダラーと当たり判定がオン
     private IEnumerator Shake()
