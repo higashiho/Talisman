@@ -20,7 +20,7 @@ public class Targeting : MonoBehaviour
     void Start()
     {
         objectPool = transform.parent.GetComponent<Factory>();
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
         colBullet = this.GetComponent<ColBullet>();
     }
 
@@ -52,11 +52,4 @@ public class Targeting : MonoBehaviour
     {
         direction = new Vector3(to.x - flom.x, to.y - flom.y, to.z - flom.z);
     }
-
-    // 生成座標
-    public void ShowInStage(Vector3 _pos)
-    {
-        transform.position = _pos;
-    }
-
 }

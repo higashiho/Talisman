@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1457010580253910943, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
-  maxCount: 10
+  shockWave: {fileID: 1367812046978691813, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
   bulletShot: {fileID: 1713731371}
 --- !u!4 &559229134
 Transform:
@@ -1325,7 +1325,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559229132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.179101, y: -2.385169, z: 4.001768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3240,13 +3240,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: waveObj
+      value: 
+      objectReference: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+    - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: objectPool
+      value: 
+      objectReference: {fileID: 559229133}
     - target: {fileID: 1506668392, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 1398843203}
     - target: {fileID: 1506668392, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: Skills.Array.data[0]
-      value: 0
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1506668392, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: Skills.Array.data[4]
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1861904027, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: heelSheld

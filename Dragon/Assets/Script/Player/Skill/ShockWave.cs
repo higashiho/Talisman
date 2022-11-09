@@ -6,12 +6,13 @@ public class ShockWave : MonoBehaviour
 {
     [SerializeField]
     private float speed;                                    // 挙動スピード
-    private float destroyTime = 5.0f;                      // 消える時間
+    
     public int Attack = 2;                                 // ダメージ量
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this.gameObject, destroyTime);
+        objectPool = transform.parent.GetComponent<Factory>();
     }
 
     // Update is called once per frame
@@ -25,4 +26,13 @@ public class ShockWave : MonoBehaviour
         Vector3 velocity = gameObject.transform.rotation * new Vector3(0, speed, 0);
         gameObject.transform.position += velocity * Time.deltaTime;
     }
+
+    
+    // 自身を回収
+    public void HideFromStage()
+    {
+        objectPool.Collect(this);
+    }
+
+
 }
