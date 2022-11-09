@@ -208,8 +208,9 @@ MonoBehaviour:
   attackWait: 0.3
   renderer: {fileID: 581746252}
   collider: {fileID: 581746253}
-  ShockWavePrefab: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
   skillController: {fileID: 1506668392}
+  objectPool: {fileID: 0}
+  onTime: 0
 --- !u!1 &1003857935
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +341,7 @@ GameObject:
   - component: {fileID: 1506668395}
   - component: {fileID: 1506668400}
   - component: {fileID: 1506668401}
+  - component: {fileID: 1713731374}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -475,10 +477,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: {x: 7, y: 7}
+  PlayerSpeed: {x: 7, y: 7, z: 0}
   Hp: 3
   OnShield: 1
-  heelSheld: 5
+  heelSheld: 10
   skillController: {fileID: 1506668392}
   OnUnrivaled: 0
   maxTimer: 2
@@ -509,11 +511,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e55dd7de37298e4790e3ccce37d5f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skills: 0000000000000000000000000000000000000000
+  Skills: 6400000000000000000000000000000064000000
   nowSkiil: 0101010101
   bulletShot: {fileID: 1061806794458946392}
   targeting: 0
   target: 
+  speedUp: 0
+  boss: {fileID: 0}
+  findBoss: {fileID: 0}
 --- !u!114 &1061806794458946392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +536,7 @@ MonoBehaviour:
   playerController: {fileID: 1861904027}
   target: {fileID: 0}
   skillController: {fileID: 1506668392}
+  objectPool: {fileID: 0}
 --- !u!114 &1506668395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,3 +581,21 @@ MonoBehaviour:
   mouseWheel: 0
   rotateSwordController: {fileID: 337276076}
   wallSkill: {fileID: 1506668400}
+--- !u!114 &1713731374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841200581054410842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b21aed39224047a52ffa455c8d6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSteps: 00000000
+  onTimer:
+  - 0
+  - 0
+  - 0
+  - 0

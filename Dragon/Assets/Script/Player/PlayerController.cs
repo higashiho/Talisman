@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector2 PlayerSpeed;                         // Playerの移動速度
-    private Vector2 pos;                                // playerの位置を保存する変数
+    public Vector3 PlayerSpeed;                         // Playerの移動速度
+    private Vector3 pos;                                // playerの位置を保存する変数
 
 
     public int Hp;                                      //ヒットポイント
@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
 
     public bool OnShield = true;                       //シールドがあるか
 
-    private Vector2 noShieldSpeed = new Vector2(2.0f, 2.0f);            //シールドがない時の移動スピード
-    private Vector2 nomalPlayerSpeed = new Vector2(7.0f, 7.0f);         //  通常時スピード
-    private Vector2 highPlayerSpeed = new Vector2(10.0f, 10.0f);          // スピードアップスキル取得時スピード
+    private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f);            //シールドがない時の移動スピード
+    private Vector3 nomalPlayerSpeed = new Vector3(7.0f, 7.0f);         //  通常時スピード
+    private Vector3 highPlayerSpeed = new Vector3(10.0f, 10.0f);          // スピードアップスキル取得時スピード
 
     private const int MAX_HP = 3;                                           // HP最大値
     [SerializeField, HeaderAttribute("シールド回復時間")]

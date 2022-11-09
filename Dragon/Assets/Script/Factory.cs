@@ -86,7 +86,7 @@ public class Factory : MonoBehaviour
         tmpShockWave.gameObject.transform.parent = null;
 
         tmpShockWave.SetObjectPool(this.GetComponent<Factory>());
-        // 弾を表示
+
         tmpShockWave.gameObject.SetActive(true);
 
         
