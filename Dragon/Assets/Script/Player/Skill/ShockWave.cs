@@ -9,10 +9,12 @@ public class ShockWave : MonoBehaviour
     
     public int Attack = 2;                                 // ダメージ量
     private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
+
+    public void SetObjectPool(Factory obj) {objectPool = obj;}
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = transform.parent.GetComponent<Factory>();
+        //objectPool = transform.parent.GetComponent<Factory>();
     }
 
     // Update is called once per frame
@@ -28,11 +30,22 @@ public class ShockWave : MonoBehaviour
     }
 
     
-    // 自身を回収
-    public void HideFromStage()
+    // 画面外に出たらオブジェクト非表示
+    private void OnBecameInvisible()
     {
         objectPool.Collect(this);
     }
 
+    // 非表示になったら子になる
+    private void OnDisablu()
+    {
+        this.gameObject.transform.parent = objectPool.gameObject.transform;
+    }
+
+    
+    public void ShowInStage(Vector3 _pos)
+    {
+        transform.position = _pos;
+    }
 
 }

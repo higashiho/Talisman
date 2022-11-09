@@ -44,6 +44,9 @@ public class Factory : MonoBehaviour
 
         // Queueから一つ取り出す
         tmpBullet = bulletQueue.Dequeue();
+
+        tmpBullet.ShowInStage(_pos);
+
         // 弾を表示
         tmpBullet.gameObject.SetActive(true);
 
@@ -77,9 +80,16 @@ public class Factory : MonoBehaviour
 
         // Queueから一つ取り出す
         tmpShockWave = shockWaveQueue.Dequeue();
+
+        tmpShockWave.ShowInStage(_pos);
         
+        tmpShockWave.gameObject.transform.parent = null;
+
+        tmpShockWave.SetObjectPool(this.GetComponent<Factory>());
         // 弾を表示
         tmpShockWave.gameObject.SetActive(true);
+
+        
 
 
         //呼び出し元に渡す
@@ -91,6 +101,7 @@ public class Factory : MonoBehaviour
     {
         //弾のゲームオブジェクトを非表示
         _shockWave.gameObject.SetActive(false);
+        
         //Queueに格納
         shockWaveQueue.Enqueue(_shockWave);
     }

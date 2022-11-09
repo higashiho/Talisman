@@ -62,7 +62,7 @@ public class SwordContoroller : MonoBehaviour
 
     private void shockWave()
     {
-        objectPool.LaunchShockWave(transform.position);
+        objectPool.LaunchShockWave(this.transform.position);
 
         skillController.Skills[4] -= OnShockSkill;
 

@@ -52,4 +52,10 @@ public class Targeting : MonoBehaviour
     {
         direction = new Vector3(to.x - flom.x, to.y - flom.y, to.z - flom.z);
     }
+
+    
+    public void ShowInStage(Vector3 _pos)
+    {
+        transform.position = _pos;
+    }
 }
