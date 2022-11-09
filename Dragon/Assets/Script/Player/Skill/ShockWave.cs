@@ -18,7 +18,7 @@ public class ShockWave : MonoBehaviour
     public void SetOnSizeUp(bool b) {onSizeUp = b; }
     public bool GetOnSizeUp() {return onSizeUp;}
     
-    private Vector3 scaleChange = new Vector3(0.8f, 0.2f, 0);     // 大きくなる速さ
+    private Vector3 scaleChange = new Vector3(0.08f, 0.02f, 0);     // 大きくなる速さ
     // Start is called before the first frame update
     void Start()
     {
@@ -48,14 +48,16 @@ public class ShockWave : MonoBehaviour
     // 画面外に出たらオブジェクト非表示
     private void OnBecameInvisible()
     {
-        objectPool.Collect(this);
+        if(objectPool != null)
+        {
+            onSizeUp = false;
+            this.gameObject.transform.parent = objectPool.gameObject.transform;
+            float m_sizeX = 4.0f, m_sizeY = 1.0f, m_sizeZ = 1.0f;
+            this.transform.localScale = new Vector3(m_sizeX, m_sizeY, m_sizeZ);
+            objectPool.Collect(this);
+        }
     }
 
-    // 非表示になったら子になる
-    private void OnDisablu()
-    {
-        this.gameObject.transform.parent = objectPool.gameObject.transform;
-    }
 
     
     public void ShowInStage(Vector3 _pos)

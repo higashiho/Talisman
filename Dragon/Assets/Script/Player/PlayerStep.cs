@@ -17,18 +17,26 @@ public class PlayerStep : MonoBehaviour
 
     private bool nowStep = false;               // ステップ最中
     private float stepTimer = 0.1f;              // ステップ時間
+
+    private bool noStep = false;                // クールタイムかどうか
+    private float coolTimer = 10.0f;            // クールタイム時間
+
+    public float GetCoolTimer() {return coolTimer;}
     // Start is called before the first frame update
     void Start()
     {
         rd2D = GetComponent<Rigidbody2D>();
-        bool[] onSteps = {false, false, false, false};
-        float[] onTimer = {0.0f, 0.0f, 0.0f, 0.0f};
+        bool[] onSteps = {false};
+        float[] onTimer = {0.0f};
     }
 
     // Update is called once per frame
     void Update()
     {
-        step();
+        if(noStep)
+            coolTime();
+        else
+            step();
     }
 
     private void onStep()
@@ -51,10 +59,23 @@ public class PlayerStep : MonoBehaviour
         }
     }
 
+    // ステップのクールタイム
+    private void coolTime()
+    {
+        float defaultTimer = 10.0f;
+        coolTimer -= Time.deltaTime;
+
+        if(coolTimer <= 0)
+        {
+            noStep = false;
+            coolTimer = defaultTimer;
+        }
+    }
+
     private void stepControl(int num, string str)
     {
         string m_up = "w", m_down = "s", m_right = "d";
-        float power = 100.0f;
+        float power = 150.0f;
         if(onSteps[num])
         {
             onTimer[num] += Time.deltaTime;
@@ -102,9 +123,12 @@ public class PlayerStep : MonoBehaviour
 
             if(stepTimer <= 0)
             {
-                rd2D.velocity = Vector3.zero;     
-                nowStep = false;
-                stepTimer = MaxTimer;      
+                rd2D.velocity = Vector3.zero;  
+                nowStep = false;   
+                stepTimer = MaxTimer;   
+                noStep = true; 
+                bool[] onSteps = {false};
+                float[] onTimer = {0.0f};  
             }
         }
     }

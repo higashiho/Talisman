@@ -71,6 +71,7 @@ public class SwordContoroller : MonoBehaviour
             if(Input.GetMouseButton(0))
             {
                 onTime += Time.deltaTime;
+                // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
             }
 
             if(!coroutineBool && Input.GetMouseButtonUp(0))
