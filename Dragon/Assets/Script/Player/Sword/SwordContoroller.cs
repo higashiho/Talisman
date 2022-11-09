@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordContorooler : MonoBehaviour
+public class SwordContoroller : MonoBehaviour
 {
     
     /// @breif 剣を振り回すスクリプト
@@ -26,15 +26,14 @@ public class SwordContorooler : MonoBehaviour
     [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
     private new BoxCollider2D collider;
 
-    [SerializeField, HeaderAttribute("衝撃波prefab")]
-    private GameObject ShockWavePrefab = default;
 
     [SerializeField]
     private SkillController skillController;        //スクリプト格納用
 
     private int OnShockSkill = 2;                   // スキルを使うためのアイテム量
 
-    private GameObject waveObj;             // ゲームオブジェクト格納用
+    [SerializeField]
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納
     // Start is called before the first frame update
     void Start()
     {
@@ -63,8 +62,10 @@ public class SwordContorooler : MonoBehaviour
 
     private void shockWave()
     {
-        Instantiate(ShockWavePrefab, this.transform.position, Quaternion.identity);
+        objectPool.LaunchShockWave(this.transform.position);
+
         skillController.Skills[4] -= OnShockSkill;
+
     }
     
     // 回す処理、動いている最中のみレンダラーと当たり判定がオン

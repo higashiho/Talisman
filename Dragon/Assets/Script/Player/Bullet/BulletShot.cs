@@ -32,7 +32,7 @@ public class BulletShot : MonoBehaviour
     private SkillController skillController;            // スクリプト格納用
     
     [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納
     
     
     // Start is called before the first frame update
@@ -50,7 +50,7 @@ public class BulletShot : MonoBehaviour
     public void ShotBullet()
     {
         //オブジェクトプールのLaunch関数呼び出し
-        objectPool.Launch(transform.position);
+        objectPool.LaunchBullet(transform.position);
         target = GameObject.FindWithTag(skillController.target);
 
         if(target == null)

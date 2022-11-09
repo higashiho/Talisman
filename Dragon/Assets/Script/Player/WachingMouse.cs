@@ -41,4 +41,9 @@ public class WachingMouse : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        waching();
+    }
+
 }
