@@ -22,9 +22,9 @@ public class BulletShot : MonoBehaviour
     private Vector3 reloadSoeed = new Vector3(2.0f, 2.0f);  //リロード中の遅延量
 
 
-    private Targeting bullet;                      // 弾
+    private GameObject bullet;                      // 弾
     
-    public void SetBullet(Targeting obj) {bullet = obj;}
+    public void SetBullet(GameObject obj) {bullet = obj;}
     
     [SerializeField]
     private GameObject target;                      // 狙う相手
@@ -50,7 +50,7 @@ public class BulletShot : MonoBehaviour
     public void ShotBullet()
     {
         //オブジェクトプールのLaunch関数呼び出し
-        objectPool.LaunchBullet(transform.position);
+        objectPool.Launch(objectPool.GetBulletObj(), objectPool.GetBulletQueue(), transform.position);
         target = GameObject.FindWithTag(skillController.target);
 
         if(target == null)

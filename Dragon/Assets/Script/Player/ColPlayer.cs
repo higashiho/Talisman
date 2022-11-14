@@ -26,9 +26,9 @@ public class ColPlayer : MonoBehaviour
     {
         if(col.gameObject.tag == "Enemy")
         {
-            if(!playerController.OnUnrivaled)
+            if(!playerController.GetOnUnrivaled())
             {
-                playerController.OnUnrivaled = true;
+                playerController.SetOnUnrivaled(true);
                 damageEfect.Play();
             }
         }

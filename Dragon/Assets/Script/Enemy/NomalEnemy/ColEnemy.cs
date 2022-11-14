@@ -124,7 +124,7 @@ public class ColEnemy : MonoBehaviour
     {   
         if(col.gameObject.tag == "Player")
         {
-            if(!playerController.OnUnrivaled)
+            if(!playerController.GetOnUnrivaled())
             {
             playerController.Hp -= hitDamage; 
             createEnemy.spawnCount++;
