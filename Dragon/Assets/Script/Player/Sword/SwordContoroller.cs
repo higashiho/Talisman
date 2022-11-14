@@ -44,6 +44,11 @@ public class SwordContoroller : MonoBehaviour
     [SerializeField, HeaderAttribute("player")]
     private SpriteRenderer player;              // スプライトレンダラー格納用
 
+    public bool CoroutineBool{
+        get { return coroutineBool ;}
+        set { coroutineBool = value ;}
+    }
+
     // Start is called before the first frame update
     void Start()
     {

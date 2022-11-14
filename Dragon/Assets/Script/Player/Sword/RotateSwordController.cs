@@ -15,7 +15,7 @@ public class RotateSwordController : MonoBehaviour
     private float rotAngleZ = 15.0f; //回転速度
     private bool coroutineBool = false;  //回転中か判断用
     private float StopRotation = 24.0f; //回転ストップ
-    private float startAngleZ = 0.0f;  // 最初の位置に戻す
+    //private float startAngleZ = 0.0f;  // 最初の位置に戻す
 
     private float waitTime = 0.01f;       // 回転遅延用
     [HeaderAttribute("攻撃間隔"), SerializeField]

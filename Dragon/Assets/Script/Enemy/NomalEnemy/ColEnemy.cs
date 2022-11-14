@@ -43,8 +43,8 @@ public class ColEnemy : MonoBehaviour
 
 
     public bool FadeFlag{                       //カプセル化
-    get { return  fadeFlag ; }
-    private set { fadeFlag = value;}
+        get { return  fadeFlag ; }
+        private set { fadeFlag = value;}
     }
 
     void Start()
@@ -87,7 +87,7 @@ public class ColEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
-        if(other.gameObject.name == "Sword")
+        if(other.gameObject.tag == "Sword")
         {    
             enemyHp--;
             nockbackflag = true;
