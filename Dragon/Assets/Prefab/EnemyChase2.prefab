@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -3108829429385409452}
   m_Layer: 0
   m_Name: EnemyChase2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 7531745185645692257, guid: bf5a72ae6c28016468046c21480e93de, type: 3}
-  FadeFlag: 0
   enemyChase: {fileID: 5564865708596339299}
   enemyHp: 1
   hitDeleteName: Enemy
+  damageEfectFlag: 0
 --- !u!114 &-3108829429385409452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,4 +182,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1586487351bdc654cb5c052974b9eaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alphaOffFlag: 0
