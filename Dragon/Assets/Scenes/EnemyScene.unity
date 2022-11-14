@@ -6309,6 +6309,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 1817021366}
+    - target: {fileID: 619360196, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
       propertyPath: objectPool
       value: 
       objectReference: {fileID: 116417706}
@@ -6374,6 +6378,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+--- !u!1 &1817021363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 619360194, guid: 613d20b2b63eb174d81c238560a8d262, type: 3}
+  m_PrefabInstance: {fileID: 1587613823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1817021366
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817021363}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1853861851
 GameObject:
   m_ObjectHideFlags: 0
