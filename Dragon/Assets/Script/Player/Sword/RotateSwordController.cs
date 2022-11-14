@@ -28,6 +28,9 @@ public class RotateSwordController : MonoBehaviour
 
     [SerializeField]
     private SkillController skillController;        //スクリプト格納用
+
+    [SerializeField]
+    private GameObject player;
     
     // Start is called before the first frame update
     void Start()
@@ -54,15 +57,16 @@ public class RotateSwordController : MonoBehaviour
     // 回す処理、動いている最中のみレンダラーと当たり判定がオン
     private IEnumerator Shake()
     {
+        player.GetComponent<WachingMouse>().enabled = false;
         collider.enabled = true;
         renderer.enabled = true;
         for (int turn = 0; turn < StopRotation; turn++)
         {
-            transform.Rotate(0, 0, -rotAngleZ);
+            player.transform.Rotate(0, 0, -rotAngleZ);
             yield return new WaitForSeconds(waitTime);
         }
+        player.GetComponent<WachingMouse>().enabled = true;
         
-        transform.Rotate(0, 0, startAngleZ);
         renderer.enabled = false;
         collider.enabled = false;
         skillController.Skills[2]--;
