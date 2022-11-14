@@ -24,7 +24,7 @@ public class SwordContoroller : MonoBehaviour
     [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
     private new SpriteRenderer renderer;        // SpriteRendere格納用
     [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
-    private new BoxCollider2D collider;
+    private new CircleCollider2D collider;
 
 
     [SerializeField]
@@ -40,6 +40,9 @@ public class SwordContoroller : MonoBehaviour
     private float maxTime = 5.0f;           // 衝撃波が変わる時間
 
     private ShockWave shockWaveObj;         // 衝撃波オブジェク
+
+    [SerializeField, HeaderAttribute("player")]
+    private SpriteRenderer player;              // スプライトレンダラー格納用
 
     // Start is called before the first frame update
     void Start()
@@ -72,10 +75,13 @@ public class SwordContoroller : MonoBehaviour
             {
                 onTime += Time.deltaTime;
                 // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
+                player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+
             }
 
             if(!coroutineBool && Input.GetMouseButtonUp(0))
             {
+                player.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 nomalAttack();
                 shockWave();
             }
