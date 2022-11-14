@@ -20,9 +20,9 @@ public class ColBeam : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(!playerController.OnUnrivaled)
+            if(!playerController.GetOnUnrivaled())
             {
-                playerController.OnUnrivaled = true;
+                playerController.SetOnUnrivaled(true);
         
                 playerController.Hp -= beamController.Damege;
                 Destroy(GetComponent<BoxCollider2D>());

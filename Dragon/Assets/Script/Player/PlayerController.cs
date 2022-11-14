@@ -12,11 +12,12 @@ public class PlayerController : MonoBehaviour
     public int Hp;                                      //ヒットポイント
     private int heel = 2;                               //シールドが割れた時点での回復
 
-    public bool OnShield = true;                       //シールドがあるか
+    private bool onShield = true;                       //シールドがあるか
+    public bool GetOnShield() {return onShield;}
 
-    private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f);            //シールドがない時の移動スピード
-    private Vector3 nomalPlayerSpeed = new Vector3(7.0f, 7.0f);         //  通常時スピード
-    private Vector3 highPlayerSpeed = new Vector3(10.0f, 10.0f);          // スピードアップスキル取得時スピード
+    private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f,0);            //シールドがない時の移動スピード
+    private Vector3 nomalPlayerSpeed = new Vector3(7.0f, 7.0f,0);         //  通常時スピード
+    private Vector3 highPlayerSpeed = new Vector3(10.0f, 10.0f,0);          // スピードアップスキル取得時スピード
 
     private const int MAX_HP = 3;                                           // HP最大値
     [SerializeField, HeaderAttribute("シールド回復時間")]
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private float startHeelStrage;                      // シールド回復初期時間保管用
 
     private SpriteRenderer spriteRenderer;              // スプライトレンダラー格納用
+    [SerializeField]
+    private SpriteRenderer shieldRenderer;              // スプライトレンダラー格納用
 
     private bool oneHeel = true;                        //ヒール一回だけ処理
 
@@ -33,7 +36,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-    public bool OnUnrivaled = false;                    // 無敵中か
+    private bool onUnrivaled = false;                    // 無敵中か
+
+    public bool GetOnUnrivaled() {return onUnrivaled;}
+    public void SetOnUnrivaled(bool set) {onUnrivaled = set;}
     private float unrivaledTimer = 0;                   // 無敵時間用タイマー
     [SerializeField, HeaderAttribute("無敵時間最大値")]
     private float maxTimer = 2.0f;                      // 無敵がオフになる時間
@@ -49,6 +55,9 @@ public class PlayerController : MonoBehaviour
     private float limitPosY = 43.0f;                     // y座標限界値
     private float minPosX = -48.0f;                      // 左座標限界値
     private float maxPosX = 327.0f;                      // 右座標限界値
+
+    [SerializeField]
+    private SwordContoroller sword;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,20 +70,20 @@ public class PlayerController : MonoBehaviour
     {
         move();
 
-        if(!OnShield)
+        if(!onShield)
         {
             shieldHeel();
         }
 
-        if(OnUnrivaled)
+        if(onUnrivaled)
             unrivaled();
     }
 
     private void speed()
     {
-        if(skillController.GetSpeedUp() && OnShield)
+        if(skillController.GetSpeedUp() && onShield)
             PlayerSpeed = highPlayerSpeed;
-        else if(OnShield)
+        else if(onShield && !sword.GetOnCharge())
             PlayerSpeed = nomalPlayerSpeed;
     }
 
@@ -118,8 +127,8 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
 
         // シールドがある場合でHpが０になった場合
-        if(Hp <= 0 && OnShield)
-            OnShield = false; 
+        if(Hp <= 0 && onShield)
+            onShield = false; 
         else 
             gameOver();
     }
@@ -127,7 +136,7 @@ public class PlayerController : MonoBehaviour
     //シールドがある時Hpを下回る攻撃を受けた場合
     private void shield()
     {
-        spriteRenderer.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        shieldRenderer.enabled = false;
         Hp = heel;
         PlayerSpeed = noShieldSpeed;
     }
@@ -142,8 +151,8 @@ public class PlayerController : MonoBehaviour
         heelSheld -= Time.deltaTime;
         if(heelSheld <= 0)
         {
-            spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-            OnShield = true;
+            shieldRenderer.enabled = true;
+            onShield = true;
             PlayerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;
             oneHeel = true;
@@ -153,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
     private void gameOver()
     {
-        if(!OnShield && Hp <= 0)
+        if(!onShield && Hp <= 0)
         {
             SceneManager.LoadScene("EndScene");
         }
@@ -173,7 +182,7 @@ public class PlayerController : MonoBehaviour
         {
             thisRenderer.enabled = true;
             unrivaledTimer = default;
-            OnUnrivaled = false;
+            onUnrivaled = false;
         }
     }
 }
