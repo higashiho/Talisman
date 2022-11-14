@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private SkillController skillController;            // スクリプト格納用
 
 
+
     public bool OnUnrivaled = false;                    // 無敵中か
     private float unrivaledTimer = 0;                   // 無敵時間用タイマー
     [SerializeField, HeaderAttribute("無敵時間最大値")]

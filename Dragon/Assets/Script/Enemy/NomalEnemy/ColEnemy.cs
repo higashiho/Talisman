@@ -41,6 +41,7 @@ public class ColEnemy : MonoBehaviour
 
     private float nockbackTime = 0.2f;          //ノックバックしている時間
 
+
     public bool FadeFlag{                       //カプセル化
     get { return  fadeFlag ; }
     private set { fadeFlag = value;}
@@ -69,13 +70,13 @@ public class ColEnemy : MonoBehaviour
     private void nockback()
     {
         float Power = 20.0f * Time.deltaTime;
-        if(pos.x <= playerPos.x)
+        if(pos.x <= playerPos.x)        //エネミーが左
             transform.Translate(Vector3.left * Power);
-        if(pos.x > playerPos.x)
+        if(pos.x > playerPos.x)         //エネミーが右
             transform.Translate(Vector3.right * Power);
-        if(pos.y <= playerPos.y)
+        if(pos.y <= playerPos.y)        //エネミーが下
             transform.Translate(Vector3.down * Power);
-        if(pos.y > playerPos.y)
+        if(pos.y > playerPos.y)         //エネミーが上
             transform.Translate(Vector3.up * Power);
 
         nockbackTime -= Time.deltaTime;
@@ -125,7 +126,6 @@ public class ColEnemy : MonoBehaviour
         {
             if(!playerController.OnUnrivaled)
             {
-            playerController.OnUnrivaled = true;
             playerController.Hp -= hitDamage; 
             createEnemy.spawnCount++;
             if(hitDeleteName == "Enemy")
