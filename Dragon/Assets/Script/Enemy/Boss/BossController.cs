@@ -13,8 +13,11 @@ public class BossController : MonoBehaviour
         Area3,
         Area4,
     }
-    [HeaderAttribute("移動速度")]
-    public float Speed;                                     // 自身のスピード
+    [SerializeField, HeaderAttribute("移動速度")]
+    private float speed;                                     // 自身のスピード
+    public float GetSpeed() {return speed;}
+    public void SetSpeed(float newSpeed) {speed = newSpeed;}
+
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
     // private List<Vector3> destinations;                  //目標座標
@@ -22,6 +25,7 @@ public class BossController : MonoBehaviour
    private int numericPreservation;                         // 前回randoNumber保存用
 
     private Vector3 pos;                                    // 自身の座標
+
 
    [SerializeField]
    private GameObject player;                                // player格納用
@@ -84,7 +88,7 @@ public class BossController : MonoBehaviour
 
     private void move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, speed * Time.deltaTime);
         
 
         if(pos.x >= targetCoordinates.x)
@@ -136,6 +140,8 @@ public class BossController : MonoBehaviour
             Judgment = "GameClear";
             pos = this.transform.position;
         }
+
+        Destroy(GetComponent<PolygonCollider2D>());
         this.transform.position = pos + Random.insideUnitSphere * m_shakePower;
 
         
@@ -146,7 +152,7 @@ public class BossController : MonoBehaviour
     private void reset()
     {
         colBoss.OnWall = false;
-        Speed = colBoss.speedGain;
+        speed = colBoss.GetNormalSpeed();
     }
 
     private IEnumerator lastAreaSkill()

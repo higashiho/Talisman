@@ -14,7 +14,8 @@ public class UsingRightClick : MonoBehaviour
 
     private Vector3 startPos;
 
-    private float speed = 5000.0f;                 // 格納スピード
+    [SerializeField, HeaderAttribute("格納スピード")]
+    private float speed = 5.0f;                 // 格納スピード
 
     private Color notSkill, onSkill;                // スキルカラー変更用
 

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495875c8b009a1b4e85b2cbf1259a8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
+  speed: 1
   targetCoordinates: {x: 300, y: 0, z: 0}
   player: {fileID: 0}
   attackSkill:
@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossController: {fileID: 9060541169768609610}
-  speedGain: 0
   OnWall: 0
   WallObj: {fileID: 0}
 --- !u!114 &512418799
