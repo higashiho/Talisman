@@ -34,11 +34,11 @@ public class StatusMiddleBossSpeed : MonoBehaviour
     */
     private void SpeedUp()
     {
-        bosscontroller.Speed = bosscontroller.Speed * acceleration;
+        bosscontroller.SetSpeed(bosscontroller.GetSpeed() * acceleration);
     }
 
     private void OnDestroy()
     {
-       bosscontroller.Speed = _speedPrev;
+       bosscontroller.SetSpeed(_speedPrev);
     }
 }

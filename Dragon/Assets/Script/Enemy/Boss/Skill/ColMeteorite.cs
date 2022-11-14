@@ -20,9 +20,9 @@ public class ColMeteorite : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(!playerController.OnUnrivaled)
+            if(!playerController.GetOnUnrivaled())
             {
-                playerController.OnUnrivaled = true;
+                playerController.SetOnUnrivaled(true);
                 playerController.Hp -= mteoriteController.Damege;
                 Destroy(mteoriteController.Ring.gameObject);
             }

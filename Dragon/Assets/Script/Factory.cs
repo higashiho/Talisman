@@ -6,14 +6,19 @@ public class Factory : MonoBehaviour
 {
     [Header("生成Prefabs")]
     [SerializeField] 
-    private Targeting bullet;                                      // 弾のプレファブ
+    private GameObject bullet;                                      // 弾のプレファブ
     [SerializeField]
-    private ShockWave shockWave;                                   // 衝撃波のプレファブ 
+    private GameObject shockWave;                                   // 衝撃波のプレファブ 
+
+    public GameObject GetBulletObj() {return bullet;}
+    public GameObject GetShockWaveobj() {return shockWave;}
 
 
-    private Queue<Targeting> bulletQueue;                          // 生成した球を格納するQueue
-    private Queue<ShockWave> shockWaveQueue;                       // 生成した衝撃波を格納するQueue                             
+    private Queue<GameObject> bulletQueue;                          // 生成した球を格納するQueue
+    private Queue<GameObject> shockWaveQueue;                       // 生成した衝撃波を格納するQueue                             
 
+    public Queue<GameObject> GetBulletQueue() {return bulletQueue;}
+    public Queue<GameObject> GetShockWaveQueue() {return shockWaveQueue;}
     private Vector3 setPos = new Vector3(100.0f, 100.0f, 0);        // 初期位置
 
     [Header("オブジェクト代入時使用用")]
@@ -24,87 +29,53 @@ public class Factory : MonoBehaviour
     void Awake()
     {
         // Queueの初期化
-        bulletQueue = new Queue<Targeting>();
-        shockWaveQueue = new Queue<ShockWave>();
+        bulletQueue = new Queue<GameObject>();
+        shockWaveQueue = new Queue<GameObject>();
        
     }
 
-    // 以下ホーミング弾
-    public Targeting LaunchBullet(Vector3 _pos)
+    public GameObject Launch(GameObject obj, Queue<GameObject> tmpQueue, Vector3 _pos)
     {
-        Targeting tmpBullet;
+        GameObject tmpObj;
 
         // キューの中身が足りない場合追加で生成
-        if (bulletQueue.Count <= 0) 
+        if (tmpQueue.Count <= 0) 
         {
-            tmpBullet = Instantiate(bullet, _pos,Quaternion.identity,transform);
-            bulletQueue.Enqueue(tmpBullet);
+            tmpObj = Instantiate(obj, _pos,Quaternion.identity,transform);
+            tmpQueue.Enqueue(tmpObj);
         }
         
 
         // Queueから一つ取り出す
-        tmpBullet = bulletQueue.Dequeue();
+        tmpObj = tmpQueue.Dequeue();
 
-        tmpBullet.ShowInStage(_pos);
+
+
+        if(tmpObj.gameObject.tag == "Bullet")
+        {
+            bulletShot.SetBullet(tmpObj);
+            tmpObj.GetComponent<Targeting>().ShowInStage(_pos);
+
+        }
+        else if(tmpObj.gameObject.tag == "ShockWave")
+        {
+            tmpObj.GetComponent<ShockWave>().ShowInStage(_pos);
+            tmpObj.GetComponent<ShockWave>().SetObjectPool(this.GetComponent<Factory>());
+            tmpObj.transform.parent = null;
+        }
 
         // 弾を表示
-        tmpBullet.gameObject.SetActive(true);
-
-        bulletShot.SetBullet(tmpBullet);
+        tmpObj.gameObject.SetActive(true);
         //呼び出し元に渡す
-        return tmpBullet;
+        return tmpObj;
     }
 
     // 回収処理
-    public void Collect(Targeting _bullet)
+    public void Collect(Queue<GameObject> tmpQueue, GameObject obj)
     {
         //弾のゲームオブジェクトを非表示
-        _bullet.gameObject.SetActive(false);
+        obj.gameObject.SetActive(false);
         //Queueに格納
-        bulletQueue.Enqueue(_bullet);
+        tmpQueue.Enqueue(obj);
     }
-    // 以上ホーミング弾
-
-    // 以下衝撃波
-    public ShockWave LaunchShockWave(Vector3 _pos)
-    {
-        ShockWave tmpShockWave;
-
-        // キューの中身が足りない場合追加で生成
-        if (shockWaveQueue.Count <= 0) 
-        {
-            tmpShockWave = Instantiate(shockWave, _pos,Quaternion.identity,transform);
-            shockWaveQueue.Enqueue(tmpShockWave);
-        }
-        
-
-        // Queueから一つ取り出す
-        tmpShockWave = shockWaveQueue.Dequeue();
-
-        tmpShockWave.ShowInStage(_pos);
-        
-        tmpShockWave.gameObject.transform.parent = null;
-
-        tmpShockWave.SetObjectPool(this.GetComponent<Factory>());
-
-        tmpShockWave.gameObject.SetActive(true);
-
-        
-
-
-        //呼び出し元に渡す
-        return tmpShockWave;
-    }
-
-    // 回収処理
-    public void Collect(ShockWave _shockWave)
-    {
-        //弾のゲームオブジェクトを非表示
-        _shockWave.gameObject.SetActive(false);
-        
-        //Queueに格納
-        shockWaveQueue.Enqueue(_shockWave);
-    }
-    // 以上衝撃波
-
 }

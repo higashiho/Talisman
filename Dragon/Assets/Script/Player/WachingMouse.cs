@@ -39,6 +39,7 @@ public class WachingMouse : MonoBehaviour
             var lookPoint = mousPos.GetPoint(distance);
             transform.LookAt(transform.localPosition + Vector3.forward, lookPoint - transform.localPosition);
         }
+    
     }
 
     private void OnEnable()

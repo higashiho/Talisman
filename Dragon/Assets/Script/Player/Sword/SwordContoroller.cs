@@ -41,6 +41,14 @@ public class SwordContoroller : MonoBehaviour
 
     private ShockWave shockWaveObj;         // 衝撃波オブジェク
 
+    [SerializeField, HeaderAttribute("player")]
+    private SpriteRenderer player;              // スプライトレンダラー格納用
+
+    public bool CoroutineBool{
+        get { return coroutineBool ;}
+        set { coroutineBool = value ;}
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,14 +76,19 @@ public class SwordContoroller : MonoBehaviour
         // スキルアイテムが指定個数ある場合
         else
         {
+
+            
             if(Input.GetMouseButton(0))
             {
                 onTime += Time.deltaTime;
                 // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
+                player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+
             }
 
             if(!coroutineBool && Input.GetMouseButtonUp(0))
             {
+                player.color = new Color(1, 1, 1, 1.0f);
                 nomalAttack();
                 shockWave();
             }
