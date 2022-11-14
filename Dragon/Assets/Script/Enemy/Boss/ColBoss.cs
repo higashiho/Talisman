@@ -52,26 +52,31 @@ public class ColBoss : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        int m_damage = 1;
         if(other.gameObject.tag == "Bullet")
         {
             onDamage = true;
-            bossController.Hp -= other.gameObject.GetComponent<BulletController>().Attack;
+            bossController.SetHp(other.gameObject.GetComponent<BulletController>().Attack);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
         if(other.gameObject.name == "Sword")
         {
             onDamage = true;
-            bossController.Hp--;
+            bossController.SetHp(m_damage);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
 
         if(other.gameObject.name == "RotateSword")
         {
             onDamage = true;
-            bossController.Hp -= rSwordDamage;
+            bossController.SetHp(rSwordDamage);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
         if(other.gameObject.tag == "ShockWave")
         {
             onDamage = true;
-            bossController.Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+            bossController.SetHp(other.gameObject.GetComponent<ShockWave>().Attack);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
     }
     private void OnCollisionEnter2D(Collision2D col)

@@ -40,7 +40,10 @@ public class BossController : MonoBehaviour
     public float[] Areas = new float[4];                    // ステージのエリア分け用
 
    [HeaderAttribute("ヒットポイント"), Range(300, 1000)]
-   public int Hp;
+   private int hp;
+    public int GetHp() {return hp;}
+    public void SetHp(int set,bool heel = false) 
+    {if(!heel)hp -= set; else hp += set;}
 
    private GameObject attackObject = default;               // 攻撃スキルオブジェクト
 
@@ -71,15 +74,15 @@ public class BossController : MonoBehaviour
     {
         InvokeRepeating("attack", attackTime, attackTime);
 
-        Hp = randomBossHp.RandomHp();
+        hp = randomBossHp.RandomHp();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Hp > 0)
+        if(hp > 0)
             move();
-        else if(Hp <= 0)
+        else if(hp <= 0)
             gameClear();
 
         if(colBoss.WallObj == null && colBoss.OnWall)
@@ -97,7 +100,7 @@ public class BossController : MonoBehaviour
     // 攻撃挙動
     private void attack()
     {
-        if(Hp > 0){
+        if(hp > 0){
             pos = this.transform.position;
             // エリア４にいるときの敵の攻撃
             if(pos.x > Areas[3])

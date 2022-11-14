@@ -75,7 +75,7 @@ public class ColMiddleBoss : MonoBehaviour
             if(other.gameObject.tag == "Boss")
             {
                 // なんか融合させるためのフラグとか???
-                bosscontroller.Hp += _hp;   // 中ボスの残りHPをボスのHPに加算
+                bosscontroller.SetHp(_hp, true);   // 中ボスの残りHPをボスのHPに加算
                 createrandom._Counter--;
                 Destroy(this.gameObject);
             }
