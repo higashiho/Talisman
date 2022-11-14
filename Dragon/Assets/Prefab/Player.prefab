@@ -49,6 +49,7 @@ MonoBehaviour:
   renderer: {fileID: 1003857938}
   collider: {fileID: 1003857937}
   skillController: {fileID: 1506668392}
+  player: {fileID: 1841200581054410842}
 --- !u!1 &581746250
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackWait: 0.3
   renderer: {fileID: 581746252}
-  collider: {fileID: 0}
+  collider: {fileID: 3001037459413446477}
   skillController: {fileID: 1506668392}
   objectPool: {fileID: 0}
   onTime: 0

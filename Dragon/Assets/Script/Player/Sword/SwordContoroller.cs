@@ -24,7 +24,7 @@ public class SwordContoroller : MonoBehaviour
     [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
     private new SpriteRenderer renderer;        // SpriteRendere格納用
     [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
-    private new CircleCollider2D collider;
+    private new BoxCollider2D collider;
 
 
     [SerializeField]
@@ -71,6 +71,8 @@ public class SwordContoroller : MonoBehaviour
         // スキルアイテムが指定個数ある場合
         else
         {
+
+            
             if(Input.GetMouseButton(0))
             {
                 onTime += Time.deltaTime;
@@ -81,7 +83,7 @@ public class SwordContoroller : MonoBehaviour
 
             if(!coroutineBool && Input.GetMouseButtonUp(0))
             {
-                player.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+                player.color = new Color(1, 1, 1, 1.0f);
                 nomalAttack();
                 shockWave();
             }
