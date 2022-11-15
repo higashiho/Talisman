@@ -296,7 +296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: {x: 0, y: 0, z: 0}
-  Hp: 3
   heelSheld: 10
   shieldRenderer: {fileID: 2243393572723266178}
   skillController: {fileID: 2243393573469111190}
@@ -418,7 +417,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  maxTimer: 0.3
+  maxTimer: 0.1
 --- !u!1 &2243393573508983324
 GameObject:
   m_ObjectHideFlags: 0

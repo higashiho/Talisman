@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
         get { return playerSpeed; }
 		set { playerSpeed = value; }
         }
-    public int hp;                                      //ヒットポイント
+    private int hp = 3;                                      //ヒットポイント
     public int Hp {
         get{return hp;}
         set{hp = value;}
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         move();
 

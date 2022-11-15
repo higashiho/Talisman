@@ -64,7 +64,7 @@ public class SwordContoroller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         attack();
     }
