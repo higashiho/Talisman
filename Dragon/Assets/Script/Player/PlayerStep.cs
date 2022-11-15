@@ -13,6 +13,7 @@ public class PlayerStep : MonoBehaviour
     [SerializeField, HeaderAttribute("押す間隔")]
     private float[] onTimer = new float[4];     // ダブルクリックの間隔
     
+    [SerializeField, HeaderAttribute("ステップが出せる押し間隔")]
     private float maxTimer = 0.3f;              // 最大待ち時間
 
     private bool nowStep = false;               // ステップ最中

@@ -21,7 +21,7 @@ public class ColHitStop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boss")
+        if(other.gameObject.tag == "Enemy")
         {
             camera.gameObject.GetComponent<HitStop>().SlowDown();
         }
