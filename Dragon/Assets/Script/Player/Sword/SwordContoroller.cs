@@ -39,7 +39,7 @@ public class SwordContoroller : MonoBehaviour
     private float onTime = 0;               // 押している時間
     private float maxTime = 5.0f;           // 衝撃波が変わる時間
 
-    private ShockWave shockWaveObj;         // 衝撃波オブジェク
+    private GameObject shockWaveObj;         // 衝撃波オブジェク
 
     [SerializeField, HeaderAttribute("player")]
     private SpriteRenderer player;              // スプライトレンダラー格納用
@@ -48,6 +48,9 @@ public class SwordContoroller : MonoBehaviour
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
     }
+
+    private bool onCharge = false;              // チャージ中かどうか
+    public bool GetOnCharge() {return onCharge;}
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +69,7 @@ public class SwordContoroller : MonoBehaviour
     private void attack()
     {
         // スキルアイテムがない場合
-        if(skillController.Skills[4] <= OnShockSkill)
+        if(skillController.Skills[4] < OnShockSkill)
         {
             if (!coroutineBool && Input.GetMouseButtonDown(0))
             {
@@ -83,14 +86,15 @@ public class SwordContoroller : MonoBehaviour
                 onTime += Time.deltaTime;
                 // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
                 player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-
+                onCharge = true;
             }
 
-            if(!coroutineBool && Input.GetMouseButtonUp(0))
+            else if(!coroutineBool && Input.GetMouseButtonUp(0))
             {
                 player.color = new Color(1, 1, 1, 1.0f);
                 nomalAttack();
                 shockWave();
+                onCharge = false;
             }
         }
     }
@@ -105,14 +109,14 @@ public class SwordContoroller : MonoBehaviour
     // 衝撃波を出す攻撃
     private void shockWave()
     {
-        shockWaveObj = objectPool.LaunchShockWave(this.transform.position);
+        shockWaveObj = objectPool.Launch(objectPool.GetShockWaveobj(), objectPool.GetShockWaveQueue(),this.transform.position);
 
         skillController.Skills[4] -= OnShockSkill;
         
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
         if(onTime >= maxTime)
         {
-            shockWaveObj.SetOnSizeUp(true);
+            shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     
             Vector3 startScale = new Vector3(0.8f, 0.2f,1.0f);      // 最初の大きさ
             shockWaveObj.transform.localScale = startScale;
