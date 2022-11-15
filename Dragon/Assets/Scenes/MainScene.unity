@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 18878248}
   - component: {fileID: 18878247}
   - component: {fileID: 18878250}
+  - component: {fileID: 18878251}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8519,9 +8520,9 @@ PrefabInstance:
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 1398843203}
-    - target: {fileID: 2243393573469111195, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: maxTimer
-      value: 0.1
+    - target: {fileID: 2243393573469111194, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111198, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: objectPool
@@ -8530,6 +8531,14 @@ PrefabInstance:
     - target: {fileID: 2243393573469111211, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243393573722253488, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243393573722253488, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}

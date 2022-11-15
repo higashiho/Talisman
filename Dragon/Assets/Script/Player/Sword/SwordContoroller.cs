@@ -50,7 +50,11 @@ public class SwordContoroller : MonoBehaviour
     }
 
     private bool onCharge = false;              // チャージ中かどうか
-    public bool GetOnCharge() {return onCharge;}
+    public bool OnCharge {
+        get { return onCharge; }
+		set { onCharge = value; }
+        }
+
 
     // Start is called before the first frame update
     void Start()
@@ -80,20 +84,27 @@ public class SwordContoroller : MonoBehaviour
         else
         {
 
-            
+            float m_downSpeed = 0.5f;
+            var m_nomalSpeed = player.GetComponent<PlayerController>().NomalPlayerSpeed;
             if(Input.GetMouseButton(0))
             {
                 onTime += Time.deltaTime;
                 // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
                 player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                if(player.GetComponent<PlayerController>().OnShield)
+                    player.GetComponent<PlayerController>().PlayerSpeed
+                     = m_nomalSpeed * m_downSpeed; 
                 onCharge = true;
             }
 
-            else if(!coroutineBool && Input.GetMouseButtonUp(0))
+            else if(Input.GetMouseButtonUp(0))
             {
                 player.color = new Color(1, 1, 1, 1.0f);
-                nomalAttack();
-                shockWave();
+                if(!coroutineBool)
+                {
+                    nomalAttack();
+                    shockWave();
+                }
                 onCharge = false;
             }
         }

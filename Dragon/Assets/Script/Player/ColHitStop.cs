@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ColHitStop : MonoBehaviour
 {
-    private GameObject camera;
+    private GameObject mainCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.FindWithTag("MainCamera");
+        mainCamera = GameObject.FindWithTag("MainCamera");
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class ColHitStop : MonoBehaviour
         
         if(other.gameObject.tag == "Enemy")
         {
-            camera.gameObject.GetComponent<HitStop>().SlowDown();
+            mainCamera.gameObject.GetComponent<HitStop>().SlowDown();
         }
     }
 }
