@@ -1124,6 +1124,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4540412715519475234, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540412715519475234, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540412715519475234, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070384169435471170, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070384169435471170, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070384169435471170, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
 --- !u!1 &1048611352
