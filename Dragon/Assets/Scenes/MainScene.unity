@@ -222,6 +222,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1713731358}
   offset: {x: 0, y: 0, z: -1}
+--- !u!114 &18878251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18878246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a47a3e4b92370748a1d7f2cd0114d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 0
+  slowTime: 0.05
+  onSlowDown: 0
 --- !u!1 &61119335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3861,7 +3876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1563607009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8504,6 +8519,10 @@ PrefabInstance:
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 1398843203}
+    - target: {fileID: 2243393573469111195, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: maxTimer
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111198, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: objectPool
       value: 
