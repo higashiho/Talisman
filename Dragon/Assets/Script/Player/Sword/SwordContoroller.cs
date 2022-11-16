@@ -78,6 +78,7 @@ public class SwordContoroller : MonoBehaviour
         renderer.enabled = false;
         collider.enabled = false;
         cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
+        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
     }
 
     // Update is called once per frame
@@ -144,8 +145,11 @@ public class SwordContoroller : MonoBehaviour
 
         skillController.Skills[4] -= OnShockSkill;
         
+        
+        // サイズが上がる場合に必要なスキル数
+        int m_onScaleUp = 4;
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
-        if(onTime >= maxTime)
+        if(onTime >= maxTime && skillController.Skills[4] >= m_onScaleUp)
         {
             shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     

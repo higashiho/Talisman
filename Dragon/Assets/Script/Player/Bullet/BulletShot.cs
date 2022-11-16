@@ -42,7 +42,7 @@ public class BulletShot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
     }
 
     // Update is called once per frame
