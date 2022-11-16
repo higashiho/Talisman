@@ -22,6 +22,7 @@ public class ColMiddleBoss : MonoBehaviour
     private GameObject MiddleBossCreater;
     private GameObject EnemyPool;
 
+
     // 以下スクリプト参照用
     private CreateMiddleBoss createmiddleboss;
     private MoveMiddleBoss movemiddleboss;
@@ -29,11 +30,13 @@ public class ColMiddleBoss : MonoBehaviour
     private FactoryEnemy factoryenemy;
     private FindBoss findBoss;
 
+
     private GameObject player;
     
 
     void Start()
     {
+
         FindBoss = GameObject.Find("BossInstance");
         findBoss = FindBoss.GetComponent<FindBoss>();
         EnemyPool = GameObject.Find("EnemyPool");
@@ -56,6 +59,7 @@ public class ColMiddleBoss : MonoBehaviour
                 //Instantiate(item, this.transform.position, Quaternion.identity);
                 createmiddleboss._time = 0;
                 createmiddleboss._Counter--;
+                discriminationPool();
             
             }
         }
@@ -87,7 +91,7 @@ public class ColMiddleBoss : MonoBehaviour
         }
         if(other.gameObject.tag == "ShockWave")
         {
-            _hp -= other.GetComponent<ShockWave>().Attack;
+            _hp -= other.gameObject.GetComponent<ShockWave>().Attack;
         }
         //if(movemiddleboss.Marge_OK)
         //{
