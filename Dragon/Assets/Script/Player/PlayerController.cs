@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerSpeed;                         // Playerの移動速度
     private Vector3 pos;                                // playerの位置を保存する変数
 
-    public Vector3 PlayerSpeed {
+    public Vector3 PlayerSpeed 
+    {
         get { return playerSpeed; }
 		set { playerSpeed = value; }
-        }
+    }
+    [SerializeField]
     private int hp = 3;                                      //ヒットポイント
     public int Hp {
         get{return hp;}

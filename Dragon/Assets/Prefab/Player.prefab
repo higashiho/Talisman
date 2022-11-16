@@ -5141,8 +5141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: {x: 0, y: 0, z: 0}
+  hp: 3
   heelSheld: 10
-  shieldRenderer: {fileID: 0}
+  shieldRenderer: {fileID: 4201529300902395629}
   skillController: {fileID: 2243393573469111190}
   maxTimer: 2
   thisRenderer: {fileID: 2243393573469111194}
@@ -5628,6 +5629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6720401154701345890}
+  - component: {fileID: 7981405415401042577}
   m_Layer: 0
   m_Name: Shelds
   m_TagString: Untagged
@@ -5653,6 +5655,23 @@ Transform:
   m_Father: {fileID: 2243393573469111173}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7981405415401042577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201529300902395629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4163431c60c79ec4c9ad5474ed9959ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldRenderer:
+  - {fileID: 3677534621453398326}
+  - {fileID: 7674237406951439382}
+  - {fileID: 3271583345781866389}
+  player: {fileID: 2243393573469111196}
 --- !u!1 &4547707623169203110
 GameObject:
   m_ObjectHideFlags: 0
