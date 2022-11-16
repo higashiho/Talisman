@@ -25,19 +25,25 @@ public class SkillSelection : MonoBehaviour
 
     [SerializeField]
     private WallSkill wallSkill;                                // スクリプト格納用
+
+    private Cutin cutin;
     // Start is called before the first frame update
     void Start()
     {
-        
+        cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        select();
+        if(!cutin.OnCutin)
+        {
+            select();
 
-        if(usingWall || usingSowrd)
-            onSkill();
+            if(usingWall || usingSowrd)
+                onSkill();
+        }
     }
 
     // どちらのスキルを使うか

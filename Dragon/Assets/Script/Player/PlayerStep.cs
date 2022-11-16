@@ -23,12 +23,17 @@ public class PlayerStep : MonoBehaviour
     private float coolTimer = 10.0f;            // クールタイム時間
 
     public float GetCoolTimer() {return coolTimer;}
+
+    private Cutin cutin;
     // Start is called before the first frame update
     void Start()
     {
         rd2D = GetComponent<Rigidbody2D>();
         bool[] onSteps = {false};
         float[] onTimer = {0.0f};
+
+        cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
+
     }
 
     // Update is called once per frame
@@ -36,7 +41,7 @@ public class PlayerStep : MonoBehaviour
     {
         if(noStep)
             coolTime();
-        else
+        else if(!cutin.OnCutin)
             step();
     }
 

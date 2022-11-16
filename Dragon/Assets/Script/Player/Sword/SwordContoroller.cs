@@ -55,18 +55,21 @@ public class SwordContoroller : MonoBehaviour
 		set { onCharge = value; }
         }
 
+    private Cutin cutin;
 
     // Start is called before the first frame update
     void Start()
     {
         renderer.enabled = false;
         collider.enabled = false;
+        cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        attack();
+        if(!cutin.OnCutin)
+            attack();
     }
 
     //　攻撃挙動
@@ -91,6 +94,7 @@ public class SwordContoroller : MonoBehaviour
                 onTime += Time.deltaTime;
                 // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
                 player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                // Shieldがある場合スピードダウン
                 if(player.GetComponent<PlayerController>().OnShield)
                     player.GetComponent<PlayerController>().PlayerSpeed
                      = m_nomalSpeed * m_downSpeed; 
