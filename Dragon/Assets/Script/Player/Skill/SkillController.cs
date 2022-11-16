@@ -52,23 +52,28 @@ public class SkillController : MonoBehaviour
 
     [SerializeField]
     private FindBoss findBoss;                                  // スクリプト取得用
+
+    private Cutin cutin;
+
     // Awake is called before the first frame update
     void Awake()
     {
         bool[] nowSkiil = {true, true, true, true, true};
         int[] Skills = {0, 0, 0, 0, 0};
         target = "Boss";
+        cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
+        findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
     }
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(boss != null)
             skillControl();
 
             
-        if(findBoss.GetOnFind())
+        else if(findBoss.GetOnFind())
         {
             boss = findBoss.GetBoss();
             bossController = findBoss.GetBossController();
@@ -109,7 +114,7 @@ public class SkillController : MonoBehaviour
             onWallSkill = false;
 
 
-        if(targeting)
+        if(targeting && cutin.OnCutin)
             changeTarget();
     }
 

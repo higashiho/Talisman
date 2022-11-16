@@ -17,7 +17,7 @@ public class WachingMouse : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // スクリプトを持っているオブジェクトのタグが衝撃波ではない場合ずっと見る
         if(tagJacci.gameObject.tag != "ShockWave")

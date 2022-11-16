@@ -5,20 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public Vector3 PlayerSpeed;                         // Playerの移動速度
+    [SerializeField]
+    private Vector3 playerSpeed;                         // Playerの移動速度
     private Vector3 pos;                                // playerの位置を保存する変数
 
-
-    public int Hp;                                      //ヒットポイント
-    private int heel = 2;                               //シールドが割れた時点での回復
+    public Vector3 PlayerSpeed {
+        get { return playerSpeed; }
+		set { playerSpeed = value; }
+        }
+    private int hp = 3;                                      //ヒットポイント
+    public int Hp {
+        get{return hp;}
+        set{hp = value;}
+    }
+       private int heel = 2;                               //シールドが割れた時点での回復
 
     private bool onShield = true;                       //シールドがあるか
-    public bool GetOnShield() {return onShield;}
+    public bool OnShield {
+        get { return onShield; }
+		set { onShield = value; }
+        }
+
 
     private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f,0);            //シールドがない時の移動スピード
     private Vector3 nomalPlayerSpeed = new Vector3(7.0f, 7.0f,0);         //  通常時スピード
     private Vector3 highPlayerSpeed = new Vector3(10.0f, 10.0f,0);          // スピードアップスキル取得時スピード
-
+    public Vector3 NomalPlayerSpeed{
+        get { return nomalPlayerSpeed; }
+		set { nomalPlayerSpeed = value; }
+        }
     private const int MAX_HP = 3;                                           // HP最大値
     [SerializeField, HeaderAttribute("シールド回復時間")]
     private float heelSheld;                     //シールド回復時間
@@ -66,7 +81,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         move();
 
@@ -82,9 +97,9 @@ public class PlayerController : MonoBehaviour
     private void speed()
     {
         if(skillController.GetSpeedUp() && onShield)
-            PlayerSpeed = highPlayerSpeed;
-        else if(onShield && !sword.GetOnCharge())
-            PlayerSpeed = nomalPlayerSpeed;
+            playerSpeed = highPlayerSpeed;
+        else if(onShield && !sword.OnCharge)
+            playerSpeed = nomalPlayerSpeed;
     }
 
     private void move()
@@ -93,21 +108,21 @@ public class PlayerController : MonoBehaviour
         pos = transform.position;   // 現在の位置を保存
 
         if (Input.GetKey(KeyCode.W)){       // Wキーを押している間
-            pos.y += PlayerSpeed.y * Time.deltaTime;    // 上移動
+            pos.y += playerSpeed.y * Time.deltaTime;    // 上移動
             
         }
         else if (Input.GetKey(KeyCode.S))   // Sキー
         {
-            pos.y -= PlayerSpeed.y * Time.deltaTime;    // 下移動
+            pos.y -= playerSpeed.y * Time.deltaTime;    // 下移動
         }
         if (Input.GetKey(KeyCode.A))        // Aキー
         {
-            pos.x -= PlayerSpeed.x * Time.deltaTime;    // 左移動
+            pos.x -= playerSpeed.x * Time.deltaTime;    // 左移動
             
         }
         else if (Input.GetKey(KeyCode.D))   // Dキー
         {
-            pos.x += PlayerSpeed.x * Time.deltaTime;    // 右移動
+            pos.x += playerSpeed.x * Time.deltaTime;    // 右移動
             
         }
 
@@ -127,7 +142,7 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
 
         // シールドがある場合でHpが０になった場合
-        if(Hp <= 0 && onShield)
+        if(hp <= 0 && onShield)
             onShield = false; 
         else 
             gameOver();
@@ -137,8 +152,8 @@ public class PlayerController : MonoBehaviour
     private void shield()
     {
         shieldRenderer.enabled = false;
-        Hp = heel;
-        PlayerSpeed = noShieldSpeed;
+        hp = heel;
+        playerSpeed = noShieldSpeed;
     }
     // シールド回復
     private void shieldHeel()
@@ -153,16 +168,16 @@ public class PlayerController : MonoBehaviour
         {
             shieldRenderer.enabled = true;
             onShield = true;
-            PlayerSpeed = nomalPlayerSpeed;
+            playerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;
             oneHeel = true;
-            Hp = MAX_HP;
+            hp = MAX_HP;
         }
     }
 
     private void gameOver()
     {
-        if(!onShield && Hp <= 0)
+        if(!onShield && hp <= 0)
         {
             SceneManager.LoadScene("EndScene");
         }

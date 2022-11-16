@@ -21,7 +21,7 @@ public class HPShake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!playerController.GetOnShield()){
+        if(!playerController.OnShield){
             shakeHp();
         }
     }

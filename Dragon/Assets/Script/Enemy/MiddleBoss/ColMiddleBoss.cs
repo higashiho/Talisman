@@ -67,7 +67,7 @@ public class ColMiddleBoss : MonoBehaviour
         }
         if(other.gameObject.tag == "Bullet")
         {
-            _hp -= bulletcontroller.Attack; 
+            _hp -= other.gameObject.GetComponent<BulletController>().Attack; 
         }
         if(movemiddleboss.Marge_OK)
         {

@@ -26,7 +26,6 @@ public class BossController : MonoBehaviour
 
     private Vector3 pos;                                    // 自身の座標
 
-
    [SerializeField]
    private GameObject player;                                // player格納用
 
@@ -63,12 +62,14 @@ public class BossController : MonoBehaviour
 
     private float alpha = 1;                                // 透明度
 
+    private GameObject cutin;                               // カットインオブジェクト
     // Start is called before the first frame update
     void Awake()
     {
         float[] areas = {0.0f, 75.0f, 150.0f, 225.0f};
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindWithTag("Player");
+        cutin = GameObject.Find("Cutin");
     }
     void Start()
     {
@@ -77,8 +78,13 @@ public class BossController : MonoBehaviour
         hp = randomBossHp.RandomHp();
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        cutin.GetComponent<Cutin>().CutIn(pos, Areas);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         if(hp > 0)
             move();

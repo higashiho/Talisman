@@ -295,8 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc627927acd94ed43b43199f44323d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: {x: 7, y: 7, z: 0}
-  Hp: 3
+  playerSpeed: {x: 0, y: 0, z: 0}
   heelSheld: 10
   shieldRenderer: {fileID: 2243393572723266178}
   skillController: {fileID: 2243393573469111190}
@@ -418,6 +417,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  maxTimer: 0.1
 --- !u!1 &2243393573508983324
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +631,7 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 7
+  m_FrontSortingOrder: 6
   m_BackSortingOrder: -1
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
@@ -883,7 +883,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4547707623169203110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.235, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
