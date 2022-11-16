@@ -34,6 +34,5 @@ public class InstanceBoss : MonoBehaviour
     {
         Instantiate(bossPrefab, this.transform.position, Quaternion.identity);
         findBoss.BossFind();
-        Destroy(this.gameObject, destroyTime);
     }
 }
