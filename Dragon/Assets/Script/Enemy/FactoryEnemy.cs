@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,93 +5,81 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 // オブジェクトプーリング用
+// 最初に中ボスをそれぞれ生成
+// Listに入れとく
 public class FactoryEnemy : MonoBehaviour
 {
-    private string key;     // Addressablesのアドレス指定用
-    private AsyncOperationHandle<GameObject>[] loadEnemyChaseOp;    // addressablesハンドル用
-    private AsyncOperationHandle<GameObject>[] loadMidBossOp;
 
-    private string[] keyMidBossName = new string[]
-    {
-        "MiddleBoss1",
-        "MiddleBoss2",
-        "MiddleBoss3"
-    };
+    // オブジェクトアタッチ用
+    [HeaderAttribute("MiddleBossCreaterアタッチ"), SerializeField]
+    private GameObject MiddleBossCreater;
 
-    private string[] keyMobName = new string[]
-    {
-        "EnemyChase",
-        "EnemyChase2",
-        "EnemyChase3",
-        "EnemyChase4",
-        "EnemyChase5"
-    };
+    // スクリプト参照用
+    private CreateMiddleBoss createmiddleboss;
+
+    AsyncOperationHandle<GameObject> loadOp;
+    
+    public List<GameObject> middleBossPool1 = new List<GameObject>();   // 中ボス1プール
+    public List<GameObject> middleBossPool2= new List<GameObject>();
+    public List<GameObject> middleBossPool3 = new List<GameObject>();
+
+    
+
+    public List<GameObject> mobEnemyPool = new List<GameObject>();      // モブ敵プール
+
+    public bool onceProcessing = false;
 
     void Awake()
     {
-        
+        StartCoroutine(LoadAsset("MiddleBoss1", 2, middleBossPool1));
+        StartCoroutine(LoadAsset("MiddleBoss2", 2, middleBossPool2));
+        StartCoroutine(LoadAsset("MiddleBoss3", 2, middleBossPool3));
     }
 
-    private IEnumerator loadAsset()
+
+    // オブジェクトを生成して透明にしてプーリングする
+    public IEnumerator LoadAsset(string key, int numMax, List<GameObject> PoolList)
     {
-        for(int i = 0; i < keyMobName.Length; i++)
-        {
-            loadEnemyChaseOp[i] = Addressables.LoadAssetAsync<GameObject>(key);
-            yield return loadEnemyChaseOp[i];
-
-            if(loadEnemyChaseOp[i].Result != null)
-            {
-                GameObject objEnemy = Instantiate(loadEnemyChaseOp[i].Result,this.transform);
-                objEnemy.SetActive(false);
-            }
-        }
-
-        for(int j = 0; j < keyMidBossName.Length; j++)
-        {
-            loadMidBossOp[j] = Addressables.LoadAssetAsync<GameObject>(key);
-            yield return loadMidBossOp[j];
-
-            if(loadMidBossOp[j].Result != null)
-            {
-                GameObject objMidBoss = Instantiate(loadMidBossOp[j].Result,this.transform);
-                objMidBoss.SetActive(false);
-            }
-        }
-    }
-    /*private IEnumerator loadMob()
-    {
-        int numMax = 30;
         for(int i = 0; i < numMax; i++)
         {
-            int index = UnityEngine.Random.Range(0, keyMobName.Length);
-            key = keyMobName[index];
-            
+            loadOp = Addressables.LoadAssetAsync<GameObject>(key);
+            yield return loadOp;
+
+            if(loadOp.Result != null)
+            {
+                var newObj = Instantiate(loadOp.Result, transform);
+                newObj.name = key;
+                newObj.SetActive(false);
+                PoolList.Add(newObj);
+            }
         }
     }
-    private IEnumerator loadMiddleBoss()
-    {
-       int numMax = 5;
-       for(int i = 0; i < numMax; i++)
-       {
-            int index = UnityEngine.Random.Range(0,keyMidBossName.Length);
-            key = keyMidBossName[index];
-            obj.SetActive(false);
-       }
-    }*/
 
-    void Start()
+    // プールの中身があるかないか判定
+    public GameObject checkListElement(string key, List<GameObject> PoolList,Vector3 pos)
     {
-        StartCoroutine(loadAsset());
-        
-        /*
-        instantiateMob();
-        instantiateMiddleBoss();
-        */
+        GameObject poolObj;
+
+        // Listの中身が足りない場合追加で生成
+        if(PoolList.Count <= 0)
+        {   if(!onceProcessing)
+            {
+                onceProcessing = true;
+            }
+        }
+
+       // 使う
+
+
+        return null;
+
     }
 
-    
-    void Update()
+    public void CollectPoolObject(GameObject poolObj, List<GameObject> PoolList)
     {
-        
+        // オブジェクトを非表示
+        poolObj.gameObject.SetActive(false);
+        // Listに格納
+        PoolList.Add(poolObj);
     }
 }

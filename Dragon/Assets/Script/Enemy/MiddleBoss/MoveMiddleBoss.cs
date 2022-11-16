@@ -22,6 +22,7 @@ public class MoveMiddleBoss : MonoBehaviour
     [SerializeField]
     private Vector3 _bossPos;
 
+
     void Start()
     {
         _time = 0;
@@ -56,4 +57,5 @@ public class MoveMiddleBoss : MonoBehaviour
         //agent.SetDestination(targetCoordinates.transform.position);
         transform.position = Vector2.MoveTowards(_pos, _bossPos, speed * Time.deltaTime);
     }
+
 }

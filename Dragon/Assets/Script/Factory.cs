@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 
 public class Factory : MonoBehaviour
 {
@@ -10,15 +13,17 @@ public class Factory : MonoBehaviour
     [SerializeField]
     private ShockWave shockWave;                                   // 衝撃波のプレファブ 
 
-
+    
     private Queue<Targeting> bulletQueue;                          // 生成した球を格納するQueue
     private Queue<ShockWave> shockWaveQueue;                       // 生成した衝撃波を格納するQueue                             
-
     private Vector3 setPos = new Vector3(100.0f, 100.0f, 0);        // 初期位置
 
     [Header("オブジェクト代入時使用用")]
     [SerializeField]
     private BulletShot bulletShot;
+
+
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -106,5 +111,6 @@ public class Factory : MonoBehaviour
         shockWaveQueue.Enqueue(_shockWave);
     }
     // 以上衝撃波
+
 
 }
