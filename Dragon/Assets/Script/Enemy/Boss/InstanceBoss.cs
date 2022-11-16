@@ -15,7 +15,6 @@ public class InstanceBoss : MonoBehaviour
     [SerializeField]
     private FindBoss findBoss;                                  // スクリプト取得用
 
-    private float destroyTime = 5.0f;                           // 五秒後に削除
 
     // Start is called before the first frame update
     void Start()
