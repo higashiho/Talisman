@@ -27,12 +27,8 @@ public class ChargeController : MonoBehaviour
 
     //チャージ中のエフェクト再生
     private void chargeEfects()
-    {     //剣を振っていない、                 左クリックを押している間、       ショックウェーブアイテムが足りている
-        // if(!swordContoroller.CoroutineBool && Input.GetMouseButtonDown(0) && skillController.Skills[4] > swordContoroller.onshockskill)
-        // {
-        //     chargeEfect.Play();
-        // }
-
+    { 
+        //チャージ中なら
         if(swordContoroller.OnCharge)
         {
             chargeEfect.Play();

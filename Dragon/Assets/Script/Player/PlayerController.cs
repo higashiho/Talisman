@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerSpeed;                         // Playerの移動速度
     private Vector3 pos;                                // playerの位置を保存する変数
 
-    public Vector3 PlayerSpeed {
+    public Vector3 PlayerSpeed 
+    {
         get { return playerSpeed; }
 		set { playerSpeed = value; }
-        }
+    }
+    [SerializeField]
     private int hp = 3;                                      //ヒットポイント
     public int Hp {
         get{return hp;}
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;              // スプライトレンダラー格納用
     [SerializeField]
-    private SpriteRenderer shieldRenderer;              // スプライトレンダラー格納用
+    private GameObject shieldRenderer;              // スプライトレンダラー格納用
 
     private bool oneHeel = true;                        //ヒール一回だけ処理
 
@@ -151,7 +153,7 @@ public class PlayerController : MonoBehaviour
     //シールドがある時Hpを下回る攻撃を受けた場合
     private void shield()
     {
-        shieldRenderer.enabled = false;
+        shieldRenderer.SetActive(false);
         hp = heel;
         playerSpeed = noShieldSpeed;
     }
@@ -166,7 +168,7 @@ public class PlayerController : MonoBehaviour
         heelSheld -= Time.deltaTime;
         if(heelSheld <= 0)
         {
-            shieldRenderer.enabled = true;
+            shieldRenderer.SetActive(true);
             onShield = true;
             playerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;

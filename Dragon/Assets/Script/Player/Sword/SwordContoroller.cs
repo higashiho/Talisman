@@ -102,29 +102,30 @@ public class SwordContoroller : MonoBehaviour
         else
         {
 
-            float m_downSpeed = 0.5f;
-            var m_nomalSpeed = player.GetComponent<PlayerController>().NomalPlayerSpeed;
-            if(Input.GetMouseButton(0))
+            if(!coroutineBool)
             {
-                onTime += Time.deltaTime;
-                // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
-                player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-                // Shieldがある場合スピードダウン
-                if(player.GetComponent<PlayerController>().OnShield)
-                    player.GetComponent<PlayerController>().PlayerSpeed
-                     = m_nomalSpeed * m_downSpeed; 
-                onCharge = true;
-            }
-
-            else if(Input.GetMouseButtonUp(0))
-            {
-                player.color = new Color(1, 1, 1, 1.0f);
-                if(!coroutineBool)
+                float m_downSpeed = 0.5f;
+                var m_nomalSpeed = player.GetComponent<PlayerController>().NomalPlayerSpeed;
+                if(Input.GetMouseButton(0))
                 {
-                    nomalAttack();
-                    shockWave();
+                    onTime += Time.deltaTime;
+                    // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
+                    player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                    // Shieldがある場合スピードダウン
+                    if(player.GetComponent<PlayerController>().OnShield)
+                        player.GetComponent<PlayerController>().PlayerSpeed
+                        = m_nomalSpeed * m_downSpeed; 
+                    onCharge = true;
                 }
-                onCharge = false;
+
+                else if(Input.GetMouseButtonUp(0))
+                {
+                    player.color = new Color(1, 1, 1, 1.0f);
+                        nomalAttack();
+                        shockWave();
+                    
+                    onCharge = false;
+                }
             }
         }
     }
