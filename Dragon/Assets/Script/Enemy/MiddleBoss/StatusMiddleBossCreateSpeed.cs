@@ -63,9 +63,9 @@ public class StatusMiddleBossCreateSpeed : MonoBehaviour
         
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         //_deth = true;
         createEnemy._CreateSpeed = _speedPrev;  //死んだら生成速度をもとに戻す
-    }
+    }*/
 }

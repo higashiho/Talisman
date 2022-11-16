@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+// キャッシュ
+// オブジェクトプーリング
+// factoryクラス
+// 初期化関数みたいなやつを作っとく
 public class CreateEnemy : MonoBehaviour
 {
     //[HeaderAttribute("Prefab生成配列"),SerializeField]

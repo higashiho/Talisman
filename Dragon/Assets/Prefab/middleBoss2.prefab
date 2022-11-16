@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5178432686175178636}
   - component: {fileID: -5907075165351134732}
   - component: {fileID: -5532678372622597485}
+  - component: {fileID: 4899136316946436068}
   m_Layer: 0
   m_Name: middleBoss2
   m_TagString: MiddleBoss
@@ -147,8 +148,6 @@ MonoBehaviour:
   SWORD_DAMAGE: 1
   ROTATESWORD_DAMAGE: 2
   item: {fileID: 3721836383163939786, guid: 796ab927e13caff45a1dd5da7037532d, type: 3}
-  _Boss: {fileID: 0}
-  bosscontroller: {fileID: 0}
   MiddleBoss: {fileID: 2415827260650019710}
 --- !u!114 &-5532678372622597485
 MonoBehaviour:
@@ -167,6 +166,27 @@ MonoBehaviour:
   _margeTime: 10
   Marge_OK: 0
   _bossPos: {x: 0, y: 0, z: 0}
+--- !u!50 &4899136316946436068
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415827260650019710}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &2590414157763423083
 GameObject:
   m_ObjectHideFlags: 0

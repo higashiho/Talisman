@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class ColMiddleBoss : MonoBehaviour
 {
@@ -14,47 +12,69 @@ public class ColMiddleBoss : MonoBehaviour
     private int ROTATESWORD_DAMAGE = 2;
     [HeaderAttribute("アイテム"), SerializeField]
     private GameObject item;
-    [SerializeField]
-    private GameObject _Boss;
-    [SerializeField]
+    private GameObject FindBoss;
     private BossController bosscontroller;  //スクリプトアタッチ用
     [SerializeField]
     private GameObject MiddleBoss;
+    private GameObject _boss; // Bossアタッチ用
 
     private GameObject bullet;  // プレイヤーが放つホーミング弾
     private GameObject MiddleBossCreater;
+    private GameObject EnemyPool;
+
 
     // 以下スクリプト参照用
-    private CreateRandom createrandom;
+    private CreateMiddleBoss createmiddleboss;
     private MoveMiddleBoss movemiddleboss;
     private BulletController bulletcontroller;
+    private FactoryEnemy factoryenemy;
+    private FindBoss findBoss;
+
 
     private GameObject player;
-    
     
 
     void Start()
     {
-        _Boss = GameObject.FindWithTag("Boss");
-        bosscontroller = _Boss.GetComponent<BossController>();
+
+        FindBoss = GameObject.Find("BossInstance");
+        findBoss = FindBoss.GetComponent<FindBoss>();
+        EnemyPool = GameObject.Find("EnemyPool");
+        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
-        createrandom = MiddleBossCreater.GetComponent<CreateRandom>();
+        createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
         movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
 
         player = GameObject.FindWithTag("Player");
         bulletcontroller = player.GetComponent<BulletController>();
+        
     }
+
     void Update()
     {
-        if(_hp <= 0)
+        if(_boss != null)
         {
-            Instantiate(item, this.transform.position, Quaternion.identity);
-            createrandom._time = 0;
-            createrandom._Counter--;
-            Destroy(this.gameObject);
+            if(_hp <= 0)
+            {
+                //Instantiate(item, this.transform.position, Quaternion.identity);
+                createmiddleboss._time = 0;
+                createmiddleboss._Counter--;
+                discriminationPool();
             
+            }
+        }
+        
+        if(findBoss != null)
+        {
+            if(findBoss.GetOnFind())
+            {
+                _boss = findBoss.GetBoss();
+                bosscontroller = findBoss.GetBossController();
+            }
         }
     }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.name == "Sword")
@@ -67,19 +87,35 @@ public class ColMiddleBoss : MonoBehaviour
         }
         if(other.gameObject.tag == "Bullet")
         {
-            _hp -= other.gameObject.GetComponent<BulletController>().Attack; 
+            _hp -= bulletcontroller.Attack; 
         }
-        if(movemiddleboss.Marge_OK)
+        if(other.gameObject.tag == "ShockWave")
         {
-            Debug.Log(movemiddleboss.Marge_OK);
+            _hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+        }
+        //if(movemiddleboss.Marge_OK)
+        //{
             if(other.gameObject.tag == "Boss")
             {
-                // なんか融合させるためのフラグとか???
-                bosscontroller.SetHp(_hp, true);   // 中ボスの残りHPをボスのHPに加算
-                createrandom._Counter--;
-                Destroy(this.gameObject);
+                bosscontroller.SetHp(_hp);   // 中ボスの残りHPをボスのHPに加算
+                createmiddleboss._Counter--;
+                discriminationPool();
+                //factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool);
+                //TODO List指定する方法考える
             }
-        }
+        //}
     }
+
+    private void discriminationPool()
+    {
+        if(this.gameObject.name == "MiddleBoss1")
+            factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool1);
+        if(this.gameObject.name == "MiddleBoss2")
+            factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool2);
+        if(this.gameObject.name == "MiddleBoss3")
+            factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool3);
+    }
+
+    
     
 }

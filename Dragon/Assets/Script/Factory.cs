@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
 
 public class Factory : MonoBehaviour
 {
@@ -13,6 +16,8 @@ public class Factory : MonoBehaviour
     public GameObject GetBulletObj() {return bullet;}
     public GameObject GetShockWaveobj() {return shockWave;}
 
+    
+                           
 
     private Queue<GameObject> bulletQueue;                          // 生成した球を格納するQueue
     private Queue<GameObject> shockWaveQueue;                       // 生成した衝撃波を格納するQueue                             
@@ -24,6 +29,9 @@ public class Factory : MonoBehaviour
     [Header("オブジェクト代入時使用用")]
     [SerializeField]
     private BulletShot bulletShot;
+
+
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -78,4 +86,6 @@ public class Factory : MonoBehaviour
         //Queueに格納
         tmpQueue.Enqueue(obj);
     }
+
+
 }
