@@ -41,6 +41,7 @@ public class ColEnemy : MonoBehaviour
 
     private float nockbackTime = 0.2f;          //ノックバックしている時間
 
+    private ParticleSystem damageEfect;      //取得用
 
     public bool FadeFlag{                       //カプセル化
         get { return  fadeFlag ; }
@@ -57,6 +58,7 @@ public class ColEnemy : MonoBehaviour
         createEnemy = mobcreater.GetComponent<CreateEnemy>();
         efectEnemy = enemyChase.GetComponent<EfectEnemy>();
         rb2D = GetComponent<Rigidbody2D>();
+        damageEfect = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -91,7 +93,8 @@ public class ColEnemy : MonoBehaviour
         {    
             enemyHp--;
             nockbackflag = true;
-            
+            damageEfect.Play();
+
             if(enemyHp <= 0)
             {
                 fadeFlag = true;
@@ -108,6 +111,7 @@ public class ColEnemy : MonoBehaviour
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
+            damageEfect.Play();
         }
 
         //回転切りにあったら消える
@@ -117,11 +121,12 @@ public class ColEnemy : MonoBehaviour
             Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
+            damageEfect.Play();
         }
     }
     //プレイヤーに当たったら消える。それは、無敵中でないなら消える・被ダメするである
     private void OnCollisionEnter2D(Collision2D col)
-    {   
+    {               
         if(col.gameObject.tag == "Player")
         {
             if(!playerController.GetOnUnrivaled())
