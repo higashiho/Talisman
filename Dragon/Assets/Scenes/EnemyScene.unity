@@ -1116,10 +1116,6 @@ PrefabInstance:
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 130752297}
-    - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: Skills.Array.data[4]
-      value: 100000000
-      objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111198, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: objectPool
       value: 
