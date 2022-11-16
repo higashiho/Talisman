@@ -169,7 +169,6 @@ MonoBehaviour:
   enemyChase: {fileID: 8123549337994771031}
   enemyHp: 1
   hitDeleteName: Enemy
-  damageEfectFlag: 0
 --- !u!114 &800965925411393824
 MonoBehaviour:
   m_ObjectHideFlags: 0
