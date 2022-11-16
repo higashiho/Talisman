@@ -6,6 +6,10 @@ public class ColPlayer : MonoBehaviour
 {
     [SerializeField]
     private PlayerController playerController;          // スクリプト格納用
+
+    [SerializeField]
+    private ParticleSystem damageEfect;         //パーティクルシステム取得
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +22,15 @@ public class ColPlayer : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(col.gameObject.tag == "Enemy")
         {
-            if(!playerController.OnUnrivaled)
-                playerController.OnUnrivaled = true;
+            if(!playerController.GetOnUnrivaled())
+            {
+                playerController.SetOnUnrivaled(true);
+                damageEfect.Play();
+            }
         }
     }
 }

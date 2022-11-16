@@ -13,8 +13,11 @@ public class BossController : MonoBehaviour
         Area3,
         Area4,
     }
-    [HeaderAttribute("移動速度")]
-    public float Speed;                                     // 自身のスピード
+    [SerializeField, HeaderAttribute("移動速度")]
+    private float speed;                                     // 自身のスピード
+    public float GetSpeed() {return speed;}
+    public void SetSpeed(float newSpeed) {speed = newSpeed;}
+
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
     // private List<Vector3> destinations;                  //目標座標
@@ -35,8 +38,11 @@ public class BossController : MonoBehaviour
    [HeaderAttribute("ステージのエリア座標"), EnumIndex(typeof(SkilType))]
     public float[] Areas = new float[4];                    // ステージのエリア分け用
 
-   [HeaderAttribute("ヒットポイント"), Range(300, 1000)]
-   public int Hp;
+   [SerializeField, HeaderAttribute("ヒットポイント"), Range(300, 1000)]
+   private int hp;
+    public int GetHp() {return hp;}
+    public void SetHp(int set,bool heel = false) 
+    {if(!heel)hp -= set; else hp += set;}
 
    private GameObject attackObject = default;               // 攻撃スキルオブジェクト
 
@@ -56,26 +62,33 @@ public class BossController : MonoBehaviour
 
     private float alpha = 1;                                // 透明度
 
+    private GameObject cutin;                               // カットインオブジェクト
     // Start is called before the first frame update
     void Awake()
     {
         float[] areas = {0.0f, 75.0f, 150.0f, 225.0f};
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindWithTag("Player");
+        cutin = GameObject.Find("Cutin");
     }
     void Start()
     {
         InvokeRepeating("attack", attackTime, attackTime);
 
-        Hp = randomBossHp.RandomHp();
+        hp = randomBossHp.RandomHp();
+    }
+
+    void Update()
+    {
+        cutin.GetComponent<Cutin>().CutIn(pos, Areas);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(Hp > 0)
+        if(hp > 0)
             move();
-        else if(Hp <= 0)
+        else if(hp <= 0)
             gameClear();
 
         if(colBoss.WallObj == null && colBoss.OnWall)
@@ -84,7 +97,7 @@ public class BossController : MonoBehaviour
 
     private void move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, speed * Time.deltaTime);
         
 
         if(pos.x >= targetCoordinates.x)
@@ -93,7 +106,7 @@ public class BossController : MonoBehaviour
     // 攻撃挙動
     private void attack()
     {
-        if(Hp > 0){
+        if(hp > 0){
             pos = this.transform.position;
             // エリア４にいるときの敵の攻撃
             if(pos.x > Areas[3])
@@ -136,6 +149,8 @@ public class BossController : MonoBehaviour
             Judgment = "GameClear";
             pos = this.transform.position;
         }
+
+        Destroy(GetComponent<PolygonCollider2D>());
         this.transform.position = pos + Random.insideUnitSphere * m_shakePower;
 
         
@@ -146,7 +161,7 @@ public class BossController : MonoBehaviour
     private void reset()
     {
         colBoss.OnWall = false;
-        Speed = colBoss.speedGain;
+        speed = colBoss.GetNormalSpeed();
     }
 
     private IEnumerator lastAreaSkill()

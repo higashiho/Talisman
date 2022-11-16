@@ -8,7 +8,7 @@ public class InstanceBoss : MonoBehaviour
     [SerializeField]
     private GameObject bossPrefab = default;                    // ボスのprefab
 
-    private bool shake = false;                                 // 震えているか
+    //private bool shake = false;                                 // 震えているか
 
     private float waitTime = 6.0f;                              // 待ち時間
     
@@ -34,6 +34,5 @@ public class InstanceBoss : MonoBehaviour
     {
         Instantiate(bossPrefab, this.transform.position, Quaternion.identity);
         findBoss.BossFind();
-        Destroy(this.gameObject, destroyTime);
     }
 }

@@ -41,9 +41,10 @@ public class ColEnemy : MonoBehaviour
 
     private float nockbackTime = 0.2f;          //ノックバックしている時間
 
+
     public bool FadeFlag{                       //カプセル化
-    get { return  fadeFlag ; }
-    private set { fadeFlag = value;}
+        get { return  fadeFlag ; }
+        private set { fadeFlag = value;}
     }
 
     void Start()
@@ -69,13 +70,13 @@ public class ColEnemy : MonoBehaviour
     private void nockback()
     {
         float Power = 20.0f * Time.deltaTime;
-        if(pos.x <= playerPos.x)
+        if(pos.x <= playerPos.x)        //エネミーが左
             transform.Translate(Vector3.left * Power);
-        if(pos.x > playerPos.x)
+        if(pos.x > playerPos.x)         //エネミーが右
             transform.Translate(Vector3.right * Power);
-        if(pos.y <= playerPos.y)
+        if(pos.y <= playerPos.y)        //エネミーが下
             transform.Translate(Vector3.down * Power);
-        if(pos.y > playerPos.y)
+        if(pos.y > playerPos.y)         //エネミーが上
             transform.Translate(Vector3.up * Power);
 
         nockbackTime -= Time.deltaTime;
@@ -86,7 +87,7 @@ public class ColEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
-        if(other.gameObject.name == "Sword")
+        if(other.gameObject.tag == "Sword")
         {    
             enemyHp--;
             nockbackflag = true;
@@ -123,9 +124,8 @@ public class ColEnemy : MonoBehaviour
     {   
         if(col.gameObject.tag == "Player")
         {
-            if(!playerController.OnUnrivaled)
+            if(!playerController.GetOnUnrivaled())
             {
-            playerController.OnUnrivaled = true;
             playerController.Hp -= hitDamage; 
             createEnemy.spawnCount++;
             if(hitDeleteName == "Enemy")

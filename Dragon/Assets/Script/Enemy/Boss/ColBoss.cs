@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ColBoss : MonoBehaviour
 {
     [SerializeField]
     private BossController bossController;              // スクリプト格納用
 
-    public float speedGain;                            // スピード格納
+    private float normalSpeed = 1;                       // スピード格納
+    public float GetNormalSpeed() {return normalSpeed;}
     
     [HeaderAttribute("壁に当たってるか")]
     public bool OnWall = false;                         // 壁に当たってるか  
@@ -17,33 +19,72 @@ public class ColBoss : MonoBehaviour
     public GameObject WallObj = default;                // 壁オブジェクト格納用
 
     private int rSwordDamage = 2;                       // 回転斬りに当たった時のダメージ
+
+    private bool onDamage = false;                      // ダメージを受けたか
+
+
+
+    private float speedDownTime = 0.5f;             // スピードダウンの時間
+
+    
+    void Update()
+    {
+         if(onDamage && !OnWall)
+            damage();
+    }
+
+    private void damage()
+    {
+        float m_lowSpeed = 0.5f, m_startTime = 0.2f;
+        GetComponent<BossController>().SetSpeed(m_lowSpeed);
+
+        speedDownTime -= Time.deltaTime;
+        if(speedDownTime <= 0)
+        {
+            onDamage = false;
+            GetComponent<BossController>().SetSpeed(normalSpeed);
+            speedDownTime = m_startTime;
+        }
+       
+
+    }
+
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
+        int m_damage = 1;
         if(other.gameObject.tag == "Bullet")
         {
-            bossController.Hp -= other.gameObject.GetComponent<BulletController>().Attack;
+            onDamage = true;
+            bossController.SetHp(other.gameObject.GetComponent<BulletController>().Attack);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
         if(other.gameObject.name == "Sword")
         {
-            bossController.Hp--;
+            onDamage = true;
+            bossController.SetHp(m_damage);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
 
         if(other.gameObject.name == "RotateSword")
         {
-            bossController.Hp -= rSwordDamage;
+            onDamage = true;
+            bossController.SetHp(rSwordDamage);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
         if(other.gameObject.tag == "ShockWave")
         {
-            bossController.Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+            onDamage = true;
+            bossController.SetHp(other.gameObject.GetComponent<ShockWave>().Attack);
+            GetComponent<UnstuckBoss>().CalcRate();
         }
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag == "Wall")
         {
-            speedGain = bossController.Speed;
             OnWall = true;
-            bossController.Speed = 0;
+            bossController.SetSpeed(0);
             WallObj = col.gameObject;
             Destroy(col.gameObject, destroyTime);
         }

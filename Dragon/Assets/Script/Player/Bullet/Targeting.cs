@@ -25,7 +25,7 @@ public class Targeting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
 
@@ -34,7 +34,7 @@ public class Targeting : MonoBehaviour
     // 自身を回収
     public void HideFromStage()
     {
-        objectPool.Collect(this);
+        objectPool.Collect(objectPool.GetBulletQueue(), this.gameObject);
     }
 
     // 弾の挙動
