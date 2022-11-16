@@ -8,7 +8,7 @@ public class ChargeCompleteController : MonoBehaviour
     private SwordContoroller swordContoroller;      //参照
 
     [SerializeField]
-    private ParticleSystem particleSystem;           //取得
+    private ParticleSystem chargeCompleteEfect;           //取得
 
     private GameObject player;                       //Player取得
 
@@ -29,12 +29,12 @@ public class ChargeCompleteController : MonoBehaviour
         this.transform.position = player.transform.position;
         if(swordContoroller.OnTime >= swordContoroller.MaxTime)
         {
-            particleSystem.Play();
+            chargeCompleteEfect.Play();
         }
 
         if(swordContoroller.OnTime >= swordContoroller.MaxTime && Input.GetMouseButtonUp(0))
         {
-            particleSystem.Stop();
+            chargeCompleteEfect.Stop();
         }
     }
 }
