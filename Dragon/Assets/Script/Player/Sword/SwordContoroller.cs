@@ -31,6 +31,11 @@ public class SwordContoroller : MonoBehaviour
     private SkillController skillController;        //スクリプト格納用
 
     private int OnShockSkill = 2;                   // スキルを使うためのアイテム量
+    public int onshockskill{
+        get { return OnShockSkill ;}
+        set { OnShockSkill = value ;}
+        }
+    
 
     [SerializeField]
     private Factory objectPool;             // オブジェクトプール用コントローラー格納
@@ -47,6 +52,16 @@ public class SwordContoroller : MonoBehaviour
     public bool CoroutineBool{
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
+    }
+
+    public float OnTime{
+        get { return onTime ;}
+        set { onTime = value ;}
+    }
+
+    public float MaxTime{
+        get{ return maxTime ;}
+        set{ maxTime = value ;}
     }
 
     private bool onCharge = false;              // チャージ中かどうか
