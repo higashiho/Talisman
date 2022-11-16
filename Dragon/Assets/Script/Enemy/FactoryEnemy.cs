@@ -20,12 +20,16 @@ public class FactoryEnemy : MonoBehaviour
     AsyncOperationHandle<GameObject> loadOp;
     
     public List<GameObject> middleBossPool1 = new List<GameObject>();   // 中ボス1プール
-    public List<GameObject> middleBossPool2= new List<GameObject>();
-    public List<GameObject> middleBossPool3 = new List<GameObject>();
+    public List<GameObject> middleBossPool2= new List<GameObject>();    // 中ボス2プール
+    public List<GameObject> middleBossPool3 = new List<GameObject>();   // 中ボス3プール
 
+    public List<GameObject> mobEnemyPool1 = new List<GameObject>();     // モブキャラ1プール
+    public List<GameObject> mobEnemyPool2 = new List<GameObject>();     // モブキャラ2プール
+    public List<GameObject> mobEnemyPool3 = new List<GameObject>();     // モブキャラ3プール
+    public List<GameObject> mobEnemyPool4 = new List<GameObject>();     // モブキャラ4プール
+    public List<GameObject> mobEnemyPool5 = new List<GameObject>();     // モブキャラ5プール
     
 
-    public List<GameObject> mobEnemyPool = new List<GameObject>();      // モブ敵プール
 
     public bool onceProcessing = false;
 
@@ -34,6 +38,13 @@ public class FactoryEnemy : MonoBehaviour
         StartCoroutine(LoadAsset("MiddleBoss1", 2, middleBossPool1));
         StartCoroutine(LoadAsset("MiddleBoss2", 2, middleBossPool2));
         StartCoroutine(LoadAsset("MiddleBoss3", 2, middleBossPool3));
+
+        StartCoroutine(LoadAsset("EnemyChase", 10, mobEnemyPool1));
+        StartCoroutine(LoadAsset("EnemyChase2", 10, mobEnemyPool2));
+        StartCoroutine(LoadAsset("EnemyChase3", 10, mobEnemyPool3));
+        StartCoroutine(LoadAsset("EnemyChase4", 10, mobEnemyPool4));
+        StartCoroutine(LoadAsset("EnemyChase5", 10, mobEnemyPool5));
+
     }
 
 
