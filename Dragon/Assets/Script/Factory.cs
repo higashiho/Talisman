@@ -17,8 +17,7 @@ public class Factory : MonoBehaviour
     public GameObject GetShockWaveobj() {return shockWave;}
 
     
-    private Queue<Targeting> bulletQueue;                          // 生成した球を格納するQueue
-    private Queue<ShockWave> shockWaveQueue;                       // 生成した衝撃波を格納するQueue                             
+                           
 
     private Queue<GameObject> bulletQueue;                          // 生成した球を格納するQueue
     private Queue<GameObject> shockWaveQueue;                       // 生成した衝撃波を格納するQueue                             

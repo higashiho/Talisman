@@ -38,8 +38,6 @@ public class ColMiddleBoss : MonoBehaviour
         findBoss = FindBoss.GetComponent<FindBoss>();
         EnemyPool = GameObject.Find("EnemyPool");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
-        //_Boss = GameObject.FindWithTag("Boss");
-        //bosscontroller = _Boss.GetComponent<BossController>();
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
         movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
@@ -87,11 +85,15 @@ public class ColMiddleBoss : MonoBehaviour
         {
             _hp -= bulletcontroller.Attack; 
         }
+        if(other.gameObject.tag == "ShockWave")
+        {
+            _hp -= other.GetComponent<ShockWave>().Attack;
+        }
         //if(movemiddleboss.Marge_OK)
         //{
             if(other.gameObject.tag == "Boss")
             {
-                bosscontroller.Hp += _hp;   // 中ボスの残りHPをボスのHPに加算
+                bosscontroller.SetHp(_hp);   // 中ボスの残りHPをボスのHPに加算
                 createmiddleboss._Counter--;
                 discriminationPool();
                 //factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool);
