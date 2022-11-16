@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;              // スプライトレンダラー格納用
     [SerializeField]
-    private SpriteRenderer shieldRenderer;              // スプライトレンダラー格納用
+    private GameObject shieldRenderer;              // スプライトレンダラー格納用
 
     private bool oneHeel = true;                        //ヒール一回だけ処理
 
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     //シールドがある時Hpを下回る攻撃を受けた場合
     private void shield()
     {
-        shieldRenderer.enabled = false;
+        shieldRenderer.SetActive(false);
         hp = heel;
         playerSpeed = noShieldSpeed;
     }
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
         heelSheld -= Time.deltaTime;
         if(heelSheld <= 0)
         {
-            shieldRenderer.enabled = true;
+            shieldRenderer.SetActive(true);
             onShield = true;
             playerSpeed = nomalPlayerSpeed;
             heelSheld = startHeelStrage;

@@ -1343,6 +1343,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419664555}
   m_CullTransparentMesh: 1
+--- !u!114 &501981197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2243393573446524709, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+  m_PrefabInstance: {fileID: 2243393573907084469}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00fd98e37b8d13478fb6f6bbc13243a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &539680652
 GameObject:
   m_ObjectHideFlags: 0
@@ -8425,6 +8436,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1911155728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8182610497295190040, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_Name
+      value: ChargeCompleteEfect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8182610497295190044, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
+      propertyPath: swordContoroller
+      value: 
+      objectReference: {fileID: 501981197}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
 --- !u!1 &1963205415
 GameObject:
   m_ObjectHideFlags: 0
@@ -9112,10 +9184,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: findBoss
-      value: 
-      objectReference: {fileID: 1398843203}
     - target: {fileID: 2243393573469111198, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: objectPool
       value: 
