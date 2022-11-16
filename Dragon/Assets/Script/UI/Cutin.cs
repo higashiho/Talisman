@@ -117,14 +117,14 @@ public class Cutin : MonoBehaviour
     public void CutIn(Vector3 pos, float[] areas)
     {
         
-        if(pos.x >= areas[3] && ones[3])
+        if(pos.x >= areas[3] && ones[2])
         {
             stopTime();
             // エリア４にいるため４と表示
             text[2].text = "4";
             ones[2] = false;
         }
-        else if(pos.x >= areas[2] && ones[2])
+        else if(pos.x >= areas[2] && ones[1])
         {
             stopTime();
             // エリア３にいるため３と表示
