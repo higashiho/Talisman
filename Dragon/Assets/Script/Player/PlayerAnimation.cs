@@ -9,6 +9,9 @@ public class PlayerAnimation : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private PlayerController player;
+
+    [SerializeField]
+    private SwordContoroller swodController;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +21,15 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playMove();
+            playAnime(player.OnMove,"move");
+            playAnime(swodController.OnCharge,"charge");
     }
-    // moveアニメーションを再生させるか
-    private void playMove()
+    // アニメーションを再生させるか
+    private void playAnime(bool b, string s)
     {
-        if(player.OnMove)
-            anim.SetBool ( "move", true );
+        if(b)
+            anim.SetBool ( s, true );
         else
-            anim.SetBool("move",false);
+            anim.SetBool(s,false);
     }
 }
