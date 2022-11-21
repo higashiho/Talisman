@@ -80,7 +80,7 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
-        cutin.GetComponent<Cutin>().CutIn(pos, Areas);
+        cutin.GetComponent<Cutin>().CutIn(this.transform.position, Areas);
     }
 
     // Update is called once per frame
