@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this.gameObject, destroytimer);        //一定時間後、消滅
+
         player = GameObject.FindWithTag("Player");
     }
     
