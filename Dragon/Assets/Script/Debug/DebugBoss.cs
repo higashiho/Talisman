@@ -19,7 +19,7 @@ public class DebugBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class DebugBoss : MonoBehaviour
         if(boss != null)
             bossMoveArea();
         
-        if(findBoss != null)
+        else
         {
             if(findBoss.GetOnFind())
             {
