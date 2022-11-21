@@ -8,6 +8,7 @@ public class CreateEnemy : MonoBehaviour
     // GameOnjectアタッチ用
     private GameObject EnemyPool;   // エネミー用プールアタッチ
     private GameObject _boss;       // Bossアタッチ
+    private GameObject player;
 
     // スクリプト参照用
     private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
@@ -51,6 +52,7 @@ public class CreateEnemy : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         EnemyPool = GameObject.Find("PoolObject");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
@@ -196,7 +198,7 @@ public class CreateEnemy : MonoBehaviour
     {
         Vector3 createPos;
         float _posX, _posY;
-        _pos = _boss.transform.position;  // ボスの座標取得
+        _pos = player.transform.position;  // playerの座標取得
         _posX = Random.Range(_pos.x - WIDTH, _pos.x + WIDTH);
         _posY = Random.Range(_pos.y -HEIGHT, _pos.y + HEIGHT);
         createPos = new Vector3(_posX, _posY, 0);
