@@ -49,9 +49,9 @@ public class ColEnemy : MonoBehaviour
     [SerializeField]
     private PolygonCollider2D Polygon2D;        //取得
 
-    private bool freezeFlag = false;            //エネミー玉突き事故防止用フラグ
+    private bool crashFlag = false;            //エネミー玉突き事故防止用フラグ
 
-    private float freezeTime = 0.1f;
+    private float ceashTime = 0.1f;
 
     private GameObject EnemyPool;               // PoolEnemyアタッチ
 
@@ -95,10 +95,11 @@ public class ColEnemy : MonoBehaviour
     private void nockback()
     {
         float m_nockbackStartTime = nockbackTime;
-        float Power = 4000.0f * Time.deltaTime;
+        float Power = 1000.0f * Time.deltaTime;
 
         playerPos = player.transform.position;  //プレイヤーの位置
         pos = transform.position;               //エネミーの位置
+
         if(pos.x <= playerPos.x)        //エネミーが左
             rb2D.velocity = Vector3.left * Power;
         if(pos.x > playerPos.x)         //エネミーが右
@@ -119,20 +120,20 @@ public class ColEnemy : MonoBehaviour
 
     private void freeze()
     {
-        if(freezeFlag)
+        if(crashFlag)
         {
-            freezeTime -= Time.deltaTime;
+            ceashTime -= Time.deltaTime;
         }
 
-        if(freezeTime <= 0)
+        if(ceashTime <= 0)
         {
-            freezeFlag = false;
+            crashFlag = false;
             rb2D.velocity = Vector3.zero;
         }
 
-        if(!freezeFlag)
+        if(!crashFlag)
         {
-            rb2D.constraints = RigidbodyConstraints2D.None;
+            
         }
     }
 
@@ -145,7 +146,6 @@ public class ColEnemy : MonoBehaviour
             nockbackflag = true;
             damageEfect.Play();
             
-
             if(enemyHp <= 0)
             {
                 Destroy(Polygon2D);
@@ -193,9 +193,7 @@ public class ColEnemy : MonoBehaviour
         if(col.gameObject.tag == "Enemy")
         {
             if(col.gameObject.GetComponent<ColEnemy>().NockbackFlag)
-                freezeFlag = true;
-                //rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
-            
+                crashFlag = true;            
         }
     }
 
