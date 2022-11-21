@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class ColMiddleBoss : MonoBehaviour
 {
+    // ゲームオブジェクト参照用
+    private GameObject player;
+    private GameObject boss; // Bossアタッチ用
+    private GameObject bullet;  // プレイヤーが放つホーミング弾
+    private GameObject MiddleBossCreater;
+    private GameObject EnemyPool;
+    private GameObject BossInstance;
+
     [HeaderAttribute("中ボスヒットポイント"), SerializeField]
-    private int _hp = 5;
+    private int hp = 5;
     [HeaderAttribute("Swordのダメージ"), SerializeField]
     private int SWORD_DAMAGE = 1;
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
     private int ROTATESWORD_DAMAGE = 2;
-    [HeaderAttribute("アイテム"), SerializeField]
-    private GameObject item;
-    private GameObject FindBoss;
+    
     private BossController bosscontroller;  //スクリプトアタッチ用
     [SerializeField]
-    private GameObject MiddleBoss;
-    private GameObject _boss; // Bossアタッチ用
 
-    private GameObject bullet;  // プレイヤーが放つホーミング弾
-    private GameObject MiddleBossCreater;
-    private GameObject EnemyPool;
 
 
     // 以下スクリプト参照用
@@ -31,36 +32,35 @@ public class ColMiddleBoss : MonoBehaviour
     private FindBoss findBoss;
 
 
-    private GameObject player;
+    
+
+    private string middleBossName;
     
 
     void Start()
     {
-
-        FindBoss = GameObject.Find("BossInstance");
-        findBoss = FindBoss.GetComponent<FindBoss>();
-        EnemyPool = GameObject.Find("EnemyPool");
-        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
-        createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
-        movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
-
+        EnemyPool = GameObject.Find("PoolObject");
         player = GameObject.FindWithTag("Player");
-        bulletcontroller = player.GetComponent<BulletController>();
+        BossInstance = GameObject.Find("BossInstance");
         
+        findBoss = BossInstance.GetComponent<FindBoss>();
+        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>(); 
+        createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
+        movemiddleboss = this.GetComponent<MoveMiddleBoss>();
+        //bulletcontroller = GameObject.FindWithTag("Bullet").GetComponent<BulletController>();
+        
+        middleBossName = gameObject.name;       // 自身の名前を取得
     }
 
     void Update()
     {
-        if(_boss != null)
+        if(boss != null)
         {
-            if(_hp <= 0)
+            if(hp <= 0)
             {
-                //Instantiate(item, this.transform.position, Quaternion.identity);
-                createmiddleboss._time = 0;
-                createmiddleboss._Counter--;
-                discriminationPool();
-            
+                createmiddleboss.middleBossNumCounter--;
+                this.gameObject.SetActive(false);
             }
         }
         
@@ -68,7 +68,7 @@ public class ColMiddleBoss : MonoBehaviour
         {
             if(findBoss.GetOnFind())
             {
-                _boss = findBoss.GetBoss();
+                boss = findBoss.GetBoss();
                 bosscontroller = findBoss.GetBossController();
             }
         }
@@ -79,43 +79,39 @@ public class ColMiddleBoss : MonoBehaviour
     {
         if(other.gameObject.name == "Sword")
         {
-            _hp -= SWORD_DAMAGE;
+            hp -= SWORD_DAMAGE;
         }
         if(other.gameObject.name == "RotateSword")
         {
-            _hp -= ROTATESWORD_DAMAGE;
+            hp -= ROTATESWORD_DAMAGE;
         }
         if(other.gameObject.tag == "Bullet")
         {
-            _hp -= bulletcontroller.Attack; 
+            hp -= other.gameObject.GetComponent<BulletController>().Attack; 
         }
         if(other.gameObject.tag == "ShockWave")
         {
-            _hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+            hp -= other.gameObject.GetComponent<ShockWave>().Attack;
         }
-        //if(movemiddleboss.Marge_OK)
-        //{
+        if(movemiddleboss.Margeable) // 融合フラグがたっているなら
+        {
             if(other.gameObject.tag == "Boss")
             {
-                bosscontroller.SetHp(_hp);   // 中ボスの残りHPをボスのHPに加算
-                createmiddleboss._Counter--;
-                discriminationPool();
-                //factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool);
-                //TODO List指定する方法考える
+                bosscontroller.SetHp(hp);   // 中ボスの残りHPをボスのHPに加算
+                this.gameObject.SetActive(false);
+                createmiddleboss.middleBossNumCounter--;// 中ボスカウンタ--
             }
-        //}
+        }
     }
 
-    private void discriminationPool()
+    void OnDisable()
     {
-        if(this.gameObject.name == "MiddleBoss1")
-            factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool1);
-        if(this.gameObject.name == "MiddleBoss2")
-            factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool2);
-        if(this.gameObject.name == "MiddleBoss3")
-            factoryenemy.CollectPoolObject(gameObject, factoryenemy.middleBossPool3);
-    }
-
-    
-    
+        
+        if(middleBossName == "MiddleBoss1")
+            factoryenemy.CollectPoolObject(this.gameObject, factoryenemy.middleBossPool1);
+        else if(middleBossName == "MiddleBoss2")
+            factoryenemy.CollectPoolObject(this.gameObject, factoryenemy.middleBossPool2);
+        else if(middleBossName == "MiddleBoss3")
+            factoryenemy.CollectPoolObject(this.gameObject, factoryenemy.middleBossPool3);
+    }    
 }

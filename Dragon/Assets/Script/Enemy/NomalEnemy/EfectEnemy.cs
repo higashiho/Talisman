@@ -13,14 +13,22 @@ public class EfectEnemy : MonoBehaviour
 
     private ColEnemy colEnemy;              //スクリプト参照
 
+    private GameObject EnemyPool;           // EnemyPoolアタッチ
+
+    private FactoryEnemy factoryenemy;      // スクリプト参照
+
+    private CreateEnemy createEnemy;
+
+    private GameObject MobCreater;
     // Start is called before the first frame update
     void Start()
     {
         spriteRendere = GetComponent<SpriteRenderer>();
-        //enemyChase = GameObject.Find("EnemyChase");
         colEnemy = GetComponent<ColEnemy>();
         remainTime = fadeTime;
-    }
+        MobCreater = GameObject.Find("MobEnemyCreater");
+        createEnemy = MobCreater.GetComponent<CreateEnemy>();
+   }
 
     // Update is called once per frame
     void Update()
@@ -41,7 +49,9 @@ public class EfectEnemy : MonoBehaviour
 
         if(remainTime <= 0f)
         {
-            GameObject.Destroy(gameObject);
+            //GameObject.Destroy(gameObject);
+            this.gameObject.SetActive(false);
+            createEnemy.Counter--;
         }
     }
 }
