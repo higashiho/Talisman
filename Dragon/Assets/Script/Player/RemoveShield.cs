@@ -9,6 +9,7 @@ public class RemoveShield : MonoBehaviour
 
     [SerializeField]
     private PlayerController player;              // スクリプト取得用
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class RemoveShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        remove();
+            remove();
     }
 
     private void remove()
