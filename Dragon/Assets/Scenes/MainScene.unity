@@ -4179,7 +4179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42afd42ea5ec3c44f8085dfe4e457a56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Timer: -6
+  _Timer: -5
   timerText: {fileID: 857128028}
   fadeController: {fileID: 1178091676}
 --- !u!114 &1427567012

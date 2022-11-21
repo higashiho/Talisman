@@ -31,7 +31,7 @@ public class SceneController : MonoBehaviour
                 }
                 if(SceneManager.GetActiveScene().name == "EndScene"){        // 現在のシーンがEndSceneなら
                     SceneMove = false;
-                    fadeController.fadeOutStart(0, 0, 0, 0, "TittleScene");       // フェードアウトしてTittleSceneに移動
+                    fadeController.fadeOutStart(0, 0, 0, 0, "TitleScene");       // フェードアウトしてTittleSceneに移動
                 }
             }
         }

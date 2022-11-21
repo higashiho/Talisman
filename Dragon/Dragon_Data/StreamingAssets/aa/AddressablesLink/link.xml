@@ -1,27 +1,14 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="BeamController" preserve="all" />
-    <type fullname="BossController" preserve="all" />
-    <type fullname="ColBeam" preserve="all" />
-    <type fullname="ColBoss" preserve="all" />
-    <type fullname="ColDamageFeild" preserve="all" />
     <type fullname="ColEnemy" preserve="all" />
-    <type fullname="ColItem" preserve="all" />
-    <type fullname="ColMeteorite" preserve="all" />
     <type fullname="ColMiddleBoss" preserve="all" />
-    <type fullname="DamageFieldController" preserve="all" />
     <type fullname="EfectEnemy" preserve="all" />
     <type fullname="EnemyController" preserve="all" />
     <type fullname="ItemShade" preserve="all" />
     <type fullname="LeaveSlime" preserve="all" />
-    <type fullname="MeteoriteController" preserve="all" />
-    <type fullname="MiddleBossItemController" preserve="all" />
     <type fullname="MoveMiddleBoss" preserve="all" />
-    <type fullname="RandomBossHp" preserve="all" />
-    <type fullname="SponeBoss" preserve="all" />
     <type fullname="StatusMiddleBossCreateSpeed" preserve="all" />
     <type fullname="StatusMiddleBossSpeed" preserve="all" />
-    <type fullname="UnstuckBoss" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -47,12 +34,8 @@
     <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
     <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
     <type fullname="UnityEngine.PolygonCollider2D" preserve="all" />
     <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
-  </assembly>
-  <assembly fullname="UnityEngine.SpriteMaskModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.SpriteMask" preserve="all" />
   </assembly>
 </linker>
