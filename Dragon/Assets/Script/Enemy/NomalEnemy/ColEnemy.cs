@@ -43,6 +43,12 @@ public class ColEnemy : MonoBehaviour
 
     private ParticleSystem damageEfect;      //取得用
 
+    private GameObject EnemyPool;               // PoolEnemyアタッチ
+
+    private FactoryEnemy factoryenemy;          // スクリプト参照用
+
+    private string mobName;
+
     public bool FadeFlag{                       //カプセル化
         get { return  fadeFlag ; }
         private set { fadeFlag = value;}
@@ -54,11 +60,17 @@ public class ColEnemy : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         playerPos = player.transform.position;  //プレイヤーの位置
         pos = transform.position;               //エネミーの位置
-        mobcreater = GameObject.Find("MobCreater");
+        mobcreater = GameObject.Find("MobEnemyCreater");
         createEnemy = mobcreater.GetComponent<CreateEnemy>();
         efectEnemy = enemyChase.GetComponent<EfectEnemy>();
         rb2D = GetComponent<Rigidbody2D>();
         damageEfect = GetComponentInChildren<ParticleSystem>();
+        EnemyPool = GameObject.Find("PoolObject");
+        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
+    }
+    void OnEnable()
+    {
+        mobName = gameObject.name;
     }
 
     // Update is called once per frame
@@ -134,8 +146,27 @@ public class ColEnemy : MonoBehaviour
             playerController.Hp -= hitDamage; 
             createEnemy.spawnCount++;
             if(hitDeleteName == "Enemy")
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
+                createEnemy.Counter--;
             }
         }
+    }
+
+    void OnDisable()
+    {
+        discriminationPool();
+    }
+    public void discriminationPool()
+    {
+        if(mobName == "EnemyChase")
+            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool1);
+        if(mobName == "EnemyChase2")
+            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool2);
+        if(mobName == "EnemyChase3")
+            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool3);
+        if(mobName == "EnemyChase4")
+            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool4);
+        if(mobName == "EnemyChase5")
+            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool5);
     }
 }

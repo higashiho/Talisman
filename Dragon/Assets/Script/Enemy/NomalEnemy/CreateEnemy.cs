@@ -1,88 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
-// キャッシュ
-// オブジェクトプーリング
-// factoryクラス
-// 初期化関数みたいなやつを作っとく
+// MobEnemy生成クラス
 public class CreateEnemy : MonoBehaviour
 {
-    //[HeaderAttribute("Prefab生成配列"),SerializeField]
-    //private GameObject[] prefabEnemy;
+    // GameOnjectアタッチ用
+    private GameObject EnemyPool;   // エネミー用プールアタッチ
+    private GameObject _boss;       // Bossアタッチ
+
+    // スクリプト参照用
+    private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
+    private BossController _bosscontroller;     // bosscontroller参照
+    private FindBoss findBoss;
+
     [HeaderAttribute("沸き最大数"),SerializeField]
     public int spawnCount = 30;
     [HeaderAttribute("次に生成するまでの時間")]
     private float spawnTimer = 1.5f;
-    [SerializeField]
-    private GameObject _boss;  // Bossアタッチ用
-    [SerializeField]
-    private BossController _bosscontroller;  // bosscontrollerアタッチ用
+    public int Counter = 0;     // フィールドにいるモブの数
 
-    private bool startStringEnemy = false;  //エネミー４・５出現フラグ
+    
 
     private Vector3 _pos;        //現在位置
     private float _time;         //経過時間
 
-    //private bool _isArea4;       // ボスがエリア４にいるかどうか
+    
+    
 
-    private int number;         //Index指定用
+    [Header("生成範囲")]
+    [SerializeField]    private float HEIGHT;   // 高さ
+    [SerializeField]    private float WIDTH;    // 横幅
+    private Vector3 _createPos;  // エネミー生成座標
 
-    private Vector3 _createPos;   // モブ敵生成座標
+    
+    public float _CreateSpeed = 1;          //生成速度
+    private bool startStringEnemy = false;  //エネミー４・５出現フラグ
 
-    // 生成エリア指定用
-    //private float _height = 30f;  // ボスの上下
-    //private float _front = 30f;   // ボスの前
-
-    // 生成座標
-    private float _posX;
-    private float _posY;
-    private float _posZ;
-    [HeaderAttribute("生成範囲"),SerializeField]
-    private float HEIGHT;
-    [HeaderAttribute("生成範囲"),SerializeField]
-    private float WIDTH;
-
-    //生成速度
-    public float _CreateSpeed = 1;
-
-    //index格納用
-    private int index = 0;
-    private string _key;
-    //リスト
-    AsyncOperationHandle<GameObject> loadOp;
-    private List<GameObject> EnemyInstances = new List<GameObject>();
-    //エネミーの種類
-    private string[] _keyName = new string[]
+    private enum ENEMY_TYPE
     {
-        "EnemyChase",
-        "EnemyChase2",
-        "EnemyChase3",
-        "EnemyChase4",
-        "EnemyChase5"
+        MOB_ENEMY1,
+        MOB_ENEMY2,
+        MOB_ENEMY3,
+        MOB_ENEMY4,
+        MOB_ENEMY5
     };
 
-    [SerializeField]
-    private FindBoss findBoss;
-    /*private enum createPos
-    {
-        AREA1,
-        AREA2,
-        AREA3,
-        AREA4
-    };*/
+    ENEMY_TYPE type;
 
-    //private createPos area = createPos.AREA1;
- 
-    // Start is called before the first frame update
     void Start()
     {
+        EnemyPool = GameObject.Find("PoolObject");
+        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         _time = 0;
-        // スクリプトアタッチ
-        // エリア4にボスがいないから最初にfalseにしとく
-        //_isArea4 = false;
     }
 
     
@@ -93,21 +63,12 @@ public class CreateEnemy : MonoBehaviour
             _time += Time.deltaTime;
             if(_time > spawnTimer)
             {
-                if(spawnCount > 0)
+                
+                if(spawnCount > Counter)
                 {  
-                    settingPos();
-                    settingKey();
-                    if(startStringEnemy)
-                    {
-                        randomIndexLater();
-                    }
-                    else
-                    {
-                        randomIndex();
-                    }
-                    StartCoroutine(enemyLoad());
+                   dispMobEnemy();
                 }
-                _time = default;
+                _time = 0;
             }
         }
         if(findBoss != null)
@@ -120,143 +81,129 @@ public class CreateEnemy : MonoBehaviour
         }
     }
 
-    //キーを用意
-    private void settingKey()
+    // Enemyをフィールドに表示する関数
+    private void dispMobEnemy()
     {
-        _key = _keyName[index];
+        GameObject dispObj;
+
+        if(startStringEnemy)
+        {
+            SelectMobEnemyLater();  // 出現するエネミー設定(全部のモブ)
+        }
+        else
+        {
+            SelectMobEnemy();       // 出現するエネミー設定(1.2.3のモブ)
+        }
+        dispObj = GetMobEnemy();     // モブ敵をプールから取ってくる
+        dispObj.transform.position = settingMobEnemyPos();  // 座標設定
+        dispObj.SetActive(true);    // 表示
+        Counter++;      // フィールドにいるモブの数++
+        
     }
 
-    //敵の沸き調整（敵３が出にくく、１，２が出やすい）
-    private void randomIndex()
+    // モブをプールリストから取ってくる
+    private GameObject GetMobEnemy()
     {
-        number = Random.Range(0,5);
+        GameObject obj;
+        
+        if(type == ENEMY_TYPE.MOB_ENEMY1)
+        {
+            obj = factoryenemy.mobEnemyPool1[0];
+            factoryenemy.mobEnemyPool1.RemoveAt(0);
+            return obj;
+        }
+        else if(type == ENEMY_TYPE.MOB_ENEMY2)
+        {
+            obj = factoryenemy.mobEnemyPool2[0];
+            factoryenemy.mobEnemyPool2.RemoveAt(0);
+            return obj;
+        }
+        else if(type == ENEMY_TYPE.MOB_ENEMY3)
+        {
+            obj = factoryenemy.mobEnemyPool3[0];
+            factoryenemy.mobEnemyPool3.RemoveAt(0);
+            return obj;
+        }
+        else if(type == ENEMY_TYPE.MOB_ENEMY4)
+        {
+            obj = factoryenemy.mobEnemyPool4[0];
+            factoryenemy.mobEnemyPool4.RemoveAt(0);
+            return obj;
+        }
+        else if(type == ENEMY_TYPE.MOB_ENEMY5)
+        {
+            obj = factoryenemy.mobEnemyPool5[0];
+            factoryenemy.mobEnemyPool5.RemoveAt(0);
+            return obj;
+        }
+        else return null;
+    }
+
+    // 出現させるモブ設定(出現割合  モブ1&2 : 1 / モブ3 : 0.5)
+    private void SelectMobEnemy()
+    {
+        
+        int number = Random.Range(0,5);
         if(number == 0 || number == 1)
         {
-            index = 0;
+            type = ENEMY_TYPE.MOB_ENEMY1;
         }
         else if(number == 2 || number == 3)
         {
-            index = 1;
+            type = ENEMY_TYPE.MOB_ENEMY2;
         }
         else if(number == 4)
         {
-            index = 2;
+            type = ENEMY_TYPE.MOB_ENEMY3;
         }
     }
 
-    //全敵出現
-    private void randomIndexLater()
+    //  出現させるモブ設定(エリア２以降)
+    private void SelectMobEnemyLater()
     {
-        number = Random.Range(0,9);
+        int number = Random.Range(0,9);
         if(number == 0 || number == 1)
         {
-            index = 0;
+            type = ENEMY_TYPE.MOB_ENEMY1;
         }
         else if(number == 2 || number == 3)
         {
-            index = 1;
+            type = ENEMY_TYPE.MOB_ENEMY2;
         }
         else if(number == 4)
         {
-            index = 2;
+            type = ENEMY_TYPE.MOB_ENEMY3;
         }
         else if(number == 5 || number == 6)
         {
-            index = 3;
+            type = ENEMY_TYPE.MOB_ENEMY4;
         }
         else if(number == 7 || number == 8)
         {
-            index = 4;
+            type = ENEMY_TYPE.MOB_ENEMY5;
         }
+
+    
     }
-
-
-    //アセットをロードしてきてインスタンス化する関数
-    private IEnumerator enemyLoad()
-    {
-        loadOp = Addressables.LoadAssetAsync<GameObject>(_key);
-        yield return loadOp;
-
-        if(loadOp.Result != null)
-        {
-            Instantiate(loadOp.Result,new Vector3(_posX,_posY,_posZ),Quaternion.identity);
-        }
-    }
-
-    //古い枠を消して空ける
-    private void Delete()
-    {
-        foreach(var item in EnemyInstances)
-        {
-            Destroy(item);
-        }
-        EnemyInstances.Clear();
-    }
-
 
     /**
     * @breif 雑魚キャラにposを設定してprefabを生成する関数
     * @note  ボスのいるエリアごとに生成posを設定 => instance化まで行う
     */
-
-    private void settingPos()
+    private Vector3 settingMobEnemyPos()
     {
+        Vector3 createPos;
+        float _posX, _posY;
         _pos = _boss.transform.position;  // ボスの座標取得
         _posX = Random.Range(_pos.x - WIDTH, _pos.x + WIDTH);
         _posY = Random.Range(_pos.y -HEIGHT, _pos.y + HEIGHT);
-        spawnCount--;
+        createPos = new Vector3(_posX, _posY, 0);
         if(_pos.x < _bosscontroller.Areas[2])
             startStringEnemy = true;
         if(_pos.x < _bosscontroller.Areas[3])
             spawnTimer = 1;
-        /*// ボスがエリア１にいるとき
-        if(_pos.x < _bosscontroller.Areas[1])
-            area = createPos.AREA1;
-        // ボスがエリア２にいるとき
-        else if(_pos.x < _bosscontroller.Areas[2])
-            area = createPos.AREA2;
-        // ボスがエリア３にいるとき
-        else if(_pos.x < _bosscontroller.Areas[3])
-            area = createPos.AREA3;
-        // ボスがエリア４にいるとき
-        else
-            area = createPos.AREA4;
-        */
-        /*switch(area)
-        {
-            case createPos.AREA1:
-                //生成するPrefubのIndexを配列の要素の中からランダムに設定
-                _posX = Random.Range(_pos.x - WIDTH, _pos.x + WIDTH);
-                _posY = Random.Range((_pos.y + _height) - HEIGHT, (_pos.y + _height) + HEIGHT);
-                spawnCount--;
-                startStringEnemy = false;
-                break;
-            case createPos.AREA2:
-                //生成するPrefubのIndexを配列の要素の中からランダムに設定
-                _posX = Random.Range((_pos.x + _front) - WIDTH, (_pos.x + _front) + WIDTH);
-                _posY = Random.Range(_pos.y - HEIGHT, _pos.y + HEIGHT);
-                spawnCount--;
-                spawnTimer = 3;
-                startStringEnemy = true;
-                break;
-            case createPos.AREA3:
-                //生成するPrefubのIndexを配列の要素の中からランダムに設定
-                _posX = Random.Range(_pos.x - WIDTH, _pos.x + WIDTH);
-                _posY = Random.Range((_pos.y - _height) - HEIGHT, (_pos.y - _height) + HEIGHT);
-                spawnCount--;
-                spawnTimer = 1;
-                break;
-            case createPos.AREA4:
-                // ランダムにcaseを選んで生成
-                int num = Random.Range(0,3);
-                if(num == 0)
-                    area = createPos.AREA1;
-                else if(num == 1)
-                    area = createPos.AREA2;
-                else if(num == 2)
-                    area = createPos.AREA3;
-                break;
-        }*/
+
+        return createPos;
     }
 
 }

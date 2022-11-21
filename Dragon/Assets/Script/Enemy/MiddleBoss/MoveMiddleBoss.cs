@@ -1,61 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-   /**
-    * タイマーつくる
-    * 時間になったらnavmesh起動(ボスに向かっていく)
-    * 起動したタイミングでボスとの当たり判定フラグON
-    * ボスと当たったらスキルそのまあ引き継ぐ
-    */
+
+// ボスと融合するために移動する関数
+// 中ボス全員にアタッチ
 public class MoveMiddleBoss : MonoBehaviour
 {
-    [HeaderAttribute("目標座標"), SerializeField]
-    private GameObject _Boss;
+    // ゲームオブジェクト参照
+    private GameObject boss;
+    private GameObject BossInstance;
+
+    // スクリプト参照
+    private BossController bossController;
+    private FindBoss findBoss;
+
+    private Vector3 pos;   //自身の座標
+    private Vector3 bossPos;    // boss座標
+
     [HeaderAttribute("移動スピード"), SerializeField]
     private float speed = 1.0f;
-
-    private float _time;    // 時間計測用
     [HeaderAttribute("融合開始までの時間"), SerializeField]
-    private float _margeTime = 15;
-    public bool Marge_OK = false;   //融合フラグ
-    private Vector3 _pos;   //自身の座標
-    [SerializeField]
-    private Vector3 _bossPos;
-
+    private float margeTime = 15;
+    private float time;    // 融合開始までの時間を計測する用
+   
+    public bool Margeable = false;   //融合フラグ
+    
 
     void Start()
     {
-        _time = 0;
-        _Boss = GameObject.FindWithTag("Boss");
-        //agent = GetComponent<NavMeshAgent2D>(); //agentにNavMeshAgent2Dを取得
+        BossInstance = GameObject.Find("BossInstance");
+        findBoss = BossInstance.GetComponent<FindBoss>();
     }
 
+    void OnEnable()
+    {
+        time = 0;
+    }
     
     void Update()
     {
-         _time += Time.deltaTime;
+        if(boss != null)
+        {
+            // 処理を書く
+            time += Time.deltaTime;
          
-        if(_time > _margeTime)
+            if(time > margeTime)
+            {
+                // 融合開始
+                // 融合フラグON
+                Margeable = true;
+            }
+            if(Margeable)
+                move();
+        }
+        // ボス参照取得
+        if(findBoss != null)
         {
-            // 融合開始
-            // TODO
-            // 融合フラグON
-            Marge_OK = true;
-            // bossに向かって移動
+            if(findBoss.GetOnFind())
+            {
+                boss = findBoss.GetBoss();
+                bossController = findBoss.GetBossController();
+            }
+        }
 
-        }
-        if(Marge_OK)
-        {
-            move();
-        }
+        
     }
 
     private void move()
     {
-        _pos = transform.position;
-        _bossPos = _Boss.transform.position;
-        //agent.SetDestination(targetCoordinates.transform.position);
-        transform.position = Vector2.MoveTowards(_pos, _bossPos, speed * Time.deltaTime);
+        pos = transform.position;
+        bossPos = boss.transform.position;
+        // bossに向かって移動
+        transform.position = Vector2.MoveTowards(pos, bossPos, speed * Time.deltaTime);
     }
 
 }
