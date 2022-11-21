@@ -8,6 +8,10 @@ public class FadeController : MonoBehaviour
 {
     private bool isFadeOut = false; //フェードアウトフラグ
     private bool isFadeIn = true;   //フェードインフラグ
+    public bool IsFadeIn{
+        get {return isFadeIn;}
+    }
+
     private float fadeSpeed = 0.75f;    //フェイドアウトスピード
     [SerializeField] private Image fadeImage = default;
     private float red, green, blue, alpha;  // 赤, 緑, 青, 透明度

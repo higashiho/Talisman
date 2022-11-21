@@ -8,6 +8,9 @@ public class Timer : MonoBehaviour
     public float _Timer;            // タイマー
     [SerializeField]
     private Text timerText = default;       //タイマーテキスト
+
+    [SerializeField]
+    private FadeController fadeController;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _Timer += Time.deltaTime;
+        if(!fadeController.IsFadeIn)
+        {
+            _Timer += Time.deltaTime;
 
-        timerText.text = "" + _Timer.ToString("f2");
+            timerText.text = "" + _Timer.ToString("f2");
+        }
     }
 }
