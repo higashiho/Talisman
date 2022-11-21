@@ -17,7 +17,6 @@ public class EfectEnemy : MonoBehaviour
     void Start()
     {
         spriteRendere = GetComponent<SpriteRenderer>();
-        //enemyChase = GameObject.Find("EnemyChase");
         colEnemy = GetComponent<ColEnemy>();
         remainTime = fadeTime;
     }

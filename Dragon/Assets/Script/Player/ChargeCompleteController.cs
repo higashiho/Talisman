@@ -8,9 +8,9 @@ public class ChargeCompleteController : MonoBehaviour
     private SwordContoroller swordContoroller;      //参照
 
     [SerializeField]
-    private ParticleSystem chargeCompleteEfect;           //取得
+    private ParticleSystem chargeCompleteEfect;     //取得
 
-    private GameObject player;                       //Player取得
+    private GameObject player;                      //Player取得
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class ChargeCompleteController : MonoBehaviour
     {
         ChargeCompleteEfect();
     }
-
+    //エフェクトついてくる＆発生
     private void ChargeCompleteEfect()
     {
         this.transform.position = player.transform.position;

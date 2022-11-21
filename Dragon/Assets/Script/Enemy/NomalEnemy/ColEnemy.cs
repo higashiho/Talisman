@@ -21,8 +21,6 @@ public class ColEnemy : MonoBehaviour
     private bool fadeFlag = false;              //フェードアウトフラグ、EfectEnemyで参照
     
     [SerializeField]
-    private GameObject enemyChase;              //エネミー取得
-
     private EfectEnemy efectEnemy;              //スクリプト格納用
 
     [SerializeField]
@@ -31,6 +29,7 @@ public class ColEnemy : MonoBehaviour
     [SerializeField]
     private string hitDeleteName;               //プレイヤーに当たったら消えるやつの名前
 
+    [SerializeField]
     private Rigidbody2D rb2D;                   //rigidbody2D格納用
 
     private Vector2 playerPos;                  //プレイヤーの位置
@@ -39,9 +38,20 @@ public class ColEnemy : MonoBehaviour
 
     private bool nockbackflag = false;          //ノックバックフラグ
 
-    private float nockbackTime = 0.2f;          //ノックバックしている時間
+    public bool NockbackFlag{
+        get {return nockbackflag;}
+    }
 
-    private ParticleSystem damageEfect;      //取得用
+    private float nockbackTime = 0.4f;          //ノックバックしている時間
+
+    private ParticleSystem damageEfect;         //取得用
+
+    [SerializeField]
+    private PolygonCollider2D Polygon2D;        //取得
+
+    private bool freezeFlag = false;            //エネミー玉突き事故防止用フラグ
+
+    private float freezeTime = 0.1f;
 
     public bool FadeFlag{                       //カプセル化
         get { return  fadeFlag ; }
@@ -52,11 +62,8 @@ public class ColEnemy : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        playerPos = player.transform.position;  //プレイヤーの位置
-        pos = transform.position;               //エネミーの位置
         mobcreater = GameObject.Find("MobCreater");
         createEnemy = mobcreater.GetComponent<CreateEnemy>();
-        efectEnemy = enemyChase.GetComponent<EfectEnemy>();
         rb2D = GetComponent<Rigidbody2D>();
         damageEfect = GetComponentInChildren<ParticleSystem>();
     }
@@ -65,25 +72,56 @@ public class ColEnemy : MonoBehaviour
     void Update()
     {
         if(nockbackflag)
+        {
             nockback();
+        }
+
+        freeze();
     }
 
     //エネミーのノックバック
     private void nockback()
     {
-        float Power = 20.0f * Time.deltaTime;
+        float m_nockbackStartTime = nockbackTime;
+        float Power = 4000.0f * Time.deltaTime;
+
+        playerPos = player.transform.position;  //プレイヤーの位置
+        pos = transform.position;               //エネミーの位置
         if(pos.x <= playerPos.x)        //エネミーが左
-            transform.Translate(Vector3.left * Power);
+            rb2D.velocity = Vector3.left * Power;
         if(pos.x > playerPos.x)         //エネミーが右
-            transform.Translate(Vector3.right * Power);
+            rb2D.velocity = Vector3.right * Power;
         if(pos.y <= playerPos.y)        //エネミーが下
-            transform.Translate(Vector3.down * Power);
+            rb2D.velocity = Vector3.down * Power;
         if(pos.y > playerPos.y)         //エネミーが上
-            transform.Translate(Vector3.up * Power);
+            rb2D.velocity = Vector3.up * Power;
 
         nockbackTime -= Time.deltaTime;
         if(nockbackTime <= 0)
+        {
             nockbackflag = false;
+            nockbackTime = m_nockbackStartTime;
+            rb2D.velocity = Vector3.zero;
+        }
+    }
+
+    private void freeze()
+    {
+        if(freezeFlag)
+        {
+            freezeTime -= Time.deltaTime;
+        }
+
+        if(freezeTime <= 0)
+        {
+            freezeFlag = false;
+            rb2D.velocity = Vector3.zero;
+        }
+
+        if(!freezeFlag)
+        {
+            rb2D.constraints = RigidbodyConstraints2D.None;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -94,13 +132,14 @@ public class ColEnemy : MonoBehaviour
             enemyHp--;
             nockbackflag = true;
             damageEfect.Play();
+            
 
             if(enemyHp <= 0)
             {
+                Destroy(Polygon2D);
                 fadeFlag = true;
                 Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
                 createEnemy.spawnCount++;
-                Destroy(GetComponent<PolygonCollider2D>());
             }
         }
         //ショックウェーブに当たったら消える
@@ -136,6 +175,14 @@ public class ColEnemy : MonoBehaviour
             if(hitDeleteName == "Enemy")
                 Destroy(this.gameObject);
             }
+        }
+
+        if(col.gameObject.tag == "Enemy")
+        {
+            if(col.gameObject.GetComponent<ColEnemy>().NockbackFlag)
+                freezeFlag = true;
+                //rb2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            
         }
     }
 }
