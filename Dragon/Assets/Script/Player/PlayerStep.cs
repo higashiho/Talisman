@@ -25,6 +25,8 @@ public class PlayerStep : MonoBehaviour
     public float GetCoolTimer() {return coolTimer;}
 
     private Cutin cutin;
+
+    private BoxCollider2D col;                    // ボックスコライダー取得用
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class PlayerStep : MonoBehaviour
         float[] onTimer = {0.0f};
 
         cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
+
+        col = this.gameObject.GetComponent<BoxCollider2D>();
 
     }
 
@@ -81,13 +85,15 @@ public class PlayerStep : MonoBehaviour
     private void stepControl(int num, string str)
     {
         string m_up = "w", m_down = "s", m_right = "d";
-        float power = (30.0f * 1000) * Time.deltaTime;
+        float power = (25.0f * 1000) * Time.deltaTime;
         if(onSteps[num])
         {
             onTimer[num] += Time.deltaTime;
             if(onTimer[num] <= maxTimer && Input.GetKeyDown(str))
             {
                 onSteps[num] = false;
+                col.enabled = false;
+
                 if(str == m_up)
                     rd2D.velocity = Vector3.up * power;  
                 else if(str == m_down)
@@ -133,6 +139,7 @@ public class PlayerStep : MonoBehaviour
                 nowStep = false;   
                 stepTimer = MaxTimer;   
                 noStep = true; 
+                col.enabled = true;
                 bool[] onSteps = {false};
                 float[] onTimer = {0.0f};  
             }

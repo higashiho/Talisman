@@ -75,7 +75,7 @@ public class CreateEnemy : MonoBehaviour
                 _time = 0;
             }
         }
-        if(findBoss != null)
+        else
         {
             if(findBoss.GetOnFind())
             {
@@ -206,7 +206,6 @@ public class CreateEnemy : MonoBehaviour
             startStringEnemy = true;
         if(_pos.x < _bosscontroller.Areas[3])
             spawnTimer = 1;
-
         return createPos;
     }
 
