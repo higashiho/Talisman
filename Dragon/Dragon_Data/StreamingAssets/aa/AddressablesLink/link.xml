@@ -1,14 +1,32 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="BulletController" preserve="all" />
+    <type fullname="BulletShot" preserve="all" />
+    <type fullname="ChargeController" preserve="all" />
+    <type fullname="ColBullet" preserve="all" />
     <type fullname="ColEnemy" preserve="all" />
     <type fullname="ColMiddleBoss" preserve="all" />
+    <type fullname="ColPlayer" preserve="all" />
     <type fullname="EfectEnemy" preserve="all" />
     <type fullname="EnemyController" preserve="all" />
     <type fullname="ItemShade" preserve="all" />
     <type fullname="LeaveSlime" preserve="all" />
+    <type fullname="LookTarget" preserve="all" />
     <type fullname="MoveMiddleBoss" preserve="all" />
+    <type fullname="PlayerAnimation" preserve="all" />
+    <type fullname="PlayerController" preserve="all" />
+    <type fullname="PlayerStep" preserve="all" />
+    <type fullname="RemoveShield" preserve="all" />
+    <type fullname="RotateSwordController" preserve="all" />
+    <type fullname="ShieldItem" preserve="all" />
+    <type fullname="SkillController" preserve="all" />
+    <type fullname="SkillSelection" preserve="all" />
     <type fullname="StatusMiddleBossCreateSpeed" preserve="all" />
     <type fullname="StatusMiddleBossSpeed" preserve="all" />
+    <type fullname="SwordContoroller" preserve="all" />
+    <type fullname="Targeting" preserve="all" />
+    <type fullname="WachingMouse" preserve="all" />
+    <type fullname="WallSkill" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -18,6 +36,11 @@
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.GameObject" preserve="all" />
@@ -34,6 +57,7 @@
     <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
     <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
     <type fullname="UnityEngine.PolygonCollider2D" preserve="all" />
     <type fullname="UnityEngine.Rigidbody2D" preserve="all" />

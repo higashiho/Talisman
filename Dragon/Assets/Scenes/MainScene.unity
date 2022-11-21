@@ -4086,6 +4086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCount: 30
   Counter: 0
+  _time: 0
   HEIGHT: 35
   WIDTH: 35
   _CreateSpeed: 1
@@ -9679,6 +9680,14 @@ PrefabInstance:
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 1398843203}
+    - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: Skills.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: Skills.Array.data[4]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111195, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: maxTimer
       value: 0.1
