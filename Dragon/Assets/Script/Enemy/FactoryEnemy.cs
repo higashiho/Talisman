@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
+
 // オブジェクトプーリング用
 // 最初に中ボスをそれぞれ生成
 // Listに入れとく
@@ -11,14 +12,16 @@ public class FactoryEnemy : MonoBehaviour
 {
 
     // オブジェクトアタッチ用
-    [HeaderAttribute("MiddleBossCreaterアタッチ"), SerializeField]
-    private GameObject MiddleBossCreater;
+    [Header("プールアタッチ")]
+    [SerializeField]    private GameObject MiddleBossPool;
+    [SerializeField]    private GameObject EnemyPool;
 
-    // スクリプト参照用
-    private CreateMiddleBoss createmiddleboss;
 
+    AsyncOperationHandle<GameObject> handle_mid1;
+    AsyncOperationHandle<GameObject> handle_mid2;
+    AsyncOperationHandle<GameObject> handle_mid3;
     AsyncOperationHandle<GameObject> loadOp;
-    
+
     public List<GameObject> middleBossPool1 = new List<GameObject>();   // 中ボス1プール
     public List<GameObject> middleBossPool2= new List<GameObject>();    // 中ボス2プール
     public List<GameObject> middleBossPool3 = new List<GameObject>();   // 中ボス3プール
@@ -30,26 +33,24 @@ public class FactoryEnemy : MonoBehaviour
     public List<GameObject> mobEnemyPool5 = new List<GameObject>();     // モブキャラ5プール
     
 
-
-    public bool onceProcessing = false;
-
-    void Awake()
+    // MiddleBossとMobEnemyをロード
+    IEnumerator Start()
     {
-        StartCoroutine(LoadAsset("MiddleBoss1", 2, middleBossPool1));
-        StartCoroutine(LoadAsset("MiddleBoss2", 2, middleBossPool2));
-        StartCoroutine(LoadAsset("MiddleBoss3", 2, middleBossPool3));
+        yield return StartCoroutine(LoadAsset("MiddleBoss1", 2, middleBossPool1, MiddleBossPool)); 
+        yield return StartCoroutine(LoadAsset("MiddleBoss2", 2, middleBossPool2, MiddleBossPool));
+        yield return StartCoroutine(LoadAsset("MiddleBoss3", 2, middleBossPool3, MiddleBossPool));
 
-        StartCoroutine(LoadAsset("EnemyChase", 10, mobEnemyPool1));
-        StartCoroutine(LoadAsset("EnemyChase2", 10, mobEnemyPool2));
-        StartCoroutine(LoadAsset("EnemyChase3", 10, mobEnemyPool3));
-        StartCoroutine(LoadAsset("EnemyChase4", 10, mobEnemyPool4));
-        StartCoroutine(LoadAsset("EnemyChase5", 10, mobEnemyPool5));
+        yield return StartCoroutine(LoadAsset("EnemyChase", 10, mobEnemyPool1, EnemyPool));
+        yield return StartCoroutine(LoadAsset("EnemyChase2", 10, mobEnemyPool2, EnemyPool));
+        yield return StartCoroutine(LoadAsset("EnemyChase3", 10, mobEnemyPool3, EnemyPool));
+        yield return StartCoroutine(LoadAsset("EnemyChase4", 10, mobEnemyPool4, EnemyPool));
+        StartCoroutine(LoadAsset("EnemyChase5", 10, mobEnemyPool5, EnemyPool));
 
     }
 
 
     // オブジェクトを生成して透明にしてプーリングする
-    public IEnumerator LoadAsset(string key, int numMax, List<GameObject> PoolList)
+    public IEnumerator LoadAsset(string key, int numMax, List<GameObject> PoolList, GameObject parent)
     {
         for(int i = 0; i < numMax; i++)
         {
@@ -58,39 +59,20 @@ public class FactoryEnemy : MonoBehaviour
 
             if(loadOp.Result != null)
             {
-                var newObj = Instantiate(loadOp.Result, transform);
+                var newObj = Instantiate(loadOp.Result, parent.transform);
                 newObj.name = key;
                 newObj.SetActive(false);
                 PoolList.Add(newObj);
             }
         }
+        
+
     }
 
     // プールの中身があるかないか判定
-    public GameObject checkListElement(string key, List<GameObject> PoolList,Vector3 pos)
-    {
-        GameObject poolObj;
-
-        // Listの中身が足りない場合追加で生成
-        if(PoolList.Count <= 0)
-        {   if(!onceProcessing)
-            {
-                onceProcessing = true;
-            }
-        }
-
-       // 使う
-
-
-        return null;
-
-    }
 
     public void CollectPoolObject(GameObject poolObj, List<GameObject> PoolList)
     {
-        // オブジェクトを非表示
-        poolObj.gameObject.SetActive(false);
-        // Listに格納
         PoolList.Add(poolObj);
     }
 }
