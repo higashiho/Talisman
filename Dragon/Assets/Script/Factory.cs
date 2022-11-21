@@ -39,7 +39,7 @@ public class Factory : MonoBehaviour
         // Queueの初期化
         bulletQueue = new Queue<GameObject>();
         shockWaveQueue = new Queue<GameObject>();
-       
+       bulletShot = GameObject.Find("ShotGun").GetComponent<BulletShot>();
     }
 
     public GameObject Launch(GameObject obj, Queue<GameObject> tmpQueue, Vector3 _pos)

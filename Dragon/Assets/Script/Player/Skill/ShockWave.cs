@@ -18,7 +18,8 @@ public class ShockWave : MonoBehaviour
     public void SetOnSizeUp(bool b) {onSizeUp = b; }
     public bool GetOnSizeUp() {return onSizeUp;}
     
-    private Vector3 scaleChange = new Vector3(8.0f, 2.0f, 0);     // 大きくなる速さ
+    private Vector3 scaleChange = new Vector3(4.0f, 1.0f, 0);     // 大きくなる速さ
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +45,9 @@ public class ShockWave : MonoBehaviour
 
     private void sizeUp()
     {
-        this.transform.localScale += scaleChange * Time.deltaTime;
+        float maxScaleX = 16.0f ;
+        if(this.transform.localScale.x <= maxScaleX)
+            this.transform.localScale += scaleChange * Time.deltaTime;
     }
     
     // 画面外に出たらオブジェクト非表示

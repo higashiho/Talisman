@@ -14,6 +14,14 @@ public class PlayerController : MonoBehaviour
         get { return playerSpeed; }
 		set { playerSpeed = value; }
     }
+
+    private bool onMeve;                                // 動いているかどうか
+    public bool OnMove
+    {
+        get { return onMeve; }
+        set { onMeve = value; }
+    }
+    
     [SerializeField]
     private int hp = 3;                                      //ヒットポイント
     public int Hp {
@@ -109,23 +117,42 @@ public class PlayerController : MonoBehaviour
         speed();
         pos = transform.position;   // 現在の位置を保存
 
+        int m_moveJudge = 0, m_move = 1;
+
         if (Input.GetKey(KeyCode.W)){       // Wキーを押している間
             pos.y += playerSpeed.y * Time.deltaTime;    // 上移動
-            
+            m_moveJudge = m_move;
         }
         else if (Input.GetKey(KeyCode.S))   // Sキー
         {
             pos.y -= playerSpeed.y * Time.deltaTime;    // 下移動
+            m_moveJudge = m_move;
         }
         if (Input.GetKey(KeyCode.A))        // Aキー
         {
             pos.x -= playerSpeed.x * Time.deltaTime;    // 左移動
-            
+            m_moveJudge = m_move; 
         }
         else if (Input.GetKey(KeyCode.D))   // Dキー
         {
-            pos.x += playerSpeed.x * Time.deltaTime;    // 右移動
-            
+            pos.x += playerSpeed.x * Time.deltaTime;    // 右移動          
+            m_moveJudge = m_move;
+        }
+
+        // 動いているかどうかの判断用
+        switch (m_moveJudge)
+        {
+            // キーが何も押されていないとき
+            case 0:
+                onMeve = false;
+                break;
+
+            // キーが押された時
+            case 1:
+                onMeve = true;
+                break;
+            default:
+                break;
         }
 
         // 右座標

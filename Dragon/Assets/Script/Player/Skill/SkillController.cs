@@ -83,6 +83,7 @@ public class SkillController : MonoBehaviour
     /// @note スキル用のif文の量が増えるため直接updateの中に記入は避ける
     private void skillControl()
     {
+        // lockon銃
         if(Skills[0] > 0 && nowSkiil[0])
         {
             nowSkiil[0] = false;   
@@ -92,6 +93,7 @@ public class SkillController : MonoBehaviour
         else if(Skills[0] < 0)
             targeting = false;
 
+        // スピードアップ
         if(Skills[1] > 0 && nowSkiil[1])
         {
             nowSkiil[1] = false;    
@@ -99,6 +101,7 @@ public class SkillController : MonoBehaviour
         }
         else if(Skills[1] <= 0) speedUp = false;
 
+        // 回転斬り
         if(Skills[2] > 0)
         {
             onRotateSword = true;
@@ -106,6 +109,7 @@ public class SkillController : MonoBehaviour
         else
             onRotateSword = false;
 
+        // 壁生成
         if(Skills[3] >= usingWallSkill)
         {
             onWallSkill = true;
