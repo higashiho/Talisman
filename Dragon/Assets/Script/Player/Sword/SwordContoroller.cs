@@ -47,7 +47,7 @@ public class SwordContoroller : MonoBehaviour
     private GameObject shockWaveObj;         // 衝撃波オブジェク
 
     [SerializeField, HeaderAttribute("player")]
-    private SpriteRenderer player;              // スプライトレンダラー格納用
+    private PlayerController player;              // スプライトレンダラー格納用
 
     public bool CoroutineBool{
         get { return coroutineBool ;}
@@ -78,6 +78,7 @@ public class SwordContoroller : MonoBehaviour
         renderer.enabled = false;
         collider.enabled = false;
         cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
+        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
     }
 
     // Update is called once per frame
@@ -105,22 +106,19 @@ public class SwordContoroller : MonoBehaviour
             if(!coroutineBool)
             {
                 float m_downSpeed = 0.5f;
-                var m_nomalSpeed = player.GetComponent<PlayerController>().NomalPlayerSpeed;
+                var m_nomalSpeed = player.NomalPlayerSpeed;
                 if(Input.GetMouseButton(0))
                 {
                     onTime += Time.deltaTime;
-                    // TO-DO 貯めているときに移動速度ダウン、見た目変更を実装
-                    player.color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
                     // Shieldがある場合スピードダウン
-                    if(player.GetComponent<PlayerController>().OnShield)
-                        player.GetComponent<PlayerController>().PlayerSpeed
+                    if(player.OnShield)
+                        player.PlayerSpeed
                         = m_nomalSpeed * m_downSpeed; 
                     onCharge = true;
                 }
 
                 else if(Input.GetMouseButtonUp(0))
                 {
-                    player.color = new Color(1, 1, 1, 1.0f);
                         nomalAttack();
                         shockWave();
                     
@@ -144,8 +142,10 @@ public class SwordContoroller : MonoBehaviour
 
         skillController.Skills[4] -= OnShockSkill;
         
+        
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
-        if(onTime >= maxTime)
+        // スキルアイテムが４つ以上ないと大きくならないようにする
+        if(onTime >= maxTime && skillController.Skills[4] >= OnShockSkill)
         {
             shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     

@@ -25,7 +25,7 @@ public class SceneController : MonoBehaviour
         }
         if(SceneMove){      // SceneMoveがtrueのとき
             if(Input.GetKeyDown(KeyCode.Return)){       // Enterキーが押されたとき
-                if(SceneManager.GetActiveScene().name == "TittleScene"){        // 現在のシーンがTittleSceneなら
+                if(SceneManager.GetActiveScene().name == "TitleScene"){        // 現在のシーンがTittleSceneなら
                     SceneMove = false;
                     fadeController.fadeOutStart(0, 0, 0, 0, "MainScene");       // フェードアウトしてMainSceneに移動
                 }

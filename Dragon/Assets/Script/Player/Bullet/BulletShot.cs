@@ -5,7 +5,6 @@ using UnityEngine;
 public class BulletShot : MonoBehaviour
 {
     [SerializeField] private GameObject bulletObj;
-    [SerializeField] private Transform player;      // Playerの位置を取得するため
     private Vector3 bulletPoint;    // 弾を生成する位置
    // [SerializeField]
     private int count = 10;      // 攻撃回数のカウント
@@ -28,20 +27,22 @@ public class BulletShot : MonoBehaviour
     
     [SerializeField]
     private GameObject target;                      // 狙う相手
+    public GameObject Target
+    {
+        get{return target;}
+    }
     [SerializeField, HeaderAttribute("スキル用スクリプト")]
     private SkillController skillController;            // スクリプト格納用
     
     [SerializeField]
     private Factory objectPool;             // オブジェクトプール用コントローラー格納
-    
-    
-    
+
     
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
     }
 
     // Update is called once per frame
