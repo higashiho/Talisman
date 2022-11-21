@@ -14,7 +14,7 @@ public class PlayerStep : MonoBehaviour
     private float[] onTimer = new float[4];     // ダブルクリックの間隔
     
     [SerializeField, HeaderAttribute("ステップが出せる押し間隔")]
-    private float maxTimer = 0.3f;              // 最大待ち時間
+    private float maxTimer;              // 最大待ち時間
 
     private bool nowStep = false;               // ステップ最中
     private float stepTimer = 0.1f;              // ステップ時間
@@ -81,7 +81,7 @@ public class PlayerStep : MonoBehaviour
     private void stepControl(int num, string str)
     {
         string m_up = "w", m_down = "s", m_right = "d";
-        float power = 150.0f;
+        float power = (30.0f * 1000) * Time.deltaTime;
         if(onSteps[num])
         {
             onTimer[num] += Time.deltaTime;

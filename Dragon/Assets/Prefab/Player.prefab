@@ -5241,7 +5241,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  maxTimer: 0.1
+  maxTimer: 0.05
 --- !u!1 &2243393573508983324
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,6 +5634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1116863028944189353}
   player: {fileID: 2243393573469111196}
+  swodController: {fileID: 2243393573446524709}
 --- !u!1 &4201529300902395629
 GameObject:
   m_ObjectHideFlags: 0
