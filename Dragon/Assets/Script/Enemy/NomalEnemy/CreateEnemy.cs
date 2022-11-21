@@ -23,6 +23,7 @@ public class CreateEnemy : MonoBehaviour
     
 
     private Vector3 _pos;        //現在位置
+    [SerializeField]
     private float _time;         //経過時間
 
     
@@ -52,6 +53,7 @@ public class CreateEnemy : MonoBehaviour
     {
         EnemyPool = GameObject.Find("PoolObject");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
+        findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
         _time = 0;
     }
 

@@ -6,7 +6,6 @@ public class ColMiddleBoss : MonoBehaviour
 {
     // ゲームオブジェクト参照用
     private GameObject player;
-    private GameObject MiddleBoss;
     private GameObject boss; // Bossアタッチ用
     private GameObject bullet;  // プレイヤーが放つホーミング弾
     private GameObject MiddleBossCreater;
@@ -48,8 +47,8 @@ public class ColMiddleBoss : MonoBehaviour
         findBoss = BossInstance.GetComponent<FindBoss>();
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>(); 
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
-        movemiddleboss = MiddleBoss.GetComponent<MoveMiddleBoss>();
-        bulletcontroller = player.GetComponent<BulletController>();
+        movemiddleboss = this.GetComponent<MoveMiddleBoss>();
+        //bulletcontroller = GameObject.FindWithTag("Bullet").GetComponent<BulletController>();
         
         middleBossName = gameObject.name;       // 自身の名前を取得
     }
@@ -88,7 +87,7 @@ public class ColMiddleBoss : MonoBehaviour
         }
         if(other.gameObject.tag == "Bullet")
         {
-            hp -= bulletcontroller.Attack; 
+            hp -= other.gameObject.GetComponent<BulletController>().Attack; 
         }
         if(other.gameObject.tag == "ShockWave")
         {
