@@ -31,8 +31,6 @@ public class EnemyController : MonoBehaviour
     {
         if(!colEnemy.FadeFlag)
             attractEnemy();
-
-        lookAt();
     }
     
     //プレーヤーを追いかける
@@ -42,12 +40,5 @@ public class EnemyController : MonoBehaviour
         playerPos = player.transform.position;
 
         transform.position = Vector2.MoveTowards(Pos , playerPos , enemyMoveSpeed * Time.deltaTime);
-    }
-
-    //進行方向を向く
-    private void lookAt()
-    {
-        Vector3 gaze = (player.transform.position - this.transform.position).normalized;
-        this.transform.rotation = Quaternion.FromToRotation(Vector3.up,gaze);
     }
 }
