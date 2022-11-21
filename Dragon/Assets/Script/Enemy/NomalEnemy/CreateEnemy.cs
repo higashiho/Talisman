@@ -52,6 +52,7 @@ public class CreateEnemy : MonoBehaviour
     {
         EnemyPool = GameObject.Find("PoolObject");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
+        findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
         _time = 0;
     }
 
