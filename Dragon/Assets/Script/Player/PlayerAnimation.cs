@@ -22,7 +22,7 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
             playAnime(player.OnMove,"move");
-            playAnime(swodController.OnCharge,"charge");
+            playAnime(swodController.OnAttack,"Attack");
     }
     // アニメーションを再生させるか
     private void playAnime(bool b, string s)
