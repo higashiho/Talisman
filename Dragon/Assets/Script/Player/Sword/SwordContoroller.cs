@@ -72,6 +72,14 @@ public class SwordContoroller : MonoBehaviour
 
     private Cutin cutin;
 
+    private bool onAttack;
+    public bool OnAttack
+    {
+        get { return onAttack; }
+        set { onAttack = value; }
+    }
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +104,7 @@ public class SwordContoroller : MonoBehaviour
         {
             if (!coroutineBool && Input.GetMouseButtonDown(0))
             {
+                onAttack = true;
                 nomalAttack();
             }
         }
@@ -109,11 +118,13 @@ public class SwordContoroller : MonoBehaviour
                 var m_nomalSpeed = player.NomalPlayerSpeed;
                 if(Input.GetMouseButton(0))
                 {
+                    onAttack = true;
                     onTime += Time.deltaTime;
                     // Shieldがある場合スピードダウン
                     if(player.OnShield)
                         player.PlayerSpeed
                         = m_nomalSpeed * m_downSpeed; 
+                    renderer.enabled = true;
                     onCharge = true;
                 }
 
@@ -176,6 +187,7 @@ public class SwordContoroller : MonoBehaviour
         renderer.enabled = false;
         collider.enabled = false;
         yield return new WaitForSeconds(attackWait);
+        onAttack = false;
         coroutineBool = false;
     }
 }
