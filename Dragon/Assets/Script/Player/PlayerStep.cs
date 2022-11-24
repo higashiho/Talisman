@@ -27,6 +27,8 @@ public class PlayerStep : MonoBehaviour
     private Cutin cutin;
 
     private BoxCollider2D col;                    // ボックスコライダー取得用
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +87,7 @@ public class PlayerStep : MonoBehaviour
     private void stepControl(int num, string str)
     {
         string m_up = "w", m_down = "s", m_right = "d";
-        float power = (25.0f * 1000) * Time.deltaTime;
+        float power = 7000.0f;
         if(onSteps[num])
         {
             onTimer[num] += Time.deltaTime;
@@ -95,13 +97,13 @@ public class PlayerStep : MonoBehaviour
                 col.enabled = false;
 
                 if(str == m_up)
-                    rd2D.velocity = Vector3.up * power;  
+                    rd2D.velocity = Vector3.up * power * Time.deltaTime;  
                 else if(str == m_down)
-                    rd2D.velocity = Vector3.down * power;  
+                    rd2D.velocity = Vector3.down * power * Time.deltaTime;  
                 else if(str == m_right)
-                    rd2D.velocity = Vector3.right * power;  
+                    rd2D.velocity = Vector3.right * power * Time.deltaTime;  
                 else 
-                    rd2D.velocity = Vector3.left * power;  
+                    rd2D.velocity = Vector3.left * power * Time.deltaTime;  
 
                 onTimer[num] = default;
                 nowStep = true;

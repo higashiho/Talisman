@@ -91,7 +91,7 @@ public class ColEnemy : MonoBehaviour
     //エネミーのノックバック
     private void nockback()
     {
-        float m_nockbackStartTime = nockbackTime;
+        float m_nockbackStartTime = 0.2f;
         float Power = 1000.0f * Time.deltaTime;
 
         playerPos = player.transform.position;  //プレイヤーの位置
@@ -126,11 +126,6 @@ public class ColEnemy : MonoBehaviour
         {
             crashFlag = false;
             rb2D.velocity = Vector3.zero;
-        }
-
-        if(!crashFlag)
-        {
-            
         }
     }
 
