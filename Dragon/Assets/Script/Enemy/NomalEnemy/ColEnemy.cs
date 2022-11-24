@@ -5,9 +5,6 @@ using UnityEngine;
 public class ColEnemy : MonoBehaviour
 {
 
-    [SerializeField]
-    private GameObject ItemPrefab;              //プレハブ呼び出し
-
     private int hitDamage = 1;                  //エネミーがプレイヤーに当たった時のダメージ
 
     private PlayerController playerController;  //スクリプト格納用
@@ -150,7 +147,7 @@ public class ColEnemy : MonoBehaviour
             {
                 Destroy(Polygon2D);
                 fadeFlag = true;
-                Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+                //Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
                 createEnemy.spawnCount++;
             }
         }
@@ -159,7 +156,7 @@ public class ColEnemy : MonoBehaviour
         {
         
             fadeFlag = true;
-            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+            //Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
             damageEfect.Play();
@@ -169,7 +166,7 @@ public class ColEnemy : MonoBehaviour
         if(other.gameObject.name == "RotateSword")
         {
             fadeFlag = true;
-            Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
+            //Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
             createEnemy.spawnCount++;
             Destroy(GetComponent<PolygonCollider2D>());
             damageEfect.Play();

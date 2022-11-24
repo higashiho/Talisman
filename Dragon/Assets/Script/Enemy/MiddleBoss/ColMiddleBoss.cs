@@ -11,6 +11,8 @@ public class ColMiddleBoss : MonoBehaviour
     private GameObject MiddleBossCreater;
     private GameObject EnemyPool;
     private GameObject BossInstance;
+    [SerializeField]
+    private GameObject middleBossItem;      // 中ボスアイテム参照
 
     [HeaderAttribute("中ボスヒットポイント"), SerializeField]
     private int hp = 5;
@@ -20,7 +22,7 @@ public class ColMiddleBoss : MonoBehaviour
     private int ROTATESWORD_DAMAGE = 2;
     
     private BossController bosscontroller;  //スクリプトアタッチ用
-    [SerializeField]
+    
 
 
 
@@ -49,7 +51,6 @@ public class ColMiddleBoss : MonoBehaviour
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
         movemiddleboss = this.GetComponent<MoveMiddleBoss>();
         //bulletcontroller = GameObject.FindWithTag("Bullet").GetComponent<BulletController>();
-        
         middleBossName = gameObject.name;       // 自身の名前を取得
     }
 
@@ -61,6 +62,7 @@ public class ColMiddleBoss : MonoBehaviour
             {
                 createmiddleboss.middleBossNumCounter--;
                 this.gameObject.SetActive(false);
+
             }
         }
         
@@ -99,6 +101,7 @@ public class ColMiddleBoss : MonoBehaviour
             {
                 bosscontroller.SetHp(hp);   // 中ボスの残りHPをボスのHPに加算
                 this.gameObject.SetActive(false);
+                
                 createmiddleboss.middleBossNumCounter--;// 中ボスカウンタ--
             }
         }
@@ -106,12 +109,6 @@ public class ColMiddleBoss : MonoBehaviour
 
     void OnDisable()
     {
-        
-        if(middleBossName == "MiddleBoss1")
-            factoryenemy.CollectPoolObject(this.gameObject, factoryenemy.middleBossPool1);
-        else if(middleBossName == "MiddleBoss2")
-            factoryenemy.CollectPoolObject(this.gameObject, factoryenemy.middleBossPool2);
-        else if(middleBossName == "MiddleBoss3")
-            factoryenemy.CollectPoolObject(this.gameObject, factoryenemy.middleBossPool3);
+        middleBossItem.SetActive(true); // Item表示
     }    
 }

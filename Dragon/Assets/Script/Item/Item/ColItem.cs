@@ -9,10 +9,17 @@ public class ColItem : MonoBehaviour
     [SerializeField]
     private GameObject player;
     private SkillController skillcontroller;
+    private GameObject objectPool;
+    private FactoryEnemy factoryenemy;
+    private GameObject parent;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        objectPool = GameObject.Find("PoolObject");
+        factoryenemy = objectPool.GetComponent<FactoryEnemy>();
         skillcontroller = player.GetComponent<SkillController>();
+        parent = transform.root.gameObject; // 親取得
         
     }
 
@@ -35,7 +42,17 @@ public class ColItem : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             costRefresh();
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
+    }
+
+    void OnDisable()
+    {
+        if(middleBossName == "MiddleBoss1")
+            factoryenemy.CollectPoolObject(parent, factoryenemy.middleBossPool1);
+        else if(middleBossName == "MiddleBoss2")
+            factoryenemy.CollectPoolObject(parent, factoryenemy.middleBossPool2);
+        else if(middleBossName == "MiddleBoss3")
+            factoryenemy.CollectPoolObject(parent, factoryenemy.middleBossPool3);
     }
 }
