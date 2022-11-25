@@ -32,7 +32,7 @@ public class ChargeCompleteController : MonoBehaviour
             chargeCompleteEfect.Play();
         }
 
-        if(swordContoroller.OnTime >= swordContoroller.MaxTime && Input.GetMouseButtonUp(0))
+        if(!swordContoroller.OnCharge)
         {
             chargeCompleteEfect.Stop();
         }
