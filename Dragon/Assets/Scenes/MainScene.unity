@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScale: 0
-  slowTime: 0.05
+  slowTime: 0.1
   onSlowDown: 0
 --- !u!1 &61119335
 GameObject:
