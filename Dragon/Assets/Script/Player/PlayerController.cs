@@ -77,9 +77,9 @@ public class PlayerController : MonoBehaviour
 
     private float delay = 0.5f;                         // 遅延時間
 
-    private float limitPosY = 43.0f;                     // y座標限界値
+    private float limitPosY = 25.0f;                     // y座標限界値
     private float minPosX = -48.0f;                      // 左座標限界値
-    private float maxPosX = 327.0f;                      // 右座標限界値
+    private float maxPosX = 385.0f;                      // 右座標限界値
 
     [SerializeField]
     private SwordContoroller sword;
@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
         // 下座標
         if(pos.y <= -limitPosY)
             pos.y = -limitPosY;
+        
         
         transform.position = pos;
 
