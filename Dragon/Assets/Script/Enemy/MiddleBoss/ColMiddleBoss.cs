@@ -12,10 +12,11 @@ public class ColMiddleBoss : MonoBehaviour
     private GameObject EnemyPool;
     private GameObject BossInstance;
     [SerializeField]
-    private GameObject middleBossItem;      // 中ボスアイテム参照
+    private GameObject parent;
+    
 
-    [HeaderAttribute("中ボスヒットポイント"), SerializeField]
-    private int hp = 5;
+    [Header("中ボスヒットポイント")]
+    public int Hp = 5;
     [HeaderAttribute("Swordのダメージ"), SerializeField]
     private int SWORD_DAMAGE = 1;
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
@@ -32,41 +33,52 @@ public class ColMiddleBoss : MonoBehaviour
     private BulletController bulletcontroller;
     private FactoryEnemy factoryenemy;
     private FindBoss findBoss;
+    [SerializeField]
+    private MiddleBossController midCtrl;
+    
 
 
     
 
-    private string middleBossName;
     
+    [SerializeField]
+    private bool createItem = false;    // アイテムを生成するかどうかのフラグ
+    private GameObject middleBossItem;
+    public bool Deth;       // 中ボス死亡フラグ
+    public bool Marge;      // 中ボス:ボス融合フラグ
 
     void Start()
     {
+        parent = transform.parent.gameObject;
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
         EnemyPool = GameObject.Find("PoolObject");
         player = GameObject.FindWithTag("Player");
-        BossInstance = GameObject.Find("BossInstance");
-        
-        findBoss = BossInstance.GetComponent<FindBoss>();
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>(); 
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
-        movemiddleboss = this.GetComponent<MoveMiddleBoss>();
-        //bulletcontroller = GameObject.FindWithTag("Bullet").GetComponent<BulletController>();
-        middleBossName = gameObject.name;       // 自身の名前を取得
+        movemiddleboss = this.gameObject.GetComponent<MoveMiddleBoss>();
+        midCtrl = parent.GetComponent<MiddleBossController>();
     }
 
+    void OnEnable()
+    {
+        BossInstance = GameObject.Find("BossInstance");
+        findBoss = BossInstance.GetComponent<FindBoss>();
+        Deth = false;   // 中ボス死亡フラグ(false)
+        Marge = false;  // 中ボス:ボス融合フラグ(false) 
+    }
     void Update()
     {
         if(boss != null)
         {
-            if(hp <= 0)
+            // 中ボスHPが0以下の時
+            if(Hp <= 0)
             {
-                createmiddleboss.middleBossNumCounter--;
-                this.gameObject.SetActive(false);
-
+                //createItem = true;
+                deth(); // 中ボス死亡処理
+                
             }
-        }
-        
-        if(findBoss != null)
+        } 
+        else
         {
             if(findBoss.GetOnFind())
             {
@@ -75,40 +87,67 @@ public class ColMiddleBoss : MonoBehaviour
             }
         }
     }
-
-
-    private void OnTriggerEnter2D(Collider2D other)
+    // 中ボスが死んだかどうか(攻撃を受ける毎に呼ぶ)
+    private bool dethMid()
     {
-        if(other.gameObject.name == "Sword")
-        {
-            hp -= SWORD_DAMAGE;
-        }
-        if(other.gameObject.name == "RotateSword")
-        {
-            hp -= ROTATESWORD_DAMAGE;
-        }
-        if(other.gameObject.tag == "Bullet")
-        {
-            hp -= other.gameObject.GetComponent<BulletController>().Attack; 
-        }
-        if(other.gameObject.tag == "ShockWave")
-        {
-            hp -= other.gameObject.GetComponent<ShockWave>().Attack;
-        }
-        if(movemiddleboss.Margeable) // 融合フラグがたっているなら
-        {
-            if(other.gameObject.tag == "Boss")
-            {
-                bosscontroller.SetHp(hp);   // 中ボスの残りHPをボスのHPに加算
-                this.gameObject.SetActive(false);
-                
-                createmiddleboss.middleBossNumCounter--;// 中ボスカウンタ--
-            }
-        }
+        if(Hp <= 0)
+            return true;
+        else
+            return false;
     }
 
-    void OnDisable()
+    // 中ボス死亡処理
+    private void deth()
     {
-        middleBossItem.SetActive(true); // Item表示
-    }    
+        movemiddleboss.DoneDeth = true;
+        this.gameObject.SetActive(false);
+    }
+
+    // 中ボス当たり判定
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 剣にあたったとき
+        if(other.gameObject.name == "Sword")
+        {
+            Hp -= SWORD_DAMAGE;
+            Deth = dethMid();
+        }
+        // 回転斬りにあたったとき
+        if(other.gameObject.name == "RotateSword")
+        {
+            Hp -= ROTATESWORD_DAMAGE;
+            Deth = dethMid();
+        }
+        // プレイヤーの弾にあたったとき
+        if(other.gameObject.tag == "Bullet")
+        {
+            Hp -= other.gameObject.GetComponent<BulletController>().Attack; 
+            Deth = dethMid();
+        }
+        // ショックウェーブにあたったとき
+        if(other.gameObject.tag == "ShockWave")
+        {
+            Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+            Deth = dethMid();
+        }
+
+        //if(movemiddleboss.Margeable()) // 融合フラグがたっているなら
+        //{
+            if(other.gameObject.tag == "Boss")
+            {
+                bosscontroller.SetHp(Hp);   // 中ボスの残りHPをボスのHPに加算
+                movemiddleboss.DoneMove = true;    // 融合完了フラグ(true)
+                //this.gameObject.SetActive(false);
+                //Marge = true;
+                //createmiddleboss.middleBossNumCounter--;// 中ボスカウンタ--
+                
+            }
+       // }
+    }
+
+    // 中ボス非表示になったとき
+    /*void OnDisable()
+    {
+       midCtrl.dispMidBoss = false;
+    }  */  
 }

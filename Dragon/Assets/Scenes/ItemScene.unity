@@ -9064,6 +9064,7 @@ MonoBehaviour:
   mobEnemyPool3: []
   mobEnemyPool4: []
   mobEnemyPool5: []
+  LoadingComplete: 0
 --- !u!4 &1919065610
 Transform:
   m_ObjectHideFlags: 0
