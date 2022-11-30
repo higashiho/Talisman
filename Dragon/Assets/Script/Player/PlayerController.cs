@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
 
 
     private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f,0);            //シールドがない時の移動スピード
-    private Vector3 nomalPlayerSpeed = new Vector3(7.0f, 7.0f,0);         //  通常時スピード
-    private Vector3 highPlayerSpeed = new Vector3(10.0f, 10.0f,0);          // スピードアップスキル取得時スピード
+    private Vector3 nomalPlayerSpeed = new Vector3(9.0f, 9.0f,0);         //  通常時スピード
+    private Vector3 highPlayerSpeed = new Vector3(12.0f, 12.0f,0);          // スピードアップスキル取得時スピード
     public Vector3 NomalPlayerSpeed{
         get { return nomalPlayerSpeed; }
 		set { nomalPlayerSpeed = value; }
