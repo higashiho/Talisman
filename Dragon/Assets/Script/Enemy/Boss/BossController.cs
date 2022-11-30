@@ -20,49 +20,40 @@ public class BossController : MonoBehaviour
 
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
-    // private List<Vector3> destinations;                  //目標座標
-
-   private int numericPreservation;                         // 前回randoNumber保存用
-
     private Vector3 pos;                                    // 自身の座標
 
-   [SerializeField]
-   private GameObject player;                                // player格納用
+    private int numericPreservation;                         // 前回randoNumber保存用
 
-   [HeaderAttribute("攻撃スキル"), SerializeField]
-   private GameObject[] attackSkill = new GameObject[3];    // 攻撃スキル
-
-   private int attackTime = 15;                             // アタック間隔
-
-
-   [HeaderAttribute("ステージのエリア座標"), EnumIndex(typeof(SkilType))]
+    [HeaderAttribute("ステージのエリア座標"), EnumIndex(typeof(SkilType))]
     public float[] Areas = new float[4];                    // ステージのエリア分け用
 
-   [SerializeField, HeaderAttribute("ヒットポイント"), Range(0, 1000)]
-   private int hp;
+    [SerializeField, HeaderAttribute("ヒットポイント"), Range(0, 1000)]
+    private int hp;
     public int GetHp() {return hp;}
     public void SetHp(int set,bool heel = false) 
     {if(!heel)hp -= set; else hp += set;}
 
-   private GameObject attackObject = default;               // 攻撃スキルオブジェクト
+    private float attackSpeed = 5.0f;                           // ラストエリア時の攻撃間隔
+    private int attackTime = 15;                                // アタック間隔
 
-    private float attackSpeed = 5.0f;                       // ラストエリア時の攻撃間隔
-
-    public static string Judgment = "GameOver";             // クリアか失敗か
     
-    [SerializeField]
-    private ColBoss colBoss;                                // スクリプト格納用
-
-    [SerializeField]
-    private RandomBossHp randomBossHp;                      // スクリプト格納用
-
     private float destroyTime = 5.0f;                       // 消えるまでの時間
-
-    private SpriteRenderer spriteRenderer;                  // スプライトレンダラー格納用
-
     private float alpha = 1;                                // 透明度
 
+    [HeaderAttribute("攻撃スキル"), SerializeField]
+    private GameObject[] attackSkill = new GameObject[3];    // 攻撃スキル
+    private GameObject attackObject = default;               // 攻撃スキルオブジェクト
+    [SerializeField,HeaderAttribute("Player")]
+    private GameObject player;                                // player格納用
     private GameObject cutin;                               // カットインオブジェクト
+
+    [SerializeField]
+    private ColBoss colBoss;                                // スクリプト格納用
+    [SerializeField]
+    private RandomBossHp randomBossHp;                      // スクリプト格納用
+    private SpriteRenderer spriteRenderer;                  // スプライトレンダラー格納用
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -95,13 +86,14 @@ public class BossController : MonoBehaviour
             reset();
     }
 
+    // 挙動
     private void move()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, speed * Time.deltaTime);
         
-
+        // 目標座標についたらScene転移
         if(pos.x >= targetCoordinates.x)
-            SceneManager.LoadScene("EndScene");
+            SceneController.SceneJudg = SceneController.JudgScene.GAMEOVER;
     }
     // 攻撃挙動
     private void attack()
@@ -134,6 +126,7 @@ public class BossController : MonoBehaviour
         }
     }
 
+    // 体力が０になった時の処理
     private void gameClear()
     {
         // ボスが死んだら少しづつ消える
@@ -144,10 +137,13 @@ public class BossController : MonoBehaviour
         // ボスが死んだら震える
         float m_shakePower = 1;           // 揺らす強さ
         
-        if(Judgment != "GameClear")
+        if(SceneController.SceneJudg == SceneController.JudgScene.GAMECLEAR)
         {
-            Judgment = "GameClear";
+            //Judgment = "GameClear";
+            SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
             pos = this.transform.position;
+            
+            Destroy(this.gameObject, destroyTime);
         }
 
         Destroy(GetComponent<PolygonCollider2D>());
@@ -155,15 +151,16 @@ public class BossController : MonoBehaviour
 
         
 
-        Destroy(this.gameObject, destroyTime);
     }
 
+    // 壁が消えた場合初期化するため
     private void reset()
     {
         colBoss.OnWall = false;
         speed = colBoss.GetNormalSpeed();
     }
 
+    // エリア４での攻撃用
     private IEnumerator lastAreaSkill()
     {
         Instantiate(attackSkill[0], player.transform.position, Quaternion.identity);
@@ -175,9 +172,9 @@ public class BossController : MonoBehaviour
         attackObject.transform.parent = this.gameObject.transform;
     }
 
-    
+    // 消えた場合の処理
     void OnDestroy()
     {
-        SceneManager.LoadScene("EndScene");
+        SceneController.SceneJudg = SceneController.JudgScene.GAMEOVER;
     }
 }

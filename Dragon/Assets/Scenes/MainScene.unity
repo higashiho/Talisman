@@ -1058,6 +1058,7 @@ MonoBehaviour:
   mobEnemyPool3: []
   mobEnemyPool4: []
   mobEnemyPool5: []
+  LoadingComplete: 0
 --- !u!4 &234549820
 Transform:
   m_ObjectHideFlags: 0
@@ -2719,39 +2720,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660571938}
   m_CullTransparentMesh: 1
---- !u!1 &678112759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2841260570107853756, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-  m_PrefabInstance: {fileID: 2243393573907084469}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &678112760 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3846662538324839929, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-  m_PrefabInstance: {fileID: 2243393573907084469}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &678112762 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1116863028944189353, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-  m_PrefabInstance: {fileID: 2243393573907084469}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &678112764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 678112759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18993def345fd404fa92445c69ef23d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSprite: {fileID: 678112760}
-  beforeSword: {fileID: -1184007975, guid: b233a77799059224299810260c2e32b1, type: 3}
-  afrerSword: {fileID: -678365110, guid: ddb8d644c7dfc2840a6ac2a131fdaf3e, type: 3}
-  swodController: {fileID: 501981197}
-  player: {fileID: 1713731369}
-  playerAnimator: {fileID: 678112762}
 --- !u!1 &678176606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,6 +5698,7 @@ MonoBehaviour:
   fadeController: {fileID: 1178091676}
   FadeObject: {fileID: 1178091672}
   SceneMove: 1
+  scene: 0
 --- !u!114 &1451451444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8513,22 +8482,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 412898857177224024, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: period
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1116863028944189353, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1771056575354591598, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1771056575354591598, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2243393573446524709, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: objectPool
       value: 
@@ -8585,65 +8538,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Players
       objectReference: {fileID: 0}
-    - target: {fileID: 2243393573722253489, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270628974254378836, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270628974254378836, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2270628974254378836, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2638352812841498427, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LengthScale
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841260570107853756, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363736514802852884, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: period
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3846662538324839929, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+    - target: {fileID: 3271583345781866389, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1184007975, guid: b233a77799059224299810260c2e32b1, type: 3}
-    - target: {fileID: 3846662538324839929, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4540412715519475234, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: lengthInSec
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6070384169435471170, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6070384169435471170, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6213940363084887656, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6213940363084887656, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8349990624252645207, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-      propertyPath: period
-      value: 4
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: ab4f18a19fbc8944eb02b1c95f340efd, type: 3}
+    - target: {fileID: 3677534621453398326, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ab4f18a19fbc8944eb02b1c95f340efd, type: 3}
+    - target: {fileID: 7674237406951439382, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ab4f18a19fbc8944eb02b1c95f340efd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}

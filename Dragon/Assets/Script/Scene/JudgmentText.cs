@@ -17,6 +17,16 @@ public class JudgmentText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        judgmentText.text = BossController.Judgment;
+        onText();
+    }
+
+    // テキスト表示
+    private void onText()
+    {
+        if(SceneController.SceneJudg == SceneController.JudgScene.GAMECLEAR)
+            judgmentText.text = "GameClear!!";
+        else if(SceneController.SceneJudg == SceneController.JudgScene.GAMEOVER)
+            judgmentText.text = "GameOver...";
+        else;
     }
 }

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 406787873938779876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2243393573469111173}
@@ -4976,7 +4976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: 0, z: 1}
-  period: 2
+  period: 4
   player: {fileID: 2243393573469111211}
   fadeController: {fileID: 0}
 --- !u!1 &2243393573446524731
@@ -5140,11 +5140,11 @@ MonoBehaviour:
   playerSpeed: {x: 0, y: 0, z: 0}
   hp: 3
   heelSheld: 10
+  maxTimer: 2
+  flashingCycle: 0.5
   shieldRenderer: {fileID: 4201529300902395629}
   skillController: {fileID: 2243393573469111190}
-  maxTimer: 2
   thisRenderer: {fileID: 3846662538324839929}
-  flashingCycle: 0.5
   sword: {fileID: 2243393573446524709}
 --- !u!114 &2243393573469111175
 MonoBehaviour:
@@ -5320,7 +5320,7 @@ Transform:
   m_GameObject: {fileID: 2243393573722253494}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 3.34, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2243393573446524730}
@@ -5527,8 +5527,9 @@ GameObject:
   - component: {fileID: 3846662538324839929}
   - component: {fileID: 1116863028944189353}
   - component: {fileID: 4828553431109198367}
+  - component: {fileID: 678112764}
   m_Layer: 0
-  m_Name: 20210406220904_0
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5543,7 +5544,7 @@ Transform:
   m_GameObject: {fileID: 2841260570107853756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2243393573469111173}
@@ -5609,7 +5610,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2841260570107853756}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 984dea1e53fb0444fbcad87e39853bfb, type: 2}
   m_CullingMode: 0
@@ -5636,6 +5637,24 @@ MonoBehaviour:
   anim: {fileID: 1116863028944189353}
   player: {fileID: 2243393573469111196}
   swodController: {fileID: 2243393573446524709}
+--- !u!114 &678112764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2841260570107853756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18993def345fd404fa92445c69ef23d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 3846662538324839929}
+  beforeSword: {fileID: -1184007975, guid: b233a77799059224299810260c2e32b1, type: 3}
+  afrerSword: {fileID: -678365110, guid: ddb8d644c7dfc2840a6ac2a131fdaf3e, type: 3}
+  swodController: {fileID: 2243393573446524709}
+  player: {fileID: 2243393573469111196}
+  playerAnimator: {fileID: 1116863028944189353}
 --- !u!1 &4201529300902395629
 GameObject:
   m_ObjectHideFlags: 0
@@ -5715,7 +5734,7 @@ Transform:
   m_GameObject: {fileID: 4547707623169203110}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2243393573469111173}
@@ -5729,7 +5748,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4547707623169203110}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -10477,7 +10496,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 16
+  m_LengthScale: 20
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -10684,7 +10703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: 0, z: 1}
-  period: 2
+  period: 4
   player: {fileID: 2243393573469111211}
   fadeController: {fileID: 0}
 --- !u!1 &7584631516933903385
@@ -10786,7 +10805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: 0, z: 1}
-  period: 2
+  period: 4
   player: {fileID: 2243393573469111211}
   fadeController: {fileID: 0}
 --- !u!1 &8574381960533008193
@@ -10815,7 +10834,7 @@ Transform:
   m_GameObject: {fileID: 8574381960533008193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.47, y: -0.38, z: -0.07822621}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2490267473134818867}
