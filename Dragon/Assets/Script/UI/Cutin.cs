@@ -35,9 +35,6 @@ public class Cutin : MonoBehaviour
     private bool endStartCutin = false;             // 一回目のカットインが終わったか
     private bool usedEnabled = true;                // 表示非表示の処理を使用
 
-    [SerializeField]
-    private FadeController fadeController;
-
     private int passThroughCount = 0;                // 鳥居をくぐった回数
     
     // Start is called before the first frame update
@@ -50,7 +47,7 @@ public class Cutin : MonoBehaviour
     void Update()
     {
 
-        if(onStartCutin && !fadeController.IsFadeIn)
+        if(onStartCutin)
             StartCutin();
         
         else if(usedEnabled && endStartCutin)
