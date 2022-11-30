@@ -8,13 +8,14 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 // オブジェクトプーリング用
 // 最初に中ボスをそれぞれ生成
 // Listに入れとく
-public class FactoryEnemy : MonoBehaviour
+public class FactoryEnemy : MonoBehaviour 
 {
 
     // オブジェクトアタッチ用
     [Header("プールアタッチ")]
     [SerializeField]    private GameObject MiddleBossPool;
     [SerializeField]    private GameObject EnemyPool;
+
 
 
     AsyncOperationHandle<GameObject> handle_mid1;
@@ -31,7 +32,8 @@ public class FactoryEnemy : MonoBehaviour
     public List<GameObject> mobEnemyPool3 = new List<GameObject>();     // モブキャラ3プール
     public List<GameObject> mobEnemyPool4 = new List<GameObject>();     // モブキャラ4プール
     public List<GameObject> mobEnemyPool5 = new List<GameObject>();     // モブキャラ5プール
-    
+    // ロード完了
+    public bool LoadingComplete = false; 
 
     // MiddleBossとMobEnemyをロード
     IEnumerator Start()
@@ -44,8 +46,8 @@ public class FactoryEnemy : MonoBehaviour
         yield return StartCoroutine(LoadAsset("EnemyChase2", 10, mobEnemyPool2, EnemyPool));
         yield return StartCoroutine(LoadAsset("EnemyChase3", 10, mobEnemyPool3, EnemyPool));
         yield return StartCoroutine(LoadAsset("EnemyChase4", 10, mobEnemyPool4, EnemyPool));
-        StartCoroutine(LoadAsset("EnemyChase5", 10, mobEnemyPool5, EnemyPool));
-
+        yield return StartCoroutine(LoadAsset("EnemyChase5", 10, mobEnemyPool5, EnemyPool));
+        LoadingComplete = true;
     }
 
 

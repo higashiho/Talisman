@@ -17,18 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 3b9e56344afaa6e4eb3ca47bccd46e20
   m_SerializeEntries:
-  - m_GUID: 82e785e2d81e0ce4e81dc16953609ce0
-    m_Address: Assets/Prefab/middleBoss1.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - MiddleBoss1
-  - m_GUID: df2d5adfda5d5514e8b3e45c24e49583
-    m_Address: Assets/Prefab/middleBoss3.prefab
+  - m_GUID: eb9d4e478e0eca14e960784c0e0bbefb
+    m_Address: Assets/Prefab/Ctrl(mid3).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - MiddleBoss3
-  - m_GUID: 0f8d76871980c4742ba534306c85f8a0
-    m_Address: Assets/Prefab/middleBoss2.prefab
+  - m_GUID: df3d62e96b2f4b94a883acd885b383d7
+    m_Address: Assets/Prefab/Ctrl(mid1).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MiddleBoss1
+  - m_GUID: 39dcc19c55120664cbeb8bb4e125d196
+    m_Address: Assets/Prefab/Ctrl(mid2).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - MiddleBoss2
