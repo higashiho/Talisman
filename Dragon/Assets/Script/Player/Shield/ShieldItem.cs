@@ -15,14 +15,9 @@ public class ShieldItem : MonoBehaviour
 
     [SerializeField, HeaderAttribute("旋回するターゲット")]
     private GameObject player;
-
-    
-    [SerializeField]
-    private FadeController fadeController;
     // Start is called before the first frame update
     void Start()
     {
-        fadeController = GameObject.Find("FadeImage").GetComponent<FadeController>();
         
     }
 
@@ -30,7 +25,6 @@ public class ShieldItem : MonoBehaviour
     void Update()
     {
         
-        if(!fadeController.IsFadeIn)
         rotateShield();
     }
 

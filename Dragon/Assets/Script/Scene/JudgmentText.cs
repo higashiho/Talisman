@@ -27,6 +27,5 @@ public class JudgmentText : MonoBehaviour
             judgmentText.text = "GameClear!!";
         else if(SceneController.SceneJudg == SceneController.JudgScene.GAMEOVER)
             judgmentText.text = "GameOver...";
-        else;
     }
 }

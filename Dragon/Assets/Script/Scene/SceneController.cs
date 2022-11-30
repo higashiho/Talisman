@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField]
-    private FadeController fadeController;
+    
     [SerializeField]
     private GameObject FadeObject;
-    public bool SceneMove = true;
+    
+    public bool SceneMove = true;           // sceneMoveを行えるか
+    private bool changeCase = true;         // Caseを変えたか
+
 
     // 現在シーンの列挙体
     private enum nowScene
@@ -29,11 +31,43 @@ public class SceneController : MonoBehaviour
         GAMEOVER
     } 
     public static JudgScene SceneJudg;
+
+    /// インスタンス関係
+    private static SceneController instance = null;
+    // 実体が存在しないとき（＝初回参照時）実体を探して登録する
+    public static SceneController Instance => instance
+        ?? (instance = GameObject.FindWithTag("Fadeout").GetComponent<SceneController>());
+
+
+    // スクリプト参照
+    [SerializeField]
+    private FadeController fadeController;
+    [SerializeField]
+    private TalismanController talisman;
+    private void Awake()
+    {
+        // インスタンスがある場合自信を破棄する
+        if(this != Instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        // 唯一のインスタンスなら、シーンを転移しても残す
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+     private void OnDestroy ()
+    {
+        // 破棄時に、登録した実体の解除を行う
+        if ( this == Instance ) instance = null;
+    }
     // Start is called before the first frame update
     void Start()
     {
         scene = nowScene.TITLE;
-        SceneJudg = JudgScene.START;
+
+        
     }
     
 
@@ -50,38 +84,57 @@ public class SceneController : MonoBehaviour
     // シーン移動開始時
     private void fadeStart(string str)
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(talisman == null)
+            talisman = GameObject.FindWithTag("Talismans").GetComponent<TalismanController>();
+        if(Input.GetKeyDown(KeyCode.Return) && SceneMove)
         { 
             SceneMove = false;
-            fadeController.fadeOutStart(0, 0, 0, 0, str);
             
-            if(scene == nowScene.TITLE)
-                scene = nowScene.MAIN;
-            else
-                scene = nowScene.TITLE;
+            talisman.TalismanMove();
+            // caseが動けるか
+            changeCase = true;
+
+            // mainScene用の列挙体初期化
+            SceneJudg = JudgScene.START;
         } 
+
+        // talismanのMoveEndが終わったらScene転移開始
+        if(!SceneMove && talisman.MoveEnd && changeCase)
+        {
+            fadeController.fadeOutStart(0, str);
+
+            // 現在のSceneがTITLEの場合MAINに変更
+            if(scene == nowScene.TITLE)
+            {
+                scene = nowScene.MAIN;
+            }
+            // 以外の場合TITLEに変更
+            else
+            {
+                scene = nowScene.TITLE;
+            }
+            changeCase = false;
+        }
     }
 
+    // シーン移動
     private void moveScene()
     {
-        if(SceneMove)
+        switch (scene)
         {
-            switch (scene)
-            {
-                case nowScene.TITLE:
-                   fadeStart("MainScene");
-                   break;
-                case nowScene.MAIN:
-                    judgEndScene();
-                    break;
-                case nowScene.END:
-                    fadeStart("TitleScene");
-                   scene = nowScene.TITLE;
-                    break;
-                default:
-                    break;
-            }
+            case nowScene.TITLE:
+                fadeStart("MainScene");
+                break;
+            case nowScene.MAIN:
+                judgEndScene();
+                break;
+            case nowScene.END:
+                fadeStart("TitleScene");
+                break;
+            default:
+                break;
         }
+        
     }
 
     private void judgEndScene()
