@@ -23,6 +23,8 @@ public class ItemShade : MonoBehaviour
     [SerializeField]
     private float itemMoveSpeed;                    //アイテムの移動速度
 
+    private int point = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,7 @@ public class ItemShade : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            skillController.Skills[itemNumber - indexAjast]++;
+            skillController.Skills[itemNumber - indexAjast] += point;
             Destroy(this.gameObject);
         }
     }

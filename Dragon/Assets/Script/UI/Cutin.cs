@@ -37,6 +37,8 @@ public class Cutin : MonoBehaviour
 
     [SerializeField]
     private FadeController fadeController;
+
+    private int passThroughCount = 0;                // 鳥居をくぐった回数
     
     // Start is called before the first frame update
     void Start()
@@ -123,22 +125,25 @@ public class Cutin : MonoBehaviour
         if(pos.x >= areas[3] && ones[2])
         {
             stopTime();
-            // エリア４にいるため４と表示
-            text[2].text = "4";
+            // 3つ目の鳥居をくぐったためその表示
+            passThroughCount++;
+            text[2].text = "" + passThroughCount;
             ones[2] = false;
         }
         else if(pos.x >= areas[2] && ones[1])
         {
             stopTime();
-            // エリア３にいるため３と表示
-            text[2].text = "3";
+            // 2つ目の鳥居をくぐったためその表示
+            passThroughCount++;
+            text[2].text = "" + passThroughCount;
             ones[1] = false;
         }
         else if(pos.x >= areas[1] && ones[0])
         {
             stopTime();
-            // エリア２にいるため２と表示
-            text[2].text = "2";
+            // 一つ目の鳥居をくぐったためその表示
+            passThroughCount++;
+            text[2].text = "" + passThroughCount;
             ones[0] = false;
         }
     }

@@ -67,11 +67,7 @@ public class CreateEnemy : MonoBehaviour
             _time += Time.deltaTime;
             if(_time > spawnTimer)
             {
-                
-                if(spawnCount > Counter)
-                {  
-                   dispMobEnemy();
-                }
+                dispMobEnemy();
                 _time = 0;
             }
         }

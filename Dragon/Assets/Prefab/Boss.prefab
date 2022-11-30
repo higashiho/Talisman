@@ -1193,7 +1193,7 @@ Transform:
   m_GameObject: {fileID: 9060541169768609607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 8.875, z: 1}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9060541170134570889}
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  targetCoordinates: {x: 300, y: 0, z: 0}
+  targetCoordinates: {x: 375, y: 0, z: 0}
   player: {fileID: 0}
   attackSkill:
   - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
@@ -1336,8 +1336,8 @@ MonoBehaviour:
   Areas:
   - 0
   - 75
-  - 150
-  - 225
+  - 175
+  - 275
   hp: 0
   colBoss: {fileID: 9060541169768609614}
   randomBossHp: {fileID: 512418799}
@@ -1430,7 +1430,7 @@ Transform:
   m_GameObject: {fileID: 9060541170134570888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2331429, y: 4.9327297, z: 4.9327297}
+  m_LocalScale: {x: 0.73988575, y: 1.4243257, z: 4.9327297}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9060541169768609605}

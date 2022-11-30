@@ -66,7 +66,7 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        float[] areas = {0.0f, 75.0f, 150.0f, 225.0f};
+        float[] Areas = {0.0f, 75.0f, 175.0f, 275.0f};
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindWithTag("Player");
         cutin = GameObject.Find("Cutin");
