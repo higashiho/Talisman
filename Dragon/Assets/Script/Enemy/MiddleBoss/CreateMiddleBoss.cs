@@ -49,37 +49,44 @@ public class CreateMiddleBoss : MonoBehaviour
 
     void Start()
     {
-       middleBossNumCounter = 0;
-       time = 30;
-       factoryenemy = PoolObject.GetComponent<FactoryEnemy>();
+       middleBossNumCounter = 0;    // 中ボス生成カウント0
+       time = 30;   // エリア２に入った瞬間一体目を生成するためにMAX値を設定しておく
+
+       // オブジェクト取得
        BossInstance = GameObject.Find("BossInstance");
+
+        // スクリプト取得
+       factoryenemy = PoolObject.GetComponent<FactoryEnemy>();     
        findBoss = BossInstance.GetComponent<FindBoss>();
+
+       // 最初に出現する中ボス設定
        type = MIDDLEBOSS_TYPE.MIDDLEBOSS1;
     }
 
     
     void Update()
-    {
-        
+    { 
         if(boss != null)
         {
-            checkCreate(); 
-            if(checkPos)
+            checkCreate();  // ボスがエリア2にいるか調べる
+            if(checkPos)    // ボスがエリア2にいる場合
             {
+                // フィールドにいる中ボスの数がリスポーン上限をこえていない場合
                 if(middleBossNumCounter < bossNumMaxInField)
                 {
                     time += Time.deltaTime;
+                    // 前回の中ボス生成からの経過時間が生成インターバルをこえている場合
                     if(time > intervalCreate)
                     {
-                        dispMiddleBoss();
-                        selectMiddleBossType();
-                        time = 0.0f;
+                        dispMiddleBoss();   // 中ボスを画面に表示
+                        selectMiddleBossType(); // 次回生成する中ボスのタイプを設定
+                        time = 0.0f;    // 生成からの経過時間を0にリセット
                     }
                     
                 }   
             }
         }
-        if(findBoss != null)
+        else
         {
             if(findBoss.GetOnFind())
             {
@@ -88,7 +95,6 @@ public class CreateMiddleBoss : MonoBehaviour
             }
         }
     }
-    
   
     // ボスがエリア2にいるかどうか確認する関数
     private void checkCreate()
