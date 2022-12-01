@@ -8,21 +8,22 @@ public class ColItem : MonoBehaviour
     private int point = 5;
     [SerializeField]
     private GameObject player;
-    private SkillController skillcontroller;
+    private GameObject parent;
+
+    // スクリプト参照
+    private SkillController skillcontroller;    // プレイヤースキルクラス参照
+    private MiddleBossController MidCtrl;       // 中ボスコントローラークラス参照    
+
     void Start()
     {
+        parent = transform.parent.gameObject;
         player = GameObject.FindWithTag("Player");
-        skillcontroller = player.GetComponent<SkillController>();
-        
+        skillcontroller = player.GetComponent<SkillController>();   
+        MidCtrl = parent.GetComponent<MiddleBossController>();
     }
 
-    
-    void Update()
-    {
-        
-       
-    }
 
+    // プレイヤーのスキルポイント回復
     private void costRefresh()
     {
         for(int i = 0; i < skillcontroller.Skills.Length; i++)
@@ -30,12 +31,18 @@ public class ColItem : MonoBehaviour
             skillcontroller.Skills[i] += point;
         }
     }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
         {
             costRefresh();
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
+    }
+
+    void OnDisable()
+    {
+        MidCtrl.IsPooling = true;
     }
 }
