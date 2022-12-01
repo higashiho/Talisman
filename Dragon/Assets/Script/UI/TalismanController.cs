@@ -10,9 +10,9 @@ public class TalismanController : MonoBehaviour
     private Image[] talisman = new Image[8];
 
 
-    private Vector2 sizeUpSpeed = new Vector2(300.0f,300.0f);      // 大きくなるスピード
+    private Vector2 sizeUpSpeed = new Vector2(400.0f,400.0f);      // 大きくなるスピード
     private Vector2 nowTalismanSize;                               // 現在のサイズ
-    private float rotationSpeed = 100.0f;                          // 回転スピード
+    private float rotationSpeed = 560.0f;                          // 回転スピード
     private bool move = false;                                     // 挙動するか
     [SerializeField]
     private bool moveEnd = false;                                          // 挙動が終わったかどうか
