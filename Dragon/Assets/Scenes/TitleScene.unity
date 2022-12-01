@@ -383,7 +383,7 @@ MonoBehaviour:
   SceneMove: 1
   scene: 0
   fadeController: {fileID: 763142631}
-  talisman: {fileID: 0}
+  talisman: {fileID: 1737095088}
 --- !u!114 &436809953
 MonoBehaviour:
   m_ObjectHideFlags: 0

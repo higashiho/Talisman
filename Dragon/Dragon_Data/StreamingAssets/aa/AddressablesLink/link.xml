@@ -5,16 +5,19 @@
     <type fullname="ChargeController" preserve="all" />
     <type fullname="ColBullet" preserve="all" />
     <type fullname="ColEnemy" preserve="all" />
+    <type fullname="ColItem" preserve="all" />
     <type fullname="ColMiddleBoss" preserve="all" />
     <type fullname="ColPlayer" preserve="all" />
     <type fullname="EfectEnemy" preserve="all" />
     <type fullname="EnemyController" preserve="all" />
     <type fullname="ItemShade" preserve="all" />
-    <type fullname="LeaveSlime" preserve="all" />
     <type fullname="LookTarget" preserve="all" />
+    <type fullname="MiddleBossController" preserve="all" />
+    <type fullname="MiddleBossItemController" preserve="all" />
     <type fullname="MoveMiddleBoss" preserve="all" />
     <type fullname="PlayerAnimation" preserve="all" />
     <type fullname="PlayerController" preserve="all" />
+    <type fullname="PlayerSprite" preserve="all" />
     <type fullname="PlayerStep" preserve="all" />
     <type fullname="RemoveShield" preserve="all" />
     <type fullname="RotateSwordController" preserve="all" />
