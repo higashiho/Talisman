@@ -6,19 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class FadeController : MonoBehaviour
 {
-    private bool isFadeOut = false; //フェードアウトフラグ
-    private bool isFadeIn = true;   //フェードインフラグ
+    private bool isFadeOut = false;         //フェードアウトフラグ
+    private bool isFadeIn = true;           //フェードインフラグ
     public bool IsFadeIn
      { set{ isFadeIn = value;} }
-
-    private float fadeSpeed = 0.75f;    //フェイドアウトスピード
-    [SerializeField] private Image fadeImage = default;
+    private float fadeSpeed = 0.01f;        //フェイドアウトスピード
     [SerializeField, HeaderAttribute("色")]
     private float red, green, blue, alpha;  // 赤, 緑, 青, 透明度
     public float Alpha{set{alpha = value;}}
     private string afterScene;
-    public SceneController sceneController;
 
+
+    public SceneController sceneController;
+    [SerializeField] 
+    private Image fadeImage = default;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,6 @@ public class FadeController : MonoBehaviour
     {
         fadein();
         fadeout();
-        
     }
 
     // フェイドインの処理
@@ -40,7 +40,7 @@ public class FadeController : MonoBehaviour
         if (isFadeIn)  
         {
             // 透明度を上げる
-            alpha -= fadeSpeed * Time.deltaTime;    
+            alpha -= fadeSpeed ;    
             SetColor(alpha);
             // 透明度が０になるとフェイドアウトを止める
             if (alpha <= 0) 
@@ -57,7 +57,7 @@ public class FadeController : MonoBehaviour
             // 透明度最大値
             int m_Maxalpha = 1;
             // 透明度を上げる
-            alpha += fadeSpeed * Time.deltaTime;  
+            alpha += fadeSpeed;  
             SetColor(alpha);  
             // アルファ値が最大値になるとScene転移する
             if (alpha >= m_Maxalpha) 

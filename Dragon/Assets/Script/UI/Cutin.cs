@@ -11,10 +11,6 @@ public class Cutin : MonoBehaviour
     private float nomalTime = 1;            // 時間を戻す用
 
     private bool onCutin = false;           // カットイン中かどうか
-    public bool OnCutin
-    {
-        get{return onCutin;}
-    }
 
     [SerializeField, HeaderAttribute("自身の子イメージ")]
     private Image[] children = new Image[3];

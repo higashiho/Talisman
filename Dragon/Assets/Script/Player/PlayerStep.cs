@@ -24,8 +24,6 @@ public class PlayerStep : MonoBehaviour
 
     public float GetCoolTimer() {return coolTimer;}
 
-    private Cutin cutin;
-
     private BoxCollider2D col;                    // ボックスコライダー取得用
 
     
@@ -36,8 +34,6 @@ public class PlayerStep : MonoBehaviour
         bool[] onSteps = {false};
         float[] onTimer = {0.0f};
 
-        cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
-
         col = this.gameObject.GetComponent<BoxCollider2D>();
 
     }
@@ -45,9 +41,12 @@ public class PlayerStep : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Mathf.Approximately(Time.timeScale, 0f))
+            return;
+
         if(noStep)
             coolTime();
-        else if(!cutin.OnCutin)
+        else 
             step();
     }
 
