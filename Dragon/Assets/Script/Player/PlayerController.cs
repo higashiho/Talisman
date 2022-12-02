@@ -8,13 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 playerSpeed;                         // Playerの移動速度
     private Vector3 pos;                                // playerの位置を保存する変数
-
     public Vector3 PlayerSpeed 
     {
         get { return playerSpeed; }
 		set { playerSpeed = value; }
     }
-
+    [SerializeField]
     private bool onMeve;                                // 動いているかどうか
     public bool OnMove
     {
@@ -140,20 +139,12 @@ public class PlayerController : MonoBehaviour
         }
 
         // 動いているかどうかの判断用
-        switch (m_moveJudge)
-        {
-            // キーが何も押されていないとき
-            case 0:
-                onMeve = false;
-                break;
-
-            // キーが押された時
-            case 1:
-                onMeve = true;
-                break;
-            default:
-                break;
-        }
+        // キーが何も押されていないとき
+        if(m_moveJudge != m_move)
+            onMeve = false;
+        // キーが押された時
+        else
+            onMeve = true;
 
         // 右座標
         if(pos.x >= maxPosX)

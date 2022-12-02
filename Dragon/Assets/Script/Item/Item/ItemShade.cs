@@ -35,6 +35,9 @@ public class ItemShade : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            int m_audioNunber = 7;
+            var m_audio = other.transform.GetChild(m_audioNunber).gameObject;
+            m_audio.transform.GetChild(0).gameObject.GetComponent<GetItem>().ItemGet();
             skillController.Skills[itemNumber - indexAjast] += point;
             enemyStateCtrl.DoneItem = true;
         }
