@@ -66,8 +66,6 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         scene = nowScene.TITLE;
-
-        
     }
     
 
@@ -139,15 +137,21 @@ public class SceneController : MonoBehaviour
 
     private void judgEndScene()
     {
+        // 透明度初期化
+        float alpha = 1;
         switch(SceneJudg)
         {
             case JudgScene.START:
                 break;
             case JudgScene.GAMECLEAR:
+                fadeController.Alpha = alpha;  
+                fadeController.IsFadeIn = true;
                 SceneManager.LoadScene("EndScene");
                 scene = nowScene.END;
                 break;
             case JudgScene.GAMEOVER:
+                fadeController.Alpha = alpha;  
+                fadeController.IsFadeIn = true;
                 SceneManager.LoadScene("EndScene");
                 scene = nowScene.END;
                 break;

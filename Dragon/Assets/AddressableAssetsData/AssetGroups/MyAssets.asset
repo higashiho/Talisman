@@ -32,28 +32,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - MiddleBoss2
-  - m_GUID: c8de41c9fee6d904fa6e2c70ac1067a0
-    m_Address: Assets/Prefab/EnemyChase.prefab
+  - m_GUID: 1ec4cea6977df824daec809e33979f1a
+    m_Address: Assets/Prefab/Ctrl(Ene1).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - EnemyChase
-  - m_GUID: 66ffb69c7cbd558438eebae1dbffa958
-    m_Address: Assets/Prefab/EnemyChase2.prefab
+  - m_GUID: e448965926a113a429d9c866dca2fe0f
+    m_Address: Assets/Prefab/Ctrl(Ene2).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - EnemyChase2
-  - m_GUID: f60819c9b52aa3a4eaaa9fa02b0916e1
-    m_Address: Assets/Prefab/EnemyChase3.prefab
+  - m_GUID: 1c7d3c174f633d644b8e705501acce92
+    m_Address: Assets/Prefab/Ctrl(Ene3).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - EnemyChase3
-  - m_GUID: e569b715e84ca784d8fbe4b6dcc58746
-    m_Address: Assets/Prefab/EnemyChase4.prefab
+  - m_GUID: 025efee223781274e902792be27597ef
+    m_Address: Assets/Prefab/Ctrl(Ene4).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - EnemyChase4
-  - m_GUID: 0a3c0f674f3831344bf7d8d3ac001a92
-    m_Address: Assets/Prefab/EnemyChase5.prefab
+  - m_GUID: 4268001a6386ac249be0efc19afcc07d
+    m_Address: Assets/Prefab/Ctrl(Ene5).prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - EnemyChase5

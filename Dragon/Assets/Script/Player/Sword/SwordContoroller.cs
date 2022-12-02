@@ -12,66 +12,60 @@ public class SwordContoroller : MonoBehaviour
     /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
     /// @note　オンにして表示と当たり判定を行う
 
-    private float rotAngleZ = 10.0f; //回転速度
-    private bool coroutineBool = false;  //回転中か判断用
-    private float StopRotation = 15.0f; //回転ストップ
-    private float startAngleZ = 150.0f;  // 最初の位置に戻す
-
-    private float waitTime = 0.01f;       // 回転遅延用
+    /// 攻撃用変数
+    private float rotAngleZ = 10.0f;        //回転速度
+    private float StopRotation = 15.0f;     //回転ストップ
+    private float startAngleZ = 150.0f;     // 最初の位置に戻す
+    private float waitTime = 0.01f;         // 回転遅延用
     [HeaderAttribute("攻撃間隔"), SerializeField]
-    private float attackWait;      // 攻撃遅延用
+    private float attackWait;               // 攻撃遅延用
 
-    [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
-    private new SpriteRenderer renderer;        // SpriteRendere格納用
-    [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
-    private new BoxCollider2D collider;
-
-
+    /// 取得用
     [SerializeField]
     private SkillController skillController;        //スクリプト格納用
-
-    private int OnShockSkill = 2;                   // スキルを使うためのアイテム量
+    [SerializeField]
+    private Factory objectPool;                     // オブジェクトプール用コントローラー格納
+    private GameObject shockWaveObj;                // 衝撃波オブジェク
+    [SerializeField, HeaderAttribute("player")]
+    private PlayerController player;                // スプライトレンダラー格納用
+    [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
+    private new SpriteRenderer renderer;            // SpriteRendere格納用
+    [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
+    private new BoxCollider2D collider;
+    
+    /// 取得系込み変数
+    // スキルを使うためのアイテム量
+    private int OnShockSkill = 2;                   
     public int onshockskill{
         get { return OnShockSkill ;}
         set { OnShockSkill = value ;}
-        }
-    
-
-    [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納
-
-    [SerializeField, HeaderAttribute("貯め時間")]
-    private float onTime = 0;               // 押している時間
-    private float maxTime = 5.0f;           // 衝撃波が変わる時間
-
-    private GameObject shockWaveObj;         // 衝撃波オブジェク
-
-    [SerializeField, HeaderAttribute("player")]
-    private PlayerController player;              // スプライトレンダラー格納用
-
+    }
+    //回転中か判断用
+    private bool coroutineBool = false;  
     public bool CoroutineBool{
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
     }
-
+    // 押している時間
+    [SerializeField, HeaderAttribute("貯め時間")]
+    private float onTime = 0;               
     public float OnTime{
         get { return onTime ;}
         set { onTime = value ;}
     }
-
+    // 衝撃波が変わる時間
+    private float maxTime = 5.0f;           
     public float MaxTime{
         get{ return maxTime ;}
         set{ maxTime = value ;}
     }
-
-    private bool onCharge = false;              // チャージ中かどうか
+    // チャージ中かどうか
+    private bool onCharge = false;              
     public bool OnCharge {
         get { return onCharge; }
 		set { onCharge = value; }
         }
-
-    private Cutin cutin;
-
+    // アタック中かどうか
     private bool onAttack;
     public bool OnAttack
     {
@@ -85,15 +79,16 @@ public class SwordContoroller : MonoBehaviour
     {
         renderer.enabled = false;
         collider.enabled = false;
-        cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
         objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!cutin.OnCutin)
-            attack();
+        if(Mathf.Approximately(Time.timeScale, 0f))
+            return;
+
+        attack();
     }
 
     //　攻撃挙動
