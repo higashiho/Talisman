@@ -117,8 +117,8 @@ public class SkillController : MonoBehaviour
         else 
             onWallSkill = false;
 
-
-        if(targeting && cutin.OnCutin)
+        // Target変更
+        if(targeting)
             changeTarget();
     }
 

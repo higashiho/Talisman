@@ -18,9 +18,6 @@ public class WarningText : MonoBehaviour
     private Image WarningImage; 
 
     private float destroyTime = 6.0f;               // 消えるまでの時間
-
-    [SerializeField]
-    private FadeController fadeController;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +27,7 @@ public class WarningText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!fadeController.IsFadeIn)
-            flash();
+        flash();
     }
 
     private void flash()

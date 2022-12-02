@@ -18,7 +18,7 @@ public class RemoveShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            remove();
+        remove();
     }
 
     private void remove()

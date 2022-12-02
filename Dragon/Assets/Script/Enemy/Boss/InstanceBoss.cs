@@ -15,7 +15,6 @@ public class InstanceBoss : MonoBehaviour
     [SerializeField]
     private FindBoss findBoss;                                  // スクリプト取得用
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +32,6 @@ public class InstanceBoss : MonoBehaviour
     {
         Instantiate(bossPrefab, this.transform.position, Quaternion.identity);
         findBoss.BossFind();
+        Destroy(this.GetComponent<BoxCollider2D>());
     }
 }

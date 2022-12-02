@@ -6,71 +6,80 @@ using UnityEngine.SceneManagement;
 
 public class FadeController : MonoBehaviour
 {
-    private bool isFadeOut = false; //フェードアウトフラグ
-    private bool isFadeIn = true;   //フェードインフラグ
-    public bool IsFadeIn{
-        get {return isFadeIn;}
-    }
-
-    private float fadeSpeed = 0.75f;    //フェイドアウトスピード
-    [SerializeField] private Image fadeImage = default;
+    private bool isFadeOut = false;         //フェードアウトフラグ
+    private bool isFadeIn = true;           //フェードインフラグ
+    public bool IsFadeIn
+     { set{ isFadeIn = value;} }
+    private float fadeSpeed = 0.01f;        //フェイドアウトスピード
+    [SerializeField, HeaderAttribute("色")]
     private float red, green, blue, alpha;  // 赤, 緑, 青, 透明度
+    public float Alpha{set{alpha = value;}}
     private string afterScene;
-    public SceneController sceneController;
 
+
+    public SceneController sceneController;
+    [SerializeField] 
+    private Image fadeImage = default;
     // Start is called before the first frame update
     void Start()
     {
-        SetRGBA(0, 0, 0, 1);
-        SceneManager.sceneLoaded += fadeInStart;    // シーン遷移完了時にフェードイン開始
+        SetColor(alpha);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isFadeIn)   // フェードインフラグがtrueのとき1回再生
+        fadein();
+        fadeout();
+    }
+
+    // フェイドインの処理
+    private void fadein()
+    {
+         // フェードインフラグがtrueのとき1回再生
+        if (isFadeIn)  
         {
-            alpha -= fadeSpeed * Time.deltaTime;    // 透明度を徐々に上げる(明るくなる)
-            SetColor();
-            if (alpha <= 0) // 透明度が0より小さくなると(fadeImageが完全に透明になる)
+            // 透明度を上げる
+            alpha -= fadeSpeed ;    
+            SetColor(alpha);
+            // 透明度が０になるとフェイドアウトを止める
+            if (alpha <= 0) 
                 isFadeIn = false;
         }
-        if (isFadeOut)  // フェードアウトフラグがtrueのとき
+    }
+
+    // フェイドアウトの処理
+    private void fadeout()
+    {
+        // フェードアウトフラグがtrueのとき
+        if (isFadeOut)  
         {
-            alpha += fadeSpeed * Time.deltaTime;    // 透明度を徐々に上げる(暗くなる)
-            SetColor();
-            if (alpha >= 1) // 透明度が1より大きくなると(fadeImageが完全に表示されて真っ暗になる)
+            // 透明度最大値
+            int m_Maxalpha = 1;
+            // 透明度を上げる
+            alpha += fadeSpeed;  
+            SetColor(alpha);  
+            // アルファ値が最大値になるとScene転移する
+            if (alpha >= m_Maxalpha) 
             {
                 isFadeOut = false;
+                isFadeIn = true;
                 sceneController.SceneMove = true;
-                SceneManager.LoadScene(afterScene); // 次のシーンに移る
+                SceneManager.LoadScene(afterScene);
             }
         }
     }
-
-    private void fadeInStart(Scene scene, LoadSceneMode mode)   // フェードインが始まる
+    // フェードアウト
+    public void fadeOutStart(float al, string nextScene)
     {
-        isFadeIn = true;
-    }
-
-    public void fadeOutStart(int red, int green, int blue, int alpha, string nextScene) // フェードアウトが始まる
-    {
-        SetRGBA(red, green, blue, alpha);
-        SetColor();
+        SetColor(al);
         isFadeOut = true;
         afterScene = nextScene;
     }
 
-    private void SetColor()     // 色代入関数
+    // カラー設定
+    public void SetColor(float al)
     {
-        fadeImage.color = new Color(red, green, blue, alpha);
-    }
-
-    private void SetRGBA(int r, int g, int b, int a)    // 色の値を設定する関数
-    {
-        red = r;
-        green = g;
-        blue = b;
-        alpha = a;
+        fadeImage.color = new Color(red, green, blue, al);
     }
 }
