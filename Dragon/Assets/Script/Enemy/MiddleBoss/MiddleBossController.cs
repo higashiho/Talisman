@@ -31,27 +31,37 @@ public class MiddleBossController : MonoBehaviour
     //public bool MargeBoss;          // 中ボス:ボスの融合完了フラグ
     public string middleBossName;   // 名前取得用
 
-    public bool IsMid;        // 中ボス状態フラグ
-    public bool IsItem;       // アイテム状態フラグ
-    public bool IsPooling;    // プーリング状態フラグ
+    // 中ボス状態終了フラグ
+    public bool DoneMid;        // 中ボス終了  
+    public bool DoneItem;       // アイテム終了
+    public bool DonePooling;    // プーリング終了
+
+    public bool CreateItem;     // アイテム生成フラグ
 
     private float time;
-    public enum MiddleBossState
+
+    [SerializeField]    
+    private MiddleBossState state;
+    [SerializeField]    
+    private enum MiddleBossState
     {
         MIDDLEBOSS, // 中ボス
         ITEM,       // アイテム
         POOLING     // プーリング
     };
-    public MiddleBossState state;
+    
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        midBoss = transform.GetChild(0).gameObject;
+        player = GameObject.FindWithTag("Player");      // プレイヤー取得
+        // 子から中ボスとアイテム取得
+        midBoss = transform.GetChild(0).gameObject;     
         item = transform.GetChild(1).gameObject;
+        // オブジェクトプール取得
         objectPool = GameObject.Find("PoolObject");
-        factoryEnemy = objectPool.GetComponent<FactoryEnemy>();
-
+        // 中ボス生成オブジェクト取得
         MiddleBossCreater = GameObject.Find("MiddleBossCreater");
+        // エネミーファクトリークラス参照
+        factoryEnemy = objectPool.GetComponent<FactoryEnemy>();
         // 中ボス生成クラスを参照
         createMiddleBoss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
         // 中ボス当たり判定クラス参照
@@ -62,6 +72,8 @@ public class MiddleBossController : MonoBehaviour
         itemCtrl = item.GetComponent<MiddleBossItemController>();
         // 中ボスの名前を取得しておく(返すプール判断のため)
         middleBossName = midBoss.name;
+        // 初期ステートを中ボスに設定
+        state = MiddleBossState.MIDDLEBOSS;
     }
 
     // SetActive(true)はCreateMiddleBossで行っている
@@ -70,13 +82,10 @@ public class MiddleBossController : MonoBehaviour
         // ボス取得用変数
         BossInstance = GameObject.Find("BossInstance");
         findBoss = BossInstance.GetComponent<FindBoss>();
+        // 中ボスとアイテム非アクティブ化
         midBoss.SetActive(false);
         item.SetActive(false);
-        //state = MiddleBossState.MIDDLEBOSS;
-        IsMid = true;
-        IsItem = false;
-        IsPooling = false;
-    
+        DonePooling = true;     // プーリング状態終了フラグ(true)
     }
 
     void Update()
@@ -97,19 +106,24 @@ public class MiddleBossController : MonoBehaviour
             
     }
 
+    // 各状態終了フラグに基づいてstateを変更する関数
     private void ChangeState()
     {
-        if(IsMid)
+        if(DoneMid)
         {
-            state = MiddleBossState.MIDDLEBOSS;
+            // アイテムかプーリングか判断
+            if(CreateItem)
+                state = MiddleBossState.ITEM;
+            else
+                state = MiddleBossState.POOLING;
         }
-        if(IsItem)
-        {
-            state = MiddleBossState.ITEM;
-        }
-        if(IsPooling)
+        if(DoneItem)
         {
             state = MiddleBossState.POOLING;
+        }
+        if(DonePooling)
+        {
+            state = MiddleBossState.MIDDLEBOSS;
         }
     }
 

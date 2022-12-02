@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// MobEnemy生成クラス
-// ボス周辺に生成
-// 生成座標がプレイヤー座標と重なっていなければ生成
 public class CreateEnemy : MonoBehaviour
 {
+    // モブの識別番号定数(出現確率計算の判定用)
+    const int MOB_ENEMY1 = 0;
+    const int MOB_ENEMY2 = 1;
+    const int MOB_ENEMY3 = 2;
+    const int MOB_ENEMY4 = 3;
+    const int MOB_ENEMY5 = 4;
+
     // GameOnjectアタッチ用
     private GameObject EnemyPool;   // エネミー用プールアタッチ
     private GameObject boss;        // boss
@@ -14,7 +18,7 @@ public class CreateEnemy : MonoBehaviour
 
     // スクリプト参照用
     private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
-    private BossController bossCtrl;     // bosscontroller参照
+    private BossController bossCtrl;            // bosscontroller参照
     private FindBoss findBoss;
     
     [HeaderAttribute("沸き最大数"), SerializeField]
@@ -22,36 +26,56 @@ public class CreateEnemy : MonoBehaviour
     [HeaderAttribute("次に生成するまでの時間"), SerializeField]
     private float spawnTimer = 1.5f;
     [Header("モブの数(Active)")]
-    public int Counter = 0;     // フィールドにいるモブの数
-
-    
+    public int Counter = 0;         // フィールドにいるモブの数
+    [HeaderAttribute("モブのタイプ別出現レート"), SerializeField]
+    private int[] RespawnWeight;    // 出現レート保管用(インスペクターで生成割合を調節)
+    private int totalWeight;        // 組み合わせ総数
 
     private Vector3 pos;        //現在位置
     [HeaderAttribute("経過時間"), SerializeField]
     private float time;         //経過時間
 
-    [SerializeField]private float offset;
+    [SerializeField]
+    private float offset;       // 生成禁止エリア(プレイヤーの近くでスポーンさせない)
     
-
     [Header("生成範囲")]
     [SerializeField]    private float HEIGHT;   // 高さ
     [SerializeField]    private float WIDTH;    // 横幅
-    private Vector3 createPos;  // エネミー生成座標
+    private Vector3 createPos;                  // エネミー生成座標
 
     
     public float CreateSpeed = 1;          //生成速度
-    private bool spownToughEnemy = false;  //エネミー４・５出現フラグ
+    
+    
+    // モブ出現確率テーブル
+    private List<int> enemyTable = new List<int>();
 
-    private enum ENEMY_TYPE
+    // 確率テーブル作成
+    private void calcTotalWeight()
     {
-        MOB_ENEMY1,
-        MOB_ENEMY2,
-        MOB_ENEMY3,
-        MOB_ENEMY4,
-        MOB_ENEMY5
-    };
+        // モブの種類の数だけループ
+        for(int i = 0; i < RespawnWeight.Length; i++)
+        {
+            totalWeight += RespawnWeight[i];    // 生成比の合計値を算出&変数に入れとく
+            // モブ出現確率テーブル作成ループ
+            for(int j = 0; j < RespawnWeight[i]; j++)
+            {
+                enemyTable.Add(i);          // {0,0,0,0, 1,1, 2,2,2, 3, 4,4,4, }  <=  (例)Listの中身
+                                            // この中から１個とる的な計算をするためのテーブル
+            }
+        }
+    }
 
-    ENEMY_TYPE type;
+    // 確率計算関数
+    private int calcRate()
+    {
+        // モブ出現確率テーブルのIndexを求めてる
+        int index = UnityEngine.Random.Range(0,100) % totalWeight;
+        // 要素(int)を返す
+        int result = enemyTable[index];
+
+        return result;
+    }
 
     void Start()
     {
@@ -59,6 +83,7 @@ public class CreateEnemy : MonoBehaviour
         EnemyPool = GameObject.Find("PoolObject");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
+        calcTotalWeight();
         time = 0;
     }
 
@@ -91,114 +116,68 @@ public class CreateEnemy : MonoBehaviour
     // Enemyをフィールドに表示する関数
     private void dispMobEnemy()
     {
-        GameObject dispObj = null;
+        GameObject dispObj;
+        
+        do
+        {
+            dispObj = getMobEnemy();     // モブ敵をプールから取ってくる
+        }while(dispObj == null);
 
-        if(spownToughEnemy)
-        {
-            SelectMobEnemyLater();  // 出現するエネミー設定(全部のモブ)
-        }
-        else
-        {
-            SelectMobEnemy();       // 出現するエネミー設定(1.2.3のモブ)
-        }
-        dispObj = GetMobEnemy();     // モブ敵をプールから取ってくる
         dispObj.transform.position = settingMobEnemyPos();  // 座標設定
         dispObj.SetActive(true);
         Counter++;      // フィールドにいるモブの数++
+    
+        
         
     }
 
+   
+    
     // モブをプールリストから取ってくる
-    private GameObject GetMobEnemy()
+    private GameObject getMobEnemy()
     {
         GameObject obj = null;
-        
-        if(type == ENEMY_TYPE.MOB_ENEMY1)
+        int result = calcRate();
+        if(result == MOB_ENEMY1)
         {
-            obj = factoryenemy.mobEnemyPool1[0];
+            if(factoryenemy.mobEnemyPool1.Count >= 1)
+                obj = factoryenemy.mobEnemyPool1[0];
+            else return obj;
             factoryenemy.mobEnemyPool1.RemoveAt(0);
-            return obj;
         }
-        else if(type == ENEMY_TYPE.MOB_ENEMY2)
+        else if(result == MOB_ENEMY2)
         {
-            obj = factoryenemy.mobEnemyPool2[0];
+            if(factoryenemy.mobEnemyPool2.Count >= 1)
+                obj = factoryenemy.mobEnemyPool2[0];
+            else return obj;
             factoryenemy.mobEnemyPool2.RemoveAt(0);
-            return obj;
         }
-        else if(type == ENEMY_TYPE.MOB_ENEMY3)
+        else if(result == MOB_ENEMY3)
         {
-            obj = factoryenemy.mobEnemyPool3[0];
+            if(factoryenemy.mobEnemyPool3.Count >= 1)
+                obj = factoryenemy.mobEnemyPool3[0];
+            else return obj;
             factoryenemy.mobEnemyPool3.RemoveAt(0);
-            return obj;
         }
-        else if(type == ENEMY_TYPE.MOB_ENEMY4)
+        else if(result == MOB_ENEMY4)
         {
-            obj = factoryenemy.mobEnemyPool4[0];
+            if(factoryenemy.mobEnemyPool4.Count >= 1)
+                obj = factoryenemy.mobEnemyPool4[0];
+            else return obj;
             factoryenemy.mobEnemyPool4.RemoveAt(0);
-            return obj;
         }
-        else if(type == ENEMY_TYPE.MOB_ENEMY5)
+        else if(result == MOB_ENEMY5)
         {
-            obj = factoryenemy.mobEnemyPool5[0];
+            if(factoryenemy.mobEnemyPool5.Count >= 1)
+                obj = factoryenemy.mobEnemyPool5[0];
+            else return obj;
             factoryenemy.mobEnemyPool5.RemoveAt(0);
-            return obj;
         }
-        else return null;
+        return obj;
+            
     }
 
-    // 出現させるモブ設定(出現割合  モブ1&2 : 1 / モブ3 : 0.5)
-    private void SelectMobEnemy()
-    {
-        
-        int number = Random.Range(0,5);
-        Mathf.Floor(number);
-        if(number == 0 || number == 1)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY1;
-        }
-        else if(number == 2 || number == 3)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY2;
-        }
-        else if(number == 4)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY3;
-        }
-    }
-
-    //  出現させるモブ設定(エリア２以降)
-    private void SelectMobEnemyLater()
-    {
-        int number = Random.Range(0,9);
-        Mathf.Floor(number);
-        if(number == 0 || number == 1)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY1;
-        }
-        else if(number == 2 || number == 3)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY2;
-        }
-        else if(number == 4)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY3;
-        }
-        else if(number == 5 || number == 6)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY4;
-        }
-        else if(number == 7 || number == 8)
-        {
-            type = ENEMY_TYPE.MOB_ENEMY5;
-        }
-
-    
-    }
-
-    /**
-    * @breif 雑魚キャラにposを設定してprefabを生成する関数
-    * @note  ボスのいるエリアごとに生成posを設定 => instance化まで行う
-    */
+    // モブの生成POSを決める関数
     private Vector3 settingMobEnemyPos()
     {
         Vector3 createPos;
@@ -209,8 +188,6 @@ public class CreateEnemy : MonoBehaviour
             posX = Random.Range(pos.x - WIDTH, pos.x + WIDTH);
             posY = Random.Range(pos.y - HEIGHT, pos.y + HEIGHT);
             createPos = new Vector3(posX, posY, 0);
-            if(pos.x < bossCtrl.Areas[2])
-                spownToughEnemy = true;
             if(pos.x < bossCtrl.Areas[3])
                 spawnTimer = 1;
         }

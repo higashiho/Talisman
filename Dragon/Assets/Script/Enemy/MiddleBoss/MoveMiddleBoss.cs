@@ -56,7 +56,6 @@ public class MoveMiddleBoss : MonoBehaviour
     {
         parent = transform.parent.gameObject;
         MidCtrl = parent.GetComponent<MiddleBossController>();
-        MidCtrl.IsMid = true;
         time = 0;
     }
     
@@ -94,13 +93,13 @@ public class MoveMiddleBoss : MonoBehaviour
         {
             // コントローラーの遷移フラグ(true)
             DoneMarge = false;
-            MidCtrl.IsPooling = true;
+            MidCtrl.DoneMid = true;
             //MidState = MiddleBossBehaviorState.DETH;
         }
         if(DoneDeth)
         {
             // コントローラーの遷移フラグ(true)
-            MidCtrl.IsItem = true;
+            MidCtrl.DoneMid = true;
             DoneDeth = false;
         }
     }
@@ -125,15 +124,14 @@ public class MoveMiddleBoss : MonoBehaviour
             // ボスに融合したとき(当たった時)
             case MiddleBossBehaviorState.MARGE:
                 
-                MidCtrl.IsPooling = true;   // プーリング状態に移行
+                MidCtrl.DoneMid = true;   // プーリング状態に移行
                 this.gameObject.SetActive(false);
                 // ボスバフ記述位置考える
                 break;
 
             // Hpが0以下になった時
             case MiddleBossBehaviorState.DETH:
-                
-                MidCtrl.IsItem = true;  // アイテム状態に移行
+                MidCtrl.CreateItem = true;
                 this.gameObject.SetActive(false);
                 break;
         }

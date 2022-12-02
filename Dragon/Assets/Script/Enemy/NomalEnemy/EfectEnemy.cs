@@ -20,6 +20,8 @@ public class EfectEnemy : MonoBehaviour
     private CreateEnemy createEnemy;
 
     private GameObject MobCreater;
+
+    private EnemyStateController enemyStateCtrl;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class EfectEnemy : MonoBehaviour
         remainTime = fadeTime;
         MobCreater = GameObject.Find("MobEnemyCreater");
         createEnemy = MobCreater.GetComponent<CreateEnemy>();
+        enemyStateCtrl = transform.parent.gameObject.GetComponent<EnemyStateController>();
    }
 
     // Update is called once per frame
@@ -50,8 +53,9 @@ public class EfectEnemy : MonoBehaviour
         if(remainTime <= 0f)
         {
             //GameObject.Destroy(gameObject);
-            this.gameObject.SetActive(false);
-            createEnemy.Counter--;
+            //this.gameObject.SetActive(false);
+            enemyStateCtrl.DoneMob = true;
+            //createEnemy.Counter--;
         }
     }
 }

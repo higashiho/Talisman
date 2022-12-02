@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobEnemy: {fileID: 5906650383168855212}
   item: {fileID: 1561038266234744419}
-  IsMob: 0
-  IsItem: 0
-  IsPooling: 0
+  DoneMob: 0
+  DoneItem: 0
+  DonePooling: 0
   state: 0
 --- !u!50 &7947964237596071539
 Rigidbody2D:
@@ -73,7 +73,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!1001 &7498637550126028917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81,6 +81,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3125461890515522409}
     m_Modifications:
+    - target: {fileID: 4172620401796351170, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: m_Constraints
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4172620401796351171, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: rb2D
       value: 
@@ -202,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7531745185645692257, guid: bf5a72ae6c28016468046c21480e93de, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf5a72ae6c28016468046c21480e93de, type: 3}

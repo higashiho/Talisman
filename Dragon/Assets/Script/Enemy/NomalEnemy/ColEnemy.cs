@@ -172,7 +172,7 @@ public class ColEnemy : MonoBehaviour
             {
             playerController.Hp -= hitDamage; 
             if(hitDeleteName == "Enemy")
-                ;
+                enemyStateCtrl.DoneMob = true;
             }
         }
 

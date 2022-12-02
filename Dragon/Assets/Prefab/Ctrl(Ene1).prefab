@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobEnemy: {fileID: 6604899138198423519}
   item: {fileID: 2611383391188460940}
-  IsMob: 0
-  IsItem: 0
-  IsPooling: 0
+  DoneMob: 0
+  DoneItem: 0
+  DonePooling: 0
   state: 0
 --- !u!50 &4354300859975819582
 Rigidbody2D:
@@ -73,7 +73,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!1001 &331592629277710038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2352975664675091290, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2352975664675093668, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
       propertyPath: m_RootOrder
@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 4354300859975819582}
+    - target: {fileID: 8123549337994771039, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: m_Constraints
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
 --- !u!4 &6604899138198423516 stripped

@@ -43,6 +43,6 @@ public class ColItem : MonoBehaviour
 
     void OnDisable()
     {
-        MidCtrl.IsPooling = true;
+        MidCtrl.DoneItem = true;
     }
 }

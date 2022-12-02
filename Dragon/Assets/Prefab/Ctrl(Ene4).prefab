@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobEnemy: {fileID: 306523816447084972}
   item: {fileID: 5051570272310494137}
-  IsMob: 0
-  IsItem: 0
-  IsPooling: 0
+  DoneMob: 0
+  DoneItem: 0
+  DonePooling: 0
   state: 0
 --- !u!50 &2647654175069997034
 Rigidbody2D:
@@ -73,7 +73,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!1001 &3981041022114408612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153124814632954653, guid: 7e168c560c392134497575fe040a13c2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e168c560c392134497575fe040a13c2, type: 3}
@@ -203,6 +203,10 @@ PrefabInstance:
     - target: {fileID: 6687482055835503287, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
       propertyPath: m_Name
       value: MobEnemyWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687482055835503292, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: m_Constraints
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
