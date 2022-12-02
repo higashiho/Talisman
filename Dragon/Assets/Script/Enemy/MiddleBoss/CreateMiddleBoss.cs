@@ -138,16 +138,19 @@ public class CreateMiddleBoss : MonoBehaviour
         if(type == MIDDLEBOSS_TYPE.MIDDLEBOSS1)
         {
             obj = factoryenemy.middleBossPool1[0];
+            factoryenemy.middleBossPool1.RemoveAt(0);
             return obj;
         }
         else if(type == MIDDLEBOSS_TYPE.MIDDLEBOSS2)
         {
             obj = factoryenemy.middleBossPool2[0];
+            factoryenemy.middleBossPool2.RemoveAt(0);
             return obj;
         }
         else if(type == MIDDLEBOSS_TYPE.MIDDLEBOSS3)
         {
             obj = factoryenemy.middleBossPool3[0];
+            factoryenemy.middleBossPool3.RemoveAt(0);
             return obj;
         }
         else return null;
