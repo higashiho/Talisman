@@ -116,26 +116,31 @@ public class CreateEnemy : MonoBehaviour
         if(type == ENEMY_TYPE.MOB_ENEMY1)
         {
             obj = factoryenemy.mobEnemyPool1[0];
+            factoryenemy.mobEnemyPool1.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY2)
         {
             obj = factoryenemy.mobEnemyPool2[0];
+            factoryenemy.mobEnemyPool2.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY3)
         {
             obj = factoryenemy.mobEnemyPool3[0];
+            factoryenemy.mobEnemyPool3.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY4)
         {
             obj = factoryenemy.mobEnemyPool4[0];
+            factoryenemy.mobEnemyPool4.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY5)
         {
             obj = factoryenemy.mobEnemyPool5[0];
+            factoryenemy.mobEnemyPool5.RemoveAt(0);
             return obj;
         }
         else return null;

@@ -41,8 +41,8 @@ public class ColMiddleBoss : MonoBehaviour
     
 
     
-    [SerializeField]
-    private bool createItem = false;    // アイテムを生成するかどうかのフラグ
+    //[SerializeField]
+    //private bool createItem = false;    // アイテムを生成するかどうかのフラグ
     private GameObject middleBossItem;
     public bool Deth;       // 中ボス死亡フラグ
     public bool Marge;      // 中ボス:ボス融合フラグ

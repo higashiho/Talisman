@@ -146,7 +146,7 @@ public class EnemyStateController : MonoBehaviour
                 if(!colEnemy.FadeFlag)
                 ;
                     // プレイヤー追尾
-                    eneCtrl.attractEnemy(this.gameObject, player);
+                    //eneCtrl.attractEnemy(this.gameObject, player);
                     //transform.position = Vector3.MoveTowards(this.gameObject.transform.position, boss.transform.position, 3 * Time.deltaTime);
                 break;
             
