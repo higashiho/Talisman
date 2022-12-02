@@ -37,7 +37,7 @@ public class StatusMiddleBossCreateSpeed : MonoBehaviour
         mobEnemyCreater = GameObject.Find("MobEnemyCreater");                                   
         createEnemy = mobEnemyCreater.GetComponent<CreateEnemy>();//スクリプトを参照
         time = 0;  // 生成されてからの時間を計測するタイマー
-        speed = createEnemy._CreateSpeed;
+        speed = createEnemy.CreateSpeed;
         BossInstance = GameObject.Find("BossInstance");
         findBoss = BossInstance.GetComponent<FindBoss>();
     }
@@ -76,7 +76,7 @@ public class StatusMiddleBossCreateSpeed : MonoBehaviour
         {
             speedPrev = speed;  // もとの生成速度を一時保存
             speed *= rate;
-            createEnemy._CreateSpeed = speed;
+            createEnemy.CreateSpeed = speed;
             once = false;
         }
         

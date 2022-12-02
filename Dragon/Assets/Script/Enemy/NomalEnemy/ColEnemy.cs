@@ -21,7 +21,7 @@ public class ColEnemy : MonoBehaviour
     private EfectEnemy efectEnemy;              //スクリプト格納用
 
     [SerializeField]
-    private int enemyHp;                        //敵エネミー体力
+    public int enemyHp;                        //敵エネミー体力
 
     [SerializeField]
     private string hitDeleteName;               //プレイヤーに当たったら消えるやつの名前
@@ -54,7 +54,8 @@ public class ColEnemy : MonoBehaviour
 
     private FactoryEnemy factoryenemy;          // スクリプト参照用
 
-    private string mobName;
+
+    private EnemyStateController enemyStateCtrl;// ステートコントローラー参照
 
     public bool FadeFlag{                       //カプセル化
         get { return  fadeFlag ; }
@@ -67,14 +68,11 @@ public class ColEnemy : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         mobcreater = GameObject.Find("MobEnemyCreater");
         createEnemy = mobcreater.GetComponent<CreateEnemy>();
-        rb2D = GetComponent<Rigidbody2D>();
+        //rb2D = GetComponent<Rigidbody2D>();
         damageEfect = GetComponentInChildren<ParticleSystem>();
         EnemyPool = GameObject.Find("PoolObject");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
-    }
-    void OnEnable()
-    {
-        mobName = gameObject.name;
+        enemyStateCtrl = transform.parent.gameObject.GetComponent<EnemyStateController>();
     }
 
     // Update is called once per frame
@@ -140,10 +138,10 @@ public class ColEnemy : MonoBehaviour
             
             if(enemyHp <= 0)
             {
-                Destroy(Polygon2D);
+                //Destroy(Polygon2D);
+                GetComponent<PolygonCollider2D>().enabled = false;
                 fadeFlag = true;
-                //Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
-                createEnemy.spawnCount++;
+                
             }
         }
         //ショックウェーブに当たったら消える
@@ -151,9 +149,8 @@ public class ColEnemy : MonoBehaviour
         {
         
             fadeFlag = true;
-            //Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
-            createEnemy.spawnCount++;
-            Destroy(GetComponent<PolygonCollider2D>());
+            //Destroy(GetComponent<PolygonCollider2D>());
+            GetComponent<PolygonCollider2D>().enabled = false;
             damageEfect.Play();
         }
 
@@ -161,9 +158,8 @@ public class ColEnemy : MonoBehaviour
         if(other.gameObject.name == "RotateSword")
         {
             fadeFlag = true;
-            //Instantiate(ItemPrefab,this.transform.position,Quaternion.identity);
-            createEnemy.spawnCount++;
-            Destroy(GetComponent<PolygonCollider2D>());
+            //Destroy(GetComponent<PolygonCollider2D>());
+            GetComponent<PolygonCollider2D>().enabled = false;
             damageEfect.Play();
         }
     }
@@ -175,10 +171,8 @@ public class ColEnemy : MonoBehaviour
             if(!playerController.GetOnUnrivaled())
             {
             playerController.Hp -= hitDamage; 
-            createEnemy.spawnCount++;
             if(hitDeleteName == "Enemy")
-                this.gameObject.SetActive(false);
-                createEnemy.Counter--;
+                ;
             }
         }
 
@@ -189,21 +183,4 @@ public class ColEnemy : MonoBehaviour
         }
     }
 
-    void OnDisable()
-    {
-        discriminationPool();
-    }
-    public void discriminationPool()
-    {
-        if(mobName == "EnemyChase")
-            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool1);
-        if(mobName == "EnemyChase2")
-            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool2);
-        if(mobName == "EnemyChase3")
-            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool3);
-        if(mobName == "EnemyChase4")
-            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool4);
-        if(mobName == "EnemyChase5")
-            factoryenemy.CollectPoolObject(gameObject,factoryenemy.mobEnemyPool5);
-    }
 }

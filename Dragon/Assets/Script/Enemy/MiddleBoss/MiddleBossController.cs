@@ -61,7 +61,7 @@ public class MiddleBossController : MonoBehaviour
         // アイテム移動クラス参照
         itemCtrl = item.GetComponent<MiddleBossItemController>();
         // 中ボスの名前を取得しておく(返すプール判断のため)
-        middleBossName = this.gameObject.name;
+        middleBossName = midBoss.name;
     }
 
     // SetActive(true)はCreateMiddleBossで行っている
@@ -72,8 +72,10 @@ public class MiddleBossController : MonoBehaviour
         findBoss = BossInstance.GetComponent<FindBoss>();
         midBoss.SetActive(false);
         item.SetActive(false);
-        state = MiddleBossState.MIDDLEBOSS;
-        
+        //state = MiddleBossState.MIDDLEBOSS;
+        IsMid = true;
+        IsItem = false;
+        IsPooling = false;
     
     }
 
