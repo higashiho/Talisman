@@ -112,24 +112,26 @@ public class EnemyStateController : MonoBehaviour
     // 各ステート終了フラグに基づいてステートを変更する関数
     private void ChangeState()
     {
-        // モブが死んだとき
-        if(DoneMob)
-        {
-            state = MobEnemyState.ITEM; // アイテムステートに移行
-            DoneMob = false;    // Mob状態終了フラグを折る
-        }
-        if(DoneItem)
-        {
-            // プレイヤーがアイテムと当たり判定を取った時
-            state = MobEnemyState.POOLING;  // プーリングステートに移行
-            DoneItem = false;   // Item状態終了フラグを折る
-        }
         if(DonePooling)
         {
             // ctrl(mob)がアクティブになったら
             state = MobEnemyState.MOBENEMY;
             DonePooling = false;    // Pooling状態フラグを折る
         }
+        else if(DoneItem)
+        {
+            // プレイヤーがアイテムと当たり判定を取った時
+            state = MobEnemyState.POOLING;  // プーリングステートに移行
+            DoneItem = false;   // Item状態終了フラグを折る
+        }
+        // モブが死んだとき
+        else if(DoneMob)
+        {
+            state = MobEnemyState.ITEM; // アイテムステートに移行
+            DoneMob = false;    // Mob状態終了フラグを折る
+        }
+        
+        
     }
 
     // ステートの中身
@@ -144,10 +146,11 @@ public class EnemyStateController : MonoBehaviour
                 
                 // フェードアウトフラグがたってないとき
                 if(!colEnemy.FadeFlag)
-                ;
+                {
                     // プレイヤー追尾
-                    //eneCtrl.attractEnemy(this.gameObject, player);
-                    //transform.position = Vector3.MoveTowards(this.gameObject.transform.position, boss.transform.position, 3 * Time.deltaTime);
+                    eneCtrl.attractEnemy(this.gameObject, player);
+                }
+                    
                 break;
             
             // アイテム状態
@@ -162,7 +165,7 @@ public class EnemyStateController : MonoBehaviour
 
             // プーリング状態
             case MobEnemyState.POOLING:
-
+                item.SetActive(false);
                 // Mobを非アクティブにする関数
                 hideMobEnemy();
                 break;

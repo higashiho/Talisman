@@ -73,7 +73,6 @@ public class ColMiddleBoss : MonoBehaviour
             // 中ボスHPが0以下の時
             if(Hp <= 0)
             {
-                //createItem = true;
                 deth(); // 中ボス死亡処理
                 
             }

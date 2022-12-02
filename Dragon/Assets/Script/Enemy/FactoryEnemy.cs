@@ -17,10 +17,6 @@ public class FactoryEnemy : MonoBehaviour
     [SerializeField]    private GameObject EnemyPool;
 
 
-
-    AsyncOperationHandle<GameObject> handle_mid1;
-    AsyncOperationHandle<GameObject> handle_mid2;
-    AsyncOperationHandle<GameObject> handle_mid3;
     AsyncOperationHandle<GameObject> loadOp;
 
     public List<GameObject> middleBossPool1 = new List<GameObject>();   // 中ボス1プール

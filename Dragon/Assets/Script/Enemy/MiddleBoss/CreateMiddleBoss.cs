@@ -21,7 +21,7 @@ public class CreateMiddleBoss : MonoBehaviour
     private FindBoss findBoss;
     private FactoryEnemy factoryenemy;
     private BossController bosscontroller;
-    private TextController textCtrl;
+    private TextController textCtrl_Respawn;
 
     [HeaderAttribute("生成した中ボスの数"), SerializeField]
     public int middleBossNumCounter;
@@ -56,9 +56,9 @@ public class CreateMiddleBoss : MonoBehaviour
 
        // オブジェクト取得
        BossInstance = GameObject.Find("BossInstance");
-       Message = GameObject.Find("RespawnMiddleBossUI");
+       Message = GameObject.Find("MiddleBossUI");
 
-       textCtrl = Message.transform.GetChild(0).gameObject.GetComponent<TextController>();
+       textCtrl_Respawn = Message.transform.GetChild(0).gameObject.GetComponent<TextController>();
         // スクリプト取得
        factoryenemy = PoolObject.GetComponent<FactoryEnemy>();     
        findBoss = BossInstance.GetComponent<FindBoss>();
@@ -115,7 +115,7 @@ public class CreateMiddleBoss : MonoBehaviour
         dispObj.transform.position = createMiddleBossPos(); // 座標設定
         dispObj.SetActive(true);    // 表示
         middleBossNumCounter++;
-        textCtrl.DoneInit = true;
+        textCtrl_Respawn.DoneInit = true;
         
     }
     
