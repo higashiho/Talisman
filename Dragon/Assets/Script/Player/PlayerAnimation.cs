@@ -21,8 +21,9 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            playAnime(player.OnMove,"move");
-            playAnime(swodController.OnAttack,"Attack");
+        playAnime(player.OnMove,"move");
+        playAnime(swodController.OnAttack,"Attack");
+        playAnime(player.OnShield,"Sheld");
     }
     // アニメーションを再生させるか
     private void playAnime(bool b, string s)

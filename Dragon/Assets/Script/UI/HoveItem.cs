@@ -9,15 +9,13 @@ public class HoveItem : MonoBehaviour
     private ItemCountText itemCountTtext;           // スクリプト取得用
 
     [SerializeField]
-    private Text[] notSkills;                        // テキスト取得用
+    private Image[] notSkills;                        // テキスト取得用
 
     private Color notSkill,onSkill;                 // 色取得用
 
     // Start is called before the first frame update
     void Start()
     {
-        notSkill = new Color(1.0f, 1.0f, 0, 1.0f);
-        onSkill = new Color(1.0f, 1.0f, 0, 0);
     }
 
     // Update is called once per frame
@@ -26,24 +24,52 @@ public class HoveItem : MonoBehaviour
         judgSkill();
     }
 
+    // notSkillの初期化
+    private void setNotColor(int m)
+    {
+        float m_minasAlpha = 0.3f;
+        notSkill = notSkills[m].color;
+        // 半透明にするためにアルファ値更新
+        notSkill.a = m_minasAlpha;
+
+        notSkills[m].color = notSkill;
+    }
+
+    // onSkillの初期化
+    private void setOnColor(int m)
+    {
+        float m_pulasAlpha = 1.0f;
+        notSkill = notSkills[m].color;
+        // 半透明状態のため1に戻す
+        notSkill.a = m_pulasAlpha;
+
+        notSkills[m].color = notSkill;
+    }
+
+    // スキルがあるかどうか判断して色を付ける
     private void judgSkill()
     {
         // スキル
-        int m_bullet = 0, m_speed = 1, m_wave = 2;
-        if(itemCountTtext.GetItemCountArray(m_bullet) != 0)
-            notSkills[m_bullet].color = onSkill;
+        int m_skills = 0;
+        
+        
+        if(itemCountTtext.GetItemCountArray(m_skills) != 0)
+            setOnColor(m_skills);
         else
-            notSkills[m_bullet].color = notSkill;
+            setNotColor(m_skills);
+            
 
-        if(itemCountTtext.GetItemCountArray(m_speed) != 0)
-            notSkills[m_speed].color = onSkill;
+        m_skills++;
+        if(itemCountTtext.GetItemCountArray(m_skills) != 0)
+            setOnColor(m_skills);
         else
-            notSkills[m_speed].color = notSkill;
-    
-        if(itemCountTtext.GetItemCountArray(m_wave) / m_wave != 0)
-            notSkills[m_wave].color = onSkill;
+            setNotColor(m_skills);
+
+        m_skills++;
+        if(itemCountTtext.GetItemCountArray(m_skills) / m_skills != 0)
+            setOnColor(m_skills);
         else
-            notSkills[m_wave].color = notSkill;
+            setNotColor(m_skills);
     
     }
 
