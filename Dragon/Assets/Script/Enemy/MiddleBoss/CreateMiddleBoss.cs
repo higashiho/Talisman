@@ -14,12 +14,14 @@ public class CreateMiddleBoss : MonoBehaviour
     private Vector3 bossPos;    // bossの座標
     [SerializeField]
     private GameObject PoolObject;  // オブジェクトプール
-
+    private GameObject player;      // プレイヤー
+    private GameObject Message;     // 中ボス出現メッセージCtrl
+    
     // スクリプト参照用
     private FindBoss findBoss;
     private FactoryEnemy factoryenemy;
     private BossController bosscontroller;
-
+    private TextController textCtrl;
 
     [HeaderAttribute("生成した中ボスの数"), SerializeField]
     public int middleBossNumCounter;
@@ -54,11 +56,13 @@ public class CreateMiddleBoss : MonoBehaviour
 
        // オブジェクト取得
        BossInstance = GameObject.Find("BossInstance");
+       Message = GameObject.Find("RespawnMiddleBossUI");
 
+       textCtrl = Message.transform.GetChild(0).gameObject.GetComponent<TextController>();
         // スクリプト取得
        factoryenemy = PoolObject.GetComponent<FactoryEnemy>();     
        findBoss = BossInstance.GetComponent<FindBoss>();
-
+       
        // 最初に出現する中ボス設定
        type = MIDDLEBOSS_TYPE.MIDDLEBOSS1;
     }
@@ -111,6 +115,8 @@ public class CreateMiddleBoss : MonoBehaviour
         dispObj.transform.position = createMiddleBossPos(); // 座標設定
         dispObj.SetActive(true);    // 表示
         middleBossNumCounter++;
+        textCtrl.DoneInit = true;
+        
     }
     
     // 呼び出す中ボスを決める関数(中ボス１　⇒　中ボス２　⇒　中ボス３)
@@ -149,18 +155,22 @@ public class CreateMiddleBoss : MonoBehaviour
     // 中ボスの生成座標を決める関数
     private Vector3 createMiddleBossPos()
     {
+        
         bossPos = boss.transform.position;  // ボスの座標取得
         Vector3 createPos;    // 中ボス生成座標
-
+                
         // 生成座標作成用
         float posX = UnityEngine.Random.Range(bossPos.x + _AREAWIDTH_LEFT, bossPos.x + _AREAWIDTH_RIGHT);  
         float posY = UnityEngine.Random.Range(-_AREAHEIGHT, _AREAHEIGHT);
         float posZ = 0;
 
         createPos = new Vector3(posX, posY, posZ); // 中ボス生成座標登録
-        return createPos;
+        
+            return createPos;
+        
     }
 
+    
 
 }
 

@@ -8,15 +8,10 @@ public class ItemShade : MonoBehaviour
     [SerializeField]
     private GameObject player;                      //プレイヤー取得
 
-    private Vector2 Pos;                            //アイテムの現在位置
-
-    private Vector2 playerPos;                      //プレイヤーの位置
-
     [SerializeField]
     private int itemNumber;                         //アイテムプレハブ
 
     private int indexAjast = 1;                     //アイテムindex調整用
-
 
     private SkillController skillController;        //スクリプト格納用
 
@@ -25,34 +20,33 @@ public class ItemShade : MonoBehaviour
 
     private int point = 2;
 
-    // Start is called before the first frame update
+    private EnemyStateController enemyStateCtrl;    // エネミーステートクラス参照
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         skillController = player.GetComponent<SkillController>();
+        enemyStateCtrl = transform.parent.gameObject.GetComponent<EnemyStateController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        attractItem();
-    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
         {
             skillController.Skills[itemNumber - indexAjast] += point;
-            Destroy(this.gameObject);
+            enemyStateCtrl.DoneItem = true;
         }
     }
 
     //プレイヤーを追いかける
-    private void attractItem()
+    public void attractItem(GameObject parent, GameObject target)
     {
-        Pos = transform.position;
-        playerPos = player.transform.position;
+        Vector3 subject = parent.transform.position;
+        Vector3 destination = target.transform.position;
 
-        transform.position = Vector2.MoveTowards(Pos , playerPos , itemMoveSpeed * Time.deltaTime);
+        parent.transform.position = Vector3.MoveTowards(subject , destination , itemMoveSpeed * Time.deltaTime);
     }
+
 }

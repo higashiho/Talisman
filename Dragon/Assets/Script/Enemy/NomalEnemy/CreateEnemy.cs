@@ -3,41 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // MobEnemy生成クラス
+// ボス周辺に生成
+// 生成座標がプレイヤー座標と重なっていなければ生成
 public class CreateEnemy : MonoBehaviour
 {
     // GameOnjectアタッチ用
     private GameObject EnemyPool;   // エネミー用プールアタッチ
-    private GameObject _boss;       // Bossアタッチ
-    private GameObject player;
+    private GameObject boss;        // boss
+    private GameObject player;      // player
 
     // スクリプト参照用
     private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
-    private BossController _bosscontroller;     // bosscontroller参照
+    private BossController bossCtrl;     // bosscontroller参照
     private FindBoss findBoss;
-
-    [HeaderAttribute("沸き最大数"),SerializeField]
-    public int spawnCount = 30;
-    [HeaderAttribute("次に生成するまでの時間")]
+    
+    [HeaderAttribute("沸き最大数"), SerializeField]
+    private int spawnCount = 30;
+    [HeaderAttribute("次に生成するまでの時間"), SerializeField]
     private float spawnTimer = 1.5f;
+    [Header("モブの数(Active)")]
     public int Counter = 0;     // フィールドにいるモブの数
 
     
 
-    private Vector3 _pos;        //現在位置
-    [SerializeField]
-    private float _time;         //経過時間
+    private Vector3 pos;        //現在位置
+    [HeaderAttribute("経過時間"), SerializeField]
+    private float time;         //経過時間
 
-    
+    [SerializeField]private float offset;
     
 
     [Header("生成範囲")]
     [SerializeField]    private float HEIGHT;   // 高さ
     [SerializeField]    private float WIDTH;    // 横幅
-    private Vector3 _createPos;  // エネミー生成座標
+    private Vector3 createPos;  // エネミー生成座標
 
     
-    public float _CreateSpeed = 1;          //生成速度
-    private bool startStringEnemy = false;  //エネミー４・５出現フラグ
+    public float CreateSpeed = 1;          //生成速度
+    private bool spownToughEnemy = false;  //エネミー４・５出現フラグ
 
     private enum ENEMY_TYPE
     {
@@ -56,27 +59,31 @@ public class CreateEnemy : MonoBehaviour
         EnemyPool = GameObject.Find("PoolObject");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
-        _time = 0;
+        time = 0;
     }
 
     
     void Update()
     {
-        if(_boss != null)
+        if(boss != null)
         {
-            _time += Time.deltaTime;
-            if(_time > spawnTimer)
+            time += Time.deltaTime;
+            if(time > spawnTimer)
             {
-                dispMobEnemy();
-                _time = 0;
+                if(Counter < spawnCount)
+                {
+                    dispMobEnemy();
+                    time = 0;
+                }
+                
             }
         }
         else
         {
             if(findBoss.GetOnFind())
             {
-                _boss = findBoss.GetBoss();
-                _bosscontroller = findBoss.GetBossController();
+                boss = findBoss.GetBoss();
+                bossCtrl = findBoss.GetBossController();
             }
         }
     }
@@ -84,9 +91,9 @@ public class CreateEnemy : MonoBehaviour
     // Enemyをフィールドに表示する関数
     private void dispMobEnemy()
     {
-        GameObject dispObj;
+        GameObject dispObj = null;
 
-        if(startStringEnemy)
+        if(spownToughEnemy)
         {
             SelectMobEnemyLater();  // 出現するエネミー設定(全部のモブ)
         }
@@ -96,7 +103,7 @@ public class CreateEnemy : MonoBehaviour
         }
         dispObj = GetMobEnemy();     // モブ敵をプールから取ってくる
         dispObj.transform.position = settingMobEnemyPos();  // 座標設定
-        dispObj.SetActive(true);    // 表示
+        dispObj.SetActive(true);
         Counter++;      // フィールドにいるモブの数++
         
     }
@@ -104,36 +111,31 @@ public class CreateEnemy : MonoBehaviour
     // モブをプールリストから取ってくる
     private GameObject GetMobEnemy()
     {
-        GameObject obj;
+        GameObject obj = null;
         
         if(type == ENEMY_TYPE.MOB_ENEMY1)
         {
             obj = factoryenemy.mobEnemyPool1[0];
-            factoryenemy.mobEnemyPool1.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY2)
         {
             obj = factoryenemy.mobEnemyPool2[0];
-            factoryenemy.mobEnemyPool2.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY3)
         {
             obj = factoryenemy.mobEnemyPool3[0];
-            factoryenemy.mobEnemyPool3.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY4)
         {
             obj = factoryenemy.mobEnemyPool4[0];
-            factoryenemy.mobEnemyPool4.RemoveAt(0);
             return obj;
         }
         else if(type == ENEMY_TYPE.MOB_ENEMY5)
         {
             obj = factoryenemy.mobEnemyPool5[0];
-            factoryenemy.mobEnemyPool5.RemoveAt(0);
             return obj;
         }
         else return null;
@@ -144,6 +146,7 @@ public class CreateEnemy : MonoBehaviour
     {
         
         int number = Random.Range(0,5);
+        Mathf.Floor(number);
         if(number == 0 || number == 1)
         {
             type = ENEMY_TYPE.MOB_ENEMY1;
@@ -162,6 +165,7 @@ public class CreateEnemy : MonoBehaviour
     private void SelectMobEnemyLater()
     {
         int number = Random.Range(0,9);
+        Mathf.Floor(number);
         if(number == 0 || number == 1)
         {
             type = ENEMY_TYPE.MOB_ENEMY1;
@@ -193,16 +197,41 @@ public class CreateEnemy : MonoBehaviour
     private Vector3 settingMobEnemyPos()
     {
         Vector3 createPos;
-        float _posX, _posY;
-        _pos = player.transform.position;  // playerの座標取得
-        _posX = Random.Range(_pos.x - WIDTH, _pos.x + WIDTH);
-        _posY = Random.Range(_pos.y -HEIGHT, _pos.y + HEIGHT);
-        createPos = new Vector3(_posX, _posY, 0);
-        if(_pos.x < _bosscontroller.Areas[2])
-            startStringEnemy = true;
-        if(_pos.x < _bosscontroller.Areas[3])
-            spawnTimer = 1;
+        do
+        {
+            float posX, posY;
+            pos = boss.transform.position;  // playerの座標取得
+            posX = Random.Range(pos.x - WIDTH, pos.x + WIDTH);
+            posY = Random.Range(pos.y - HEIGHT, pos.y + HEIGHT);
+            createPos = new Vector3(posX, posY, 0);
+            if(pos.x < bossCtrl.Areas[2])
+                spownToughEnemy = true;
+            if(pos.x < bossCtrl.Areas[3])
+                spawnTimer = 1;
+        }
+        while(CheckPos(createPos));
+        
         return createPos;
+    }
+
+    // エネミーの生成座標がプレイヤーとかぶっているか確認する関数
+    private bool CheckPos(Vector3 createPos)
+    {
+        bool overBorderX = false;
+        bool overBorderY = false;
+        Vector3 playerPos = player.transform.position;
+        if(createPos.x < playerPos.x + offset 
+        && createPos.x > playerPos.x - offset)
+            overBorderX = true;
+
+        if(createPos.y < playerPos.y + offset
+        && createPos.y > playerPos.y - offset)
+            overBorderY = true;
+
+        if(overBorderX && overBorderY)
+            return true;
+        else 
+            return false;
     }
 
 }
