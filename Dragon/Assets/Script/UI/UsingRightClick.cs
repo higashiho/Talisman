@@ -20,7 +20,7 @@ public class UsingRightClick : MonoBehaviour
     private Color notSkill, onSkill;                // スキルカラー変更用
 
     [SerializeField]
-    private Text[] notSkillImage;
+    private Image[] notSkillImage;
 
     // スクリプト取得用
     [SerializeField]
@@ -31,9 +31,6 @@ public class UsingRightClick : MonoBehaviour
     void Start()
     {
         startPos = sowrdPos.position;
-
-        notSkill = new Color(1, 1, 0, 1);
-        onSkill = new Color(1, 1, 0, 0);
     }
 
     // Update is called once per frame
@@ -49,14 +46,14 @@ public class UsingRightClick : MonoBehaviour
         int m_wall = 0, m_sword = 1;
         if(wallSkill.GetWallObj()
             && skillController.GetOnWallSkill())
-            notSkillImage[m_wall].color = onSkill;
+            notSkillImage[m_wall].enabled = true;
         else 
-            notSkillImage[m_wall].color = notSkill;
+            notSkillImage[m_wall].enabled = false;
         
         if(skillController.GetOnRotateSword())
-            notSkillImage[m_sword].color = onSkill;
+            notSkillImage[m_sword].enabled = true;
         else 
-            notSkillImage[m_sword].color = notSkill;
+            notSkillImage[m_sword].enabled = false;
         
     }
 
