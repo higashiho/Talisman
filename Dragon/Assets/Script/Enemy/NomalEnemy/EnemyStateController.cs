@@ -116,7 +116,7 @@ public class EnemyStateController : MonoBehaviour
         {
             // ctrl(mob)がアクティブになったら
             state = MobEnemyState.MOBENEMY;
-            DonePooling = false;    // Pooling状態フラグを折る
+            DonePooling = false;    // Pooling状態終了フラグを折る
         }
         else if(DoneItem)
         {
@@ -185,14 +185,14 @@ public class EnemyStateController : MonoBehaviour
         //プールに入れる
         // 最初に取得したnameで返すプールを判断
         if(mobName == "EnemyChase")
-            factoryEnemy.CollectPoolObject(gameObject,factoryEnemy.mobEnemyPool1);
+            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool1);
         if(mobName == "EnemyChase2")
-            factoryEnemy.CollectPoolObject(gameObject,factoryEnemy.mobEnemyPool2);
+            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool2);
         if(mobName == "EnemyChase3")
-            factoryEnemy.CollectPoolObject(gameObject,factoryEnemy.mobEnemyPool3);
+            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool3);
         if(mobName == "EnemyChase4")
-            factoryEnemy.CollectPoolObject(gameObject,factoryEnemy.mobEnemyPool4);
+            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool4);
         if(mobName == "EnemyChase5")
-            factoryEnemy.CollectPoolObject(gameObject,factoryEnemy.mobEnemyPool5);
+            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool5);
     }
 }
