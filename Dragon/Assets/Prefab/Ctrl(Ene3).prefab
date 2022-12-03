@@ -125,6 +125,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5913059001467009226, guid: 51530d003c449284f994f707bdceb924, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913059001467009226, guid: 51530d003c449284f994f707bdceb924, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5913059001467009226, guid: 51530d003c449284f994f707bdceb924, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8153124814632954653, guid: 51530d003c449284f994f707bdceb924, type: 3}
       propertyPath: m_Name
       value: Item3
@@ -154,7 +166,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_Name
-      value: MobEnemySpeed
+      value: MobEnemyRotate
       objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339352, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_Constraints
@@ -164,6 +176,18 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 3028775688036472762}
+    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339359, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_RootOrder
       value: 0
