@@ -91,7 +91,19 @@ PrefabInstance:
       objectReference: {fileID: 7947964237596071539}
     - target: {fileID: 4172620401796351193, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_Name
-      value: MobEnemyRotate
+      value: MobEnemySpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172620401796351196, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172620401796351196, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172620401796351196, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4172620401796351197, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_RootOrder
@@ -156,6 +168,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3125461890515522409}
     m_Modifications:
+    - target: {fileID: 5732348281283473534, guid: bf5a72ae6c28016468046c21480e93de, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5732348281283473534, guid: bf5a72ae6c28016468046c21480e93de, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5732348281283473534, guid: bf5a72ae6c28016468046c21480e93de, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7164740368397793382, guid: bf5a72ae6c28016468046c21480e93de, type: 3}
       propertyPath: m_RootOrder
       value: 1
