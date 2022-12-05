@@ -13,7 +13,7 @@ public class BeamController : MonoBehaviour
     [SerializeField]
     private Vector3 scaleUpSpeed;    // scaleの拡大スピード
 
-    private Vector3 startScale = new Vector3(0.1f, 0.1f, 0.1f);      // 初期の大きさ
+    private Vector3 startScale = new Vector3(1.0f, 1.0f, 1.0f);      // 初期の大きさ
 
     public int Damege = 3;           // playerに与えるダメージ
 
