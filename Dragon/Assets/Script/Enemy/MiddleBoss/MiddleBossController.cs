@@ -10,7 +10,7 @@ public class MiddleBossController : MonoBehaviour
     private GameObject BossInstance;        // ボス生成オブジェクト
     private GameObject boss;                // ボス
     private GameObject player;              // プレイヤー
-    //private GameObject PosCamera;
+    private GameObject PosCamera;
 
     [Header("子オブジェクトアタッチ")]
     [SerializeField]    private GameObject midBoss;
@@ -54,7 +54,7 @@ public class MiddleBossController : MonoBehaviour
     
     void Start()
     {
-        //PosCamera = GameObject.Find("AttractMid");
+        PosCamera = GameObject.Find("AttractMid");
         
 
         player = GameObject.FindWithTag("Player");      // プレイヤー取得
@@ -147,7 +147,7 @@ public class MiddleBossController : MonoBehaviour
                 break;
 
             case MiddleBossState.ITEM:
-                //PosCamera.GetComponent<JudgeInField>().enabled = false;
+                PosCamera.GetComponent<JudgeInField>().enabled = false;
                 item.SetActive(true);   // アイテム
                 time += Time.deltaTime;
                 if(time > itemCtrl.ItemWaitTimer)

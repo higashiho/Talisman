@@ -13,7 +13,6 @@ public class JudgeInField : MonoBehaviour
     private RawImage icon;
 
     private Rect rect = new Rect(0,0,1,1);
-    
     private Rect canvasRect;
 
     void Start()
@@ -22,19 +21,21 @@ public class JudgeInField : MonoBehaviour
     }
     void OnEnable()
     {
-        // UIがはみ出さないようにする
         
-        canvasRect = ((RectTransform)icon.canvas.transform).rect;
-        canvasRect.Set(
-            canvasRect.x + icon.rectTransform.rect.width * 0.5f,
-            canvasRect.y + icon.rectTransform.rect.height * 0.5f,
-            canvasRect.width - icon.rectTransform.rect.width,
-            canvasRect.height - icon.rectTransform.rect.height
-        );
     }
     
     void Update()
     {
+        // UIがはみ出さないようにする
+        
+        canvasRect = ((RectTransform)icon.canvas.transform).rect;
+        canvasRect.Set(
+            canvasRect.x + icon.rectTransform.rect.width,
+            canvasRect.y + icon.rectTransform.rect.height,
+            canvasRect.width - icon.rectTransform.rect.width,
+            canvasRect.height - icon.rectTransform.rect.height
+        );
+
         var viewPort = targetCamera.WorldToViewportPoint(target.position);
         if (rect.Contains(viewPort))
         {
@@ -42,9 +43,11 @@ public class JudgeInField : MonoBehaviour
         }else
         {
             icon.enabled = true;
-
-            // 画面内で対象を追跡
-            icon.rectTransform.position = target.position;
         }
+         // 画面内で対象を追跡
+            viewPort.x = Mathf.Clamp01(viewPort.x);
+            viewPort.y = Mathf.Clamp01(viewPort.y);
+
+            icon.rectTransform.anchoredPosition = Rect.NormalizedToPoint(canvasRect, viewPort);
     }
 }

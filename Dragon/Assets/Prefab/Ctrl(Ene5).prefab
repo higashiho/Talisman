@@ -81,30 +81,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3611271581304045507}
     m_Modifications:
-    - target: {fileID: 705064875765133952, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Constraints
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 705064875765134075, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_Name
       value: MobEnemyWave
       objectReference: {fileID: 0}
-    - target: {fileID: 705064875765134078, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 705064875765134078, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 705064875765134078, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Color.r
-      value: 0.7882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 705064875765134078, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 705064875765134079, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -149,26 +129,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1642372316749223475, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1642372316749223475, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1642372316749223475, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: r
-      value: 0.7882353
-      objectReference: {fileID: 0}
     - target: {fileID: 2099688680524186614, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 3210935662902611353}
-    - target: {fileID: 2099688680524186614, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: ENEMY_HP
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
 --- !u!1 &2257014257679305819 stripped
