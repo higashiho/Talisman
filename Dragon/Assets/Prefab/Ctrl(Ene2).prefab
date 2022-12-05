@@ -81,6 +81,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3125461890515522409}
     m_Modifications:
+    - target: {fileID: -355773353677930571, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -355773353677930571, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4172620401796351170, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_Constraints
       value: 6
@@ -89,6 +97,10 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 7947964237596071539}
+    - target: {fileID: 4172620401796351171, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: ENEMY_HP
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4172620401796351193, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_Name
       value: MobEnemySpeed
@@ -105,6 +117,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4172620401796351196, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4172620401796351197, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_RootOrder
       value: 0
