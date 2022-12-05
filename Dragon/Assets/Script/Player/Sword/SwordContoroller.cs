@@ -125,9 +125,13 @@ public class SwordContoroller : MonoBehaviour
 
                 else if(Input.GetMouseButtonUp(0))
                 {
-                        nomalAttack();
+                    nomalAttack();
+                    // 衝撃波出すために必要なため時間
+                    float m_waveTime = 0.5f;
+                    if(onTime > m_waveTime)
                         shockWave();
-                    
+                    else onTime = default;
+
                     onCharge = false;
                 }
             }

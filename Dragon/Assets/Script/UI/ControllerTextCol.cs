@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ControllerTextCol : MonoBehaviour
 {
-    private int colPanelCount = 0;          //パネル表示用カウント
     private bool controllerFlag = false;    //パネル表示用フラグ
+    [SerializeField]
+    private Canvas howTopanel;              //Canvas取得
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.SetActive(false);
+        howTopanel.enabled = false;
     }
 
     // Update is called once per frame
@@ -21,29 +22,29 @@ public class ControllerTextCol : MonoBehaviour
     //パネル表示
     private void OnControllerlText()
     {
-        if(colPanelCount == 0)
+        if(!controllerFlag)
         {
             if(Input.GetKeyDown(KeyCode.Tab))
             {
                 controllerFlag = true;
-                colPanelCount++;
-            }
-        }
-        else
-        {
-            if(Input.GetKeyDown(KeyCode.Tab))
-            {
-                controllerFlag = false;
-                colPanelCount = 0;
+                Debug.Log("haitta");
             }
         }
         if(controllerFlag)
         {
-            this.gameObject.SetActive(true);
+            if(Input.GetKeyDown(KeyCode.Tab))
+            {
+                controllerFlag = false;
+                Debug.Log("deta");
+            }
         }
-        else
+        if(controllerFlag)
         {
-            this.gameObject.SetActive(false);
+            howTopanel.enabled = true;
+        }
+        if(!controllerFlag)
+        {
+            howTopanel.enabled = false;
         }
     }
 }

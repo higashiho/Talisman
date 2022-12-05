@@ -5,11 +5,16 @@ using UnityEngine;
 public class CreateEnemy : MonoBehaviour
 {
     // モブの識別番号定数(出現確率計算の判定用)
-    const int MOB_ENEMY1 = 0;
-    const int MOB_ENEMY2 = 1;
-    const int MOB_ENEMY3 = 2;
-    const int MOB_ENEMY4 = 3;
-    const int MOB_ENEMY5 = 4;
+    private enum enemyCase
+    {
+        MOB_ENEMY1,
+        MOB_ENEMY2,
+        MOB_ENEMY3,
+        MOB_ENEMY4,
+        MOB_ENEMY5
+    };
+    [SerializeField]
+    private enemyCase mobEnemys = default; 
 
     // GameOnjectアタッチ用
     private GameObject EnemyPool;   // エネミー用プールアタッチ
@@ -85,6 +90,7 @@ public class CreateEnemy : MonoBehaviour
         findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
         calcTotalWeight();
         time = 0;
+
     }
 
     
@@ -139,8 +145,10 @@ public class CreateEnemy : MonoBehaviour
     {   
         GameObject dispObj = null;
         int result = calcRate();
-        if(result == MOB_ENEMY1)
+        mobEnemys += result;
+        switch(mobEnemys)
         {
+        case enemyCase.MOB_ENEMY1:
             foreach(GameObject obj in factoryenemy.mobEnemyPool1)
             {
                 if(!obj.activeSelf)
@@ -149,10 +157,9 @@ public class CreateEnemy : MonoBehaviour
                     return dispObj;
                 }
             }
-            
-        }
-        else if(result == MOB_ENEMY2)
-        {
+            break;
+        
+        case enemyCase.MOB_ENEMY2:
            foreach(GameObject obj in factoryenemy.mobEnemyPool2)
             {
                 if(!obj.activeSelf)
@@ -161,10 +168,8 @@ public class CreateEnemy : MonoBehaviour
                     return dispObj;
                 }
             }
-            
-        }
-        else if(result == MOB_ENEMY3)
-        {
+            break;
+        case enemyCase.MOB_ENEMY3:
             foreach(GameObject obj in factoryenemy.mobEnemyPool3)
             {
                 if(!obj.activeSelf)
@@ -173,10 +178,8 @@ public class CreateEnemy : MonoBehaviour
                     return dispObj;
                 }
             }
-            
-        }
-        else if(result == MOB_ENEMY4)
-        {
+            break;
+        case enemyCase.MOB_ENEMY4:
              foreach(GameObject obj in factoryenemy.mobEnemyPool4)
             {
                 if(!obj.activeSelf)
@@ -185,10 +188,8 @@ public class CreateEnemy : MonoBehaviour
                     return dispObj;
                 }
             }
-             
-        }
-        else if(result == MOB_ENEMY5)
-        {
+            break;
+        case enemyCase.MOB_ENEMY5:
             foreach(GameObject obj in factoryenemy.mobEnemyPool5)
             {
                 if(!obj.activeSelf)
@@ -197,8 +198,11 @@ public class CreateEnemy : MonoBehaviour
                     return dispObj;
                 }
             }
-            
+            break;
+            default:
+            break;
         }
+        mobEnemys = default;
         return dispObj;
             
     }
