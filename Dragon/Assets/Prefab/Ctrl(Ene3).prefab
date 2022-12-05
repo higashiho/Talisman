@@ -164,46 +164,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6632924114332164589}
     m_Modifications:
-    - target: {fileID: -3108829429385409452, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3108829429385409452, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_Name
       value: MobEnemyRotate
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564865708596339352, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Constraints
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339353, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 3028775688036472762}
-    - target: {fileID: 5564865708596339353, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: ENEMY_HP
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564865708596339358, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5564865708596339359, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_RootOrder
       value: 0
