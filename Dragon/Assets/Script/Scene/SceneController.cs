@@ -72,6 +72,8 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Mathf.Approximately(Time.timeScale, 0f))
+            return;
         // Escキーが押されたら終了
         if(Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();   
