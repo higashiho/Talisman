@@ -182,7 +182,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 31
+    m_Bits: 95
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2089,7 +2089,6 @@ RectTransform:
   - {fileID: 1104298867}
   - {fileID: 1678498040}
   - {fileID: 805532000}
-  - {fileID: 732783778}
   - {fileID: 1587998969}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -3087,12 +3086,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 589406242}
-  m_RootOrder: 4
+  m_Father: {fileID: 805532000}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -910, y: -490}
+  m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732783779
@@ -3470,6 +3469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 716027405}
+  - {fileID: 732783778}
   m_Father: {fileID: 589406242}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5681,7 +5681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 78962adf299b6f54a95187ea573120d3, type: 3}
+  m_Texture: {fileID: 8600000, guid: 2c77258479292db45be916e209c211e2, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -5709,12 +5709,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 589406242}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -910, y: -490.3366}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -860, y: -440}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1591909503
 GameObject:
@@ -7727,6 +7727,10 @@ PrefabInstance:
     - target: {fileID: 2243393573469111211, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_Name
       value: Players
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846662538324839929, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
