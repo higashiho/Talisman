@@ -150,7 +150,7 @@ public class MiddleBossController : MonoBehaviour
             // アイテムの時
             case MiddleBossState.ITEM:
 
-                PosCamera.GetComponent<JudgeInField>().enabled = false; // 中ボス追跡カメラ(false)
+                MidUI.transform.GetChild(0).gameObject.GetComponent<JudgeInField>().enabled = false; // 中ボス追跡カメラ(false)
                 item.SetActive(true);   // アイテム
 
                 time += Time.deltaTime;
