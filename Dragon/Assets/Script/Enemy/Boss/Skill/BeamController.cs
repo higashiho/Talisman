@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BeamController : MonoBehaviour
 {
-
+    [SerializeField]
     private GameObject Player;      // プレイヤー格納用
     
+    [SerializeField]
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納
 
     private Vector3 posPlayer;      // プレイヤーの座標格納用
 
@@ -19,6 +21,7 @@ public class BeamController : MonoBehaviour
 
     [SerializeField, HeaderAttribute("消えるまでの時間")]
     private float destroyTime;      // 消えるまでの時間
+    private float saveDestroyTime;  // 消えるまでの時間保管用
     [SerializeField]
     private GameObject beamLine;        // ビームラインオブジェクト
 
@@ -28,10 +31,22 @@ public class BeamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindWithTag("Player");
-        transform.LookAt(Player.transform.position);
-        Destroy(this.gameObject,destroyTime);
+        saveDestroyTime = destroyTime;
+        
         this.transform.localScale = startScale;
+
+        
+        // objectPool取得
+        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+    }
+
+    void OnEnable()
+    {   
+        this.transform.localScale = startScale;
+        if(Player == null)
+            Player = GameObject.FindWithTag("Player");
+        transform.LookAt(Player.transform.position);
+        
         StartCoroutine(offWate());
     }
 
@@ -46,6 +61,15 @@ public class BeamController : MonoBehaviour
     private void beamBehaviour()
     {
         this.transform.localScale += scaleUpSpeed * Time.deltaTime;
+        destroyTime -= Time.deltaTime;
+        if(destroyTime <= 0)
+        {
+            wait = false;
+
+            this.gameObject.transform.parent = objectPool.gameObject.transform;
+            objectPool.Collect(null, this.gameObject);
+            destroyTime = saveDestroyTime;
+        }
     }
 
     private IEnumerator offWate()

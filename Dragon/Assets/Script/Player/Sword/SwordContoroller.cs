@@ -148,7 +148,7 @@ public class SwordContoroller : MonoBehaviour
     // 衝撃波を出す攻撃
     private void shockWave()
     {
-        shockWaveObj = objectPool.Launch(objectPool.GetShockWaveobj(), objectPool.GetShockWaveQueue(),this.transform.position);
+        shockWaveObj = objectPool.Launch(this.transform.position, null, objectPool.GetShockWaveQueue(),objectPool.GetShockWaveobj());
 
         skillController.Skills[4] -= OnShockSkill;
         

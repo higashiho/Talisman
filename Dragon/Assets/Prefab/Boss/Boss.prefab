@@ -10857,7 +10857,7 @@ Transform:
   m_GameObject: {fileID: 9060541169768609607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9060541170134570889}
@@ -11011,6 +11011,7 @@ MonoBehaviour:
   player: {fileID: 0}
   colBoss: {fileID: 9060541169768609614}
   randomBossHp: {fileID: 512418799}
+  objectPool: {fileID: 0}
 --- !u!114 &9060541169768609614
 MonoBehaviour:
   m_ObjectHideFlags: 0

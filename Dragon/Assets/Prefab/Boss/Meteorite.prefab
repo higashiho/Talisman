@@ -268,9 +268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca014fc8872cf944c8f32d6fb4f96b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alpha: -0.5
+  alpha: 0
   Damege: 3
   Ring: {fileID: 7180258644840889716}
+  objectPool: {fileID: 0}
 --- !u!58 &141178659151671385
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -300,3 +301,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mteoriteController: {fileID: 7226245224382613598}
+  objectPool: {fileID: 0}
+  Ring: {fileID: 7180258644840889716}

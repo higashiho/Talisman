@@ -54,7 +54,7 @@ public class BulletShot : MonoBehaviour
     public void ShotBullet()
     {
         //オブジェクトプールのLaunch関数呼び出し
-        objectPool.Launch(objectPool.GetBulletObj(), objectPool.GetBulletQueue(), transform.position);
+        objectPool.Launch(transform.position, null, objectPool.GetBulletQueue(), objectPool.GetBulletObj());
         target = GameObject.FindWithTag(skillController.target);
 
         if(target == null)
