@@ -5366,6 +5366,7 @@ GameObject:
   - component: {fileID: 2243393573469111184}
   - component: {fileID: 2243393573469111185}
   - component: {fileID: 2243393573469111195}
+  - component: {fileID: 1713731376}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5460,11 +5461,11 @@ MonoBehaviour:
   hp: 3
   heelSheld: 10
   shieldRenderer: {fileID: 4201529300902395629}
-  skillController: {fileID: 2243393573469111190}
   maxTimer: 2
   thisRenderer: {fileID: 3846662538324839929}
   flashingCycle: 0.5
   sword: {fileID: 2243393573446524709}
+  skillController: {fileID: 2243393573469111190}
 --- !u!114 &2243393573469111175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5479,6 +5480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 2243393573469111196}
   damageEfect: {fileID: 4540412715519475234}
+  knockBack: {fileID: 1713731376}
 --- !u!114 &2243393573469111190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5562,6 +5564,18 @@ MonoBehaviour:
   - 0
   - 0
   maxTimer: 0.1
+--- !u!114 &1713731376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243393573469111211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e668120db38d19e4fa270a80be0e6fa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2243393573508983324
 GameObject:
   m_ObjectHideFlags: 0
