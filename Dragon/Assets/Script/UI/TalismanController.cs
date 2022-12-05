@@ -10,18 +10,16 @@ public class TalismanController : MonoBehaviour
     private Image[] talisman = new Image[8];
 
 
-    private Vector2 sizeUpSpeed = new Vector2(400.0f,400.0f);      // 大きくなるスピード
-    private Vector2 nowTalismanSize;                               // 現在のサイズ
-    private float rotationSpeed = 560.0f;                          // 回転スピード
-    private bool move = false;                                     // 挙動するか
+    private bool move = false;                                  // 挙動するか
     [SerializeField]
-    private bool moveEnd = false;                                          // 挙動が終わったかどうか
+    private bool moveEnd = false;                               // 挙動が終わったかどうか
     public bool MoveEnd
     {
         get { return moveEnd; }
     }
     
     
+    private float stopTime = 1.0f;                              // コルーチン遅延時間   
 
     // Start is called before the first frame update
     void Start()
@@ -30,47 +28,48 @@ public class TalismanController : MonoBehaviour
         moveEnd = false;
 
         // 全てのイメージを出現させてサイズを設定
-        var startSize = new Vector2(300, 300);
         for(int i = 0; i < talisman.Length; i++)
         {
-            talisman[i].enabled = false;
+            // 画像サイズRandom設定
+            float m_minPicsel = 400.0f, m_maxPicsel = 1000.0f, 
+            m_randScale = Random.Range(m_minPicsel, m_maxPicsel);
+            var startSize = new Vector2(m_randScale, m_randScale);
+
+            // 画像の角度のランダム値設定
+            float m_minRotate = 0.0f, m_maxRotate = 180.0f, 
+            m_randRotate = Random.Range(m_minRotate, m_maxRotate);
+            // サイズと向きを変更
             talisman[i].GetComponent<RectTransform>().sizeDelta = startSize;
+            talisman[i].GetComponent<RectTransform>().Rotate(0, 0, m_randRotate);
+            talisman[i].enabled = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(move && !moveEnd)
+        if(move)
         {
-            sizeUp();
-            rotation();
+            StartCoroutine("enabildTalisman");
         }
     }
 
-    // 大きくなる
-    private void sizeUp()
+    private IEnumerator enabildTalisman()
     {
-        float m_maxSize = 1000.0f;
-        for(int i = 0; i < talisman.Length; i++)
-            talisman[i].GetComponent<RectTransform>().sizeDelta += sizeUpSpeed * Time.deltaTime;
-        nowTalismanSize = talisman[0].GetComponent<RectTransform>().sizeDelta;
-        if(nowTalismanSize.x >= m_maxSize)
-            moveEnd = true;
-    }
+        move = false;
 
-    // 回転
-    private void rotation()
-    {
+        float m_delay = 1.0f;
         for(int i = 0; i < talisman.Length; i++)
-            talisman[i].GetComponent<RectTransform>().Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        {
+            talisman[i].enabled = true;
+            yield return new WaitForSeconds(stopTime);
+            stopTime = Random.Range(0,m_delay);
+        }
+        moveEnd = true;
     }
-    
     // 挙動開始
     public void TalismanMove()
     {
-        for(int i = 0; i < talisman.Length; i++)
-            talisman[i].enabled = true;
         move = true;
     }
 }
