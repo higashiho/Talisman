@@ -4014,6 +4014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38abcf44486418c4189d6b4fa6741b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobEnemys: 0
   spawnCount: 30
   spawnTimer: 1.5
   Counter: 0
@@ -4790,7 +4791,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1338276899
 RectTransform:
@@ -4825,7 +4826,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cebec56f0ce4bb4da97786bc35c3d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  howTopanel: {fileID: 1338276898}
+  howToMainText: {fileID: 1181479493}
+  howToTitleText: {fileID: 586881602}
+  howToPanel: {fileID: 1765545915}
 --- !u!1 &1353076287
 GameObject:
   m_ObjectHideFlags: 0
@@ -7610,6 +7613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9d0e7996c0a46489c5121c0b7764e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ones: 010101
   children:
   - {fileID: 1719781340}
   - {fileID: 221512915}
@@ -7620,7 +7624,7 @@ MonoBehaviour:
   - {fileID: 402625574}
   speceText: {fileID: 1329813848}
   nameText: {fileID: 554157800}
-  ones: 010101
+  playerImage: {fileID: 0}
 --- !u!114 &1945648485
 MonoBehaviour:
   m_ObjectHideFlags: 0

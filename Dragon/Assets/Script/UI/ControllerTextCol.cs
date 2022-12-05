@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ControllerTextCol : MonoBehaviour
 {
     private bool controllerFlag = false;    //パネル表示用フラグ
     [SerializeField]
-    private Canvas howTopanel;              //Canvas取得
+    private Text howToMainText;              //取得
+    [SerializeField]
+    private Text howToTitleText;              //取得
+    [SerializeField]
+    private Image howToPanel;              //取得
     // Start is called before the first frame update
     void Start()
     {
-        howTopanel.enabled = false;
+        howToMainText.enabled = false;
+        howToTitleText.enabled = false;
+        howToPanel.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,7 +37,7 @@ public class ControllerTextCol : MonoBehaviour
                 Debug.Log("haitta");
             }
         }
-        if(controllerFlag)
+        else
         {
             if(Input.GetKeyDown(KeyCode.Tab))
             {
@@ -40,11 +47,15 @@ public class ControllerTextCol : MonoBehaviour
         }
         if(controllerFlag)
         {
-            howTopanel.enabled = true;
+            howToMainText.enabled = true;
+            howToTitleText.enabled = true;
+            howToPanel.enabled = true;
         }
-        if(!controllerFlag)
+        else
         {
-            howTopanel.enabled = false;
+            howToMainText.enabled = false;
+            howToTitleText.enabled = false;
+            howToPanel.enabled = false;
         }
     }
 }
