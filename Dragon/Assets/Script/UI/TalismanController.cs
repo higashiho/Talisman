@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class TalismanController : MonoBehaviour
 {
-    // スクリプト参照系
+    // 参照系
     [SerializeField]
     private Image[] talisman = new Image[8];
-
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip talismanAudio;
 
     private bool move = false;                                  // 挙動するか
     [SerializeField]
@@ -17,16 +19,17 @@ public class TalismanController : MonoBehaviour
     {
         get { return moveEnd; }
     }
-    
-    
-    private float stopTime = 1.0f;                              // コルーチン遅延時間   
+    private float stopTime = 0.3f;                              // コルーチン遅延時間   
 
     // Start is called before the first frame update
     void Start()
     {
+        // 変数初期化
         move = false;
         moveEnd = false;
 
+        // オーディオソース取得
+        audioSource = GetComponent<AudioSource>();
         // 全てのイメージを出現させてサイズを設定
         for(int i = 0; i < talisman.Length; i++)
         {
@@ -58,12 +61,13 @@ public class TalismanController : MonoBehaviour
     {
         move = false;
 
-        float m_delay = 1.0f;
+        float m_delay = stopTime / talisman.Length;
         for(int i = 0; i < talisman.Length; i++)
         {
+            audioSource.PlayOneShot(talismanAudio);
             talisman[i].enabled = true;
             yield return new WaitForSeconds(stopTime);
-            stopTime = Random.Range(0,m_delay);
+            stopTime -= m_delay;
         }
         moveEnd = true;
     }

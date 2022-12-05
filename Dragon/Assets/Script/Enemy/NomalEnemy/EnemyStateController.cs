@@ -83,6 +83,7 @@ public class EnemyStateController : MonoBehaviour
         mobEnemy.SetActive(false);
         item.SetActive(false);
         
+        
     }
     
     void Update()
@@ -117,14 +118,15 @@ public class EnemyStateController : MonoBehaviour
                 if(!colEnemy.FadeFlag)
                 {
                     // プレイヤー追尾
-                    eneCtrl.attractEnemy(this.gameObject, player);
+                    eneCtrl.attractEnemy(mobEnemy, player);
                 }
 
                 if(DoneMob)
                 {
+                    // 生成位置をエネミーの位置に変更
+                    item.transform.position = mobEnemy.transform.position;
                     state = MobEnemyState.ITEM;
                     mobEnemy.SetActive(false);
-                    
                 }
                 break;
             
@@ -134,7 +136,7 @@ public class EnemyStateController : MonoBehaviour
                 
                 
                 // プレイヤー追尾
-                itemshade.attractItem(gameObject, player);
+                itemshade.attractItem(item, player);
                 if(DoneItem)
                 {   
                     item.SetActive(false);
