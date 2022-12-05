@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// todo state修正
 public class MiddleBossController : MonoBehaviour
 {
     [Header("ゲームオブジェクトアタッチ")]
@@ -10,6 +10,7 @@ public class MiddleBossController : MonoBehaviour
     private GameObject BossInstance;        // ボス生成オブジェクト
     private GameObject boss;                // ボス
     private GameObject player;              // プレイヤー
+    //private GameObject PosCamera;
 
     [Header("子オブジェクトアタッチ")]
     [SerializeField]    private GameObject midBoss;
@@ -23,6 +24,7 @@ public class MiddleBossController : MonoBehaviour
     private BossController bossCtrl;            // ボスコントローラー参照用
     private FindBoss findBoss;                  // ボス生成されたかを調べるクラス
     private MiddleBossItemController itemCtrl;  // アイテムコントローラー
+
 
     public bool dispMidBoss;        // 中ボスがアクティブかどうか 
     public bool dispItem;           // アイテムがアクティブかどうか
@@ -52,6 +54,9 @@ public class MiddleBossController : MonoBehaviour
     
     void Start()
     {
+        //PosCamera = GameObject.Find("AttractMid");
+        
+
         player = GameObject.FindWithTag("Player");      // プレイヤー取得
         // 子から中ボスとアイテム取得
         midBoss = transform.GetChild(0).gameObject;     
@@ -74,6 +79,8 @@ public class MiddleBossController : MonoBehaviour
         middleBossName = midBoss.name;
         // 初期ステートを中ボスに設定
         state = MiddleBossState.MIDDLEBOSS;
+
+        gameObject.SetActive(false);
     }
 
     // SetActive(true)はCreateMiddleBossで行っている
@@ -140,6 +147,7 @@ public class MiddleBossController : MonoBehaviour
                 break;
 
             case MiddleBossState.ITEM:
+                //PosCamera.GetComponent<JudgeInField>().enabled = false;
                 item.SetActive(true);   // アイテム
                 time += Time.deltaTime;
                 if(time > itemCtrl.ItemWaitTimer)

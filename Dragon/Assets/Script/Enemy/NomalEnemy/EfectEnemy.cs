@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EfectEnemy : MonoBehaviour
 {
-
     private SpriteRenderer spriteRendere;    //スプライトレンダラー取得
 
     private float fadeTime = 1.5f;            //消える時間
@@ -27,10 +26,15 @@ public class EfectEnemy : MonoBehaviour
     {
         spriteRendere = GetComponent<SpriteRenderer>();
         colEnemy = GetComponent<ColEnemy>();
-        remainTime = fadeTime;
+        
         MobCreater = GameObject.Find("MobEnemyCreater");
         createEnemy = MobCreater.GetComponent<CreateEnemy>();
         enemyStateCtrl = transform.parent.gameObject.GetComponent<EnemyStateController>();
+   }
+
+   void OnEnable()
+   {
+        remainTime = fadeTime;
    }
 
     // Update is called once per frame

@@ -143,10 +143,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59526b886eee6f549b34d6668b39d8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
   Hp: 5
   SWORD_DAMAGE: 1
   ROTATESWORD_DAMAGE: 2
-  createItem: 0
+  midCtrl: {fileID: 0}
+  Deth: 0
+  Marge: 0
 --- !u!114 &7540069425482552921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +164,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   margeTime: 25
+  time: 0
+  MargeBoss: 0
+  DoneWaitMarge: 0
+  DoneMove: 0
+  DoneMarge: 0
+  DoneDeth: 0
+  MidState: 0
 --- !u!50 &-8527776690376593672
 Rigidbody2D:
   serializedVersion: 4

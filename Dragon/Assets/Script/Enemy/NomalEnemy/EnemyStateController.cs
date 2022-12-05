@@ -28,9 +28,9 @@ public class EnemyStateController : MonoBehaviour
     private string mobName;
 
     // エネミー状態終了フラグ
-    public bool DoneMob;      // エネミー状態
-    public bool DoneItem;     // アイテム状態
-    public bool DonePooling;  // プーリング状態
+    public bool DoneMob = false;      // エネミー状態
+    public bool DoneItem = false;     // アイテム状態
+    public bool DonePooling = false;  // プーリング状態
 
 
     // ステート
@@ -40,8 +40,7 @@ public class EnemyStateController : MonoBehaviour
     private enum MobEnemyState
     {
         MOBENEMY,   // エネミー
-        ITEM,       // アイテム
-        POOLING     // プーリング
+        ITEM        // アイテム
     }
 
     void Start()
@@ -70,11 +69,8 @@ public class EnemyStateController : MonoBehaviour
         // エネミーコントローラー取得
         eneCtrl = mobEnemy.GetComponent<EnemyController>();
 
-        // エネミーName取得(返すプール判断のため)
-        mobName = mobEnemy.name;
-
-        // 初期ステートはプーリングにしとく
-        state = MobEnemyState.POOLING;
+        state = MobEnemyState.MOBENEMY;
+        gameObject.SetActive(false);
     }
 
     void OnEnable()
@@ -82,21 +78,17 @@ public class EnemyStateController : MonoBehaviour
         // ボス取得
         bossInstance = GameObject.Find("BossInstance");
         findBoss = bossInstance.GetComponent<FindBoss>();
-        
-        // モブ.アイテム非アクティブ
+        DoneMob = false;
+        DoneItem = false;
         mobEnemy.SetActive(false);
         item.SetActive(false);
-
-        // プーリング状態終了フラグ(true)
-        DonePooling = true;
-
+        
     }
     
     void Update()
     {
         if(boss != null)
         {
-            ChangeState();
             stateTransition();
         }
         else
@@ -109,30 +101,6 @@ public class EnemyStateController : MonoBehaviour
         }
     }
 
-    // 各ステート終了フラグに基づいてステートを変更する関数
-    private void ChangeState()
-    {
-        if(DonePooling)
-        {
-            // ctrl(mob)がアクティブになったら
-            state = MobEnemyState.MOBENEMY;
-            DonePooling = false;    // Pooling状態終了フラグを折る
-        }
-        else if(DoneItem)
-        {
-            // プレイヤーがアイテムと当たり判定を取った時
-            state = MobEnemyState.POOLING;  // プーリングステートに移行
-            DoneItem = false;   // Item状態終了フラグを折る
-        }
-        // モブが死んだとき
-        else if(DoneMob)
-        {
-            state = MobEnemyState.ITEM; // アイテムステートに移行
-            DoneMob = false;    // Mob状態終了フラグを折る
-        }
-        
-        
-    }
 
     // ステートの中身
     private void stateTransition()
@@ -141,58 +109,42 @@ public class EnemyStateController : MonoBehaviour
         {
             // モブ状態
             case MobEnemyState.MOBENEMY:
-
-                mobEnemy.SetActive(true);   // エネミーアクティブ化
-                
+                var color = mobEnemy.GetComponent<SpriteRenderer>().color;
+                color.a = 1.0f;
+                mobEnemy.GetComponent<SpriteRenderer>().color = color;
+                mobEnemy.SetActive(true);
                 // フェードアウトフラグがたってないとき
                 if(!colEnemy.FadeFlag)
                 {
                     // プレイヤー追尾
                     eneCtrl.attractEnemy(this.gameObject, player);
                 }
+
+                if(DoneMob)
+                {
+                    state = MobEnemyState.ITEM;
+                    mobEnemy.SetActive(false);
                     
+                }
                 break;
             
             // アイテム状態
             case MobEnemyState.ITEM:
-            
                 item.SetActive(true);   // アイテムアクティブ化
+                
                 
                 // プレイヤー追尾
                 itemshade.attractItem(gameObject, player);
-
+                if(DoneItem)
+                {   
+                    item.SetActive(false);
+                    state = MobEnemyState.MOBENEMY;
+                    createEnemy.Counter--;  // フィールドにいるMobの数をデクリメント
+                    gameObject.SetActive(false);
+                    DoneItem = false;
+                }
                 break;
 
-            // プーリング状態
-            case MobEnemyState.POOLING:
-                item.SetActive(false);
-                // Mobを非アクティブにする関数
-                hideMobEnemy();
-                break;
         }
-    }
-
-    // Mobを非アクティブにする関数
-    private void hideMobEnemy()
-    {
-        createEnemy.Counter--;  // フィールドにいるMobの数をデクリメント
-        this.gameObject.SetActive(false);   //Mob非アクティブ
-    }
-
-    // 非アクティブになった時
-    void OnDisable()
-    {
-        //プールに入れる
-        // 最初に取得したnameで返すプールを判断
-        if(mobName == "EnemyChase")
-            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool1);
-        if(mobName == "EnemyChase2")
-            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool2);
-        if(mobName == "EnemyChase3")
-            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool3);
-        if(mobName == "EnemyChase4")
-            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool4);
-        if(mobName == "EnemyChase5")
-            factoryEnemy.CollectPoolObject(this.gameObject,factoryEnemy.mobEnemyPool5);
     }
 }

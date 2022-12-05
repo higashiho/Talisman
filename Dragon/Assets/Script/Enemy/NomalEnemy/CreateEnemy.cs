@@ -131,49 +131,75 @@ public class CreateEnemy : MonoBehaviour
         
     }
 
+    
    
     
     // モブをプールリストから取ってくる
     private GameObject getMobEnemy()
-    {
-        GameObject obj = null;
+    {   
+        GameObject dispObj = null;
         int result = calcRate();
         if(result == MOB_ENEMY1)
         {
-            if(factoryenemy.mobEnemyPool1.Count >= 1)
-                obj = factoryenemy.mobEnemyPool1[0];
-            else return obj;
-            factoryenemy.mobEnemyPool1.RemoveAt(0);
+            foreach(GameObject obj in factoryenemy.mobEnemyPool1)
+            {
+                if(!obj.activeSelf)
+                {
+                    dispObj = obj;
+                    return dispObj;
+                }
+            }
+            
         }
         else if(result == MOB_ENEMY2)
         {
-            if(factoryenemy.mobEnemyPool2.Count >= 1)
-                obj = factoryenemy.mobEnemyPool2[0];
-            else return obj;
-            factoryenemy.mobEnemyPool2.RemoveAt(0);
+           foreach(GameObject obj in factoryenemy.mobEnemyPool2)
+            {
+                if(!obj.activeSelf)
+                {
+                    dispObj = obj;
+                    return dispObj;
+                }
+            }
+            
         }
         else if(result == MOB_ENEMY3)
         {
-            if(factoryenemy.mobEnemyPool3.Count >= 1)
-                obj = factoryenemy.mobEnemyPool3[0];
-            else return obj;
-            factoryenemy.mobEnemyPool3.RemoveAt(0);
+            foreach(GameObject obj in factoryenemy.mobEnemyPool3)
+            {
+                if(!obj.activeSelf)
+                {
+                    dispObj = obj;
+                    return dispObj;
+                }
+            }
+            
         }
         else if(result == MOB_ENEMY4)
         {
-            if(factoryenemy.mobEnemyPool4.Count >= 1)
-                obj = factoryenemy.mobEnemyPool4[0];
-            else return obj;
-            factoryenemy.mobEnemyPool4.RemoveAt(0);
+             foreach(GameObject obj in factoryenemy.mobEnemyPool4)
+            {
+                if(!obj.activeSelf)
+                {
+                    dispObj = obj;
+                    return dispObj;
+                }
+            }
+             
         }
         else if(result == MOB_ENEMY5)
         {
-            if(factoryenemy.mobEnemyPool5.Count >= 1)
-                obj = factoryenemy.mobEnemyPool5[0];
-            else return obj;
-            factoryenemy.mobEnemyPool5.RemoveAt(0);
+            foreach(GameObject obj in factoryenemy.mobEnemyPool5)
+            {
+                if(!obj.activeSelf)
+                {
+                    dispObj = obj;
+                    return dispObj;
+                }
+            }
+            
         }
-        return obj;
+        return dispObj;
             
     }
 

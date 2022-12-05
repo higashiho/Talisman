@@ -21,7 +21,9 @@ public class ColEnemy : MonoBehaviour
     private EfectEnemy efectEnemy;              //スクリプト格納用
 
     [SerializeField]
-    public int enemyHp;                        //敵エネミー体力
+    private int ENEMY_HP;                 //敵エネミー体力(定数)
+
+    public int enemyHp;                         // 敵エネミー体力(変数)
 
     [SerializeField]
     private string hitDeleteName;               //プレイヤーに当たったら消えるやつの名前
@@ -74,7 +76,12 @@ public class ColEnemy : MonoBehaviour
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         enemyStateCtrl = transform.parent.gameObject.GetComponent<EnemyStateController>();
     }
-
+    void OnEnable()
+    {
+        GetComponent<PolygonCollider2D>().enabled = true;
+        fadeFlag = false;
+        enemyHp = ENEMY_HP;     // アクティブになる毎にHP初期化
+    }
     // Update is called once per frame
     void Update()
     {
