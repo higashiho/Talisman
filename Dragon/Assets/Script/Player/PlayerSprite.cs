@@ -14,10 +14,8 @@ public class PlayerSprite : MonoBehaviour
 
     [SerializeField]
     private SwordContoroller swodController;
-
     [SerializeField]
     private PlayerController player;
-
     [SerializeField,HeaderAttribute("playerAnimator")]
     private Animator playerAnimator;
     // Start is called before the first frame update
