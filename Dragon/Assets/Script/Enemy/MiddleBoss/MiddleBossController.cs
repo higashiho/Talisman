@@ -32,15 +32,15 @@ public class MiddleBossController : MonoBehaviour
     //public bool DethMid = false;            // 中ボスが死亡フラグ
     //public bool MargeBoss;          // 中ボス:ボスの融合完了フラグ
     public string middleBossName;   // 名前取得用
-
+    [HeaderAttribute("融合待機時間"), SerializeField]
+    private float margeTime;
     // 中ボス状態終了フラグ
     public bool DoneMid;        // 中ボス終了  
     public bool DoneItem;       // アイテム終了
-    public bool DonePooling;    // プーリング終了
 
     public bool CreateItem;     // アイテム生成フラグ
 
-    private float time;
+    private float time;         // 時間計測用
 
     [SerializeField]    
     private MiddleBossState state;
@@ -48,8 +48,7 @@ public class MiddleBossController : MonoBehaviour
     private enum MiddleBossState
     {
         MIDDLEBOSS, // 中ボス
-        ITEM,       // アイテム
-        POOLING     // プーリング
+        ITEM        // アイテム
     };
     
     void Start()
@@ -89,17 +88,18 @@ public class MiddleBossController : MonoBehaviour
         // ボス取得用変数
         BossInstance = GameObject.Find("BossInstance");
         findBoss = BossInstance.GetComponent<FindBoss>();
+        time = 0.0f;
+        DoneMid = false;
+        DoneItem = false;
         // 中ボスとアイテム非アクティブ化
         midBoss.SetActive(false);
         item.SetActive(false);
-        DonePooling = true;     // プーリング状態終了フラグ(true)
     }
 
     void Update()
     {
        if(boss != null)
        {
-            ChangeState();
             stateTransition();
        }
        else
@@ -113,36 +113,36 @@ public class MiddleBossController : MonoBehaviour
             
     }
 
-    // 各状態終了フラグに基づいてstateを変更する関数
-    private void ChangeState()
-    {
-        if(DoneMid)
-        {
-            // アイテムかプーリングか判断
-            if(CreateItem)
-                state = MiddleBossState.ITEM;
-            else
-                state = MiddleBossState.POOLING;
-        }
-        if(DoneItem)
-        {
-            state = MiddleBossState.POOLING;
-        }
-        if(DonePooling)
-        {
-            state = MiddleBossState.MIDDLEBOSS;
-        }
-    }
 
     private void stateTransition()
     {
         switch(state)
         {
             case MiddleBossState.MIDDLEBOSS:
-                
                 midBoss.SetActive(true);    // 中ボスアクティブ化  
-                moveMid.ChangeMiddleBossState();
-                moveMid.Move();
+                time += Time.deltaTime;
+                if(time > margeTime)
+                {
+                    moveMid.MoveToMarge(this.gameObject, boss);
+                }
+                // 中ボスが融合したときのフラグ処理
+                if(colMid.Marge)
+                {
+                    DoneMid = true;
+                }
+                // 中ボスが死んだときのフラグ処理
+                if(colMid.Deth)
+                {
+                    DoneMid = true;
+                    DoneItem = true;
+                }
+
+                if(DoneMid)
+                {
+                    state = MiddleBossState.ITEM;
+                    time = 0.0f;
+                    midBoss.SetActive(false);
+                }
   
                 break;
 
@@ -152,17 +152,16 @@ public class MiddleBossController : MonoBehaviour
                 time += Time.deltaTime;
                 if(time > itemCtrl.ItemWaitTimer)
                     itemCtrl.Move(player, item);
+                if(DoneItem)
+                {
+                    item.SetActive(false);
+                    state = MiddleBossState.MIDDLEBOSS;
+                    createMiddleBoss.middleBossNumCounter--;    // 生成カウントデクリメント
+                    this.gameObject.SetActive(false);           // 非アクティブ
+                }
                 break;
-
-            case MiddleBossState.POOLING:
-                hiddenMiddleBoss();
-            break;
+            
         }
-    }
-    private void hiddenMiddleBoss()
-    {
-        createMiddleBoss.middleBossNumCounter--;    // 生成カウントデクリメント
-        this.gameObject.SetActive(false);           // 非アクティブ
     }
     // 非アクティブになったタイミングでプールに返す
     void OnDisable()

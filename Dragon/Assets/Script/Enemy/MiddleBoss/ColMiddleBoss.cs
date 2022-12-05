@@ -55,7 +55,6 @@ public class ColMiddleBoss : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>(); 
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
-        movemiddleboss = this.gameObject.GetComponent<MoveMiddleBoss>();
         midCtrl = parent.GetComponent<MiddleBossController>();
     }
 
@@ -70,12 +69,7 @@ public class ColMiddleBoss : MonoBehaviour
     {
         if(boss != null)
         {
-            // 中ボスHPが0以下の時
-            if(Hp <= 0)
-            {
-                deth(); // 中ボス死亡処理
-                
-            }
+            ;
         } 
         else
         {
@@ -95,12 +89,7 @@ public class ColMiddleBoss : MonoBehaviour
             return false;
     }
 
-    // 中ボス死亡処理
-    private void deth()
-    {
-        movemiddleboss.DoneDeth = true;
-        this.gameObject.SetActive(false);
-    }
+
 
     // 中ボス当たり判定
     private void OnTriggerEnter2D(Collider2D other)
@@ -135,7 +124,7 @@ public class ColMiddleBoss : MonoBehaviour
             if(other.gameObject.tag == "Boss")
             {
                 bosscontroller.SetHp(Hp);   // 中ボスの残りHPをボスのHPに加算
-                movemiddleboss.DoneMove = true;    // 融合完了フラグ(true)
+                Marge = true;
                 //this.gameObject.SetActive(false);
                 //Marge = true;
                 //createmiddleboss.middleBossNumCounter--;// 中ボスカウンタ--
