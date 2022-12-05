@@ -21,8 +21,8 @@ public class CreateMiddleBoss : MonoBehaviour
     private GameObject PoolObject;  // オブジェクトプール
     private GameObject player;      // プレイヤー
     private GameObject Message;     // 中ボス出現メッセージCtrl
-    //[SerializeField]
-    //private GameObject AttractMid;
+    [SerializeField]
+    private GameObject AttractMid;
     
     // スクリプト参照用
     [SerializeField]
@@ -30,7 +30,7 @@ public class CreateMiddleBoss : MonoBehaviour
     private FactoryEnemy factoryenemy;
     private BossController bosscontroller;
     private TextController textCtrl_Respawn;
-    //private JudgeInField judge;
+    private JudgeInField judge;
 
     [HeaderAttribute("生成した中ボスの数(Active)"), SerializeField]
     public int middleBossNumCounter;
@@ -95,7 +95,7 @@ public class CreateMiddleBoss : MonoBehaviour
         // スクリプト取得
        factoryenemy = PoolObject.GetComponent<FactoryEnemy>();     
        findBoss = bossInstance.GetComponent<FindBoss>();
-       //judge = AttractMid.GetComponent<JudgeInField>();
+       judge = AttractMid.GetComponent<JudgeInField>();
        
        calcTotalWeight();
     }
@@ -151,8 +151,8 @@ public class CreateMiddleBoss : MonoBehaviour
         dispObj.transform.position = createMiddleBossPos(); // 座標設定
         dispObj.SetActive(true);    // 表示
         middleBossNumCounter++;
-        //AttractMid.GetComponent<JudgeInField>().enabled = true;
-        //judge.target = dispObj.GetComponent<Transform>();
+        AttractMid.GetComponent<JudgeInField>().enabled = true;
+        judge.target = dispObj.GetComponent<Transform>();
         //judge.targetCamera = dispObj.transform.GetChild(2).gameObject.GetComponent<Camera>();
         textCtrl_Respawn.DoneInit = true;
         
