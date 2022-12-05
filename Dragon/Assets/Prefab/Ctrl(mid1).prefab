@@ -124,12 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   midBoss: {fileID: 2173182823856640078}
   item: {fileID: 5034282546376705892}
-  dispMidBoss: 0
-  dispItem: 0
-  middleBossName: 
+  Margeable: 0
+  margeTime: 30
   DoneMid: 0
   DoneItem: 0
-  DonePooling: 0
   CreateItem: 0
   state: 0
 --- !u!1001 &3867282160261139366

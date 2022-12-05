@@ -5,66 +5,60 @@ using UnityEngine;
 public class ColMiddleBoss : MonoBehaviour
 {
     // ゲームオブジェクト参照用
-    private GameObject player;
-    private GameObject boss; // Bossアタッチ用
-    private GameObject bullet;  // プレイヤーが放つホーミング弾
-    private GameObject MiddleBossCreater;
-    private GameObject EnemyPool;
-    private GameObject BossInstance;
-    [SerializeField]
-    private GameObject parent;
+    private GameObject player;              // プレイヤー
+    private GameObject boss;                // ボス
+    private GameObject bullet;              // プレイヤーが放つホーミング弾
+    private GameObject MiddleBossCreater;   // 中ボス生成オブジェクト
+    private GameObject EnemyPool;           //  エネミーオブジェクトプール
+    private GameObject BossInstance;        // ボス生成オブジェクト
+    private GameObject parent;              // エネミー親オブジェクト
+    private GameObject middleBossItem;      // 中ボスアイテム
     
 
-    [Header("中ボスヒットポイント")]
-    public int Hp = 5;
+    [Header("Creatorから値を入れる")]
+    public int Hp;      // 中ボスHP
+    
     [HeaderAttribute("Swordのダメージ"), SerializeField]
     private int SWORD_DAMAGE = 1;
     [HeaderAttribute("RotateSwordのダメージ"), SerializeField]
     private int ROTATESWORD_DAMAGE = 2;
-    
-    private BossController bosscontroller;  //スクリプトアタッチ用
-    
-
 
 
     // 以下スクリプト参照用
-    private CreateMiddleBoss createmiddleboss;
-    private MoveMiddleBoss movemiddleboss;
-    private BulletController bulletcontroller;
-    private FactoryEnemy factoryenemy;
-    private FindBoss findBoss;
-    [SerializeField]
-    private MiddleBossController midCtrl;
+    private BossController bosscontroller;          // ボスコントローラー
+    private CreateMiddleBoss createmiddleboss;      // 中ボス生成クラス
+    private MoveMiddleBoss movemiddleboss;          // 中ボス移動クラス
+    private BulletController bulletcontroller;      // プレイヤーの弾攻撃コントローラー
+    private FactoryEnemy factoryenemy;              // 中ボス生成クラス
+    private FindBoss findBoss;                      // ボスのインスタンス取得クラス
+    private MiddleBossController midCtrl;           // 中ボスコントローラー
     
-
-
     
-
-    
-    //[SerializeField]
-    //private bool createItem = false;    // アイテムを生成するかどうかのフラグ
-    private GameObject middleBossItem;
     public bool Deth;       // 中ボス死亡フラグ
     public bool Marge;      // 中ボス:ボス融合フラグ
 
     void Start()
     {
-        parent = transform.parent.gameObject;
-        MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");
-        EnemyPool = GameObject.Find("PoolObject");
-        player = GameObject.FindWithTag("Player");
-        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>(); 
-        createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();
-        midCtrl = parent.GetComponent<MiddleBossController>();
+        parent = transform.parent.gameObject;   // 親取得
+        EnemyPool = GameObject.Find("PoolObject");  // プール取得
+        player = GameObject.FindWithTag("Player");  // プレイヤー取得
+        MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");// 中ボス生成オブジェクト取得
+        
+        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();  // ファクトリークラス参照
+        midCtrl = parent.GetComponent<MiddleBossController>();  // 中ボスコントローラー取得
+        createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();  // 中ボス生成クラス
     }
 
     void OnEnable()
     {
-        BossInstance = GameObject.Find("BossInstance");
+        // ボスインスタンス取得
+        BossInstance = GameObject.Find("BossInstance"); 
         findBoss = BossInstance.GetComponent<FindBoss>();
+
         Deth = false;   // 中ボス死亡フラグ(false)
         Marge = false;  // 中ボス:ボス融合フラグ(false) 
     }
+
     void Update()
     {
         if(boss != null)
@@ -80,6 +74,7 @@ public class ColMiddleBoss : MonoBehaviour
             }
         }
     }
+    
     // 中ボスが死んだかどうか(攻撃を受ける毎に呼ぶ)
     private bool dethMid()
     {
@@ -88,7 +83,6 @@ public class ColMiddleBoss : MonoBehaviour
         else
             return false;
     }
-
 
 
     // 中ボス当たり判定
@@ -118,24 +112,15 @@ public class ColMiddleBoss : MonoBehaviour
             Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
             Deth = dethMid();
         }
-
-        //if(movemiddleboss.Margeable()) // 融合フラグがたっているなら
-        //{
+        if(midCtrl.Margeable)
+        {
             if(other.gameObject.tag == "Boss")
             {
                 bosscontroller.SetHp(Hp);   // 中ボスの残りHPをボスのHPに加算
-                Marge = true;
-                //this.gameObject.SetActive(false);
-                //Marge = true;
-                //createmiddleboss.middleBossNumCounter--;// 中ボスカウンタ--
-                
+                Marge = true;   // 融合完了フラグ(true)
             }
-       // }
+        }
+       
+    
     }
-
-    // 中ボス非表示になったとき
-    /*void OnDisable()
-    {
-       midCtrl.dispMidBoss = false;
-    }  */  
 }

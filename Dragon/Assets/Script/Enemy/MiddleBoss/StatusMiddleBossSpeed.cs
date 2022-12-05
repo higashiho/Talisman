@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 使っていません
 // 中ボススキルを発動させるスクリプト
 public class StatusMiddleBossSpeed : MonoBehaviour
 {

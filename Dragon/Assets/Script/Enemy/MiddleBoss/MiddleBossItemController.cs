@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MiddleBossItemController : MonoBehaviour
 {
-    [HeaderAttribute("吸収速度"), SerializeField]
+    [HeaderAttribute("融合速度"), SerializeField]
     private float speed = 5f;
-    [Header("吸収待機時間")]
+
+    [Header("融合待機時間")]
     public float ItemWaitTimer = 2.0f;
     
+    // プレイヤーに向かって移動
     public void Move(GameObject player, GameObject item)
     {
         Vector3 target = player.transform.position;

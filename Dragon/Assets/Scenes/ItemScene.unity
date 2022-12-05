@@ -498,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111173, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111173, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1077,6 +1077,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e658ee4d566a644aa2933484743d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minHp: 25
+  maxHp: 50
+  minIp: 10
+  maxIp: 20
+  normalColor: {r: 1, g: 1, b: 0, a: 1}
+  rareColor: {r: 0, g: 0, b: 1, a: 1}
   bossInstance: {fileID: 1375253898}
   boss: {fileID: 0}
   bossPos: {x: 0, y: 0, z: 0}
@@ -1084,9 +1090,9 @@ MonoBehaviour:
   AttractMid: {fileID: 1059069102}
   findBoss: {fileID: 1375253899}
   middleBossNumCounter: 0
-  bossNumMaxInField: 5
+  bossNumMaxInField: 1
   intervalCreate: 30
-  respawnWeight: 010000000100000001000000
+  respawnWeight: 0300000001000000
 --- !u!1 &526259362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1786,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 31
+    m_Bits: 95
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2139,10 +2145,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -3364,8 +3370,6 @@ MonoBehaviour:
   MiddleBossPool: {fileID: 1510178198}
   EnemyPool: {fileID: 1815145762}
   middleBossPool1: []
-  middleBossPool2: []
-  middleBossPool3: []
   mobEnemyPool1: []
   mobEnemyPool2: []
   mobEnemyPool3: []
@@ -5081,8 +5085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 1694, y: 500}
+  m_SizeDelta: {x: 430, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1474951145
 MonoBehaviour:
@@ -5137,7 +5141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78039217}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

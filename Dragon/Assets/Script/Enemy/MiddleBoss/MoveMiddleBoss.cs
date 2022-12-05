@@ -7,7 +7,7 @@ using UnityEngine;
 public class MoveMiddleBoss : MonoBehaviour
 {
     // スクリプト参照
-    private MiddleBossController MidCtrl;
+    private MiddleBossController MidCtrl;   // 中ボスコントローラー
     
 
     [HeaderAttribute("移動スピード"), SerializeField]
