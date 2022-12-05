@@ -164,6 +164,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 587337961140024434}
     m_Modifications:
+    - target: {fileID: 800965925411393824, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 800965925411393824, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800965925411393824, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 800965925411393824, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771028, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -220,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8123549337994771029, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_Name
       value: MobEnemyBullet
@@ -228,6 +248,10 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 4354300859975819582}
+    - target: {fileID: 8123549337994771038, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: ENEMY_HP
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771039, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_Constraints
       value: 6

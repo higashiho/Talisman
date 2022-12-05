@@ -59,7 +59,7 @@ public class FactoryEnemy : MonoBehaviour
             {
                 var newObj = Instantiate(loadOp.Result, parent.transform);
                 newObj.name = key;
-                newObj.SetActive(false);
+                //newObj.SetActive(false);
                 PoolList.Add(newObj);
             }
         }

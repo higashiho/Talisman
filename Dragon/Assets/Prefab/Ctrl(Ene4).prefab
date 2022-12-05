@@ -168,6 +168,18 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 2647654175069997034}
+    - target: {fileID: -9215204387431056145, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: ENEMY_HP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482571049504065521, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482571049504065521, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6687482055835503282, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -180,6 +192,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6687482055835503282, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 6687482055835503283, guid: e569b715e84ca784d8fbe4b6dcc58746, type: 3}
       propertyPath: m_RootOrder
       value: 0
