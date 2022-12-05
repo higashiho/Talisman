@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 165948984}
   - component: {fileID: 165948983}
   - component: {fileID: 165948982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MageEfect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 2031221729}
   - component: {fileID: 2031221728}
   - component: {fileID: 2031221727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MidResponeEfect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9635,7 +9635,7 @@ GameObject:
   - component: {fileID: 3458697342981411630}
   - component: {fileID: 1821071397507092802}
   - component: {fileID: 5634470190783866306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9751,7 +9751,7 @@ GameObject:
   - component: {fileID: 144057596831037287}
   - component: {fileID: 998610313825081090}
   - component: {fileID: 6902131146205227876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9867,7 +9867,7 @@ GameObject:
   - component: {fileID: 8186381774041750548}
   - component: {fileID: 8672504610873628322}
   - component: {fileID: 850399591526930877}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9983,7 +9983,7 @@ GameObject:
   - component: {fileID: 4469501059797858448}
   - component: {fileID: 9184267114287635610}
   - component: {fileID: 4411499192380967723}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10099,7 +10099,7 @@ GameObject:
   - component: {fileID: 7057436321033840351}
   - component: {fileID: 5199519630614069735}
   - component: {fileID: 2311220444757987324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10215,7 +10215,7 @@ GameObject:
   - component: {fileID: 2129181494174288243}
   - component: {fileID: 6110190408808657366}
   - component: {fileID: 4900065832508185995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10331,7 +10331,7 @@ GameObject:
   - component: {fileID: 3211962684547622005}
   - component: {fileID: 7720366824146748073}
   - component: {fileID: 6747733415314154183}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10447,7 +10447,7 @@ GameObject:
   - component: {fileID: 3348210912049470336}
   - component: {fileID: 2075395804410523016}
   - component: {fileID: 7870516774734606578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10563,7 +10563,7 @@ GameObject:
   - component: {fileID: 8629987981966965581}
   - component: {fileID: 5936901827013535815}
   - component: {fileID: 6425404182149778164}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10679,7 +10679,7 @@ GameObject:
   - component: {fileID: 2964953244544551032}
   - component: {fileID: 4976773164240924687}
   - component: {fileID: 2516766732287229359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10801,7 +10801,7 @@ GameObject:
   - component: {fileID: 512418799}
   - component: {fileID: -3959097060460838189}
   - component: {fileID: 8171324039145081641}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}

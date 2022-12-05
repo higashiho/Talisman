@@ -7,31 +7,28 @@ public class Cutin : MonoBehaviour
 {
 
     private float timeScale = 0;            // 時間を止める用
-
     private float nomalTime = 1;            // 時間を戻す用
-
     private bool onCutin = false;           // カットイン中かどうか
-
-    [SerializeField, HeaderAttribute("自身の子イメージ")]
-    private Image[] children = new Image[3];
-
-    [SerializeField, HeaderAttribute("テキスト")]
-    private Text[] text = new Text[3];
-    
-    [SerializeField, HeaderAttribute("speceテキスト")]
-    private Text speceText;
-
-    [SerializeField, HeaderAttribute("nameテキスト")]
-    private Text nameText;
-
-    [SerializeField, HeaderAttribute("カットインが出たか")]
-    private bool[] ones = new bool[3];
 
     private bool onStartCutin = true;               // 一回目のカットインを行ったか
     private bool endStartCutin = false;             // 一回目のカットインが終わったか
     private bool usedEnabled = true;                // 表示非表示の処理を使用
 
     private int passThroughCount = 0;                // 鳥居をくぐった回数
+    [SerializeField, HeaderAttribute("カットインが出たか")]
+    private bool[] ones = new bool[3];
+
+    [SerializeField, HeaderAttribute("自身の子イメージ")]
+    private Image[] children = new Image[3];
+    [SerializeField, HeaderAttribute("テキスト")]
+    private Text[] text = new Text[3];
+    [SerializeField, HeaderAttribute("speceテキスト")]
+    private Text speceText;
+    [SerializeField, HeaderAttribute("nameテキスト")]
+    private Text nameText;
+
+    [SerializeField, HeaderAttribute("二回目以降のイメージ")]
+    private Sprite playerImage;
     
     // Start is called before the first frame update
     void Start()
@@ -77,6 +74,8 @@ public class Cutin : MonoBehaviour
     // Display表示
     private void onDisplay()
     {
+        if(children[1].sprite != playerImage)
+            children[1].sprite = playerImage;
         if(onCutin)
         {
             for(int i = 1; i < text.Length; i++)
