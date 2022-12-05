@@ -807,13 +807,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e658ee4d566a644aa2933484743d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossInstance: {fileID: 1398843200}
+  bossInstance: {fileID: 1398843200}
   boss: {fileID: 0}
   bossPos: {x: 0, y: 0, z: 0}
   PoolObject: {fileID: 234549818}
+  findBoss: {fileID: 1398843203}
   middleBossNumCounter: 0
   bossNumMaxInField: 5
   intervalCreate: 30
+  respawnWeight: 
 --- !u!1 &159009618
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,7 +3386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 805532000}
   m_Layer: 0
-  m_Name: RespawnMiddleBossUI
+  m_Name: MiddleBossUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3881,7 +3883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.03532791, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4415,7 +4417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8207311, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4563,6 +4565,7 @@ MonoBehaviour:
   spawnCount: 30
   spawnTimer: 1.5
   Counter: 0
+  RespawnWeight: 0200000002000000010000000200000002000000
   time: 0
   offset: 0
   HEIGHT: 35
@@ -5986,6 +5989,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c1b21aed39224047a52ffa455c8d6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1713731376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713731358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e668120db38d19e4fa270a80be0e6fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1732237494
@@ -7587,10 +7602,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2243393573469111175, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: knockBack
+      value: 
+      objectReference: {fileID: 1713731376}
     - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 1398843203}
+    - target: {fileID: 2243393573469111196, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: knockBack
+      value: 
+      objectReference: {fileID: 1713731376}
     - target: {fileID: 2243393573469111211, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_Name
       value: Players

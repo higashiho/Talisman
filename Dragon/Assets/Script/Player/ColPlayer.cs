@@ -10,6 +10,8 @@ public class ColPlayer : MonoBehaviour
     [SerializeField]
     private ParticleSystem damageEfect;         //パーティクルシステム取得
 
+    [SerializeField]
+    private KnockBack knockBack;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +28,11 @@ public class ColPlayer : MonoBehaviour
     {
         if(col.gameObject.tag == "Enemy")
         {
-            if(!playerController.GetOnUnrivaled())
+            if(!playerController.OnUnrivaled)
             {
-                playerController.SetOnUnrivaled(true);
+                // ノックバックを実施して点滅を開始
+                playerController.OnUnrivaled = true;
+                knockBack.KnockBackPlayer(col);
                 damageEfect.Play();
             }
         }
