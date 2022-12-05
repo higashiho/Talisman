@@ -815,7 +815,7 @@ MonoBehaviour:
   middleBossNumCounter: 0
   bossNumMaxInField: 5
   intervalCreate: 30
-  respawnWeight: 
+  respawnWeight: 010000000100000001000000
 --- !u!1 &159009618
 GameObject:
   m_ObjectHideFlags: 0

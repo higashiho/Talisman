@@ -90,7 +90,7 @@ public class ColEnemy : MonoBehaviour
             //nockback();
         }
 
-        freeze();
+        //freeze();
     }
 
     //エネミーのノックバック
