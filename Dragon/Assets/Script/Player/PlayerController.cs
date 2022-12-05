@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    // 挙動管理用
     [SerializeField]
     private Vector3 playerSpeed;                         // Playerの移動速度
     private Vector3 pos;                                // playerの位置を保存する変数
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         set { onMeve = value; }
     }
     
+    // HP管理用
     [SerializeField]
     private int hp = 3;                                      //ヒットポイント
     public int Hp {
@@ -36,52 +38,53 @@ public class PlayerController : MonoBehaviour
         }
 
 
+    // Shield管理用
     private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f,0);            //シールドがない時の移動スピード
     private Vector3 nomalPlayerSpeed = new Vector3(9.0f, 9.0f,0);         //  通常時スピード
     private Vector3 highPlayerSpeed = new Vector3(12.0f, 12.0f,0);          // スピードアップスキル取得時スピード
     public Vector3 NomalPlayerSpeed{
         get { return nomalPlayerSpeed; }
 		set { nomalPlayerSpeed = value; }
-        }
+    }
     private const int MAX_HP = 3;                                           // HP最大値
     [SerializeField, HeaderAttribute("シールド回復時間")]
     private float heelSheld;                     //シールド回復時間
-
     private float startHeelStrage;                      // シールド回復初期時間保管用
-
     private SpriteRenderer spriteRenderer;              // スプライトレンダラー格納用
     [SerializeField]
     private GameObject shieldRenderer;              // スプライトレンダラー格納用
-
     private bool oneHeel = true;                        //ヒール一回だけ処理
 
-    [SerializeField]
-    private SkillController skillController;            // スクリプト格納用
+    
 
 
-
+    // 被弾時管理用
     private bool onUnrivaled = false;                    // 無敵中か
-
-    public bool GetOnUnrivaled() {return onUnrivaled;}
-    public void SetOnUnrivaled(bool set) {onUnrivaled = set;}
+    public bool OnUnrivaled{
+        get{return onUnrivaled;}
+        set{onUnrivaled = value;}
+    }
     private float unrivaledTimer = 0;                   // 無敵時間用タイマー
     [SerializeField, HeaderAttribute("無敵時間最大値")]
     private float maxTimer = 2.0f;                      // 無敵がオフになる時間
-    
     [SerializeField]
     private Renderer thisRenderer;                      // 自身のレンダラー格納用
-   
     [SerializeField, HeaderAttribute("点滅周期")]
     private float flashingCycle;                        // 回転周期
-
     private float delay = 0.5f;                         // 遅延時間
 
+
+    // 移動座標管理用
     private float limitPosY = 25.0f;                     // y座標限界値
     private float minPosX = -48.0f;                      // 左座標限界値
     private float maxPosX = 385.0f;                      // 右座標限界値
 
+    [Header("Playerスクリプト")]
+    // スクリプト参照
     [SerializeField]
     private SwordContoroller sword;
+    [SerializeField]
+    private SkillController skillController;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,7 +103,10 @@ public class PlayerController : MonoBehaviour
         }
 
         if(onUnrivaled)
+        {
+            // 攻撃を受けたらノックバックをして点滅する
             unrivaled();
+        }
     }
 
     private void speed()

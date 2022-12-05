@@ -87,7 +87,7 @@ public class ColEnemy : MonoBehaviour
     {
         if(nockbackflag)
         {
-            nockback();
+            //nockback();
         }
 
         freeze();
@@ -175,11 +175,12 @@ public class ColEnemy : MonoBehaviour
     {               
         if(col.gameObject.tag == "Player")
         {
-            if(!playerController.GetOnUnrivaled())
+            if(!playerController.OnUnrivaled)
             {
             playerController.Hp -= hitDamage; 
             if(hitDeleteName == "Enemy")
                 enemyStateCtrl.DoneMob = true;
+                enemyStateCtrl.DoneItem = true;
             }
         }
 
