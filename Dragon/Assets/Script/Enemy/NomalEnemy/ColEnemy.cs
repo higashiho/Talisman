@@ -46,7 +46,7 @@ public class ColEnemy : MonoBehaviour
     private ParticleSystem damageEfect;         //取得用
 
     [SerializeField]
-    private PolygonCollider2D Polygon2D;        //取得
+    private BoxCollider2D Polygon2D;        //取得
 
     private bool crashFlag = false;            //エネミー玉突き事故防止用フラグ
 
@@ -78,7 +78,7 @@ public class ColEnemy : MonoBehaviour
     }
     void OnEnable()
     {
-        GetComponent<PolygonCollider2D>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
         fadeFlag = false;
         enemyHp = ENEMY_HP;     // アクティブになる毎にHP初期化
     }
@@ -146,7 +146,7 @@ public class ColEnemy : MonoBehaviour
             if(enemyHp <= 0)
             {
                 //Destroy(Polygon2D);
-                GetComponent<PolygonCollider2D>().enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
                 fadeFlag = true;
                 
             }
@@ -157,7 +157,7 @@ public class ColEnemy : MonoBehaviour
         
             fadeFlag = true;
             //Destroy(GetComponent<PolygonCollider2D>());
-            GetComponent<PolygonCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             damageEfect.Play();
         }
 
@@ -166,7 +166,7 @@ public class ColEnemy : MonoBehaviour
         {
             fadeFlag = true;
             //Destroy(GetComponent<PolygonCollider2D>());
-            GetComponent<PolygonCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             damageEfect.Play();
         }
     }

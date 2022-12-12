@@ -52,7 +52,8 @@ public class BossController : MonoBehaviour
     [SerializeField]
     private RandomBossHp randomBossHp;                      // スクリプト格納用
     private SpriteRenderer spriteRenderer;                  // スプライトレンダラー格納用
-
+    [SerializeField]
+    private Factory objectPool;             // オブジェクトプール用コントローラー格納
 
     // Start is called before the first frame update
     void Awake()
@@ -61,6 +62,10 @@ public class BossController : MonoBehaviour
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         player = GameObject.FindWithTag("Player");
         cutin = GameObject.Find("Cutin");
+
+        // objectPool取得
+        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+
     }
     void Start()
     {
@@ -108,20 +113,22 @@ public class BossController : MonoBehaviour
             // エリア３にいるときの敵の攻撃
             else if(pos.x > Areas[2])
             {
-                attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
+                
+                attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[2]);
                 attackObject.transform.parent = this.gameObject.transform;
             
             }
             // エリア２にいるときの敵の攻撃
             else if(pos.x > Areas[1])
             {
-                attackObject = Instantiate(attackSkill[1], transform.position, Quaternion.identity);
+                attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[1]);
                 attackObject.transform.parent = this.gameObject.transform;
             }
             // エリア１にいるときの敵の攻撃
             else
             {
-            Instantiate(attackSkill[0], player.transform.position, Quaternion.identity);
+                attackObject = objectPool.Launch(player.transform.position , objectPool.BossSkillsList[0]);
+                attackObject.transform.parent = null;
             }
         }
     }
@@ -163,12 +170,13 @@ public class BossController : MonoBehaviour
     // エリア４での攻撃用
     private IEnumerator lastAreaSkill()
     {
-        Instantiate(attackSkill[0], player.transform.position, Quaternion.identity);
+        attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[0]);
+        attackObject.transform.parent = null;
         yield return new WaitForSeconds(attackSpeed);
-        attackObject = Instantiate(attackSkill[1], this.transform.position, Quaternion.identity);
+        attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[1]);
         attackObject.transform.parent = this.gameObject.transform;
         yield return new WaitForSeconds(attackSpeed);
-        attackObject = Instantiate(attackSkill[2], this.transform.position, Quaternion.identity);
+        attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[2]);
         attackObject.transform.parent = this.gameObject.transform;
     }
 
