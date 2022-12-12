@@ -168,10 +168,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 587337961140024434}
     m_Modifications:
-    - target: {fileID: 8046501755253144843, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771028, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -219,10 +215,6 @@ PrefabInstance:
     - target: {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_Name
       value: MobEnemyBullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771038, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: rb2D

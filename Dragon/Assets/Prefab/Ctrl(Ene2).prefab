@@ -89,10 +89,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobEnemySpeed
       objectReference: {fileID: 0}
-    - target: {fileID: 4172620401796351193, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4172620401796351197, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -136,10 +132,6 @@ PrefabInstance:
     - target: {fileID: 4172620401796351197, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8258981012555433665, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f60819c9b52aa3a4eaaa9fa02b0916e1, type: 3}

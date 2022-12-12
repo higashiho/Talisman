@@ -85,10 +85,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobEnemyWave
       objectReference: {fileID: 0}
-    - target: {fileID: 705064875765134075, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 705064875765134079, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -137,10 +133,6 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 3210935662902611353}
-    - target: {fileID: 9096108720807601410, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
 --- !u!1 &2257014257679305819 stripped
