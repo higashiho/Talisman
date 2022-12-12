@@ -4,80 +4,92 @@ using UnityEngine;
 
 public class UnstuckBoss : MonoBehaviour
 {
+    // 次に取れるボス
+    private enum bossesNunber
+    {
+        BOSS1 = 0,
+        BOSS2 = 1,
+        BOSS3 = 2,
+        BOSS4 = 3,
+        BOSS5 = 4,
+        BOSS6 = 5
+    }
+    [SerializeField]
+    private bossesNunber bosses;
+    private Animator animator;
 
     private int maxHp;                // Ｈｐ最大値
     [SerializeField, HeaderAttribute("Bossの周りのボス")]
-    private GameObject[] Bosses = new GameObject[10];
+    private GameObject[] Bosses = new GameObject[6];
 
     [SerializeField]
-    private float rate;               // hpの比率
+    private float bossRate;               // hpの比率
+    private int rate;                       // switch文用int型比率
 
     // Start is called before the first frame update
     void Start()
     {
         maxHp = GetComponent<BossController>().GetHp();
+        bosses = bossesNunber.BOSS1;
+        animator = GetComponent<Animator>();
+        dropBosses();
     }
 
     // Update is called once per frame
     void Update()
     {
-        DropBosses();
+        dropBosses();
+
     }
 
-    private void DropBosses()
+    private void dropBosses()
     {
         // Bossの数
-        int m_rate = (int)(10 * rate);
-        switch (m_rate)
+        rate = (int)(10 * bossRate);
+        animator.SetInteger("BossState", rate);
+        switch (rate)
         {
             // 10割の場合は何もしない
             case 10:
-                break;
-            // Hpが９割以下の場合は１体目からはがれる
             case 9:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
                 break;
+            // Hpが8割以下の場合は二割ごとに表示して１体目からはがれる
             case 8:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
+                bossesLeave();
                 break;
             case 7:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
-                break;
             case 6:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
+                bossesLeave();
                 break;
             case 5:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
-                break;
             case 4:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
+               bossesLeave();
                 break;
             case 3:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
-                break;
             case 2:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
+                bossesLeave();
                 break;
             case 1:
-                Bosses[m_rate].transform.parent = null;
-                Destroy(Bosses[m_rate].gameObject.GetComponent<PolygonCollider2D>());
+                bossesLeave();
                 break;
-
-            
             default:
                 break;
         }
     }
+
+    private void bossesLeave()
+    {
+        int m_bossesNunber = 0;
+        m_bossesNunber = (int)bosses;
+        if(Bosses[m_bossesNunber].GetComponent<Renderer>().enabled)
+        {
+            Bosses[m_bossesNunber].transform.parent = null;
+            Bosses[m_bossesNunber].GetComponent<Renderer>().enabled = true;
+            Destroy(Bosses[m_bossesNunber].gameObject.GetComponent<PolygonCollider2D>());
+        }
+    }
     public void CalcRate()
     {
-        rate = (float)GetComponent<BossController>().GetHp() / (float)maxHp;
+        bossRate = (float)GetComponent<BossController>().GetHp() / (float)maxHp;
     }
 }
