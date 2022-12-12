@@ -113,6 +113,14 @@ public class MiddleBossController : MonoBehaviour
             
     }
 
+    private void stopAnim()
+    {
+        if(name == "normal")
+        {
+            ;
+        }
+    }
+
     // stateの中身
     private void stateTransition()
     {
@@ -146,6 +154,7 @@ public class MiddleBossController : MonoBehaviour
                     state = MiddleBossState.ITEM;
                     MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().icon.enabled = false;
                     MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().enabled = false;
+                    
                     time = 0.0f;
                     midBoss.SetActive(false);
                 }

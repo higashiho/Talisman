@@ -99,15 +99,15 @@ public class CreateMiddleBoss : MonoBehaviour
         if(type == normalMid)
         {
             obj.transform.GetChild(0).gameObject.GetComponent<ColMiddleBoss>().Hp = minHp;
-           // obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = normalColor;
+            obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = normalColor;
             obj.transform.GetChild(1).gameObject.GetComponent<ColItem>().Ip = minIp;
-            obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", false);
+            obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsNormal", true);
             obj.GetComponent<MiddleBossController>().name = "normal";
         }
         else if(type == rareMid)
         {
             obj.transform.GetChild(0).gameObject.GetComponent<ColMiddleBoss>().Hp = maxHp;
-            //obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = rareColor;
+            obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = rareColor;
             obj.transform.GetChild(1).gameObject.GetComponent<ColItem>().Ip = maxIp;
             obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", true);
             obj.GetComponent<MiddleBossController>().name = "rare";
