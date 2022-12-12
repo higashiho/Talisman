@@ -81,7 +81,7 @@ public class UnstuckBoss : MonoBehaviour
     {
         int m_bossesNunber = 0;
         m_bossesNunber = (int)bosses;
-        if(Bosses[m_bossesNunber].GetComponent<Renderer>().enabled)
+        if(!Bosses[m_bossesNunber].GetComponent<Renderer>().enabled)
         {
             Bosses[m_bossesNunber].transform.parent = null;
             Bosses[m_bossesNunber].GetComponent<Renderer>().enabled = true;
