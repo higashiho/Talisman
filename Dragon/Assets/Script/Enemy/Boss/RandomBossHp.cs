@@ -8,7 +8,7 @@ public class RandomBossHp : MonoBehaviour
     public int RandomHp()
     {
         int Hp;
-        int maxHp = 1000, minHp = 800;
+        int maxHp = 700, minHp = 500;
         Hp = Random.Range(minHp, maxHp);
         return Hp;
     }
