@@ -1156,8 +1156,8 @@ MonoBehaviour:
   maxHp: 50
   minIp: 10
   maxIp: 20
-  normalColor: {r: 1, g: 1, b: 0, a: 1}
-  rareColor: {r: 0, g: 0, b: 1, a: 1}
+  normalColor: {fileID: 21300000, guid: 6f308bc6de3b13544a1024b84c790de2, type: 3}
+  rareColor: {fileID: 21300000, guid: a129e9ae76703f446a4f37de725dbf5b, type: 3}
   bossInstance: {fileID: 1375253898}
   boss: {fileID: 0}
   bossPos: {x: 0, y: 0, z: 0}
@@ -1634,6 +1634,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
   shockWave: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+  bossSkill:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bossSkillsList: []
   bulletShot: {fileID: 583341044}
 --- !u!4 &672559462
 Transform:

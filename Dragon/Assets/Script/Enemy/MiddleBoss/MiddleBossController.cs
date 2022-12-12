@@ -41,6 +41,9 @@ public class MiddleBossController : MonoBehaviour
 
     private float time;         // 時間計測用
 
+    [Header("タイプ")]
+    public string name;
+
     [SerializeField]    
     private MiddleBossState state;
     [SerializeField]    

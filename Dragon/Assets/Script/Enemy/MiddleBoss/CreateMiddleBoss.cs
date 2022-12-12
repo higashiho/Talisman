@@ -17,8 +17,8 @@ public class CreateMiddleBoss : MonoBehaviour
     [SerializeField]    private int maxIp;  // アイテムP最大値 20
     
     [Header("中ボスの色")]
-    [SerializeField]    private Color normalColor;  // ノーマル中ボスの色
-    [SerializeField]    private Color rareColor;    // レア中ボスの色
+    [SerializeField]    private Sprite normalColor;  // ノーマル中ボスの色
+    [SerializeField]    private Sprite rareColor;    // レア中ボスの色
 
     // ゲームオブジェクト参照用
     [SerializeField]
@@ -99,14 +99,18 @@ public class CreateMiddleBoss : MonoBehaviour
         if(type == normalMid)
         {
             obj.transform.GetChild(0).gameObject.GetComponent<ColMiddleBoss>().Hp = minHp;
-            obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = normalColor;
+           // obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = normalColor;
             obj.transform.GetChild(1).gameObject.GetComponent<ColItem>().Ip = minIp;
+            obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", false);
+            obj.GetComponent<MiddleBossController>().name = "normal";
         }
-        if(type == rareMid)
+        else if(type == rareMid)
         {
             obj.transform.GetChild(0).gameObject.GetComponent<ColMiddleBoss>().Hp = maxHp;
-            obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = rareColor;
+            //obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = rareColor;
             obj.transform.GetChild(1).gameObject.GetComponent<ColItem>().Ip = maxIp;
+            obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", true);
+            obj.GetComponent<MiddleBossController>().name = "rare";
         }
     }
 
