@@ -176,6 +176,10 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 3028775688036472762}
+    - target: {fileID: 5564865708596339357, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: enemyMoveSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339359, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_RootOrder
       value: 0

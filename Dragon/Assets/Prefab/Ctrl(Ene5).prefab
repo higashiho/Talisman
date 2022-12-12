@@ -85,6 +85,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobEnemyWave
       objectReference: {fileID: 0}
+    - target: {fileID: 705064875765134077, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
+      propertyPath: enemyMoveSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 705064875765134079, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_RootOrder
       value: 0
