@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ColItem : MonoBehaviour
 {
-    [HeaderAttribute("プレイヤースキルの上昇値"), SerializeField]
-    private int point = 5;
-    [SerializeField]
+    [Header("Creatorから値を入れる")]
+    public int Ip;
+    
+    // ゲームオブジェクト参照
     private GameObject player;
     private GameObject parent;
 
@@ -16,19 +17,20 @@ public class ColItem : MonoBehaviour
 
     void Start()
     {
-        parent = transform.parent.gameObject;
-        player = GameObject.FindWithTag("Player");
-        skillcontroller = player.GetComponent<SkillController>();   
-        MidCtrl = parent.GetComponent<MiddleBossController>();
+        parent = transform.parent.gameObject;       // 親オブジェクト取得
+        player = GameObject.FindWithTag("Player");  // プレイヤー取得
+        skillcontroller = player.GetComponent<SkillController>();   // プレイヤースキルコントローラー取得 
+        MidCtrl = parent.GetComponent<MiddleBossController>();      // 中ボスコントローラー取得
     }
 
 
     // プレイヤーのスキルポイント回復
     private void costRefresh()
     {
+        // プレイヤー全スキル一定値回復
         for(int i = 0; i < skillcontroller.Skills.Length; i++)
         {
-            skillcontroller.Skills[i] += point;
+            skillcontroller.Skills[i] += Ip;
         }
     }
     
@@ -37,12 +39,8 @@ public class ColItem : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             costRefresh();
-            this.gameObject.SetActive(false);
+            MidCtrl.DoneItem= true;
         }
     }
 
-    void OnDisable()
-    {
-        MidCtrl.DoneItem = true;
-    }
 }

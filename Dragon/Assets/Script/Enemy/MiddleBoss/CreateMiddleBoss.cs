@@ -5,10 +5,20 @@ using UnityEngine;
 // 中ボスを表示するスクリプト
 public class CreateMiddleBoss : MonoBehaviour
 {
-    // 中ボスの識別番号定数(出現確率計算の判定用)
-    const int MIDDLEBOSS1 = 0;
-    const int MIDDLEBOSS2 = 1;
-    const int MIDDLEBOSS3 = 2;
+    private const int normalMid = 0;    // ノーマル中ボス
+    private const int rareMid = 1;      // レア中ボス
+
+    [Header("中ボスHp範囲")]
+    [SerializeField]    private int minHp;  // Hp最小値 25
+    [SerializeField]    private int maxHp;  // Hp最大値 50
+
+    [Header("中ボスアイテム")]
+    [SerializeField]    private int minIp;  // アイテムP最小値 10
+    [SerializeField]    private int maxIp;  // アイテムP最大値 20
+    
+    [Header("中ボスの色")]
+    [SerializeField]    private Color normalColor;  // ノーマル中ボスの色
+    [SerializeField]    private Color rareColor;    // レア中ボスの色
 
     // ゲームオブジェクト参照用
     [SerializeField]
@@ -22,20 +32,20 @@ public class CreateMiddleBoss : MonoBehaviour
     private GameObject player;      // プレイヤー
     private GameObject Message;     // 中ボス出現メッセージCtrl
     [SerializeField]
-    private GameObject AttractMid;
+    private GameObject AttractMid;  // 中ボス追跡カメラ
     
     // スクリプト参照用
     [SerializeField]
-    private FindBoss findBoss;
-    private FactoryEnemy factoryenemy;
-    private BossController bosscontroller;
-    private TextController textCtrl_Respawn;
-    private JudgeInField judge;
+    private FindBoss findBoss;              // ボス取得クラス
+    private FactoryEnemy factoryenemy;      // エネミー生成
+    private BossController bosscontroller;  // ボスコントローラー
+    private TextController textCtrl_Respawn;// 中ボスリスポーンメッセージ表示クラス
+    private JudgeInField judge;             // 中ボスが画面内にいるか判定するクラス
 
     [HeaderAttribute("生成した中ボスの数(Active)"), SerializeField]
     public int middleBossNumCounter;
     [HeaderAttribute("生成数最大値"), SerializeField]
-    private int bossNumMaxInField = 5;
+    private int bossNumMaxInField = 1;
     [HeaderAttribute("生成待機時間"), SerializeField]
     private float intervalCreate = 30;
     private float time;     // 中ボス生成間隔計測用
@@ -45,11 +55,11 @@ public class CreateMiddleBoss : MonoBehaviour
     
 
     // 中ボス生成エリア制限用変数
-    private float _AREAHEIGHT = 44f;  // 生成エリアの高さ
+    private float _AREAHEIGHT = 25.0f;  // 生成エリアの高さ
     private float _AREAWIDTH_LEFT = 10f;   // 生成エリアの横の左側
     private float _AREAWIDTH_RIGHT = 50f;   // 生成エリアの横の右側
 
-    private bool checkPos = false;       // ボスがエリア2にいるかどうか
+    //private bool checkPos = false;       // ボスがエリア2にいるかどうか
 
     // 中ボス出現確率テーブル
     private List<int> middleBossTable = new List<int>();
@@ -82,22 +92,40 @@ public class CreateMiddleBoss : MonoBehaviour
         return result;
     }
 
+    // Hp, Ip, color を設定
+    private void setAbility(GameObject obj)
+    {
+        int type = calcRate();      // 生成する中ボス決める
+        if(type == normalMid)
+        {
+            obj.transform.GetChild(0).gameObject.GetComponent<ColMiddleBoss>().Hp = minHp;
+            obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = normalColor;
+            obj.transform.GetChild(1).gameObject.GetComponent<ColItem>().Ip = minIp;
+        }
+        if(type == rareMid)
+        {
+            obj.transform.GetChild(0).gameObject.GetComponent<ColMiddleBoss>().Hp = maxHp;
+            obj.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = rareColor;
+            obj.transform.GetChild(1).gameObject.GetComponent<ColItem>().Ip = maxIp;
+        }
+    }
+
     void Start()
     {
-       middleBossNumCounter = 0;    // 中ボス生成カウント0
-       time = 30;   // エリア２に入った瞬間一体目を生成するためにMAX値を設定しておく
+        middleBossNumCounter = 0;    // 中ボス生成カウント0
+        time = 30;   // エリア２に入った瞬間一体目を生成するためにMAX値を設定しておく
 
-       // オブジェクト取得
-       //bossInstance = GameObject.Find("BossInstance");
-       Message = GameObject.Find("MiddleBossUI");
-    
-       textCtrl_Respawn = Message.transform.GetChild(0).gameObject.GetComponent<TextController>();
+        // オブジェクト取得
+        Message = GameObject.Find("MiddleBossUI");
+        // 中ボスリスポーンメッセージ表示クラス参照
+        textCtrl_Respawn = Message.transform.GetChild(0).gameObject.GetComponent<TextController>();
+        
         // スクリプト取得
-       factoryenemy = PoolObject.GetComponent<FactoryEnemy>();     
-       findBoss = bossInstance.GetComponent<FindBoss>();
-       judge = AttractMid.GetComponent<JudgeInField>();
-       
-       calcTotalWeight();
+        factoryenemy = PoolObject.GetComponent<FactoryEnemy>(); // エネミー生成クラス     
+        findBoss = bossInstance.GetComponent<FindBoss>();       // ボス取得クラス
+        judge = AttractMid.GetComponent<JudgeInField>();        // 中ボスが画面内にいるか判定するフラグ
+        
+        calcTotalWeight();  // 出現レートの総組み合わせ数を計算
     }
 
     
@@ -144,17 +172,20 @@ public class CreateMiddleBoss : MonoBehaviour
     private void dispMiddleBoss()
     {
         GameObject dispObj;
+        // 表示する中ボスが見つかるまでループ
         do
         {
             dispObj = GetMiddleBoss();   // 中ボスをプールから取ってくる
         }while(dispObj == null);
+
+        setAbility(dispObj);    // color, Hp, Ip を設定
         dispObj.transform.position = createMiddleBossPos(); // 座標設定
         dispObj.SetActive(true);    // 表示
-        middleBossNumCounter++;
-        AttractMid.GetComponent<JudgeInField>().enabled = true;
-        judge.target = dispObj.GetComponent<Transform>();
-        //judge.targetCamera = dispObj.transform.GetChild(2).gameObject.GetComponent<Camera>();
-        textCtrl_Respawn.DoneInit = true;
+        middleBossNumCounter++;     // 出現カウント++
+        AttractMid.GetComponent<JudgeInField>().enabled = true; // 中ボスが画面内にいるか判定するクラス(true)
+        AttractMid.GetComponent<JudgeInField>().icon.enabled = true;
+        judge.target = dispObj.GetComponent<Transform>();       // 中ボスを追跡カメラのターゲットに入れる
+        textCtrl_Respawn.DoneInit = true;   // リスポーンメッセージ表示の初期化完了フラグ(true)
         
     }
     
@@ -162,31 +193,19 @@ public class CreateMiddleBoss : MonoBehaviour
     // 生成する中ボスをリストから取り出してくる
     private GameObject GetMiddleBoss()
     {
-        GameObject obj = null;
-        int result = calcRate();
-        
-        if(result == MIDDLEBOSS1)
+        GameObject dispObj = null;
+
+        foreach(GameObject obj in factoryenemy.middleBossPool1)
         {
-            if(factoryenemy.middleBossPool1.Count >= 1)
-                obj = factoryenemy.middleBossPool1[0];
-            else return obj;
-            factoryenemy.middleBossPool1.RemoveAt(0);
+            // Activeじゃないオブジェクトを検索して返す
+            if(!obj.activeSelf)
+            {
+                dispObj = obj;
+                return obj;
+            }
+            // 無ければnullを返す
         }
-        if(result == MIDDLEBOSS2)
-        {
-            if(factoryenemy.middleBossPool2.Count >= 1)
-                obj = factoryenemy.middleBossPool2[0];
-            else return obj;
-            factoryenemy.middleBossPool2.RemoveAt(0);
-        }
-        if(result == MIDDLEBOSS3)
-        {
-            if(factoryenemy.middleBossPool3.Count >= 1)
-                obj = factoryenemy.middleBossPool3[0];
-            else return obj;
-            factoryenemy.middleBossPool3.RemoveAt(0);
-        }
-        return obj;
+        return dispObj;
     }
 
     // 中ボスの生成座標を決める関数
@@ -194,7 +213,7 @@ public class CreateMiddleBoss : MonoBehaviour
     {
         
         bossPos = boss.transform.position;  // ボスの座標取得
-        Vector3 createPos;    // 中ボス生成座標
+        Vector3 createPos;                  // 中ボス生成座標
                 
         // 生成座標作成用
         float posX = UnityEngine.Random.Range(bossPos.x + _AREAWIDTH_LEFT, bossPos.x + _AREAWIDTH_RIGHT);  
@@ -203,8 +222,7 @@ public class CreateMiddleBoss : MonoBehaviour
 
         createPos = new Vector3(posX, posY, posZ); // 中ボス生成座標登録
         
-            return createPos;
-        
+            return createPos; 
     }
 
     

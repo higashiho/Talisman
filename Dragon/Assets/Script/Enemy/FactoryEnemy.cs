@@ -20,8 +20,6 @@ public class FactoryEnemy : MonoBehaviour
     AsyncOperationHandle<GameObject> loadOp;
 
     public List<GameObject> middleBossPool1 = new List<GameObject>();   // 中ボス1プール
-    public List<GameObject> middleBossPool2= new List<GameObject>();    // 中ボス2プール
-    public List<GameObject> middleBossPool3 = new List<GameObject>();   // 中ボス3プール
 
     public List<GameObject> mobEnemyPool1 = new List<GameObject>();     // モブキャラ1プール
     public List<GameObject> mobEnemyPool2 = new List<GameObject>();     // モブキャラ2プール
@@ -35,8 +33,6 @@ public class FactoryEnemy : MonoBehaviour
     IEnumerator Start()
     {
         yield return StartCoroutine(LoadAsset("MiddleBoss1", 2, middleBossPool1, MiddleBossPool)); 
-        yield return StartCoroutine(LoadAsset("MiddleBoss2", 2, middleBossPool2, MiddleBossPool));
-        yield return StartCoroutine(LoadAsset("MiddleBoss3", 2, middleBossPool3, MiddleBossPool));
 
         yield return StartCoroutine(LoadAsset("EnemyChase", 10, mobEnemyPool1, EnemyPool));
         yield return StartCoroutine(LoadAsset("EnemyChase2", 10, mobEnemyPool2, EnemyPool));
@@ -59,7 +55,6 @@ public class FactoryEnemy : MonoBehaviour
             {
                 var newObj = Instantiate(loadOp.Result, parent.transform);
                 newObj.name = key;
-                //newObj.SetActive(false);
                 PoolList.Add(newObj);
             }
         }
