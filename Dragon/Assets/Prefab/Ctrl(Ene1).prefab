@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 587337961140024434}
   - component: {fileID: 5508390979805185991}
   - component: {fileID: 4354300859975819582}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ctrl(Ene1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +84,10 @@ PrefabInstance:
     - target: {fileID: 2352975664675091290, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
       propertyPath: m_Name
       value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352975664675091290, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2352975664675091290, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
       propertyPath: m_IsActive
@@ -164,6 +168,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 587337961140024434}
     m_Modifications:
+    - target: {fileID: 8046501755253144843, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771028, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -211,6 +219,10 @@ PrefabInstance:
     - target: {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: m_Name
       value: MobEnemyBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123549337994771031, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8123549337994771038, guid: c8de41c9fee6d904fa6e2c70ac1067a0, type: 3}
       propertyPath: rb2D

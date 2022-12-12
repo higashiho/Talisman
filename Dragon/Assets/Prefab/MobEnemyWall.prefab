@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2482571049504065521}
   - component: {fileID: 2333843626100129662}
   - component: {fileID: 6734783559899267604}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MobEnemyWall
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -212,6 +212,10 @@ PrefabInstance:
     - target: {fileID: 888206983768107092, guid: 3fc351223caef294da6901c16220b124, type: 3}
       propertyPath: m_Name
       value: EnemyDamageEfect
+      objectReference: {fileID: 0}
+    - target: {fileID: 888206983768107092, guid: 3fc351223caef294da6901c16220b124, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2517202612003111251, guid: 3fc351223caef294da6901c16220b124, type: 3}
       propertyPath: m_RootOrder
