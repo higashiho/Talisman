@@ -59,7 +59,7 @@ public class CreateMiddleBoss : MonoBehaviour
     private float _AREAWIDTH_LEFT = 10f;   // 生成エリアの横の左側
     private float _AREAWIDTH_RIGHT = 50f;   // 生成エリアの横の右側
 
-    private bool checkPos = false;       // ボスがエリア2にいるかどうか
+    //private bool checkPos = false;       // ボスがエリア2にいるかどうか
 
     // 中ボス出現確率テーブル
     private List<int> middleBossTable = new List<int>();
