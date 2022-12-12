@@ -6784,6 +6784,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
   shockWave: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+  bossSkill:
+  - {fileID: 280744656}
+  - {fileID: 280744656}
+  - {fileID: 280744656}
+  bossSkillsList: []
   bulletShot: {fileID: 1493174366}
 --- !u!4 &1813851584
 Transform:
