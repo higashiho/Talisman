@@ -32,7 +32,7 @@ public class FactoryEnemy : MonoBehaviour
     // MiddleBossとMobEnemyをロード
     IEnumerator Start()
     {
-        yield return StartCoroutine(LoadAsset("MiddleBoss1", 2, middleBossPool1, MiddleBossPool)); 
+        yield return StartCoroutine(LoadAsset("MiddleBoss1", 3, middleBossPool1, MiddleBossPool)); 
 
         yield return StartCoroutine(LoadAsset("EnemyChase", 10, mobEnemyPool1, EnemyPool));
         yield return StartCoroutine(LoadAsset("EnemyChase2", 10, mobEnemyPool2, EnemyPool));

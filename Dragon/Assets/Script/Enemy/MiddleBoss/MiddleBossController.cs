@@ -64,7 +64,6 @@ public class MiddleBossController : MonoBehaviour
         // 子から中ボスとアイテム取得
         midBoss = transform.GetChild(0).gameObject;     
         item = transform.GetChild(1).gameObject;
-        
         // スクリプト参照
         colMid = midBoss.GetComponent<ColMiddleBoss>();// 中ボス当たり判定クラス参照
         moveMid = midBoss.GetComponent<MoveMiddleBoss>();// 中ボス融合処理クラス参照
@@ -123,6 +122,7 @@ public class MiddleBossController : MonoBehaviour
             // 中ボスの時
             case MiddleBossState.MIDDLEBOSS:
                 midBoss.SetActive(true);    // 中ボスアクティブ化
+                bossCtrl.IsMiddleBossInField = true;
                 if(name == "normal")
                     this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsNormal", true);
                 if(name == "rare")
@@ -133,7 +133,7 @@ public class MiddleBossController : MonoBehaviour
                 {
                     moveMid.MoveToMarge(this.gameObject, boss);// ボスに向かっていく
                     Margeable = true;   // 融合可能フラグ(true)
-                    textCtrl_Marge.DoneInit = true;
+                    //textCtrl_Marge.DoneInit = true;
                 }
                 // 中ボスが融合したときのフラグ処理
                 if(colMid.Marge)
@@ -150,14 +150,15 @@ public class MiddleBossController : MonoBehaviour
                 if(DoneMid)
                 {
                     state = MiddleBossState.ITEM;
-                    MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().icon.enabled = false;
-                    MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().enabled = false;
-                     if(name == "normal")
+                    MidUI.transform.GetChild(1).gameObject.GetComponent<JudgeInField>().icon.enabled = false;
+                    MidUI.transform.GetChild(1).gameObject.GetComponent<JudgeInField>().enabled = false;
+                    if(name == "normal")
                         this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsNormal", true);
                     if(name == "rare")
                         this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", true);  
                 
                     time = 0.0f;
+                    bossCtrl.IsMiddleBossInField = false;
                     midBoss.SetActive(false);
                 }
   

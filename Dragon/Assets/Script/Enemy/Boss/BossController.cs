@@ -33,6 +33,14 @@ public class BossController : MonoBehaviour
     public void SetHp(int set,bool heel = false) 
     {if(!heel)hp -= set; else hp += set;}
 
+    [SerializeField, HeaderAttribute("中ボスがフィールドに居るときのエフェクト")]
+    private ParticleSystem isMidEffect;
+
+    // 中ボスがフィールドにいるかどうか
+    private bool isMiddleBossInField = false;
+    public bool IsMiddleBossInField{set{isMiddleBossInField = value;}}
+    
+
     private float attackSpeed = 5.0f;                           // ラストエリア時の攻撃間隔
     private int attackTime = 15;                                // アタック間隔
 
@@ -89,6 +97,10 @@ public class BossController : MonoBehaviour
 
         if(colBoss.WallObj == null && colBoss.OnWall)
             reset();
+
+        if(isMiddleBossInField)
+            isMidEffect.Play();
+
     }
 
     // 挙動

@@ -81,9 +81,10 @@ public class ColBoss : MonoBehaviour
         }
 
         // 中ボス吸収時の判定
-        if(other.gameObject.tag == "middleBoss")
+        if(other.gameObject.tag == "MiddleBoss")
         {
-            mageEfect.Play();
+            if(other.gameObject.GetComponent<MiddleBossController>().Margeable)
+                mageEfect.Play();
         }
     }
     private void OnCollisionEnter2D(Collision2D col)
