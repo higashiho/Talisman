@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3611271581304045507}
   - component: {fileID: 8347447212062301102}
   - component: {fileID: 3210935662902611353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ctrl(Ene5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +85,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MobEnemyWave
       objectReference: {fileID: 0}
+    - target: {fileID: 705064875765134075, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 705064875765134079, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -133,6 +137,10 @@ PrefabInstance:
       propertyPath: rb2D
       value: 
       objectReference: {fileID: 3210935662902611353}
+    - target: {fileID: 9096108720807601410, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3c0f674f3831344bf7d8d3ac001a92, type: 3}
 --- !u!1 &2257014257679305819 stripped
@@ -199,6 +207,10 @@ PrefabInstance:
     - target: {fileID: 8153124814632954653, guid: 560157c3db623e84999808d23a875171, type: 3}
       propertyPath: m_Name
       value: Item5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153124814632954653, guid: 560157c3db623e84999808d23a875171, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8153124814632954653, guid: 560157c3db623e84999808d23a875171, type: 3}
       propertyPath: m_IsActive

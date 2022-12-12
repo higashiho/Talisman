@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5882951430304608668}
   - component: {fileID: 8127439116670060531}
   - component: {fileID: 2647654175069997034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ctrl(Ene4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,25 +125,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5913059001467009226, guid: 7e168c560c392134497575fe040a13c2, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5913059001467009226, guid: 7e168c560c392134497575fe040a13c2, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5913059001467009226, guid: 7e168c560c392134497575fe040a13c2, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8153124814632954653, guid: 7e168c560c392134497575fe040a13c2, type: 3}
       propertyPath: m_Name
       value: Item4
       objectReference: {fileID: 0}
     - target: {fileID: 8153124814632954653, guid: 7e168c560c392134497575fe040a13c2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e168c560c392134497575fe040a13c2, type: 3}

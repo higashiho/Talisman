@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4548979485955557116}
   - component: {fileID: 7507053312631687690}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttractCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 447
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8600000, guid: 2c77258479292db45be916e209c211e2, type: 2}
   m_TargetDisplay: 0
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4571350755285170314}
   - component: {fileID: 5677048690136653167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ctrl(mid1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,6 +184,10 @@ PrefabInstance:
     - target: {fileID: 3135608018598009832, guid: 82e785e2d81e0ce4e81dc16953609ce0, type: 3}
       propertyPath: m_Name
       value: middleBoss1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3135608018598009832, guid: 82e785e2d81e0ce4e81dc16953609ce0, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82e785e2d81e0ce4e81dc16953609ce0, type: 3}

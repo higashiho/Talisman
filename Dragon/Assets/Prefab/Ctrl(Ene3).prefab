@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6632924114332164589}
   - component: {fileID: 8768931397661489269}
   - component: {fileID: 3028775688036472762}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ctrl(Ene3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +142,10 @@ PrefabInstance:
       value: Item3
       objectReference: {fileID: 0}
     - target: {fileID: 8153124814632954653, guid: 51530d003c449284f994f707bdceb924, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153124814632954653, guid: 51530d003c449284f994f707bdceb924, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -164,9 +168,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6632924114332164589}
     m_Modifications:
+    - target: {fileID: 1375594279931953423, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_Name
       value: MobEnemyRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339353, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: rb2D
