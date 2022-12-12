@@ -94,6 +94,7 @@ public class MiddleBossController : MonoBehaviour
         // 中ボスとアイテム非アクティブ化
         midBoss.SetActive(false);
         item.SetActive(false);
+        state = MiddleBossState.MIDDLEBOSS;
     }
 
     void Update()
@@ -113,13 +114,6 @@ public class MiddleBossController : MonoBehaviour
             
     }
 
-    private void stopAnim()
-    {
-        if(name == "normal")
-        {
-            ;
-        }
-    }
 
     // stateの中身
     private void stateTransition()
@@ -128,7 +122,11 @@ public class MiddleBossController : MonoBehaviour
         {
             // 中ボスの時
             case MiddleBossState.MIDDLEBOSS:
-                midBoss.SetActive(true);    // 中ボスアクティブ化  
+                midBoss.SetActive(true);    // 中ボスアクティブ化
+                if(name == "normal")
+                    this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsNormal", true);
+                if(name == "rare")
+                    this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", true);  
                 time += Time.deltaTime;
 
                 if(time > margeTime)
@@ -154,7 +152,11 @@ public class MiddleBossController : MonoBehaviour
                     state = MiddleBossState.ITEM;
                     MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().icon.enabled = false;
                     MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().enabled = false;
-                    
+                     if(name == "normal")
+                        this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsNormal", true);
+                    if(name == "rare")
+                        this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", true);  
+                
                     time = 0.0f;
                     midBoss.SetActive(false);
                 }
@@ -174,7 +176,7 @@ public class MiddleBossController : MonoBehaviour
                 if(DoneItem)
                 {
                     item.SetActive(false);
-                    state = MiddleBossState.MIDDLEBOSS;
+                    //state = MiddleBossState.MIDDLEBOSS;
                     createMiddleBoss.middleBossNumCounter--;    // 生成カウントデクリメント
                     this.gameObject.SetActive(false);           // 非アクティブ
                 }

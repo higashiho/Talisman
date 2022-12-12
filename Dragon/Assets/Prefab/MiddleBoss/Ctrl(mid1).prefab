@@ -129,6 +129,7 @@ MonoBehaviour:
   DoneMid: 0
   DoneItem: 0
   CreateItem: 0
+  name: 
   state: 0
 --- !u!1001 &3867282160261139366
 PrefabInstance:
@@ -187,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3135608018598009832, guid: 82e785e2d81e0ce4e81dc16953609ce0, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82e785e2d81e0ce4e81dc16953609ce0, type: 3}
