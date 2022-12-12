@@ -1266,6 +1266,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetCamera: {fileID: 1844390669}
   icon: {fileID: 1100488821}
+  cam: {fileID: 0}
 --- !u!222 &334063308
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2430,6 +2431,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e658ee4d566a644aa2933484743d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minHp: 0
+  maxHp: 0
+  minIp: 0
+  maxIp: 0
+  normalColor: {r: 0, g: 0, b: 0, a: 0}
+  rareColor: {r: 0, g: 0, b: 0, a: 0}
   bossInstance: {fileID: 280744656}
   boss: {fileID: 0}
   bossPos: {x: 0, y: 0, z: 0}
@@ -2821,8 +2828,6 @@ MonoBehaviour:
   MiddleBossPool: {fileID: 184287586}
   EnemyPool: {fileID: 1399306675}
   middleBossPool1: []
-  middleBossPool2: []
-  middleBossPool3: []
   mobEnemyPool1: []
   mobEnemyPool2: []
   mobEnemyPool3: []
@@ -6856,7 +6861,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 31
+    m_Bits: 479
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
