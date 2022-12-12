@@ -168,17 +168,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6632924114332164589}
     m_Modifications:
-    - target: {fileID: 1375594279931953423, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: m_Name
       value: MobEnemyRotate
-      objectReference: {fileID: 0}
-    - target: {fileID: 5564865708596339299, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5564865708596339353, guid: 66ffb69c7cbd558438eebae1dbffa958, type: 3}
       propertyPath: rb2D
