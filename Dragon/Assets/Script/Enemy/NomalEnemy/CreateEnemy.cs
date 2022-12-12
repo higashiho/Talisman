@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateEnemy : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class CreateEnemy : MonoBehaviour
     private GameObject EnemyPool;   // エネミー用プールアタッチ
     private GameObject boss;        // boss
     private GameObject player;      // player
+    [SerializeField]
+    private Text[] debugText = new Text[5];
 
     // スクリプト参照用
     private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
@@ -52,6 +55,8 @@ public class CreateEnemy : MonoBehaviour
     
     public float CreateSpeed = 1;          //生成速度
     
+    private int count = 0;
+    private int count2 = 0;
     
     // モブ出現確率テーブル
     private List<int> enemyTable = new List<int>();
@@ -99,25 +104,33 @@ public class CreateEnemy : MonoBehaviour
     {
         if(boss != null)
         {
+            
+                count++;
+                debugText[1].text = "time:" + time;
             time += Time.deltaTime;
             if(time > spawnTimer)
             {
                 if(Counter < spawnCount)
                 {
+                    
+                    time = default;
                     dispMobEnemy();
-                    time = 0;
+                    
                 }
                 
             }
         }
         else
         {
+            
+
             if(findBoss.GetOnFind())
             {
                 boss = findBoss.GetBoss();
                 bossCtrl = findBoss.GetBossController();
             }
         }
+        debugText[0].text = "Enemy生成 :" + boss;
     }
 
     // Enemyをフィールドに表示する関数
@@ -128,8 +141,10 @@ public class CreateEnemy : MonoBehaviour
         do
         {
             dispObj = getMobEnemy();     // モブ敵をプールから取ってくる
+            
         }while(dispObj == null);
-
+        count2++;
+                    debugText[2].text = "obj :" + count2;
         dispObj.transform.position = settingMobEnemyPos();  // 座標設定
         dispObj.SetActive(true);
         Counter++;      // フィールドにいるモブの数++

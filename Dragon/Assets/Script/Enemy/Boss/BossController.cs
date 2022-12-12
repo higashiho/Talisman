@@ -170,7 +170,7 @@ public class BossController : MonoBehaviour
     // エリア４での攻撃用
     private IEnumerator lastAreaSkill()
     {
-        attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[0]);
+        attackObject = objectPool.Launch(player.transform.position , objectPool.BossSkillsList[0]);
         attackObject.transform.parent = null;
         yield return new WaitForSeconds(attackSpeed);
         attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[1]);
