@@ -141,6 +141,8 @@ public class MiddleBossController : MonoBehaviour
                 if(DoneMid)
                 {
                     state = MiddleBossState.ITEM;
+                    MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().icon.enabled = false;
+                    MidUI.transform.GetChild(2).gameObject.GetComponent<JudgeInField>().enabled = false;
                     time = 0.0f;
                     midBoss.SetActive(false);
                 }
@@ -150,7 +152,8 @@ public class MiddleBossController : MonoBehaviour
             // アイテムの時
             case MiddleBossState.ITEM:
 
-                MidUI.transform.GetChild(0).gameObject.GetComponent<JudgeInField>().enabled = false; // 中ボス追跡カメラ(false)
+                //MidUI.transform.GetChild(0).gameObject.GetComponent<JudgeInField>().enabled = false; // 中ボス追跡カメラ(false)
+                //MidUI.transform.GetChild(0).gameObject.SetActive(false);
                 item.SetActive(true);   // アイテム
 
                 time += Time.deltaTime;
