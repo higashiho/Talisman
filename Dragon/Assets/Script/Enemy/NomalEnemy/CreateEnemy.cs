@@ -24,6 +24,7 @@ public class CreateEnemy : MonoBehaviour
     // スクリプト参照用
     private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
     private BossController bossCtrl;            // bosscontroller参照
+    [SerializeField]
     private FindBoss findBoss;
     
     [HeaderAttribute("沸き最大数"), SerializeField]
@@ -85,9 +86,9 @@ public class CreateEnemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        EnemyPool = GameObject.Find("PoolObject");
+        EnemyPool = GameObject.FindWithTag("EnemyPool");
         factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
-        findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
+        findBoss = GameObject.FindWithTag("BossInstance").GetComponent<FindBoss>();
         calcTotalWeight();
         time = 0;
 
