@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 716954586712736470}
   - component: {fileID: 5870908815402319978}
   - component: {fileID: 4806220815090910703}
-  - component: {fileID: 1784467050160105582}
   - component: {fileID: 7970563220509289178}
   - component: {fileID: 7540069425482552921}
   - component: {fileID: -8527776690376593672}
@@ -117,20 +116,6 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5773587}
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
---- !u!114 &1784467050160105582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3135608018598009832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992e2caaf2e7e7d4bae0dfa4524a10b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Timer: 3
-  acceleration: 1.5
 --- !u!114 &7970563220509289178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,11 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59526b886eee6f549b34d6668b39d8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  Hp: 5
+  Hp: 0
   SWORD_DAMAGE: 1
   ROTATESWORD_DAMAGE: 2
-  midCtrl: {fileID: 0}
   Deth: 0
   Marge: 0
 --- !u!114 &7540069425482552921
@@ -163,14 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  margeTime: 25
-  time: 0
-  MargeBoss: 0
-  DoneWaitMarge: 0
-  DoneMove: 0
-  DoneMarge: 0
-  DoneDeth: 0
-  MidState: 0
 --- !u!50 &-8527776690376593672
 Rigidbody2D:
   serializedVersion: 4

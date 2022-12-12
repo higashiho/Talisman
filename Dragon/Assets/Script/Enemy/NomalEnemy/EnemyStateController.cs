@@ -80,6 +80,8 @@ public class EnemyStateController : MonoBehaviour
         findBoss = bossInstance.GetComponent<FindBoss>();
         DoneMob = false;
         DoneItem = false;
+        mobEnemy.transform.position = gameObject.transform.position;
+        item.transform.position = gameObject.transform.position;
         mobEnemy.SetActive(false);
         item.SetActive(false);
         

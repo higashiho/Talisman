@@ -9,14 +9,17 @@ public class JudgeInField : MonoBehaviour
     public Transform target;
     [SerializeField]
     public Camera targetCamera;
-    [SerializeField] 
-    private RawImage icon;
+    
+    public RawImage icon;
+    [SerializeField]
+    private RawImage cam;
 
     private Rect rect = new Rect(0,0,1,1);
     private Rect canvasRect;
 
     void Start()
-    {
+    {   
+        icon.enabled = false;
         this.gameObject.GetComponent<JudgeInField>().enabled = false;
     }
     void OnEnable()
@@ -30,8 +33,8 @@ public class JudgeInField : MonoBehaviour
         
         canvasRect = ((RectTransform)icon.canvas.transform).rect;
         canvasRect.Set(
-            canvasRect.x + icon.rectTransform.rect.width,
-            canvasRect.y + icon.rectTransform.rect.height,
+            canvasRect.x + icon.rectTransform.rect.width * 0.5f,
+            canvasRect.y + icon.rectTransform.rect.height * 0.5f,
             canvasRect.width - icon.rectTransform.rect.width,
             canvasRect.height - icon.rectTransform.rect.height
         );
@@ -40,9 +43,11 @@ public class JudgeInField : MonoBehaviour
         if (rect.Contains(viewPort))
         {
             icon.enabled = false;
+            cam.enabled = false;
         }else
         {
             icon.enabled = true;
+            cam.enabled = true;
         }
          // 画面内で対象を追跡
             viewPort.x = Mathf.Clamp01(viewPort.x);

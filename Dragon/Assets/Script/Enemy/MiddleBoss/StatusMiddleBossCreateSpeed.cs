@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// 使っていません
 /**
 * @breif モブキャラの生成速度を上昇させるスキルを発動させるスクリプト
 *        
