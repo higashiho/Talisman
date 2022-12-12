@@ -14,7 +14,9 @@ public class InstanceBoss : MonoBehaviour
     private AudioClip instansAudio, battleAudio;                // 効果音
     [SerializeField]
     private GameObject bossPrefab = default;                    // ボスのprefab
+    [SerializeField]
     private GameObject boss;                                    // 生成したか確認用
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class InstanceBoss : MonoBehaviour
         audioSource.Stop();
 
         boss = Instantiate(bossPrefab, this.transform.position, Quaternion.identity);
-        findBoss.BossFind();
+        findBoss.BossFind(boss);
         Destroy(this.GetComponent<BoxCollider2D>());
     }
 

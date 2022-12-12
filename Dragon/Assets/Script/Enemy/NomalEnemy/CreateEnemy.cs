@@ -122,7 +122,6 @@ public class CreateEnemy : MonoBehaviour
         }
         else
         {
-            
 
             if(findBoss.GetOnFind())
             {
