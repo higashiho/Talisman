@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2099688680524186614}
   - component: {fileID: 1642372316749223475}
   - component: {fileID: 5056137372900116825}
+  - component: {fileID: 168141031440023955}
   m_Layer: 0
   m_Name: MobEnemyWave
   m_TagString: Enemy
@@ -181,6 +182,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
+--- !u!95 &168141031440023955
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705064875765134075}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1ba2b2f6fec61345b5241456624bc48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &8243932832151702870
 PrefabInstance:
   m_ObjectHideFlags: 0
