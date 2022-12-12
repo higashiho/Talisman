@@ -14,25 +14,26 @@ public class UnstuckBoss : MonoBehaviour
         BOSS5 = 4,
         BOSS6 = 5
     }
-    [SerializeField]
-    private bossesNunber bosses;
     private Animator animator;
 
     private int maxHp;                // Ｈｐ最大値
-    [SerializeField, HeaderAttribute("Bossの周りのボス")]
-    private GameObject[] Bosses = new GameObject[6];
-
+    [SerializeField, HeaderAttribute("Bossの周りの腕オブジェクト")]
+    private GameObject[] bossesObj = new GameObject[6];           
+    private Queue<GameObject> bossesQueue = new Queue<GameObject>();  // ボスの周りの腕オブジェクト格納用    
     [SerializeField]
-    private float bossRate;               // hpの比率
+    private float bossRate;                 // hpの比率
     private int rate;                       // switch文用int型比率
+    private int bossesCount = 0;           // ボスを切り離したカウント
 
     // Start is called before the first frame update
     void Start()
     {
+        // 初期代入
         maxHp = GetComponent<BossController>().GetHp();
-        bosses = bossesNunber.BOSS1;
         animator = GetComponent<Animator>();
-        dropBosses();
+        CalcRate();
+        for(int i = 0; i < bossesObj.Length; i++)
+            bossesQueue.Enqueue(bossesObj[i]);
     }
 
     // Update is called once per frame
@@ -55,37 +56,38 @@ public class UnstuckBoss : MonoBehaviour
                 break;
             // Hpが8割以下の場合は二割ごとに表示して１体目からはがれる
             case 8:
-                bossesLeave();
+                bossesLeave((int)bossesNunber.BOSS1);
                 break;
             case 7:
             case 6:
-                bossesLeave();
+                bossesLeave((int)bossesNunber.BOSS2);
                 break;
             case 5:
             case 4:
-               bossesLeave();
+               bossesLeave((int)bossesNunber.BOSS3);
                 break;
             case 3:
             case 2:
-                bossesLeave();
+                bossesLeave((int)bossesNunber.BOSS4);
                 break;
             case 1:
-                bossesLeave();
+                bossesLeave((int)bossesNunber.BOSS5);
+                bossesLeave((int)bossesNunber.BOSS6);
                 break;
             default:
                 break;
         }
     }
 
-    private void bossesLeave()
+    private void bossesLeave(int bossCount)
     {
-        int m_bossesNunber = 0;
-        m_bossesNunber = (int)bosses;
-        if(!Bosses[m_bossesNunber].GetComponent<Renderer>().enabled)
+        if(bossesCount == bossCount)
         {
-            Bosses[m_bossesNunber].transform.parent = null;
-            Bosses[m_bossesNunber].GetComponent<Renderer>().enabled = true;
-            Destroy(Bosses[m_bossesNunber].gameObject.GetComponent<PolygonCollider2D>());
+            var m_bosses = bossesQueue.Dequeue();
+            m_bosses.transform.parent = null;
+            m_bosses.GetComponent<Renderer>().enabled = true;
+            Destroy(m_bosses.gameObject.GetComponent<BoxCollider2D>());
+            bossesCount++;
         }
     }
     public void CalcRate()

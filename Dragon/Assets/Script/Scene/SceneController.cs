@@ -9,7 +9,11 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     private GameObject FadeObject;
     
-    public bool SceneMove = true;           // sceneMoveを行えるか
+    private bool sceneMove = true;           // sceneMoveを行えるか
+    public bool SceneMove{
+        get {return sceneMove;}
+        set {sceneMove = value;}
+    }
     private bool changeCase = true;         // Caseを変えたか
 
 
@@ -86,9 +90,9 @@ public class SceneController : MonoBehaviour
     {
         if(talisman == null)
             talisman = GameObject.FindWithTag("Talismans").GetComponent<TalismanController>();
-        if(Input.GetKeyDown(KeyCode.Return) && SceneMove)
+        if(Input.GetKeyDown(KeyCode.Return) && sceneMove)
         { 
-            SceneMove = false;
+            sceneMove = false;
             
             talisman.TalismanMove();
             // caseが動けるか

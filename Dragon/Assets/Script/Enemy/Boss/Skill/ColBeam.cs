@@ -16,6 +16,12 @@ public class ColBeam : MonoBehaviour
         playerController = player.gameObject.GetComponent<PlayerController>();
     }
 
+    void OnEnable()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player")
@@ -25,7 +31,7 @@ public class ColBeam : MonoBehaviour
                 playerController.OnUnrivaled = true;
         
                 playerController.Hp -= beamController.Damege;
-                Destroy(GetComponent<BoxCollider2D>());
+                GetComponent<BoxCollider2D>().enabled = false;
             }
         }
     }

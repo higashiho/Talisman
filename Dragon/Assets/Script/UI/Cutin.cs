@@ -13,6 +13,8 @@ public class Cutin : MonoBehaviour
     private bool onStartCutin = true;               // 一回目のカットインを行ったか
     private bool endStartCutin = false;             // 一回目のカットインが終わったか
     private bool usedEnabled = true;                // 表示非表示の処理を使用
+    private bool moveSpace = false;                // spaceが動けるか
+    private float nowPosY;
 
     private int passThroughCount = 0;                // 鳥居をくぐった回数
     [SerializeField, HeaderAttribute("カットインが出たか")]
@@ -23,7 +25,7 @@ public class Cutin : MonoBehaviour
     [SerializeField, HeaderAttribute("テキスト")]
     private Text[] text = new Text[3];
     [SerializeField, HeaderAttribute("speceテキスト")]
-    private Text speceText;
+    private Text spaceText;
     [SerializeField, HeaderAttribute("nameテキスト")]
     private Text nameText;
 
@@ -34,6 +36,7 @@ public class Cutin : MonoBehaviour
     void Start()
     {
         bool[] ones = {true,true,true};
+        nowPosY = spaceText.rectTransform.position.y;
     }
 
     // Update is called once per frame
@@ -46,8 +49,17 @@ public class Cutin : MonoBehaviour
         else if(usedEnabled && endStartCutin)
             onDisplay();
 
+        if(moveSpace)
+            moving();
 
         endCutin();
+    }
+
+    // 上下に動かす
+    private void moving()
+    {
+        spaceText.rectTransform.position = new Vector3(spaceText.rectTransform.position.x, 
+        nowPosY + Mathf.PingPong(Time.time, 0.3f), spaceText.rectTransform.position.z);
     }
 
     private void StartCutin()
@@ -104,7 +116,8 @@ public class Cutin : MonoBehaviour
             onCutin = false;
             usedEnabled = true;
             nameText.enabled = false;
-            speceText.enabled = false;
+            spaceText.enabled = false;
+            moveSpace = false;
             if(!endStartCutin)
                 endStartCutin = true;
         }
@@ -145,8 +158,9 @@ public class Cutin : MonoBehaviour
     {
         Time.timeScale = timeScale;
         onCutin = true;
-        speceText.enabled = true;
+        spaceText.enabled = true;
         nameText.enabled = true;
         usedEnabled = true;
+        moveSpace = true;
     }
 }
