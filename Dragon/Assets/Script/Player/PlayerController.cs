@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // 挙動管理用
+    // Playerの移動速度
     [SerializeField]
-    private Vector3 playerSpeed;                         // Playerの移動速度
-    private Vector3 pos;                                // playerの位置を保存する変数
+    private Vector3 playerSpeed;                 
+    // playerの位置を保存する変数
+    private Vector3 pos;                         
     public Vector3 PlayerSpeed 
     {
         get { return playerSpeed; }
 		set { playerSpeed = value; }
     }
+    // 動いているかどうか
     [SerializeField]
-    private bool onMeve;                                // 動いているかどうか
+    private bool onMeve;                        
     public bool OnMove
     {
         get { return onMeve; }
@@ -23,15 +26,17 @@ public class PlayerController : MonoBehaviour
     }
     
     // HP管理用
+    //ヒットポイント
     [SerializeField]
-    private int hp = 3;                                      //ヒットポイント
+    private int hp = 3;                  
     public int Hp {
         get{return hp;}
         set{hp = value;}
     }
-       private int heel = 2;                               //シールドが割れた時点での回復
-
-    private bool onShield = true;                       //シールドがあるか
+    //シールドが割れた時点での回復
+    private int heel = 2;             
+    //シールドがあるか
+    private bool onShield = true;        
     public bool OnShield {
         get { return onShield; }
 		set { onShield = value; }
@@ -39,45 +44,63 @@ public class PlayerController : MonoBehaviour
 
 
     // Shield管理用
-    private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f,0);            //シールドがない時の移動スピード
-    private Vector3 nomalPlayerSpeed = new Vector3(9.0f, 9.0f,0);         //  通常時スピード
-    private Vector3 highPlayerSpeed = new Vector3(12.0f, 12.0f,0);          // スピードアップスキル取得時スピード
+    //シールドがない時の移動スピード
+    private Vector3 noShieldSpeed = new Vector3(2.0f, 2.0f,0);      
+    //  通常時スピード      
+    private Vector3 nomalPlayerSpeed = new Vector3(9.0f, 9.0f,0);         
+    // スピードアップスキル取得時スピード
+    private Vector3 highPlayerSpeed = new Vector3(12.0f, 12.0f,0);          
     public Vector3 NomalPlayerSpeed{
         get { return nomalPlayerSpeed; }
 		set { nomalPlayerSpeed = value; }
     }
-    private const int MAX_HP = 3;                                           // HP最大値
+    // HP最大値
+    private const int MAX_HP = 3;      
+    //シールド回復時間                                     
     [SerializeField, HeaderAttribute("シールド回復時間")]
-    private float heelSheld;                     //シールド回復時間
-    private float startHeelStrage;                      // シールド回復初期時間保管用
-    private SpriteRenderer spriteRenderer;              // スプライトレンダラー格納用
+    private float heelSheld;    
+    // シールド回復初期時間保管用                 
+    private float startHeelStrage;  
+    // スプライトレンダラー格納用                    
+    private SpriteRenderer spriteRenderer; 
+    // スプライトレンダラー格納用             
     [SerializeField]
-    private GameObject shieldRenderer;              // スプライトレンダラー格納用
-    private bool oneHeel = true;                        //ヒール一回だけ処理
+    private GameObject shieldRenderer;      
+    //ヒール一回だけ処理       
+    private bool oneHeel = true;                        
 
     
 
 
     // 被弾時管理用
-    private bool onUnrivaled = false;                    // 無敵中か
+    // 無敵中か
+    private bool onUnrivaled = false;                    
     public bool OnUnrivaled{
         get{return onUnrivaled;}
         set{onUnrivaled = value;}
     }
-    private float unrivaledTimer = 0;                   // 無敵時間用タイマー
+    // 無敵時間用タイマー
+    private float unrivaledTimer = 0;            
+    // 無敵がオフになる時間       
     [SerializeField, HeaderAttribute("無敵時間最大値")]
-    private float maxTimer = 2.0f;                      // 無敵がオフになる時間
+    private float maxTimer = 2.0f; 
+    // 自身のレンダラー格納用                     
     [SerializeField]
-    private Renderer thisRenderer;                      // 自身のレンダラー格納用
+    private Renderer thisRenderer;               
+    // 回転周期       
     [SerializeField, HeaderAttribute("点滅周期")]
-    private float flashingCycle;                        // 回転周期
-    private float delay = 0.5f;                         // 遅延時間
+    private float flashingCycle;                   
+    // 遅延時間     
+    private float delay = 0.5f;                         
 
 
     // 移動座標管理用
-    private float limitPosY = 25.0f;                     // y座標限界値
-    private float minPosX = -48.0f;                      // 左座標限界値
-    private float maxPosX = 385.0f;                      // 右座標限界値
+    // y座標限界値
+    private const float LIMIT_POS_Y = 25.0f;           
+    // 左座標限界値          
+    private const float MIN_POS_X = -48.0f;             
+    // 右座標限界値         
+    private const float MAX_POS_X = 385.0f;                      
 
     [Header("Playerスクリプト")]
     // スクリプト参照
@@ -153,17 +176,17 @@ public class PlayerController : MonoBehaviour
             onMeve = true;
 
         // 右座標
-        if(pos.x >= maxPosX)
-            pos.x = maxPosX;
+        if(pos.x >= MAX_POS_X)
+            pos.x = MAX_POS_X;
         // 左座標
-        else if(pos.x <= minPosX)
-            pos.x = minPosX;
+        else if(pos.x <= MIN_POS_X)
+            pos.x = MIN_POS_X;
         // 上座標
-        if(pos.y >= limitPosY)
-            pos.y = limitPosY;
+        if(pos.y >= LIMIT_POS_Y)
+            pos.y = LIMIT_POS_Y;
         // 下座標
-        if(pos.y <= -limitPosY)
-            pos.y = -limitPosY;
+        if(pos.y <= -LIMIT_POS_Y)
+            pos.y = -LIMIT_POS_Y;
         
         
         transform.position = pos;
