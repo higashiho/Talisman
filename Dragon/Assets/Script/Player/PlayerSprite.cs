@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class PlayerSprite : MonoBehaviour
 {
-
+    // 参照用
     [SerializeField,HeaderAttribute("Playerグラフィック")]
     private SpriteRenderer playerSprite;
-    [SerializeField,HeaderAttribute("抜刀前")]
-    private Sprite beforeSword;
-    [SerializeField,HeaderAttribute("抜刀後")]
-    private Sprite afrerSword;
-
     [SerializeField]
     private SwordContoroller swodController;
     [SerializeField]
     private PlayerController player;
     [SerializeField,HeaderAttribute("playerAnimator")]
     private Animator playerAnimator;
+
+    // Sprite変更用
+    [SerializeField,HeaderAttribute("抜刀前")]
+    private Sprite beforeSword;
+    [SerializeField,HeaderAttribute("抜刀後")]
+    private Sprite afrerSword;
     // Start is called before the first frame update
     void Start()
     {

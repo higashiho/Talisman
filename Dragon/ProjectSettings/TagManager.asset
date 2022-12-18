@@ -18,6 +18,7 @@ TagManager:
   - Talismans
   - EnemyPool
   - BossInstance
+  - Shot
   layers:
   - Default
   - TransparentFX
