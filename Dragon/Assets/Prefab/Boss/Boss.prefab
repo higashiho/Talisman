@@ -9650,7 +9650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956090978434590484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 1.34, z: 0}
+  m_LocalPosition: {x: -2.49, y: 1.43, z: 0}
   m_LocalScale: {x: 0.872, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9872,7 +9872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3348609578710408632}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.02, y: 0.03, z: 0}
+  m_LocalPosition: {x: -2.62, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10307,6 +10307,7 @@ GameObject:
   - component: {fileID: -3959097060460838189}
   - component: {fileID: 8171324039145081641}
   - component: {fileID: 3704751364028323452}
+  - component: {fileID: 667530071921237172}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Boss
@@ -10519,6 +10520,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &667530071921237172
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060541169768609607}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.31166077, y: 0.28939867}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.602344, y: 9.599999}
+    newSize: {x: 20, y: 20}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.756409, y: 9.021203}
+  m_EdgeRadius: 0
 --- !u!1 &9060541170134570888
 GameObject:
   m_ObjectHideFlags: 0

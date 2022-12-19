@@ -2564,7 +2564,7 @@ MonoBehaviour:
   - {fileID: 1777834393}
   spaceText: {fileID: 159009620}
   nameText: {fileID: 710204265}
-  playerImage: {fileID: -1829824576, guid: 9066807928ba0044db9632699872a23b, type: 3}
+  playerImage: {fileID: 21300000, guid: aa6814ea50ca0dc43b3622e567ab7c11, type: 3}
 --- !u!114 &616512437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5298,7 +5298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -243629797, guid: 9066807928ba0044db9632699872a23b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa6814ea50ca0dc43b3622e567ab7c11, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5334,7 +5334,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 520, y: 0}
-  m_SizeDelta: {x: 851, y: 1448}
+  m_SizeDelta: {x: 1013, y: 1433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1337606701
 GameObject:

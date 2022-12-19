@@ -1,9 +1,6 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="BulletController" preserve="all" />
-    <type fullname="BulletShot" preserve="all" />
     <type fullname="ChargeController" preserve="all" />
-    <type fullname="ColBullet" preserve="all" />
     <type fullname="ColEnemy" preserve="all" />
     <type fullname="ColItem" preserve="all" />
     <type fullname="ColMiddleBoss" preserve="all" />
@@ -14,7 +11,6 @@
     <type fullname="GetItem" preserve="all" />
     <type fullname="ItemShade" preserve="all" />
     <type fullname="KnockBack" preserve="all" />
-    <type fullname="LookTarget" preserve="all" />
     <type fullname="MiddleBossController" preserve="all" />
     <type fullname="MiddleBossItemController" preserve="all" />
     <type fullname="MoveAnimationMobEnemy" preserve="all" />
@@ -30,7 +26,6 @@
     <type fullname="SkillController" preserve="all" />
     <type fullname="SkillSelection" preserve="all" />
     <type fullname="SwordContoroller" preserve="all" />
-    <type fullname="Targeting" preserve="all" />
     <type fullname="WachingMouse" preserve="all" />
     <type fullname="WallSkill" preserve="all" />
   </assembly>
