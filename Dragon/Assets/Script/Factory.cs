@@ -56,6 +56,8 @@ public class Factory : MonoBehaviour
         }
     }
 
+    // 生成関数　第一引数：座標　第二引数：リストでの生成（Queueでの場合はnullでよい) 
+    // 第三引数：Queueでの生成　第四引数：Queueでの場合のInstantiate用オブジェクト
     public GameObject Launch
     (Vector3 _pos, GameObject tmpList = null, Queue<GameObject> tmpQueue = null, GameObject obj = null)
     {
@@ -81,13 +83,15 @@ public class Factory : MonoBehaviour
             tmpObj = tmpList;
             tmpObj.transform.position = _pos;
         }
-
+        
+        // 生成オブジェクトが弾の場合
         if(tmpObj.tag == "Bullet")
         {
             bulletShot.SetBullet(tmpObj);
             tmpObj.GetComponent<Targeting>().ShowInStage(_pos);
 
         }
+        // 生成オブジェクトがオブジェクトが衝撃波の場合
         else if(tmpObj.tag == "ShockWave")
         {
             tmpObj.GetComponent<ShockWave>().ShowInStage(_pos);
@@ -101,7 +105,7 @@ public class Factory : MonoBehaviour
         return tmpObj;
     }
 
-    // 回収処理
+    // 回収処理　第一引数：格納するQueue（Queueでない場合nullでよい） 第二引数：回収されるオブジェクト
     public void Collect(Queue<GameObject> tmpQueue, GameObject obj)
     {
         //弾のゲームオブジェクトを非表示

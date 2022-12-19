@@ -17,6 +17,7 @@
     <type fullname="LookTarget" preserve="all" />
     <type fullname="MiddleBossController" preserve="all" />
     <type fullname="MiddleBossItemController" preserve="all" />
+    <type fullname="MoveAnimationMobEnemy" preserve="all" />
     <type fullname="MoveMiddleBoss" preserve="all" />
     <type fullname="PlayerAnimation" preserve="all" />
     <type fullname="PlayerController" preserve="all" />
@@ -28,8 +29,6 @@
     <type fullname="ShieldItem" preserve="all" />
     <type fullname="SkillController" preserve="all" />
     <type fullname="SkillSelection" preserve="all" />
-    <type fullname="StatusMiddleBossCreateSpeed" preserve="all" />
-    <type fullname="StatusMiddleBossSpeed" preserve="all" />
     <type fullname="SwordContoroller" preserve="all" />
     <type fullname="Targeting" preserve="all" />
     <type fullname="WachingMouse" preserve="all" />
@@ -72,7 +71,6 @@
   <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
     <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
-    <type fullname="UnityEngine.PolygonCollider2D" preserve="all" />
     <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
   </assembly>
 </linker>

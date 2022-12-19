@@ -15,7 +15,8 @@ public class BeamController : MonoBehaviour
     [SerializeField]
     private Vector3 scaleUpSpeed;    // scaleの拡大スピード
 
-    private Vector3 startScale = new Vector3(1.0f, 1.0f, 1.0f);      // 初期の大きさ
+    [SerializeField]
+    private Vector3 startScale;      // 初期の大きさ
 
     public int Damege = 3;           // playerに与えるダメージ
 
@@ -32,21 +33,19 @@ public class BeamController : MonoBehaviour
     void Start()
     {
         saveDestroyTime = destroyTime;
-        
-        this.transform.localScale = startScale;
-
-        
         // objectPool取得
         objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
     }
 
     void OnEnable()
     {   
+
         this.transform.localScale = startScale;
         if(Player == null)
             Player = GameObject.FindWithTag("Player");
         transform.LookAt(Player.transform.position);
         
+        beamLine.SetActive(true);
         StartCoroutine(offWate());
     }
 
@@ -72,11 +71,13 @@ public class BeamController : MonoBehaviour
         }
     }
 
+    // ビームラインを出現させる
     private IEnumerator offWate()
     {
+
         yield return new WaitForSeconds(waitTime);
 
-        Destroy(beamLine.gameObject);
+        beamLine.SetActive(false);
         wait = true;
     }
 }

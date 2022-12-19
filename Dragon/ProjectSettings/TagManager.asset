@@ -16,6 +16,9 @@ TagManager:
   - ShockWave
   - Fadeout
   - Talismans
+  - EnemyPool
+  - BossInstance
+  - Shot
   layers:
   - Default
   - TransparentFX
