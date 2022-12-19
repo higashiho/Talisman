@@ -27,8 +27,6 @@ public class SkillController : MonoBehaviour
 
     [HeaderAttribute("Attach to Player"), SerializeField]
     private BulletShot bulletShot;                              //スクリプト格納用
-    [SerializeField]
-    private bool targeting = false;                             // ターゲットを変更できるか
     [HeaderAttribute("ターゲティング中の敵")]
     public string target = default;                             // ターゲットのタグ
 
@@ -37,7 +35,6 @@ public class SkillController : MonoBehaviour
     private bool onRotateSword = false;                          // 回転斬りが出来るかどうか
     
     private bool onWallSkill;                                // 壁置けるか
-    
     private int usingWallSkill = 5;                              // 壁設置スキルを使用できるまでの個数
 
     // 変数取得用
@@ -49,10 +46,8 @@ public class SkillController : MonoBehaviour
     [SerializeField]
     private GameObject boss;                                    // ボス参照用
     private BossController bossController;                      // スクリプト参照用
-
     [SerializeField]
     private FindBoss findBoss;                                  // スクリプト取得用
-
     private Cutin cutin;
 
     // Awake is called before the first frame update
@@ -63,6 +58,7 @@ public class SkillController : MonoBehaviour
         target = "Boss";
         cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
         findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
+        bulletShot = GameObject.FindWithTag("Shot").GetComponent<BulletShot>();
     }
 
 
@@ -87,11 +83,8 @@ public class SkillController : MonoBehaviour
         if(Skills[0] > 0 && nowSkiil[0])
         {
             nowSkiil[0] = false;   
-            targeting = true; 
             Invoke("usingSkill1", waitTime);
         }
-        else if(Skills[0] < 0)
-            targeting = false;
 
         // スピードアップ
         if(Skills[1] > 0 && nowSkiil[1])
@@ -118,8 +111,7 @@ public class SkillController : MonoBehaviour
             onWallSkill = false;
 
         // Target変更
-        if(targeting)
-            changeTarget();
+        changeTarget();
     }
 
     private void changeTarget()

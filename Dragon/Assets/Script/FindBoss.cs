@@ -25,9 +25,9 @@ public class FindBoss : MonoBehaviour
         
     }
 
-    public void BossFind()
+    public void BossFind(GameObject b)
     {
-        boss = GameObject.FindWithTag("Boss");
+        boss = b;
         bossController = boss.GetComponent<BossController>();
         onFind = true;
     }

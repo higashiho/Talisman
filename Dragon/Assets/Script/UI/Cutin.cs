@@ -13,8 +13,9 @@ public class Cutin : MonoBehaviour
     private bool onStartCutin = true;               // 一回目のカットインを行ったか
     private bool endStartCutin = false;             // 一回目のカットインが終わったか
     private bool usedEnabled = true;                // 表示非表示の処理を使用
-    private bool moveSpace = false;                // spaceが動けるか
-    private float nowPosY;
+    private bool moveSpace = true;                // spaceが動けるか
+    private float nowPosY;                          // 今の位置
+    private float moveSpeed = 0;
 
     private int passThroughCount = 0;                // 鳥居をくぐった回数
     [SerializeField, HeaderAttribute("カットインが出たか")]
@@ -58,8 +59,16 @@ public class Cutin : MonoBehaviour
     // 上下に動かす
     private void moving()
     {
+        float m_speedUp = 0.1f, m_maxPosY = 3.0f;
+        moveSpeed += m_speedUp;
         spaceText.rectTransform.position = new Vector3(spaceText.rectTransform.position.x, 
-        nowPosY + Mathf.PingPong(Time.time, 0.3f), spaceText.rectTransform.position.z);
+        nowPosY + moveSpeed, spaceText.rectTransform.position.z);
+
+        // スピードが一定値を超えたら逆にする
+        float m_minusSpeed = -1.0f;
+        if(moveSpeed >= m_maxPosY)
+            moveSpeed *= m_minusSpeed;
+        
     }
 
     private void StartCutin()
