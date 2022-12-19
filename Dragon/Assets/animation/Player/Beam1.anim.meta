@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Dragon/Assets/animation/New Folder.meta
+guid: e8823268c769ced4bbb441f5249f2b09
+folderAsset: yes
+DefaultImporter:
+=======
 guid: 5ce655521c9e7ba4cb7f40504d5e3a3e
 NativeFormatImporter:
+>>>>>>> develop:Dragon/Assets/animation/Player/Beam1.anim.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
