@@ -1,0 +1,71 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="ChargeController" preserve="all" />
+    <type fullname="ColEnemy" preserve="all" />
+    <type fullname="ColItem" preserve="all" />
+    <type fullname="ColMiddleBoss" preserve="all" />
+    <type fullname="ColPlayer" preserve="all" />
+    <type fullname="EfectEnemy" preserve="all" />
+    <type fullname="EnemyController" preserve="all" />
+    <type fullname="EnemyStateController" preserve="all" />
+    <type fullname="GetItem" preserve="all" />
+    <type fullname="ItemShade" preserve="all" />
+    <type fullname="KnockBack" preserve="all" />
+    <type fullname="MiddleBossController" preserve="all" />
+    <type fullname="MiddleBossItemController" preserve="all" />
+    <type fullname="MoveAnimationMobEnemy" preserve="all" />
+    <type fullname="MoveMiddleBoss" preserve="all" />
+    <type fullname="PlayerAnimation" preserve="all" />
+    <type fullname="PlayerController" preserve="all" />
+    <type fullname="PlayerMove" preserve="all" />
+    <type fullname="PlayerSprite" preserve="all" />
+    <type fullname="PlayerStep" preserve="all" />
+    <type fullname="RemoveShield" preserve="all" />
+    <type fullname="RotateSwordController" preserve="all" />
+    <type fullname="ShieldItem" preserve="all" />
+    <type fullname="SkillController" preserve="all" />
+    <type fullname="SkillSelection" preserve="all" />
+    <type fullname="SwordContoroller" preserve="all" />
+    <type fullname="WachingMouse" preserve="all" />
+    <type fullname="WallSkill" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioClip" preserve="all" />
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.CustomRenderTexture" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
+    <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
+  </assembly>
+</linker>
