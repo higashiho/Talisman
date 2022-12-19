@@ -15,17 +15,15 @@ public class BossController : MonoBehaviour
     }
     [SerializeField, HeaderAttribute("移動速度")]
     private float speed;                                     // 自身のスピード
-    public float GetSpeed() {return speed;}
-    public void SetSpeed(float newSpeed) {speed = newSpeed;}
+    public float Speed{
+        get {return speed;}
+        set {speed = value;}
+    }
 
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
     private Vector3 pos;                                    // 自身の座標
-    public Vector3 Pos
-    {
-        get{ return pos; }
-        set{ pos = value; }
-    }
+   
 
     private int numericPreservation;                         // 前回randoNumber保存用
 
@@ -34,9 +32,10 @@ public class BossController : MonoBehaviour
 
     [SerializeField, HeaderAttribute("ヒットポイント"), Range(0, 1000)]
     private int hp;
-    public int GetHp() {return hp;}
-    public void SetHp(int set,bool heel = false) 
-    {if(!heel)hp -= set; else hp += set;}
+    public int Hp{
+        get {return hp;} 
+        set {hp = value;}
+    }
 
     [SerializeField, HeaderAttribute("中ボスがフィールドに居るときのエフェクト")]
     private ParticleSystem isMidEffect;

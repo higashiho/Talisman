@@ -16,7 +16,13 @@ public class ColBoss : MonoBehaviour
     private float normalSpeed = 1;                      // スピード格納
     public float GetNormalSpeed() {return normalSpeed;}
     [HeaderAttribute("壁に当たってるか")]
-    public bool OnWall = false;                         // 壁に当たってるか  
+    public bool onWall = false;                         // 壁に当たってるか  
+    public bool OnWall{
+        get {return onWall;}
+        set {onWall = value;}
+    }
+    private bool damageFlag = false;                    // 壁のダメージが入っているかフラグ
+    private float damageTime = 1.0f;                    // 壁ダメージの間隔 
     private float destroyTime = 3.0f;                   // 消えるまでの時間
     private int rSwordDamage = 2;                       // 回転斬りに当たった時のダメージ
     private bool onDamage = false;                      // ダメージを受けたか
@@ -30,20 +36,21 @@ public class ColBoss : MonoBehaviour
     
     void Update()
     {
-         if(onDamage && !OnWall)
+         if(onDamage && !onWall)
             damage();
     }
 
+    // 攻撃を受けたときスピードダウン関数
     private void damage()
     {
         float m_lowSpeed = 0.5f, m_startTime = 0.2f;
-        GetComponent<BossController>().SetSpeed(m_lowSpeed);
+        GetComponent<BossController>().Speed = m_lowSpeed;
 
         speedDownTime -= Time.deltaTime;
         if(speedDownTime <= 0)
         {
             onDamage = false;
-            GetComponent<BossController>().SetSpeed(normalSpeed);
+            GetComponent<BossController>().Speed = normalSpeed;
             speedDownTime = m_startTime;
         }
        
@@ -58,14 +65,14 @@ public class ColBoss : MonoBehaviour
         if(other.gameObject.tag == "Bullet")
         {
             onDamage = true;
-            bossController.SetHp(other.gameObject.GetComponent<BulletController>().Attack);
+            bossController.Hp -= other.gameObject.GetComponent<BulletController>().Attack;
             GetComponent<UnstuckBoss>().CalcRate();
         }
         // 通常攻撃での当たり判定
         if(other.gameObject.name == "Sword")
         {
             onDamage = true;
-            bossController.SetHp(m_damage);
+            bossController.Hp -= m_damage;
             GetComponent<UnstuckBoss>().CalcRate();
         }
 
@@ -73,14 +80,14 @@ public class ColBoss : MonoBehaviour
         if(other.gameObject.name == "RotateSword")
         {
             onDamage = true;
-            bossController.SetHp(rSwordDamage);
+            bossController.Hp -= rSwordDamage;
             GetComponent<UnstuckBoss>().CalcRate();
         }
         // 衝撃波との当たり判定
         if(other.gameObject.tag == "ShockWave")
         {
             onDamage = true;
-            bossController.SetHp(other.gameObject.GetComponent<ShockWave>().Attack);
+            bossController.Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
             GetComponent<UnstuckBoss>().CalcRate();
         }
 
@@ -95,11 +102,24 @@ public class ColBoss : MonoBehaviour
     {
         if(col.gameObject.tag == "Wall")
         {
-            OnWall = true;
-            bossController.SetSpeed(0);
+            // n秒に1回ダメージを受ける
+            if(!damageFlag)
+            {
+                damageFlag = true;
+                Invoke("wallDamage", damageTime);
+            }
+
+            onWall = true;
+            bossController.Speed = 0;
             wallObj = col.gameObject;
             Destroy(col.gameObject, destroyTime);
         }
+    }
+
+    private void wallDamage()
+    {
+        damageFlag = false;
+        bossController.Hp--;
     }
     
 }

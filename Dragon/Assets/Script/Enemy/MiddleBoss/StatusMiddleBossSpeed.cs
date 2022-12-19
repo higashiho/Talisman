@@ -44,12 +44,12 @@ public class StatusMiddleBossSpeed : MonoBehaviour
     // ボスのスピードを上げる関数
     private void SpeedUp()
     {
-        bossController.SetSpeed(bossController.GetSpeed() * acceleration);
+        bossController.Speed = bossController.Speed * acceleration;
     }
 
     void Ondisable()
     {
-        bossController.SetSpeed(speedPrev);// ボスの移動速度元に戻す
+        bossController.Speed = speedPrev;// ボスの移動速度元に戻す
     }
    
 }
