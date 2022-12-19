@@ -117,6 +117,7 @@ public class ColMiddleBoss : MonoBehaviour
             if(other.gameObject.tag == "Boss")
             {
                 bosscontroller.SetHp(Hp);   // 中ボスの残りHPをボスのHPに加算
+                other.gameObject.GetComponent<ColBoss>().PlayEfect(); // ボス融合エフェクト再生
                 Marge = true;   // 融合完了フラグ(true)
             }
         }

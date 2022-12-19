@@ -331,6 +331,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobEnemys: 0
+  debugText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  findBoss: {fileID: 0}
   spawnCount: 30
   spawnTimer: 1.5
   Counter: 0
@@ -1248,17 +1255,6 @@ RectTransform:
   m_AnchoredPosition: {x: -626.1927, y: 111.17642}
   m_SizeDelta: {x: 399.6146, y: 61.6472}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &583341044 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 949576009, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-  m_PrefabInstance: {fileID: 272947258}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3363a6929172027438b419b99a82c4aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &599579001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1635,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   bossSkillsList: []
-  bulletShot: {fileID: 583341044}
+  bulletShot: {fileID: 0}
 --- !u!4 &672559462
 Transform:
   m_ObjectHideFlags: 0
@@ -2075,7 +2071,7 @@ MonoBehaviour:
   - {fileID: 901947203}
   - {fileID: 1357929136}
   - {fileID: 1063559914}
-  speceText: {fileID: 1953276825}
+  spaceText: {fileID: 0}
   nameText: {fileID: 526259363}
   playerImage: {fileID: 0}
 --- !u!114 &739559194
@@ -2266,7 +2262,7 @@ Animator:
   m_GameObject: {fileID: 759997494}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: af764ac90a2dc5c4e941e7e31b0a2422, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7e8339d62095bea42b3d2c156f337f40, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5298,6 +5294,7 @@ MonoBehaviour:
   instansAudio: {fileID: 8300000, guid: 267663f877badb3419266eb15f02bf6b, type: 3}
   battleAudio: {fileID: 8300000, guid: 7a9a233219935de4ca3997b22599254d, type: 3}
   bossPrefab: {fileID: 9060541169768609607, guid: 05c30d81a8d058e4a91c0ea88e26b2ee, type: 3}
+  boss: {fileID: 0}
 --- !u!4 &1375253903
 Transform:
   m_ObjectHideFlags: 0

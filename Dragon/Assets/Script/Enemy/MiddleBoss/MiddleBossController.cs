@@ -70,7 +70,7 @@ public class MiddleBossController : MonoBehaviour
         factoryEnemy = objectPool.GetComponent<FactoryEnemy>();// エネミーファクトリークラス参照
         itemCtrl = item.GetComponent<MiddleBossItemController>();// アイテム移動クラス参照
         createMiddleBoss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();// 中ボス生成クラスを参照
-        textCtrl_Marge = MidUI.transform.GetChild(1).GetComponent<TextController>();   // 中ボス融合メッセージ表示クラス参照
+        textCtrl_Marge = MidUI.transform.GetChild(0).GetComponent<TextController>();   // 中ボス融合メッセージ表示クラス参照
         
         state = MiddleBossState.MIDDLEBOSS; // 初期ステートを中ボスに設定
         // 非アクティブに設定
