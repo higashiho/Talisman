@@ -21,6 +21,11 @@ public class BossController : MonoBehaviour
     [HeaderAttribute("目標座標"), SerializeField]
     private Vector3 targetCoordinates;
     private Vector3 pos;                                    // 自身の座標
+    public Vector3 Pos
+    {
+        get{ return pos; }
+        set{ pos = value; }
+    }
 
     private int numericPreservation;                         // 前回randoNumber保存用
 
