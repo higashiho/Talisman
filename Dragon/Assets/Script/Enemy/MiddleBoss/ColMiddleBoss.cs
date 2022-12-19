@@ -32,7 +32,8 @@ public class ColMiddleBoss : MonoBehaviour
     private FactoryEnemy factoryenemy;              // 中ボス生成クラス
     private FindBoss findBoss;                      // ボスのインスタンス取得クラス
     private MiddleBossController midCtrl;           // 中ボスコントローラー
-    
+    private ColBoss colBoss;                        // ボス当たり判定スクリプト
+
     
     public bool Deth;       // 中ボス死亡フラグ
     public bool Marge;      // 中ボス:ボス融合フラグ
@@ -71,6 +72,7 @@ public class ColMiddleBoss : MonoBehaviour
             {
                 boss = findBoss.GetBoss();
                 bosscontroller = findBoss.GetBossController();
+                colBoss = boss.GetComponent<ColBoss>();
             }
         }
     }
@@ -116,7 +118,8 @@ public class ColMiddleBoss : MonoBehaviour
         {
             if(other.gameObject.tag == "Boss")
             {
-                bosscontroller.SetHp(Hp);   // 中ボスの残りHPをボスのHPに加算
+                bosscontroller.SetHp(-Hp);   // 中ボスの残りHPをボスのHPに加算
+                colBoss.PlayEfect(); // ボス融合エフェクト再生
                 Marge = true;   // 融合完了フラグ(true)
             }
         }

@@ -205,7 +205,7 @@ public class CreateMiddleBoss : MonoBehaviour
             if(!obj.activeSelf)
             {
                 dispObj = obj;
-                return obj;
+                return dispObj;
             }
             // 無ければnullを返す
         }

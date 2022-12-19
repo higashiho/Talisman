@@ -22,7 +22,11 @@ public class ColBoss : MonoBehaviour
     private bool onDamage = false;                      // ダメージを受けたか
     private float speedDownTime = 0.7f;                 // スピードダウンの時間
 
-
+    // 融合エフェクト再生関数
+    public void PlayEfect()
+    {
+        mageEfect.Play();
+    }
     
     void Update()
     {
@@ -81,9 +85,10 @@ public class ColBoss : MonoBehaviour
         }
 
         // 中ボス吸収時の判定
-        if(other.gameObject.tag == "middleBoss")
+        if(other.gameObject.tag == "MiddleBoss")
         {
-            mageEfect.Play();
+            if(other.gameObject.GetComponent<ColMiddleBoss>().Marge)
+                mageEfect.Play();
         }
     }
     private void OnCollisionEnter2D(Collision2D col)

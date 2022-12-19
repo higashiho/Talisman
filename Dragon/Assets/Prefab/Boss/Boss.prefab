@@ -10432,6 +10432,7 @@ MonoBehaviour:
   - 175
   - 275
   hp: 0
+  isMidEffect: {fileID: 2031221728}
   attackSkill:
   - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
   - {fileID: 5659572085952152628, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
