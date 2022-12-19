@@ -29,7 +29,7 @@ public class UnstuckBoss : MonoBehaviour
     void Start()
     {
         // 初期代入
-        maxHp = GetComponent<BossController>().GetHp();
+        maxHp = GetComponent<BossController>().Hp;
         animator = GetComponent<Animator>();
         CalcRate();
         for(int i = 0; i < bossesObj.Length; i++)
@@ -92,6 +92,6 @@ public class UnstuckBoss : MonoBehaviour
     }
     public void CalcRate()
     {
-        bossRate = (float)GetComponent<BossController>().GetHp() / (float)maxHp;
+        bossRate = (float)GetComponent<BossController>().Hp / (float)maxHp;
     }
 }
