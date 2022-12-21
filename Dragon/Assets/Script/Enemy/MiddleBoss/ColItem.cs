@@ -40,6 +40,7 @@ public class ColItem : MonoBehaviour
         {
             costRefresh();
             MidCtrl.DoneItem= true;
+            
         }
     }
 

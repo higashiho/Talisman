@@ -19,6 +19,7 @@ public class GetItem : MonoBehaviour
 
     }
 
+    // アイテム取得時の効果音
     public void ItemGet()
     {
         audioSource.PlayOneShot(itemAudio);

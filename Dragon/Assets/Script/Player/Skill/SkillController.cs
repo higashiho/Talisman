@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillController : MonoBehaviour
+public class SkillController : BaseSkills
 {
 
     /// @breif Skill管理用スクリプト
@@ -17,25 +17,22 @@ public class SkillController : MonoBehaviour
         WallGene,
         ShockWave
     }
-    [HeaderAttribute("Skill未定のため確定後変数名変更"), EnumIndex(typeof(SkilType))]
+    [HeaderAttribute("スキル"), EnumIndex(typeof(SkilType))]
     public int[] Skills = new int[5];
-    
-    [SerializeField, EnumIndex(typeof(SkilType))]
-    private bool[] nowSkiil = new bool[5];                      // スキルを使っているか
 
-    private float waitTime = 1.0f;                              // 関数使用遅延用
+    private float waitTime = 1.0f;                                  // 関数使用遅延用
 
     [HeaderAttribute("Attach to Player"), SerializeField]
-    private BulletShot bulletShot;                              //スクリプト格納用
+    private BulletShot bulletShot;                                  //スクリプト格納用
     [HeaderAttribute("ターゲティング中の敵")]
-    public string target = default;                             // ターゲットのタグ
+    public string target = default;                                 // ターゲットのタグ
 
     [SerializeField]
-    private bool speedUp = false;                                // スピードアップしてるかどうか
-    private bool onRotateSword = false;                          // 回転斬りが出来るかどうか
+    private bool speedUp = false;                                   // スピードアップしてるかどうか
+    private bool onRotateSword = false;                             // 回転斬りが出来るかどうか
     
-    private bool onWallSkill;                                // 壁置けるか
-    private int usingWallSkill = 5;                              // 壁設置スキルを使用できるまでの個数
+    private bool onWallSkill;                                       // 壁置けるか
+    private int usingWallSkill = 5;                                 // 壁設置スキルを使用できるまでの個数
 
     // 変数取得用
     public bool GetSpeedUp() {return speedUp;}
@@ -43,6 +40,7 @@ public class SkillController : MonoBehaviour
     public bool GetOnWallSkill() {return onWallSkill;}
     public int GetUsingWallSkill() {return usingWallSkill;}
 
+    // スクリプト取得用
     [SerializeField]
     private GameObject boss;                                    // ボス参照用
     private BossController bossController;                      // スクリプト参照用
@@ -53,12 +51,22 @@ public class SkillController : MonoBehaviour
     // Awake is called before the first frame update
     void Awake()
     {
+        //初期化処理
         bool[] nowSkiil = {true, true, true, true, true};
         int[] Skills = {0, 0, 0, 0, 0};
         target = "Boss";
+
+        // オブジェクト代入
         cutin = GameObject.Find("Cutin").GetComponent<Cutin>();
         findBoss = GameObject.Find("BossInstance").GetComponent<FindBoss>();
         bulletShot = GameObject.FindWithTag("Shot").GetComponent<BulletShot>();
+
+        // イベント代入処理
+        skillCallBack += changeTarget;
+        skillCallBack += lockOnSkill;
+        skillCallBack += speedUpSkill;
+        skillCallBack += rotateSwordSkill;
+        skillCallBack += wallSkill;
     }
 
 
@@ -66,7 +74,14 @@ public class SkillController : MonoBehaviour
     void FixedUpdate()
     {
         if(boss != null)
-            skillControl();
+        {
+            waitTime = Time.deltaTime;
+            if(waitTime <= 0)
+            {
+                waitTime = Const.MAX_TIMER;
+                skillCallBack?.Invoke();
+            }
+        }
 
             
         else if(findBoss.GetOnFind())
@@ -76,45 +91,9 @@ public class SkillController : MonoBehaviour
         }
     }
 
-    /// @note スキル用のif文の量が増えるため直接updateの中に記入は避ける
-    private void skillControl()
-    {
-        // lockon銃
-        if(Skills[0] > 0 && nowSkiil[0])
-        {
-            nowSkiil[0] = false;   
-            Invoke("usingSkill1", waitTime);
-        }
-
-        // スピードアップ
-        if(Skills[1] > 0 && nowSkiil[1])
-        {
-            nowSkiil[1] = false;    
-            Invoke("usingSkill2", waitTime);
-        }
-        else if(Skills[1] <= 0) speedUp = false;
-
-        // 回転斬り
-        if(Skills[2] > 0)
-        {
-            onRotateSword = true;
-        }
-        else
-            onRotateSword = false;
-
-        // 壁生成
-        if(Skills[3] >= usingWallSkill)
-        {
-            onWallSkill = true;
-        }   
-        else 
-            onWallSkill = false;
-
-        // Target変更
-        changeTarget();
-    }
-
-    private void changeTarget()
+    // 以下スキル使用関数
+    // Target変更処理
+     void changeTarget()
     {
         if(Input.GetKeyDown(KeyCode.Space))
             if(target == "Boss")
@@ -123,24 +102,47 @@ public class SkillController : MonoBehaviour
                 target = "Boss";
     }
     
-    // 以下スキル使用関数
-    private void usingSkill1()
+    // ロックオン銃スキル
+     void lockOnSkill()
     {
-        nowSkiil[0] = true;
-        bulletShot.ShotBullet();
-        Skills[0]--;
-    }
-    private void usingSkill2()
-    {
-        nowSkiil[1] = true;
-        speedUp = true;
-        Skills[1]--;
+        if(Skills[0] > 0)
+        {   
+            bulletShot.ShotBullet();
+            Skills[0]--;
+        }
     }
 
-    private void usingSkill4()
+    // スピードアップスキル
+     void speedUpSkill()
     {
-        nowSkiil[3] = true;
-        Skills[3]--;
+        if(Skills[1] > 0 )
+        {    
+            speedUp = true;
+            Skills[1]--;
+        }
+        else  
+            speedUp = false;
     }
-    
+
+    // 回転斬りスキル
+    void rotateSwordSkill()
+    {
+        if(Skills[2] > 0)
+        {
+            onRotateSword = true;
+        }
+        else
+            onRotateSword = false;
+    }
+
+    // 壁生成スキル
+    void wallSkill()
+    {
+        if(Skills[3] >= usingWallSkill)
+        {
+            onWallSkill = true;
+        }   
+        else 
+            onWallSkill = false;
+    }
 }
