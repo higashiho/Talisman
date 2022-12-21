@@ -4934,7 +4934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3363a6929172027438b419b99a82c4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletObj: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
   playerController: {fileID: 1713731369}
   skillController: {fileID: 1713731363}
   target: {fileID: 0}
@@ -8893,10 +8892,18 @@ PrefabInstance:
       propertyPath: Skills.Array.data[0]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2243393573469111196, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 501981197}
     - target: {fileID: 2243393573469111211, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_Name
       value: Players
       objectReference: {fileID: 0}
+    - target: {fileID: 2243393573508983326, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1713731369}
     - target: {fileID: 6890473530996133675, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -34,7 +34,7 @@ public class WallSkill : MonoBehaviour
             mousePos = Input.mousePosition;
             mousePos.z = posZ;
             wallObj = Instantiate(wallPrefab,Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
-            skillController.Skills[3] -= skillController.GetUsingWallSkill();
+            skillController.Skills[3] -= Const.WALL_SKILL;
         }
     }
 

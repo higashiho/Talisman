@@ -106,8 +106,6 @@ public class PlayerController : MonoBehaviour
     // スクリプト参照
     [SerializeField]
     private SwordContoroller sword;
-    [SerializeField]
-    private SkillController skillController;
     // Start is called before the first frame update
     void Start()
     {
@@ -134,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     private void speed()
     {
-        if(skillController.GetSpeedUp() && onShield)
+        if(SkillController.GetSpeedUp() && onShield)
             playerSpeed = highPlayerSpeed;
         else if(onShield && !sword.OnCharge)
             playerSpeed = nomalPlayerSpeed;
@@ -233,6 +231,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // 点滅処理
     private void unrivaled()
     {
         unrivaledTimer += Time.deltaTime;

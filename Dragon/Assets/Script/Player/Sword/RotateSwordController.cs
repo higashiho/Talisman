@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateSwordController : MonoBehaviour
+public class RotateSwordController : BaseSword
 {
     
     /// @breif 剣を振り回すスクリプト
@@ -12,31 +12,16 @@ public class RotateSwordController : MonoBehaviour
     /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
     /// @note　オンにして表示と当たり判定を行う
 
-    private float rotAngleZ = 15.0f; //回転速度
-    private bool coroutineBool = false;  //回転中か判断用
-    private float StopRotation = 24.0f; //回転ストップ
-    //private float startAngleZ = 0.0f;  // 最初の位置に戻す
 
-    private float waitTime = 0.01f;       // 回転遅延用
-    [HeaderAttribute("攻撃間隔"), SerializeField]
-    private float attackWait;      // 攻撃遅延用
-
-    [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
-    private new SpriteRenderer renderer;        // SpriteRendere格納用
-    [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
-    private new BoxCollider2D collider;
-
-    [SerializeField]
-    private SkillController skillController;        //スクリプト格納用
-
-    [SerializeField]
-    private GameObject player;
     
     // Start is called before the first frame update
     void Start()
     {
         renderer.enabled = false;
         collider.enabled = false;
+
+        startAngleZ = 24.0f;
+        rotAngleZ = 15.0f;
     }
 
     // Update is called once per frame
@@ -60,7 +45,7 @@ public class RotateSwordController : MonoBehaviour
         player.GetComponent<WachingMouse>().enabled = false;
         collider.enabled = true;
         renderer.enabled = true;
-        for (int turn = 0; turn < StopRotation; turn++)
+        for (int turn = 0; turn < stopRotation; turn++)
         {
             player.transform.Rotate(0, 0, -rotAngleZ);
             yield return new WaitForSeconds(waitTime);

@@ -5,5 +5,9 @@ using UnityEngine.Events;
 
 public class BaseSkills : MonoBehaviour
 {
-    public static UnityAction skillCallBack;
+    // イベント
+    protected static UnityAction skillCallBack;
+
+    // イベント遅延用
+    protected float waitTime = 1.0f;
 }

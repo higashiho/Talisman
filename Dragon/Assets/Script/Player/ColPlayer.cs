@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColPlayer : MonoBehaviour
+public class ColPlayer : PlayerController
 {
-    [SerializeField]
-    private PlayerController playerController;          // スクリプト格納用
 
     [SerializeField]
     private ParticleSystem damageEfect;         //パーティクルシステム取得
@@ -28,10 +26,10 @@ public class ColPlayer : MonoBehaviour
     {
         if(col.gameObject.tag == "Enemy")
         {
-            if(!playerController.OnUnrivaled)
+            if(!OnUnrivaled)
             {
                 // ノックバックを実施して点滅を開始
-                playerController.OnUnrivaled = true;
+                OnUnrivaled = true;
                 knockBack.KnockBackPlayer(col);
                 damageEfect.Play();
             }

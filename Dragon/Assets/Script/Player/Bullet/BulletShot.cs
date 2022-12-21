@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BulletShot : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject bulletObj;
-    private Vector3 bulletPoint;    // 弾を生成する位置
 
     [SerializeField, HeaderAttribute("player")]
     private PlayerController playerController;          //スクリプト格納用
@@ -38,10 +35,6 @@ public class BulletShot : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     // スキルポイントがある場合の弾生成用
     public void ShotBullet()

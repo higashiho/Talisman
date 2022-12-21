@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordContoroller : MonoBehaviour
+public class SwordContoroller : BaseSword
 {
     
     /// @breif 剣を振り回すスクリプト
@@ -12,26 +12,11 @@ public class SwordContoroller : MonoBehaviour
     /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
     /// @note　オンにして表示と当たり判定を行う
 
-    /// 攻撃用変数
-    private float rotAngleZ = 10.0f;        //回転速度
-    private float StopRotation = 15.0f;     //回転ストップ
-    private float startAngleZ = 150.0f;     // 最初の位置に戻す
-    private float waitTime = 0.01f;         // 回転遅延用
-    [HeaderAttribute("攻撃間隔"), SerializeField]
-    private float attackWait;               // 攻撃遅延用
 
-    /// 取得用
-    [SerializeField]
-    private SkillController skillController;        //スクリプト格納用
+   
     [SerializeField]
     private Factory objectPool;                     // オブジェクトプール用コントローラー格納
     private GameObject shockWaveObj;                // 衝撃波オブジェク
-    [SerializeField, HeaderAttribute("player")]
-    private PlayerController player;                // スプライトレンダラー格納用
-    [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
-    private new SpriteRenderer renderer;            // SpriteRendere格納用
-    [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
-    private new BoxCollider2D collider;
     
     /// 取得系込み変数
     // スキルを使うためのアイテム量
@@ -40,8 +25,6 @@ public class SwordContoroller : MonoBehaviour
         get { return OnShockSkill ;}
         set { OnShockSkill = value ;}
     }
-    //回転中か判断用
-    private bool coroutineBool = false;  
     public bool CoroutineBool{
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
@@ -80,6 +63,9 @@ public class SwordContoroller : MonoBehaviour
         renderer.enabled = false;
         collider.enabled = false;
         objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+
+        rotAngleZ = 10.0f;
+        startAngleZ = 150.0f;
     }
 
     // Update is called once per frame
@@ -176,7 +162,7 @@ public class SwordContoroller : MonoBehaviour
     {
         collider.enabled = true;
         renderer.enabled = true;
-        for (int turn = 0; turn < StopRotation; turn++)
+        for (int turn = 0; turn < stopRotation; turn++)
         {
             transform.Rotate(0, 0, -rotAngleZ);
             yield return new WaitForSeconds(waitTime);

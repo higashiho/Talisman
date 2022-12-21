@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColBullet : MonoBehaviour
+public class ColBullet : BulletShot
 {
     
     private void OnTriggerEnter2D(Collider2D other)
