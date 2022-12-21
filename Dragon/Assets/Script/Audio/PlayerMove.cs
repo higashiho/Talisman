@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour
         else
             moveAudioEnd(); 
     }
-    // Shieldがある場合の挙動時効果音
+    // 挙動時効果音
     private void moveAudioStart()
     {
         

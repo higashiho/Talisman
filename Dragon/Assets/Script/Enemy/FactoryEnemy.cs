@@ -47,10 +47,10 @@ public class FactoryEnemy : MonoBehaviour
     // 引数(ラベル名, 生成数, プーリングリスト, リストを持っている親オブジェクト)
     public IEnumerator LoadAsset(string key, int numMax, List<GameObject> PoolList, GameObject parent)
     {
-        for(int i = 0; i < numMax; i++)
-        {
             loadOp = Addressables.LoadAssetAsync<GameObject>(key);
             yield return loadOp;
+        for(int i = 0; i < numMax; i++)
+        {
 
             if(loadOp.Result != null)
             {
