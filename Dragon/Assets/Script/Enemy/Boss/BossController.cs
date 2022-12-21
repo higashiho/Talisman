@@ -60,12 +60,22 @@ public class BossController : MonoBehaviour
     private GameObject cutin;                               // カットインオブジェクト
 
     [SerializeField]
-    private ColBoss colBoss;                                // スクリプト格納用
-    [SerializeField]
     private RandomBossHp randomBossHp;                      // スクリプト格納用
     private SpriteRenderer spriteRenderer;                  // スプライトレンダラー格納用
     [SerializeField]
     private Factory objectPool;             // オブジェクトプール用コントローラー格納
+    
+    private GameObject wallObj = default;               // 壁オブジェクト格納用
+    public GameObject WallObj {
+        get{return wallObj;}
+        set{wallObj = value;}
+    }
+
+    private bool onWall;                                // 壁に当たってるか  
+    public bool OnWall{
+        get{return onWall;}
+        set{onWall = value;}
+    }                         
 
     // Start is called before the first frame update
     void Awake()
@@ -99,7 +109,7 @@ public class BossController : MonoBehaviour
         else if(hp <= 0)
             gameClear();
 
-        if(colBoss.WallObj == null && colBoss.OnWall)
+        if(wallObj == null && onWall)
             reset();
 
         if(isMiddleBossInField)
@@ -169,18 +179,15 @@ public class BossController : MonoBehaviour
             Destroy(this.gameObject, destroyTime);
         }
 
-        Destroy(GetComponent<PolygonCollider2D>());
+        Destroy(GetComponent<BoxCollider2D>());
         this.transform.position = pos + Random.insideUnitSphere * m_shakePower;
-
-        
-
     }
 
     // 壁が消えた場合初期化するため
     private void reset()
     {
-        colBoss.OnWall = false;
-        speed = colBoss.GetNormalSpeed();
+        onWall = false;
+        speed = Const.NOMAL_SPEED;
     }
 
     // エリア４での攻撃用

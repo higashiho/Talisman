@@ -27,7 +27,7 @@ public class Targeting : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        move();
 
     }
 
@@ -38,7 +38,7 @@ public class Targeting : MonoBehaviour
     }
 
     // 弾の挙動
-    private void Move()
+    private void move()
     {
         addVector = new Vector3(direction.x * Time.deltaTime, 
         direction.y * Time.deltaTime, 0);

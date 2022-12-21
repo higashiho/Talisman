@@ -17,20 +17,26 @@ public class SkillController : BaseSkills
         ShockWave
     }
     [HeaderAttribute("スキル"), EnumIndex(typeof(SkilType))]
-    public int[] Skills = new int[5];
+    public int[] Skills = new int[Const.SKILLS_VALUE_MAX];
 
-                            //スクリプト格納用
+    //スクリプト格納用
     [HeaderAttribute("ターゲティング中の敵")]
-    public string target = default;                                 // ターゲットのタグ
+    private string target = default;                                 // ターゲットのタグ
+    public string Target{
+        get{return target;}
+        set{target = value;}
+    }
 
     [SerializeField]
-    private static bool speedUp = false;                            // スピードアップしてるかどうか
+    private  bool speedUp = false;                            // スピードアップしてるかどうか
     private bool onRotateSword = false;                             // 回転斬りが出来るかどうか
-    
-    private bool onWallSkill;                                       // 壁置けるか
+    private bool onWallSkill = false;                               // 壁置けるか
 
     // 変数取得用
-    public static bool GetSpeedUp() {return speedUp;}
+    public bool SpeedUp{
+        get{return speedUp;}
+        set{speedUp = value;}
+    }
     public bool GetOnRotateSword() {return onRotateSword;}
     public bool GetOnWallSkill() {return onWallSkill;}
 

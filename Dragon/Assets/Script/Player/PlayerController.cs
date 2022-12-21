@@ -28,13 +28,11 @@ public class PlayerController : MonoBehaviour
     // HP管理用
     //ヒットポイント
     [SerializeField]
-    private int hp = 3;                  
+    private int hp = Const.MAX_HP;                  
     public int Hp {
         get{return hp;}
         set{hp = value;}
-    }
-    //シールドが割れた時点での回復
-    private int heel = 2;             
+    }             
     //シールドがあるか
     private bool onShield = true;        
     public bool OnShield {
@@ -53,14 +51,10 @@ public class PlayerController : MonoBehaviour
     public Vector3 NomalPlayerSpeed{
         get { return nomalPlayerSpeed; }
 		set { nomalPlayerSpeed = value; }
-    }
-    // HP最大値
-    private const int MAX_HP = 3;      
+    } 
     //シールド回復時間                                     
     [SerializeField, HeaderAttribute("シールド回復時間")]
-    private float heelSheld;    
-    // シールド回復初期時間保管用                 
-    private float startHeelStrage;  
+    private float heelSheld;     
     // スプライトレンダラー格納用                    
     private SpriteRenderer spriteRenderer; 
     // スプライトレンダラー格納用             
@@ -89,28 +83,24 @@ public class PlayerController : MonoBehaviour
     private Renderer thisRenderer;               
     // 回転周期       
     [SerializeField, HeaderAttribute("点滅周期")]
-    private float flashingCycle;                   
-    // 遅延時間     
-    private float delay = 0.5f;                         
+    private float flashingCycle;                            
 
 
-    // 移動座標管理用
-    // y座標限界値
-    private const float LIMIT_POS_Y = 25.0f;           
-    // 左座標限界値          
-    private const float MIN_POS_X = -48.0f;             
-    // 右座標限界値         
-    private const float MAX_POS_X = 385.0f;                      
-
+    
     [Header("Playerスクリプト")]
     // スクリプト参照
     [SerializeField]
     private SwordContoroller sword;
+    [SerializeField]
+    private SkillController skillController;
     // Start is called before the first frame update
     void Start()
     {
+
+        // スクリプト取得用
         spriteRenderer = this.GetComponent<SpriteRenderer>();
-        startHeelStrage = heelSheld;
+        sword = this.transform.GetChild(0).GetComponent<SwordContoroller>();
+        skillController = this.GetComponent<SkillController>();
     }
 
     // Update is called once per frame
@@ -130,14 +120,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // スピード変化判断用
     private void speed()
     {
-        if(SkillController.GetSpeedUp() && onShield)
+        if(skillController.SpeedUp && onShield)
             playerSpeed = highPlayerSpeed;
         else if(onShield && !sword.OnCharge)
             playerSpeed = nomalPlayerSpeed;
     }
 
+    // メイン挙動
     private void move()
     {
         speed();
@@ -174,17 +166,17 @@ public class PlayerController : MonoBehaviour
             onMeve = true;
 
         // 右座標
-        if(pos.x >= MAX_POS_X)
-            pos.x = MAX_POS_X;
+        if(pos.x >= Const.MAX_POS_X)
+            pos.x = Const.MAX_POS_X;
         // 左座標
-        else if(pos.x <= MIN_POS_X)
-            pos.x = MIN_POS_X;
+        else if(pos.x <= Const.MIN_POS_X)
+            pos.x = Const.MIN_POS_X;
         // 上座標
-        if(pos.y >= LIMIT_POS_Y)
-            pos.y = LIMIT_POS_Y;
+        if(pos.y >= Const.LIMIT_POS_Y)
+            pos.y = Const.LIMIT_POS_Y;
         // 下座標
-        if(pos.y <= -LIMIT_POS_Y)
-            pos.y = -LIMIT_POS_Y;
+        if(pos.y <= -Const.LIMIT_POS_Y)
+            pos.y = -Const.LIMIT_POS_Y;
         
         
         transform.position = pos;
@@ -200,7 +192,7 @@ public class PlayerController : MonoBehaviour
     private void shield()
     {
         shieldRenderer.SetActive(false);
-        hp = heel;
+        hp = Const.HEEL;
         playerSpeed = noShieldSpeed;
     }
     // シールド回復
@@ -217,9 +209,9 @@ public class PlayerController : MonoBehaviour
             shieldRenderer.SetActive(true);
             onShield = true;
             playerSpeed = nomalPlayerSpeed;
-            heelSheld = startHeelStrage;
+            heelSheld = Const.MAX_HEEL_TIME;
             oneHeel = true;
-            hp = MAX_HP;
+            hp = Const.MAX_HP;
         }
     }
 
@@ -241,7 +233,7 @@ public class PlayerController : MonoBehaviour
         var repeatValue = Mathf.Repeat(unrivaledTimer, flashingCycle);
         
         // 内部時刻timeにおける明滅状態を反映
-        thisRenderer.enabled = repeatValue >= flashingCycle * delay;
+        thisRenderer.enabled = repeatValue >= flashingCycle * Const.HALF;
         if(unrivaledTimer >= maxTimer)
         {
             thisRenderer.enabled = true;

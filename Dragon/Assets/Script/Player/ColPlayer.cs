@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColPlayer : PlayerController
+public class ColPlayer : MonoBehaviour
 {
-
+    [SerializeField]
+    private PlayerController player;
     [SerializeField]
     private ParticleSystem damageEfect;         //パーティクルシステム取得
 
@@ -13,7 +14,7 @@ public class ColPlayer : PlayerController
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -26,10 +27,10 @@ public class ColPlayer : PlayerController
     {
         if(col.gameObject.tag == "Enemy")
         {
-            if(!OnUnrivaled)
+            if(!player.OnUnrivaled)
             {
                 // ノックバックを実施して点滅を開始
-                OnUnrivaled = true;
+                player.OnUnrivaled = true;
                 knockBack.KnockBackPlayer(col);
                 damageEfect.Play();
             }

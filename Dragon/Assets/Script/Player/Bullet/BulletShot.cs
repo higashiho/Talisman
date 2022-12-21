@@ -41,12 +41,12 @@ public class BulletShot : MonoBehaviour
     {
         //オブジェクトプールのLaunch関数呼び出し
         objectPool.Launch(transform.position, null, objectPool.GetBulletQueue(), objectPool.GetBulletObj());
-        target = GameObject.FindWithTag(skillController.target);
+        target = GameObject.FindWithTag(skillController.Target);
 
         if(target == null)
         {
-            skillController.target = "Boss";
-            target = GameObject.FindWithTag(skillController.target);
+            skillController.Target = "Boss";
+            target = GameObject.FindWithTag(skillController.Target);
         }
         bullet.GetComponent<Targeting>().GetVector(transform.position, target.transform.position);
     }

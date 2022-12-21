@@ -7,7 +7,6 @@ public class ShockWave : MonoBehaviour
     [SerializeField]
     private float speed;                                    // 挙動スピード
     
-    public int Attack = 2;                                 // ダメージ量
     private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
 
     public void SetObjectPool(Factory obj) {objectPool = obj;}

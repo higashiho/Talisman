@@ -12,8 +12,6 @@ public class DamageFieldController : MonoBehaviour
 
     private bool onScaleUp = true;         // スケールアップできるか
 
-    private float destroyTime = 5.0f;        // 消えるまでの時間
-
     public bool Damage = false;         // ダメージを与えられるかどうか
     private int giveDamage = 1;         // ダメージの値
     private bool startDamage = false;        // ダメージ処理に入ったかどうか

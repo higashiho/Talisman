@@ -5,29 +5,18 @@ using UnityEngine;
 
 public class ColBoss : MonoBehaviour
 {
-    [SerializeField]
-    private BossController bossController;              // スクリプト格納用
-    private GameObject wallObj = default;               // 壁オブジェクト格納用
-    public GameObject WallObj{get{return wallObj;} set{wallObj = value;}}
     [SerializeField,HeaderAttribute("融合エフェクト")]
     private ParticleSystem mageEfect;                   // 中ボス吸収時のエフェクト
-
-
-    private float normalSpeed = 1;                      // スピード格納
-    public float GetNormalSpeed() {return normalSpeed;}
     [HeaderAttribute("壁に当たってるか")]
-    public bool onWall = false;                         // 壁に当たってるか  
-    public bool OnWall{
-        get {return onWall;}
-        set {onWall = value;}
-    }
     private bool damageFlag = false;                    // 壁のダメージが入っているかフラグ
     private float damageTime = 1.0f;                    // 壁ダメージの間隔 
     private float destroyTime = 3.0f;                   // 消えるまでの時間
-    private int rSwordDamage = 2;                       // 回転斬りに当たった時のダメージ
+
     private bool onDamage = false;                      // ダメージを受けたか
     private float speedDownTime = 0.7f;                 // スピードダウンの時間
 
+    [SerializeField]
+    private BossController boss;                        // ボススクリプト
     // 融合エフェクト再生関数
     public void PlayEfect()
     {
@@ -36,7 +25,7 @@ public class ColBoss : MonoBehaviour
     
     void Update()
     {
-         if(onDamage && !onWall)
+         if(onDamage && !boss.OnWall)
             damage();
     }
 
@@ -44,13 +33,13 @@ public class ColBoss : MonoBehaviour
     private void damage()
     {
         float m_lowSpeed = 0.5f, m_startTime = 0.2f;
-        GetComponent<BossController>().Speed = m_lowSpeed;
+        boss.Speed = m_lowSpeed;
 
         speedDownTime -= Time.deltaTime;
         if(speedDownTime <= 0)
         {
             onDamage = false;
-            GetComponent<BossController>().Speed = normalSpeed;
+            boss.Speed = Const.NOMAL_SPEED;
             speedDownTime = m_startTime;
         }
        
@@ -60,19 +49,18 @@ public class ColBoss : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        int m_damage = 1;
         // 弾丸との当たり判定
         if(other.gameObject.tag == "Bullet")
         {
             onDamage = true;
-            bossController.Hp -= other.gameObject.GetComponent<BulletController>().Attack;
+            boss.Hp -= Const.BULLET_ATTACK;
             GetComponent<UnstuckBoss>().CalcRate();
         }
         // 通常攻撃での当たり判定
         if(other.gameObject.name == "Sword")
         {
             onDamage = true;
-            bossController.Hp -= m_damage;
+            boss.Hp -= Const.NOMAL_DAMAGE;
             GetComponent<UnstuckBoss>().CalcRate();
         }
 
@@ -80,14 +68,14 @@ public class ColBoss : MonoBehaviour
         if(other.gameObject.name == "RotateSword")
         {
             onDamage = true;
-            bossController.Hp -= rSwordDamage;
+            boss.Hp -= Const.ROTATE_SWORD_DAMAGE;
             GetComponent<UnstuckBoss>().CalcRate();
         }
         // 衝撃波との当たり判定
         if(other.gameObject.tag == "ShockWave")
         {
             onDamage = true;
-            bossController.Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+            boss.Hp -= Const.SHOCK_WAVE_ATTACK;
             GetComponent<UnstuckBoss>().CalcRate();
         }
 
@@ -109,9 +97,9 @@ public class ColBoss : MonoBehaviour
                 Invoke("wallDamage", damageTime);
             }
 
-            onWall = true;
-            bossController.Speed = 0;
-            wallObj = col.gameObject;
+            boss.OnWall = true;
+            boss.Speed = 0;
+            boss.WallObj = col.gameObject;
             Destroy(col.gameObject, destroyTime);
         }
     }
@@ -119,7 +107,7 @@ public class ColBoss : MonoBehaviour
     private void wallDamage()
     {
         damageFlag = false;
-        bossController.Hp--;
+        boss.Hp--;
     }
     
 }

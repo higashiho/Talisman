@@ -8895,7 +8895,7 @@ PrefabInstance:
     - target: {fileID: 2243393573469111196, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: sword
       value: 
-      objectReference: {fileID: 501981197}
+      objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111211, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_Name
       value: Players
