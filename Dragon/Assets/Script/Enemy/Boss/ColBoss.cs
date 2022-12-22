@@ -41,8 +41,6 @@ public class ColBoss : MonoBehaviour
             boss.Speed = Const.NOMAL_SPEED;
             speedDownTime = Const.SPEED_TIMER_MAX;
         }
-       
-
     }
 
     

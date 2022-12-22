@@ -38,7 +38,7 @@ public class BulletShot : BaseSkills
     public void ShotBullet()
     {
         //オブジェクトプールのLaunch関数呼び出し
-        objectPool.Launch(transform.position, objectPool.GetBulletQueue(), objectPool.GetBulletObj());
+        objectPool.Launch(transform.position, objectPool.BulletQueue, objectPool.BulletObj);
         target = GameObject.FindWithTag(skillController.Target);
 
         if(target == null)

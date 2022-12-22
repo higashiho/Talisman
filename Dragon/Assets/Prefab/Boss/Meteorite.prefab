@@ -184,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPool: {fileID: 0}
   alpha: 0
-  Damege: 3
   Meteo: {fileID: 8836286636694527632}
 --- !u!1 &8836286636694527632
 GameObject:
@@ -301,5 +300,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPool: {fileID: 0}
-  mteoriteController: {fileID: 0}
-  ring: {fileID: 0}
+  mteoriteController: {fileID: 1714644606254614136}
+  ring: {fileID: 1714644606254614136}

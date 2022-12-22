@@ -41,6 +41,8 @@ public class Const
     public const float MAX_BEAM_DESTROY_TYME = 3.0f;    // ビームが消える時間
     public const float MAX_METEO_DESTROY_TYME = 0.3f;   // 隕石が消える時間
     public const int METEO_DAMAGE = 3;                  // プレイヤーに当たった時に与えるダメージ  
+    public const float CHARGE_SPEED_DOWN = 0.5f;        // 衝撃波チャージ中のスピードダウン
+    public const float CHARGE_TIMER_MAX = 0.5f;         // 衝撃波ため時間最大値
     // 以上ボス用
 
     // 以下システム用

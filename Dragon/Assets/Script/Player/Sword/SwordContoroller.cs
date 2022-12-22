@@ -5,13 +5,6 @@ using UnityEngine;
 public class SwordContoroller : BaseSword
 {
     
-    /// @breif 剣を振り回すスクリプト
-    /// @note  playerの子のSwordにアタッチ
-    /// @note  右クリックで回転開始
-    /// @note  AttackWaitで攻撃頻度変更可能
-    /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
-    /// @note　オンにして表示と当たり判定を行う
-
     [SerializeField]
     private Factory objectPool;                     // オブジェクトプール用コントローラー格納
     private BaseSkills shockWaveObj;                // 衝撃波オブジェク
@@ -93,7 +86,7 @@ public class SwordContoroller : BaseSword
 
             if(!coroutineBool)
             {
-                float m_downSpeed = 0.5f;
+
                 var m_nomalSpeed = player.NomalPlayerSpeed;
                 if(Input.GetMouseButton(0))
                 {
@@ -102,7 +95,7 @@ public class SwordContoroller : BaseSword
                     // Shieldがある場合スピードダウン
                     if(player.OnShield)
                         player.PlayerSpeed
-                        = m_nomalSpeed * m_downSpeed; 
+                        = m_nomalSpeed * Const.CHARGE_SPEED_DOWN; 
                     renderer.enabled = true;
                     onCharge = true;
                 }
@@ -110,9 +103,7 @@ public class SwordContoroller : BaseSword
                 else if(Input.GetMouseButtonUp(0))
                 {
                     nomalAttack();
-                    // 衝撃波出すために必要なため時間
-                    float m_waveTime = 0.5f;
-                    if(onTime > m_waveTime)
+                    if(onTime > Const.CHARGE_TIMER_MAX)
                         shockWave();
                     else onTime = default;
 
@@ -132,7 +123,7 @@ public class SwordContoroller : BaseSword
     // 衝撃波を出す攻撃
     private void shockWave()
     {
-        shockWaveObj = objectPool.Launch(this.transform.position, objectPool.GetShockWaveQueue(), objectPool.GetShockWaveobj());
+        shockWaveObj = objectPool.Launch(this.transform.position, objectPool.ShockWaveQueue, objectPool.ShockWaveobj);
 
         skillController.Skills[4] -= OnShockSkill;
         

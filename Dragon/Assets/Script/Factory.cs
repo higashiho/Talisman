@@ -14,12 +14,14 @@ public class Factory : MonoBehaviour
     [SerializeField]
     private BaseSkills shockWave;                                   // 衝撃波のプレファブ 
     [SerializeField]
-    private BaseSkills[] bossSkill = new BaseSkills[3];             // ボスのスキル 
 
     // 生成オブジェクト取得用関数
-    public BaseSkills GetBulletObj() {return bullet;}
-    public BaseSkills GetShockWaveobj() {return shockWave;}
-    public BaseSkills[] BossSkill{get {return bossSkill;}} 
+    public BaseSkills BulletObj{ 
+        get {return bullet;}
+    }
+    public BaseSkills ShockWaveobj{
+        get{return shockWave;}
+    } 
 
     
                            
@@ -30,9 +32,15 @@ public class Factory : MonoBehaviour
     private Queue<BaseSkills> bossSkillsQueue;
 
     // 配列取得用
-    public Queue<BaseSkills> GetBulletQueue() {return bulletQueue;}
-    public Queue<BaseSkills> GetShockWaveQueue() {return shockWaveQueue;}
-    public Queue<BaseSkills> BossSkillsQueue{get {return bossSkillsQueue;}}
+    public Queue<BaseSkills> BulletQueue{
+        get {return bulletQueue;}
+    }
+    public Queue<BaseSkills> ShockWaveQueue{
+        get {return shockWaveQueue;}
+    }
+    public Queue<BaseSkills> BossSkillsQueue{
+        get {return bossSkillsQueue;}
+    }
 
 
     private Vector3 setPos = new Vector3(100.0f, 100.0f, 0);        // 初期位置

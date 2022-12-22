@@ -189,12 +189,13 @@ public class BossController : MonoBehaviour
             //Judgment = "GameClear";
             SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
             pos = this.transform.position;
-            
-            Destroy(this.gameObject, destroyTime);
         }
 
         Destroy(GetComponent<BoxCollider2D>());
         this.transform.position = pos + Random.insideUnitSphere * Const.SYAKE_POWER;
+        // 透明度が０になったら削除
+        if(alpha <= 0)
+            Destroy(this.gameObject);
     }
 
     // 壁が消えた場合初期化するため

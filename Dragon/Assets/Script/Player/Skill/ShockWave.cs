@@ -53,7 +53,7 @@ public class ShockWave : BaseSkills
             onSizeUp = false;
             float m_sizeX = 4.0f, m_sizeY = 1.0f, m_sizeZ = 1.0f;
             this.transform.localScale = new Vector3(m_sizeX, m_sizeY, m_sizeZ);
-            objectPoolCallBack?.Invoke(objectPool.GetShockWaveQueue(),this);
+            objectPoolCallBack?.Invoke(objectPool.ShockWaveQueue,this);
         }
     }
 

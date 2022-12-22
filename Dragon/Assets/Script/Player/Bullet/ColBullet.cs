@@ -13,11 +13,11 @@ public class ColBullet : BaseSkills
     {
         if(other.gameObject.tag == "Boss")
         {
-            objectPoolCallBack?.Invoke(objectPool.GetBulletQueue(), this);
+            objectPoolCallBack?.Invoke(objectPool.BulletQueue, this);
         }
         if(other.gameObject.tag == "MiddleBoss")
         {
-            objectPoolCallBack?.Invoke(objectPool.GetBulletQueue(), this);
+            objectPoolCallBack?.Invoke(objectPool.BulletQueue, this);
         }
     }
 }

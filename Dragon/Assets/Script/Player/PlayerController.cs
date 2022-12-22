@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!onShield && hp <= 0)
         {
-            SceneManager.LoadScene("EndScene");
+            SceneController.SceneJudg = SceneController.JudgScene.GAMEOVER;
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DebugBoss : MonoBehaviour
 {
+#if UNITY_EDITOR
     [SerializeField]
     private BossController bossController;          // スクリプト格納用
 
@@ -26,8 +27,10 @@ public class DebugBoss : MonoBehaviour
     void Update()
     {
         if(boss != null)
+        {
+            killBoss();
             bossMoveArea();
-        
+        }
         else
         {
             if(findBoss.GetOnFind())
@@ -38,6 +41,14 @@ public class DebugBoss : MonoBehaviour
         }
     }
 
+    // ボスのHpをなくす
+    private void killBoss()
+    {
+         if(Input.GetKeyDown("0"))
+        {
+            boss.GetComponent<BossController>().Hp = 0;
+        }
+    }
    
     // エリア転移
     private void bossMoveArea()
@@ -75,6 +86,7 @@ public class DebugBoss : MonoBehaviour
             pos.y = playerPosY;
             player.transform.position = pos;
         }
-    }
+   }
 
+#endif
 }
