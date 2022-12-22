@@ -8,6 +8,9 @@ using UnityEngine.Events;
 
 public class BaseEnemy : MonoBehaviour
 {
+
    public static UnityAction<BaseEnemy> OnFinishedCallBack;
    public static UnityAction<BaseEnemy> OnCreateCallBack;
+
+  
 }

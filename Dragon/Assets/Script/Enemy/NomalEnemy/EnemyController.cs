@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour
     //[SerializeField]
     //private float destroytimer;     //敵が自動消滅する時間
 
-    [SerializeField]
-    private float enemyMoveSpeed;   //エネミー移動速度
+    
+    public float enemyMoveSpeed;   //エネミー移動速度
 
     [SerializeField]
     private ColEnemy colEnemy;      //スクリプト参照

@@ -10,16 +10,24 @@ using UnityEngine.EventSystems;
 
 public class EnemyManager : BaseEnemy
 {
+    public bool CreateOrder;
     // オブジェクト参照
     [SerializeField]
     private GameObject creater;
     private FactoryEnemies factory;
 
+    // エネミースプライト
+    [Header("モブスプライト"), SerializeField]
+    private Sprite[] spriteArr = new Sprite[5];
+
+    // アイテムの色
+    [Header("アイテムカラー"), SerializeField]
+    private Color[] itemColor = new Color[5];
 
     [Header("経過時間"), SerializeField]
     private float timer;
-    [Header("生成Prefab"), SerializeField]
-    private BaseEnemy prefab;
+    //[Header("生成Prefab"), SerializeField]
+    //private GameObject prefab;
     [Header("識別番号定数"), SerializeField]
     private int[] enemyCase;
     [Header("湧き数最大値"), SerializeField]
@@ -34,10 +42,12 @@ public class EnemyManager : BaseEnemy
     [Header("生成禁止距離"), SerializeField]
     private float offset;
     
+
+    private float mobEnemyHp = 3.0f;
     private int enemyCaseArraySize;
     // 出現確率テーブル
     private List<int> enemyTable = new List<int>(16);
-
+    
     // 確率テーブル作成
     private void calcTotalWeight()
     {
@@ -74,35 +84,58 @@ public class EnemyManager : BaseEnemy
     }
 
     // Enemyをプールリストから取ってくる
-    private BaseEnemy getEnemy()
-    {
-        BaseEnemy obj = default;
-        do
-        {
-            obj = factory.ObjectPool(prefab);
-        }
-        while(obj == default);
-        
-        return obj;
-    }
+    // private BaseEnemy getEnemy()
+    // {
+    //     BaseEnemy obj = default;
+    //     do
+    //     {
+    //         CreateOrder = true;
+    //         //obj = OnCreateCallBack?.Invoke(this);
+    //         //obj = factory.ObjectPool(MobPrefab);
+    //     }
+    //     while(obj == default);
+    //     CreateOrder = false;
+    //     return obj;
+    // }
 
     
     private void setAbility(BaseEnemy obj)
     {
-        // スクリプト貼り付け
-        // ステータス設定 
-        //obj.gameObject.AddComponent<>();
-        // ItemNum 
+        var index = calcRate();
+        // エネミーステータス設定 
+        //obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
+        obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spriteArr[index];
+        obj.transform.GetChild(0).GetComponent<EnemyController>().enemyMoveSpeed = Const.ENEMY_SPEED;
+        obj.transform.GetChild(0).GetComponent<MoveAnimationMobEnemy>().Type = index;
+        obj.transform.GetChild(0).GetComponent<ColEnemy>().EnemyHp = setHp(index);
+        // hp
+        
+        // エネミーアイテム設定
+        obj.transform.GetChild(1).GetComponent<SpriteRenderer>().color = itemColor[index];
+        obj.transform.GetChild(1).GetComponent<ItemShade>().ItemMoveSpeed = Const.ENEMY_ITEM_SPEED;
+        obj.transform.GetChild(1).GetComponent<ItemShade>().ItemNumber = index;
+        
         // MoveSpeed
         // EnemyMoveSpeed
         // Hp
     }
 
-    // 生成座標を決める関数
-    private Vector3 createPos()
+    // エネミーのHpを判定して返す関数
+    private int setHp(int index)
     {
-
+        if(index > 3)
+            return Const.TOUGH_ENEMY_HP;
+        else
+            return Const.WEAK_ENEMY_HP;   
     }
+    
+
+    // 生成座標を決める関数
+    // private Vector3 createPos()
+    // {
+    //     Vector3 pos ;
+    //     return pos;
+    // }
 
 
     

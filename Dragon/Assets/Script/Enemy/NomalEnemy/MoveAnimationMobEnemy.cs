@@ -7,17 +7,7 @@ public class MoveAnimationMobEnemy : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
-
-    private enum enemyState
-    {
-        MOB_ENEMY_BULLET = 0,
-        MOB_ENEMY_ROTATE = 1,
-        MOB_ENEMY_SPEED = 2,
-        MOB_ENEMY_WALL = 3,
-        MOB_ENEMY_WAVE = 4
-    };
-    [SerializeField]
-    private enemyState enemys;
+    public int Type;
 
 
     // Start is called before the first frame update
@@ -34,6 +24,6 @@ public class MoveAnimationMobEnemy : MonoBehaviour
 
     private void enemyAnimation()
     {
-        animator.SetInteger("EnemyState", (int)enemys);
+        animator.SetInteger("EnemyState", Type);
     }
 }

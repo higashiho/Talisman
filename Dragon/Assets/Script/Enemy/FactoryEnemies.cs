@@ -4,20 +4,34 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 
+// オブジェクトを生成するクラス
+
 public class FactoryEnemies : MonoBehaviour
 {
-    //  モブエネミーのプレファブ
-    [SerializeField]
-    private BaseEnemy mobEnemy;
+    
+    [Header("経過時間"), SerializeField]
+    private float timer;
 
-    //  中ボスのプレファブ
-    [SerializeField]
-    private BaseEnemy middleBoss;
+    [Header("湧き数最大値"), SerializeField]
+    private int spawnCount;
 
-    //  エネミーを入れておくプール
+    [Header("出現しているEnemyの数")]
+    public int Counter;
+
+    [Header("生成インターバル"), SerializeField]
+    private float spawnTimer;
+
+    // 非アクティブなエネミーを入れておくプール
     private Queue<BaseEnemy> qoolingEnemies = new Queue<BaseEnemy>(16);
     
 
+    void Updata()
+    {
+        timer += Time.deltaTime;    // 毎フレーム時間を数える
+
+        if(timer > spawnTimer)
+            ObjectPool();  // モブをプールから取り出す
+    }
 
     //  プールからオブジェクトを取ってくる関数
     //  プールの中にオブジェクトがある場合  :   Dequeue
@@ -51,7 +65,7 @@ public class FactoryEnemies : MonoBehaviour
     void OnEnable() {
 
         BaseEnemy.OnFinishedCallBack += Finish;
-        //BaseEnemy.OnCreateCallBack += Create;
+        //BaseEnemy.OnCreateCallBack += ObjectPool;
     }
 
 }

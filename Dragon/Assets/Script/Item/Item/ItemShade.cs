@@ -8,15 +8,15 @@ public class ItemShade : MonoBehaviour
     [SerializeField]
     private GameObject player;                      //プレイヤー取得
 
-    [SerializeField]
-    private int itemNumber;                         //アイテムプレハブ
+  
+    public int ItemNumber = default;                         //アイテムプレハブ
 
     private int indexAjast = 1;                     //アイテムindex調整用
 
     private SkillController skillController;        //スクリプト格納用
 
-    [SerializeField]
-    private float itemMoveSpeed;                    //アイテムの移動速度
+    
+    public float ItemMoveSpeed = default;                    //アイテムの移動速度
 
     private int point = 2;
 
@@ -38,7 +38,7 @@ public class ItemShade : MonoBehaviour
             int m_audioNunber = 6;
             var m_audio = other.transform.GetChild(m_audioNunber).gameObject;
             m_audio.transform.GetChild(0).gameObject.GetComponent<GetItem>().ItemGet();
-            skillController.Skills[itemNumber - indexAjast] += point;
+            skillController.Skills[ItemNumber - indexAjast] += point;
             enemyStateCtrl.DoneItem = true;
         }
     }
@@ -49,7 +49,7 @@ public class ItemShade : MonoBehaviour
         Vector3 subject = parent.transform.position;
         Vector3 destination = target.transform.position;
 
-        parent.transform.position = Vector3.MoveTowards(subject , destination , itemMoveSpeed * Time.deltaTime);
+        parent.transform.position = Vector3.MoveTowards(subject , destination , ItemMoveSpeed * Time.deltaTime);
     }
 
 }
