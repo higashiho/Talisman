@@ -195,14 +195,18 @@ public class PlayerController : MonoBehaviour
         hp = Const.HEEL;
         playerSpeed = noShieldSpeed;
     }
+
     // シールド回復
     private void shieldHeel()
     {
+        // ヒール開始
         if(oneHeel)
         {
             shield();
             oneHeel = false;
         }
+
+        // ヒールが０になったら回復する
         heelSheld -= Time.deltaTime;
         if(heelSheld <= 0)
         {
@@ -215,6 +219,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // ゲームオーバー確認処理
     private void gameOver()
     {
         if(!onShield && hp <= 0)

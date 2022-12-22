@@ -45,16 +45,14 @@ public class BossController : MonoBehaviour
     public bool IsMiddleBossInField{set{isMiddleBossInField = value;}}
     
 
-    private float attackSpeed = 5.0f;                           // ラストエリア時の攻撃間隔
-    private int attackTime = 15;                                // アタック間隔
 
     
     private float destroyTime = 5.0f;                       // 消えるまでの時間
     private float alpha = 1;                                // 透明度
 
     [HeaderAttribute("攻撃スキル"), SerializeField]
-    private GameObject[] attackSkill = new GameObject[3];    // 攻撃スキル
-    private GameObject attackObject = default;               // 攻撃スキルオブジェクト
+    private BaseSkills[] attackSkill = new BaseSkills[3];    // 攻撃スキル
+    private BaseSkills attackObject = default;               // 攻撃スキルオブジェクト
     [SerializeField,HeaderAttribute("Player")]
     private GameObject player;                                // player格納用
     private GameObject cutin;                               // カットインオブジェクト
@@ -91,7 +89,7 @@ public class BossController : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating("attack", attackTime, attackTime);
+        InvokeRepeating("attack", Const.ATTACK_TIME, Const.ATTACK_TIME);
 
         hp = randomBossHp.RandomHp();
     }
@@ -120,7 +118,8 @@ public class BossController : MonoBehaviour
     // 挙動
     private void move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetCoordinates, speed * Time.deltaTime);
+        transform.position = 
+        Vector3.MoveTowards(transform.position, targetCoordinates, speed * Time.deltaTime);
         
         // 目標座標についたらScene転移
         if(pos.x >= targetCoordinates.x)
@@ -129,7 +128,8 @@ public class BossController : MonoBehaviour
     // 攻撃挙動
     private void attack()
     {
-        if(hp > 0){
+        if(hp > 0)
+        {
             pos = this.transform.position;
             // エリア４にいるときの敵の攻撃
             if(pos.x > Areas[3])
@@ -139,36 +139,50 @@ public class BossController : MonoBehaviour
             // エリア３にいるときの敵の攻撃
             else if(pos.x > Areas[2])
             {
+                damageFieldSkill();
                 
-                attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[2]);
-                attackObject.transform.parent = this.gameObject.transform;
-            
             }
             // エリア２にいるときの敵の攻撃
             else if(pos.x > Areas[1])
             {
-                attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[1]);
-                attackObject.transform.parent = this.gameObject.transform;
+                beamSkill();
             }
             // エリア１にいるときの敵の攻撃
             else
             {
-                attackObject = objectPool.Launch(player.transform.position , objectPool.BossSkillsList[0]);
-                attackObject.transform.parent = null;
+                meteoSkill();
             }
         }
     }
 
+    // ダメージフィールド
+    private void damageFieldSkill()
+    {
+        attackObject = 
+            objectPool.Launch(transform.position , objectPool.BossSkillsQueue, attackSkill[2]);
+        attackObject.transform.parent = this.gameObject.transform;
+            
+    }
+    // ビーム
+    private void beamSkill()
+    {
+        attackObject = objectPool.Launch(transform.position ,objectPool.BossSkillsQueue, attackSkill[1]);
+        attackObject.transform.parent = this.gameObject.transform;
+    }
+    // 隕石
+    private void meteoSkill()
+    {
+        attackObject = objectPool.Launch(player.transform.position , objectPool.BossSkillsQueue, attackSkill[0]);
+        attackObject.transform.parent = null;
+    }
     // 体力が０になった時の処理
     private void gameClear()
     {
         // ボスが死んだら少しづつ消える
-        float m_mag = 0.2f;               // 透明じゃなくなる速さ
         spriteRenderer.color = new Color(1, 0, 1, alpha);
-        alpha -= Time.deltaTime * m_mag;
+        alpha -= Time.deltaTime * Const.MAG;
 
         // ボスが死んだら震える
-        float m_shakePower = 1;           // 揺らす強さ
         
         if(SceneController.SceneJudg == SceneController.JudgScene.GAMECLEAR)
         {
@@ -180,7 +194,7 @@ public class BossController : MonoBehaviour
         }
 
         Destroy(GetComponent<BoxCollider2D>());
-        this.transform.position = pos + Random.insideUnitSphere * m_shakePower;
+        this.transform.position = pos + Random.insideUnitSphere * Const.SYAKE_POWER;
     }
 
     // 壁が消えた場合初期化するため
@@ -193,14 +207,11 @@ public class BossController : MonoBehaviour
     // エリア４での攻撃用
     private IEnumerator lastAreaSkill()
     {
-        attackObject = objectPool.Launch(player.transform.position , objectPool.BossSkillsList[0]);
-        attackObject.transform.parent = null;
-        yield return new WaitForSeconds(attackSpeed);
-        attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[1]);
-        attackObject.transform.parent = this.gameObject.transform;
-        yield return new WaitForSeconds(attackSpeed);
-        attackObject = objectPool.Launch(transform.position , objectPool.BossSkillsList[2]);
-        attackObject.transform.parent = this.gameObject.transform;
+        meteoSkill();
+        yield return new WaitForSeconds(Const.ATTACK_SPEED);
+        beamSkill();
+        yield return new WaitForSeconds(Const.ATTACK_SPEED);
+        damageFieldSkill();
     }
 
     // 消えた場合の処理

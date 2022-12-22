@@ -6,27 +6,14 @@ public class BossDamageEfectScript : MonoBehaviour
 {
     [SerializeField]
     private ParticleSystem particlesystem;         //パーティクルシステム取得
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Bullet")
-            particlesystem.Play();
-        if(other.gameObject.name == "Sword")
-            particlesystem.Play();
-        if(other.gameObject.name == "RotateSword")
-            particlesystem.Play();
-        if(other.gameObject.tag == "ShockWave")
+        // ダメージ判定があるものに当たったらエフェクト再生
+        if(other.gameObject.tag == "Bullet" ||
+        other.gameObject.name == "Sword" || 
+        other.gameObject.name == "RotateSword" ||
+        other.gameObject.tag == "ShockWave" )
             particlesystem.Play();
 
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallSkill : MonoBehaviour
+public class WallSkill : BaseSkills
 {
 
     [SerializeField]

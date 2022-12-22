@@ -12,11 +12,9 @@ public class SwordContoroller : BaseSword
     /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
     /// @note　オンにして表示と当たり判定を行う
 
-
-   
     [SerializeField]
     private Factory objectPool;                     // オブジェクトプール用コントローラー格納
-    private GameObject shockWaveObj;                // 衝撃波オブジェク
+    private BaseSkills shockWaveObj;                // 衝撃波オブジェク
     
     /// 取得系込み変数
     // スキルを使うためのアイテム量
@@ -134,7 +132,7 @@ public class SwordContoroller : BaseSword
     // 衝撃波を出す攻撃
     private void shockWave()
     {
-        shockWaveObj = objectPool.Launch(this.transform.position, null, objectPool.GetShockWaveQueue(),objectPool.GetShockWaveobj());
+        shockWaveObj = objectPool.Launch(this.transform.position, objectPool.GetShockWaveQueue(), objectPool.GetShockWaveobj());
 
         skillController.Skills[4] -= OnShockSkill;
         

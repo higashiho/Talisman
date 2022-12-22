@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageFieldController : MonoBehaviour
+public class DamageFieldController : BaseSkills
 {
 
     private float scaleUp = 0;       // だんだん大きくする用
@@ -20,10 +20,7 @@ public class DamageFieldController : MonoBehaviour
     
     private GameObject player;                      // プレイヤー格納用
     private PlayerController playerController;      // スクリプト格納用
-    [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納
 
-    private float waitTime = 2.0f;                  // 遅延時間
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +30,7 @@ public class DamageFieldController : MonoBehaviour
         playerController = player.gameObject.GetComponent<PlayerController>();
 
         // objectPool取得
-        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+        objectPool = Factory.ObjectPool;
     }
     private void OnEnable()
     {
@@ -62,13 +59,13 @@ public class DamageFieldController : MonoBehaviour
         if(scaleUp >= maxScale)
         {
             waitTime -= Time.deltaTime;
+            if(waitTime <= 0)
             {
-                float m_startWaitTime = 2.0f;
-                waitTime = m_startWaitTime;
+                waitTime = Const.START_WAIT_TIME;
                 scaleUp = default;
                 onScaleUp = false;
                 this.gameObject.transform.parent = objectPool.gameObject.transform;
-                objectPool.Collect(null, this.gameObject);
+                objectPoolCallBack?.Invoke(objectPool.BossSkillsQueue, this);
             }
         }
     }

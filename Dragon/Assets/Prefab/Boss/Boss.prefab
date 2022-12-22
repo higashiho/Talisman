@@ -15248,9 +15248,9 @@ MonoBehaviour:
   hp: 0
   isMidEffect: {fileID: 0}
   attackSkill:
-  - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
-  - {fileID: 5659572085952152628, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
-  - {fileID: 5866518532598467319, guid: 60046c826c0b8e945b0312b7b1474359, type: 3}
+  - {fileID: 1714644606254614136, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
+  - {fileID: 5659572085952152627, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
+  - {fileID: 5866518532598467080, guid: 60046c826c0b8e945b0312b7b1474359, type: 3}
   player: {fileID: 0}
   randomBossHp: {fileID: 512418799}
   objectPool: {fileID: 0}

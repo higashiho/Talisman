@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShot : MonoBehaviour
+public class BulletShot : BaseSkills
 {
 
     [SerializeField, HeaderAttribute("player")]
@@ -21,15 +21,13 @@ public class BulletShot : MonoBehaviour
         get{return target;}
     }
     
-    [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納
 
     
     
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+        objectPool = Factory.ObjectPool;
         player = GameObject.FindWithTag("Player");
         skillController = player.GetComponent<SkillController>();
         playerController = player.GetComponent<PlayerController>();
@@ -40,7 +38,7 @@ public class BulletShot : MonoBehaviour
     public void ShotBullet()
     {
         //オブジェクトプールのLaunch関数呼び出し
-        objectPool.Launch(transform.position, null, objectPool.GetBulletQueue(), objectPool.GetBulletObj());
+        objectPool.Launch(transform.position, objectPool.GetBulletQueue(), objectPool.GetBulletObj());
         target = GameObject.FindWithTag(skillController.Target);
 
         if(target == null)

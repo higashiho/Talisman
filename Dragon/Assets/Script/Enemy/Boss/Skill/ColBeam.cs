@@ -19,7 +19,6 @@ public class ColBeam : MonoBehaviour
     void OnEnable()
     {
         GetComponent<BoxCollider2D>().enabled = true;
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)

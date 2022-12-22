@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Targeting : MonoBehaviour
+public class Targeting : BaseSkills
 {
 
 
@@ -15,11 +15,10 @@ public class Targeting : MonoBehaviour
 
     private ColBullet colBullet;
     
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = transform.parent.GetComponent<Factory>();
+        objectPool = Factory.ObjectPool;
         // gameObject.SetActive(false);
         colBullet = this.GetComponent<ColBullet>();
     }
@@ -28,14 +27,8 @@ public class Targeting : MonoBehaviour
     void FixedUpdate()
     {
         move();
-
     }
 
-    // 自身を回収
-    public void HideFromStage()
-    {
-        objectPool.Collect(objectPool.GetBulletQueue(), this.gameObject);
-    }
 
     // 弾の挙動
     private void move()
@@ -54,8 +47,4 @@ public class Targeting : MonoBehaviour
     }
 
     
-    public void ShowInStage(Vector3 _pos)
-    {
-        transform.position = _pos;
-    }
 }

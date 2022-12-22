@@ -6,8 +6,12 @@ using UnityEngine.Events;
 public class BaseSkills : MonoBehaviour
 {
     // イベント
-    protected static UnityAction skillCallBack;
-
+    public UnityAction skillCallBack;
+    public UnityAction<Queue<BaseSkills>, BaseSkills> objectPoolCallBack;
     // イベント遅延用
     protected float waitTime = 1.0f;
+
+    // 取得用
+    [SerializeField]
+    protected Factory objectPool;             
 }

@@ -32,15 +32,14 @@ public class ColBoss : MonoBehaviour
     // 攻撃を受けたときスピードダウン関数
     private void damage()
     {
-        float m_lowSpeed = 0.5f, m_startTime = 0.2f;
-        boss.Speed = m_lowSpeed;
+        boss.Speed = Const.LOW_SPEED;
 
         speedDownTime -= Time.deltaTime;
         if(speedDownTime <= 0)
         {
             onDamage = false;
             boss.Speed = Const.NOMAL_SPEED;
-            speedDownTime = m_startTime;
+            speedDownTime = Const.SPEED_TIMER_MAX;
         }
        
 

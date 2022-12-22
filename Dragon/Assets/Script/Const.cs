@@ -8,8 +8,9 @@ public class Const
     public const float MAX_TIMER = 1.0f;                // スキル使用間隔
     public const int WALL_SKILL = 5;                    // 壁スキル生成スキル使用個数
     public const int BULLET_ATTACK = 5;                 // 弾ダメージ 
-    public const int SHOCK_WAVE_ATTACK = 2;            // 衝撃波ダメージ量 
-    public const int ROTATE_SWORD_DAMAGE = 2;                // 回転斬りのダメージ
+    public const int SHOCK_WAVE_ATTACK = 2;             // 衝撃波ダメージ量 
+    public const int ROTATE_SWORD_DAMAGE = 2;           // 回転斬りのダメージ
+    public const float MAX_SCALE_X = 16.0f ;            // 衝撃波の最大サイズ
     // 以上スキル用定数
 
     // 以下プレイヤー用
@@ -30,10 +31,20 @@ public class Const
 
     // 以下ボス用
     public const float NOMAL_SPEED = 1.0f;              // スピード初期値
+    public const float LOW_SPEED = 0.5f;                // 攻撃されているときのスピード
+    public const float SPEED_TIMER_MAX = 0.7f;          // スピードが下がる時間の最大値
     public const int NOMAL_DAMAGE = 1;                  // ダメージ
+    public const float ATTACK_SPEED = 5.0f;             // ラストエリア時の攻撃間隔
+    public const int ATTACK_TIME = 15;                  // アタック間隔
+    public const float MAG = 0.2f;                      // 透明じゃなくなる速さ
+    public const float SYAKE_POWER = 1;                 // 揺らす強さ
+    public const float MAX_BEAM_DESTROY_TYME = 3.0f;    // ビームが消える時間
+    public const float MAX_METEO_DESTROY_TYME = 0.3f;   // 隕石が消える時間
+    public const int METEO_DAMAGE = 3;                  // プレイヤーに当たった時に与えるダメージ  
     // 以上ボス用
 
     // 以下システム用
     public const float NOMAL_TIME = 1.0f;                     // timeScale初期値
+    public const float START_WAIT_TIME = 1.0f;                // 遅延時間最大値
     // 以上システム用
 }
