@@ -87,28 +87,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4d61e1634bac0448a2704826f2e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MobPrefab: {fileID: 0}
-  CreateOrder: 0
-  creater: {fileID: 0}
-  spriteArr:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  itemColor:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  timer: 0
-  enemyCase: 
-  spawnCount: 0
-  Counter: 0
-  spawnTimer: 0
-  respawnWeight: 
-  offset: 0
+  MobSpriteArr:
+  - {fileID: 21300000, guid: 0caf68431baf55c43866cfa4edd4a6d4, type: 3}
+  - {fileID: 21300000, guid: 0e458ef92cb325648b3e94bf466869f2, type: 3}
+  - {fileID: 21300000, guid: fa02287e7b633ee46958bfd316942276, type: 3}
+  - {fileID: 21300000, guid: 47fa9b4fb9da45c4a9dca29697811523, type: 3}
+  - {fileID: 21300000, guid: 3c5ac3e6ebc8b3d499a4a2f53e5038de, type: 3}
+  MobItemColor:
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0.6431373, g: 0, b: 1, a: 1}
+  enemyRespawnWeight: 0200000002000000010000000200000002000000
 --- !u!1001 &331592629277710038
 PrefabInstance:
   m_ObjectHideFlags: 0

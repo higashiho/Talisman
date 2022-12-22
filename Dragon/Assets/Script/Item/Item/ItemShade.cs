@@ -11,7 +11,7 @@ public class ItemShade : MonoBehaviour
   
     public int ItemNumber = default;                         //アイテムプレハブ
 
-    private int indexAjast = 1;                     //アイテムindex調整用
+    //private int indexAjast = 1;                     //アイテムindex調整用
 
     private SkillController skillController;        //スクリプト格納用
 
@@ -38,7 +38,7 @@ public class ItemShade : MonoBehaviour
             int m_audioNunber = 6;
             var m_audio = other.transform.GetChild(m_audioNunber).gameObject;
             m_audio.transform.GetChild(0).gameObject.GetComponent<GetItem>().ItemGet();
-            skillController.Skills[ItemNumber - indexAjast] += point;
+            skillController.Skills[ItemNumber/* - indexAjast*/] += point;
             enemyStateCtrl.DoneItem = true;
         }
     }

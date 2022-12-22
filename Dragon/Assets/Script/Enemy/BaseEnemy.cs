@@ -8,9 +8,17 @@ using UnityEngine.Events;
 
 public class BaseEnemy : MonoBehaviour
 {
+    // エネミースプライト
+    [Header("モブスプライト"), SerializeField]
+    public Sprite[] MobSpriteArr = new Sprite[5];
 
-   public static UnityAction<BaseEnemy> OnFinishedCallBack;
-   public static UnityAction<BaseEnemy> OnCreateCallBack;
+    // アイテムの色
+    [Header("アイテムカラー"), SerializeField]
+    public Color[] MobItemColor = new Color[5];
+    
+    public static UnityAction<BaseEnemy> OnFinishedCallBack;
+    public static UnityAction<BaseEnemy> OnCreateCallBack;
 
   
+
 }

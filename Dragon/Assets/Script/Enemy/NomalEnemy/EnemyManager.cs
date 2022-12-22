@@ -3,59 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Factoryに使用可能なEnemyを注文する
-// 届いたEnemyに必要なコンポーネントをつける
+
+// OnEnableで各種ステータス設定
 // 各Enemyの役目が終了したら回収する
 // Factoryのプールに送り返す
 
 public class EnemyManager : BaseEnemy
 {
-    public bool CreateOrder;
-    // オブジェクト参照
-    [SerializeField]
-    private GameObject creater;
-    private FactoryEnemies factory;
-
-    // エネミースプライト
-    [Header("モブスプライト"), SerializeField]
-    private Sprite[] spriteArr = new Sprite[5];
-
-    // アイテムの色
-    [Header("アイテムカラー"), SerializeField]
-    private Color[] itemColor = new Color[5];
-
-    [Header("経過時間"), SerializeField]
-    private float timer;
-    //[Header("生成Prefab"), SerializeField]
-    //private GameObject prefab;
-    [Header("識別番号定数"), SerializeField]
-    private int[] enemyCase;
-    [Header("湧き数最大値"), SerializeField]
-    private int spawnCount;
-    [Header("出現しているEnemyの数")]
-    public int Counter;
-    [Header("生成インターバル"), SerializeField]
-    private float spawnTimer;
     [Header("Enemyのタイプ別出現レート"), SerializeField]
-    private int[] respawnWeight;
-    private int totalWeight;
-    [Header("生成禁止距離"), SerializeField]
-    private float offset;
+    private int[] enemyRespawnWeight;
+    private int enemyTotalWeight;
+
     
 
-    private float mobEnemyHp = 3.0f;
     private int enemyCaseArraySize;
     // 出現確率テーブル
     private List<int> enemyTable = new List<int>(16);
-    
-    // 確率テーブル作成
-    private void calcTotalWeight()
+        // 確率テーブル作成
+    public void CalcTotalWeight()
     {
-        for(int i = 0; i < respawnWeight.Length; i++)
+        for(int i = 0; i < enemyRespawnWeight.Length; i++)
         {
-            totalWeight += respawnWeight[i];
+            enemyTotalWeight += enemyRespawnWeight[i];
 
-            for(int j = 0; j < respawnWeight[i]; j++)
+            for(int j = 0; j < enemyRespawnWeight[i]; j++)
             {
                 enemyTable.Add(i);
             }
@@ -63,57 +34,38 @@ public class EnemyManager : BaseEnemy
     }
 
     // 確率計算関数
-    private int calcRate()
+    public int CalcRate()
     {
-        int index = UnityEngine.Random.Range(0,100) % totalWeight;
+        int index = UnityEngine.Random.Range(0,100) % enemyTotalWeight;
         int result = enemyTable[index];
 
         return result;
     }
 
-    void Start() 
+    void OnEnable() 
     {
-        factory = creater.GetComponent<FactoryEnemies>();
-        enemyCaseArraySize = enemyCase.Length;
+        CalcTotalWeight();
+        // 初期化関数を呼ぶ
+        setAbility();
     }
-
-    void Updata()
-    {
-        ;
-        //OnFinishedCallBack?.Invoke(this);
-    }
-
-    // Enemyをプールリストから取ってくる
-    // private BaseEnemy getEnemy()
-    // {
-    //     BaseEnemy obj = default;
-    //     do
-    //     {
-    //         CreateOrder = true;
-    //         //obj = OnCreateCallBack?.Invoke(this);
-    //         //obj = factory.ObjectPool(MobPrefab);
-    //     }
-    //     while(obj == default);
-    //     CreateOrder = false;
-    //     return obj;
-    // }
-
+   
     
-    private void setAbility(BaseEnemy obj)
+    private void setAbility()
     {
-        var index = calcRate();
+        int index = CalcRate();
         // エネミーステータス設定 
         //obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
-        obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spriteArr[index];
-        obj.transform.GetChild(0).GetComponent<EnemyController>().enemyMoveSpeed = Const.ENEMY_SPEED;
-        obj.transform.GetChild(0).GetComponent<MoveAnimationMobEnemy>().Type = index;
-        obj.transform.GetChild(0).GetComponent<ColEnemy>().EnemyHp = setHp(index);
+        this.transform.GetChild(0).GetComponent<MoveAnimationMobEnemy>().Type = index;
+        this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = MobSpriteArr[index];
+        this.transform.GetChild(0).GetComponent<EnemyController>().enemyMoveSpeed = Const.ENEMY_SPEED;
+        this.transform.GetChild(0).GetComponent<MoveAnimationMobEnemy>().Type = index;
+        this.transform.GetChild(0).GetComponent<ColEnemy>().EnemyHp = setHp(index);
         // hp
         
         // エネミーアイテム設定
-        obj.transform.GetChild(1).GetComponent<SpriteRenderer>().color = itemColor[index];
-        obj.transform.GetChild(1).GetComponent<ItemShade>().ItemMoveSpeed = Const.ENEMY_ITEM_SPEED;
-        obj.transform.GetChild(1).GetComponent<ItemShade>().ItemNumber = index;
+        this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = MobItemColor[index];
+        this.transform.GetChild(1).GetComponent<ItemShade>().ItemMoveSpeed = Const.ENEMY_ITEM_SPEED;
+        this.transform.GetChild(1).GetComponent<ItemShade>().ItemNumber = index;
         
         // MoveSpeed
         // EnemyMoveSpeed
@@ -123,13 +75,18 @@ public class EnemyManager : BaseEnemy
     // エネミーのHpを判定して返す関数
     private int setHp(int index)
     {
-        if(index > 3)
+        // エネミー4・5のとき
+        if(index > 3)  
             return Const.TOUGH_ENEMY_HP;
+        // エネミー1・2のとき
         else
             return Const.WEAK_ENEMY_HP;   
     }
     
-
+    void OnDisable() 
+    {
+        OnFinishedCallBack?.Invoke(this);
+    }
     // 生成座標を決める関数
     // private Vector3 createPos()
     // {

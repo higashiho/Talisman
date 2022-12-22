@@ -70,7 +70,7 @@ public class EnemyStateController : MonoBehaviour
         eneCtrl = mobEnemy.GetComponent<EnemyController>();
 
         state = MobEnemyState.MOBENEMY;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     void OnEnable()

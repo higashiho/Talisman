@@ -8,46 +8,126 @@ using UnityEngine.Events;
 
 public class FactoryEnemies : MonoBehaviour
 {
-    
-    [Header("経過時間"), SerializeField]
-    private float timer;
+    //[SerializeField]
+    //private Text[] debugText = new Text[5];
 
-    [Header("湧き数最大値"), SerializeField]
-    private int spawnCount;
+    // 生成Prefab
+    [Header("モブPrefab"), SerializeField]
+    private BaseEnemy mobEnemy;
+    [Header("中ボスPrefab"), SerializeField]
+    private BaseEnemy midBoss;
 
-    [Header("出現しているEnemyの数")]
-    public int Counter;
+    // タイマー
+    [Header("モブタイマー"), SerializeField]
+    private float mobTimer;
+    [Header("中ボスタイマー"), SerializeField]
+    private float midTimer;
 
-    [Header("生成インターバル"), SerializeField]
-    private float spawnTimer;
+    // オブジェクトカウンター(Active)
+    [Header("出現しているモブの数")]
+    public int MobCounter;
+    [Header("出現している中ボスの数")]
+    public int MidCounter;
 
+    private GameObject boss;
+    private BossController bossCtrl;
+    private FindBoss findBoss;
+    [SerializeField]
+    private GameObject player;
     // 非アクティブなエネミーを入れておくプール
-    private Queue<BaseEnemy> qoolingEnemies = new Queue<BaseEnemy>(16);
+    private Queue<BaseEnemy> qoolingMobEnemies = new Queue<BaseEnemy>(16);
+    private Queue<BaseEnemy> qoolingMiddleBoss = new Queue<BaseEnemy>(4);
     
-
-    void Updata()
+    // エネミーの生成座標がプレイヤーとかぶっているか確認する関数
+    private bool CheckPos(Vector3 createPos)
     {
-        timer += Time.deltaTime;    // 毎フレーム時間を数える
+        bool overBorderX = false;
+        bool overBorderY = false;
+        Vector3 playerPos = player.transform.position;
+        if(createPos.x < playerPos.x + Const.CREATE_OFFSET 
+        && createPos.x > playerPos.x - Const.CREATE_OFFSET)
+            overBorderX = true;
 
-        if(timer > spawnTimer)
-            ObjectPool();  // モブをプールから取り出す
+        if(createPos.y < playerPos.y + Const.CREATE_OFFSET
+        && createPos.y > playerPos.y - Const.CREATE_OFFSET)
+            overBorderY = true;
+
+        if(overBorderX && overBorderY)
+            return true;
+        else 
+            return false;
+    }
+
+    private Vector3 setEnemyPos()
+    {
+         Vector3 createPos;
+        do
+        {
+            float posX, posY;
+            
+            Vector3 pos = boss.transform.position;  
+            posX = UnityEngine.Random.Range(pos.x - Const.CREATE_WIDTH, pos.x + Const.CREATE_WIDTH);
+            posY = UnityEngine.Random.Range(pos.y - Const.CREATE_HEIGHT, pos.y + Const.CREATE_HEIGHT);
+            createPos = new Vector3(posX, posY, 0);
+            // if(pos.x < bossCtrl.Areas[3])
+            //     spawnTimer = 1;
+        }
+        while(CheckPos(createPos));
+        
+        return createPos;
+    }
+    void Start() 
+    {
+       findBoss = GameObject.FindWithTag("BossInstance").GetComponent<FindBoss>();
+    }
+    void Update()
+    {
+        
+        if(boss != null)
+        {
+            // 毎フレーム時間を数える
+            mobTimer += Time.deltaTime;    
+            midTimer += Time.deltaTime;
+            //debugText[1].text = "time:" + time;
+            // モブ生成インターバル
+            if(mobTimer > Const.MOB_SPAWNINTERVAL && MobCounter < Const.MOB_SPAWNMAX)
+            {
+                objectPool(mobEnemy);  // モブをプールから取り出す
+                MobCounter++;
+                mobTimer = 0;
+            }
+            
+            
+            
+        }
+        else
+        {
+
+            if(findBoss.GetOnFind())
+            {
+                boss = findBoss.GetBoss();
+                bossCtrl = findBoss.GetBossController();
+            }
+        }
+        //debugText[0].text = "Enemy生成 :" + boss;  
     }
 
     //  プールからオブジェクトを取ってくる関数
     //  プールの中にオブジェクトがある場合  :   Dequeue
     //  プールの中が空の場合               :   Instantiate
-    public BaseEnemy ObjectPool(BaseEnemy obj){
+    private BaseEnemy objectPool(BaseEnemy obj){
 
         BaseEnemy temp = default;
 
-        if(qoolingEnemies.Count > 0)
-            temp = qoolingEnemies.Dequeue();
+        if(qoolingMobEnemies.Count > 0)
+            temp = qoolingMobEnemies.Dequeue();
 
         else
         {
-            temp = Instantiate(obj);
+            temp = Instantiate(obj, this.transform);
         }
-
+        temp.transform.position = setEnemyPos();
+        temp.gameObject.SetActive(true);
         return temp;
     }
 
@@ -58,8 +138,10 @@ public class FactoryEnemies : MonoBehaviour
     
     public void Finish(BaseEnemy obj)
     {
-        qoolingEnemies.Enqueue(obj);
-        Debug.Log("A");
+        obj.gameObject.SetActive(false);
+        qoolingMobEnemies.Enqueue(obj);
+        MobCounter--;
+        //Debug.Log("A");
     }
 
     void OnEnable() {

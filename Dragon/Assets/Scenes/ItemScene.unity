@@ -147,7 +147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19581975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7122e647b36a1664a8ea2a92318f805c, type: 3}
   m_Name: 
@@ -1920,8 +1920,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 441165315}
+  - component: {fileID: 441165316}
   m_Layer: 0
-  m_Name: EnemyPool
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1942,6 +1943,25 @@ Transform:
   m_Father: {fileID: 19581977}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &441165316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441165314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25606c1915d566749850ad06c7b5b8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobEnemy: {fileID: 5337585357348085953, guid: d91583c5d453e0a4089ce1f4b7a61c28, type: 3}
+  midBoss: {fileID: 0}
+  mobTimer: 0
+  midTimer: 0
+  MobCounter: 0
+  MidCounter: 0
+  player: {fileID: 2032606405}
 --- !u!1 &451017851
 GameObject:
   m_ObjectHideFlags: 0
@@ -8111,6 +8131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1890798682}
   - component: {fileID: 1890798683}
+  - component: {fileID: 1890798684}
   m_Layer: 0
   m_Name: MobEnemyCreater
   m_TagString: Untagged
@@ -8140,16 +8161,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890798681}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38abcf44486418c4189d6b4fa6741b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mobEnemys: 0
-  debugText:
-  - {fileID: 541014542}
-  - {fileID: 1464067083}
-  - {fileID: 1693613877}
   findBoss: {fileID: 312412519}
   spawnCount: 30
   spawnTimer: 1.5
@@ -8160,6 +8177,31 @@ MonoBehaviour:
   HEIGHT: 35
   WIDTH: 35
   CreateSpeed: 1
+--- !u!114 &1890798684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890798681}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4d61e1634bac0448a2704826f2e93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobSpriteArr:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MobItemColor:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  enemyRespawnWeight: 
 --- !u!1 &1894724850
 GameObject:
   m_ObjectHideFlags: 0
@@ -8657,6 +8699,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2032606405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2841260570107853756, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+  m_PrefabInstance: {fileID: 669136481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2039475479
 GameObject:
   m_ObjectHideFlags: 0
