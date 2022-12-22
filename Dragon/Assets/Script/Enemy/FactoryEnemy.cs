@@ -43,7 +43,8 @@ public class FactoryEnemy : MonoBehaviour
     }
 
 
-    // オブジェクトを生成して透明にしてプーリングする
+    // オブジェクトを生成してプーリングする
+    // 引数(ラベル名, 生成数, プーリングリスト, リストを持っている親オブジェクト)
     public IEnumerator LoadAsset(string key, int numMax, List<GameObject> PoolList, GameObject parent)
     {
             loadOp = Addressables.LoadAssetAsync<GameObject>(key);
@@ -54,7 +55,7 @@ public class FactoryEnemy : MonoBehaviour
             if(loadOp.Result != null)
             {
                 var newObj = Instantiate(loadOp.Result, parent.transform);
-                newObj.name = key;
+                newObj.name = key;  
                 PoolList.Add(newObj);
             }
         }
