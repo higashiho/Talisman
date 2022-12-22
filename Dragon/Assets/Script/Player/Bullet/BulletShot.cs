@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShot : MonoBehaviour
+public class BulletShot : BaseSkills
 {
-    [SerializeField] 
-    private GameObject bulletObj;
-    private Vector3 bulletPoint;    // 弾を生成する位置
 
     [SerializeField, HeaderAttribute("player")]
     private PlayerController playerController;          //スクリプト格納用
@@ -24,36 +21,30 @@ public class BulletShot : MonoBehaviour
         get{return target;}
     }
     
-    [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納
 
     
     
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+        objectPool = Factory.ObjectPool;
         player = GameObject.FindWithTag("Player");
         skillController = player.GetComponent<SkillController>();
         playerController = player.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     // スキルポイントがある場合の弾生成用
     public void ShotBullet()
     {
         //オブジェクトプールのLaunch関数呼び出し
-        objectPool.Launch(transform.position, null, objectPool.GetBulletQueue(), objectPool.GetBulletObj());
-        target = GameObject.FindWithTag(skillController.target);
+        objectPool.Launch(transform.position, objectPool.BulletQueue, objectPool.BulletObj);
+        target = GameObject.FindWithTag(skillController.Target);
 
         if(target == null)
         {
-            skillController.target = "Boss";
-            target = GameObject.FindWithTag(skillController.target);
+            skillController.Target = "Boss";
+            target = GameObject.FindWithTag(skillController.Target);
         }
         bullet.GetComponent<Targeting>().GetVector(transform.position, target.transform.position);
     }

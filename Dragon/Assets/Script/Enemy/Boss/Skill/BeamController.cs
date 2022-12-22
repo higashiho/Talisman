@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamController : MonoBehaviour
+public class BeamController : BaseSkills
 {
     [SerializeField]
     private GameObject Player;      // プレイヤー格納用
-    
-    [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納
 
     private Vector3 posPlayer;      // プレイヤーの座標格納用
 
@@ -22,19 +19,16 @@ public class BeamController : MonoBehaviour
 
     [SerializeField, HeaderAttribute("消えるまでの時間")]
     private float destroyTime;      // 消えるまでの時間
-    private float saveDestroyTime;  // 消えるまでの時間保管用
     [SerializeField]
     private GameObject beamLine;        // ビームラインオブジェクト
 
-    private float waitTime = 1.0f;      // ビームが伸びるまでの時間
     private bool wait = false;          // ビームが伸びれるか
 
     // Start is called before the first frame update
     void Start()
     {
-        saveDestroyTime = destroyTime;
         // objectPool取得
-        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+        objectPool = Factory.ObjectPool;
     }
 
     void OnEnable()
@@ -66,8 +60,8 @@ public class BeamController : MonoBehaviour
             wait = false;
 
             this.gameObject.transform.parent = objectPool.gameObject.transform;
-            objectPool.Collect(null, this.gameObject);
-            destroyTime = saveDestroyTime;
+            objectPoolCallBack?.Invoke(objectPool.BossSkillsQueue, this);
+            destroyTime = Const.MAX_BEAM_DESTROY_TYME;
         }
     }
 

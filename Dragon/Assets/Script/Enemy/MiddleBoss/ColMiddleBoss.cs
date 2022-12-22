@@ -111,7 +111,7 @@ public class ColMiddleBoss : MonoBehaviour
         // ショックウェーブにあたったとき
         if(other.gameObject.tag == "ShockWave")
         {
-            Hp -= other.gameObject.GetComponent<ShockWave>().Attack;
+            Hp -= Const.SHOCK_WAVE_ATTACK;
             Deth = dethMid();
         }
         if(midCtrl.Margeable)

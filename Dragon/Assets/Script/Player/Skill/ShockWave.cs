@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShockWave : MonoBehaviour
+public class ShockWave : BaseSkills
 {
     [SerializeField]
     private float speed;                                    // 挙動スピード
-    
-    public int Attack = 2;                                 // ダメージ量
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納用変数宣言
 
     public void SetObjectPool(Factory obj) {objectPool = obj;}
 
@@ -18,13 +15,12 @@ public class ShockWave : MonoBehaviour
     public void SetOnSizeUp(bool b) {onSizeUp = b; }
     public bool GetOnSizeUp() {return onSizeUp;}
     
-    private Vector3 scaleChange = new Vector3(4.0f, 1.0f, 0);     // 大きくなる速さ
+    private Vector3 scaleChange = new Vector3(20.0f, 5.0f, 0);     // 大きくなる速さ
 
     // Start is called before the first frame update
     void Start()
     {
-        //objectPool = transform.parent.GetComponent<Factory>();
-
+        objectPool = Factory.ObjectPool;
     }
 
     // Update is called once per frame
@@ -45,8 +41,7 @@ public class ShockWave : MonoBehaviour
 
     private void sizeUp()
     {
-        float maxScaleX = 16.0f ;
-        if(this.transform.localScale.x <= maxScaleX)
+        if(this.transform.localScale.x <= Const.MAX_SCALE_X)
             this.transform.localScale += scaleChange * Time.deltaTime;
     }
     
@@ -58,7 +53,7 @@ public class ShockWave : MonoBehaviour
             onSizeUp = false;
             float m_sizeX = 4.0f, m_sizeY = 1.0f, m_sizeZ = 1.0f;
             this.transform.localScale = new Vector3(m_sizeX, m_sizeY, m_sizeZ);
-            objectPool.Collect(objectPool.GetShockWaveQueue(), this.gameObject);
+            objectPoolCallBack?.Invoke(objectPool.ShockWaveQueue,this);
         }
     }
 
