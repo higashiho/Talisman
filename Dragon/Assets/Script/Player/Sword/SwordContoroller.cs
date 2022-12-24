@@ -11,11 +11,7 @@ public class SwordContoroller : BaseSword
     
     /// 取得系込み変数
     // スキルを使うためのアイテム量
-    private int OnShockSkill = 2;                   
-    public int onshockskill{
-        get { return OnShockSkill ;}
-        set { OnShockSkill = value ;}
-    }
+    private int onShockSkill = 2;         
     public bool CoroutineBool{
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
@@ -72,7 +68,7 @@ public class SwordContoroller : BaseSword
     private void attack()
     {
         // スキルアイテムがない場合
-        if(skillController.Skills[4] < OnShockSkill)
+        if(skillController.Skills[4] < onShockSkill)
         {
             if (!coroutineBool && Input.GetMouseButtonDown(0))
             {
@@ -125,19 +121,19 @@ public class SwordContoroller : BaseSword
     {
         shockWaveObj = objectPool.Launch(this.transform.position, objectPool.ShockWaveQueue, objectPool.ShockWaveobj);
 
-        skillController.Skills[4] -= OnShockSkill;
+        skillController.Skills[4] -= onShockSkill;
         
         
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
         // スキルアイテムが４つ以上ないと大きくならないようにする
-        if(onTime >= maxTime && skillController.Skills[4] >= OnShockSkill)
+        if(onTime >= maxTime && skillController.Skills[4] >= onShockSkill)
         {
             shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     
             Vector3 startScale = new Vector3(0.8f, 0.2f,1.0f);      // 最初の大きさ
             shockWaveObj.transform.localScale = startScale;
 
-            skillController.Skills[4] -= OnShockSkill;
+            skillController.Skills[4] -= onShockSkill;
         }
             
 

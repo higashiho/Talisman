@@ -20,7 +20,7 @@ public class SkillController : BaseSkills
     public int[] Skills = new int[Const.SKILLS_VALUE_MAX];
 
     //スクリプト格納用
-    [HeaderAttribute("ターゲティング中の敵")]
+    [HeaderAttribute("ターゲティング中の敵"),SerializeField]
     private string target = default;                                 // ターゲットのタグ
     public string Target{
         get{return target;}
@@ -60,14 +60,16 @@ public class SkillController : BaseSkills
         bulletShot = GameObject.FindWithTag("Shot").GetComponent<BulletShot>();
 
         // イベント代入処理
-        skillCallBack += changeTarget;
         skillCallBack += lockOnSkill;
         skillCallBack += speedUpSkill;
         skillCallBack += rotateSwordSkill;
         skillCallBack += wallSkill;
     }
 
-
+    void Update()
+    {
+        changeTarget();
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
