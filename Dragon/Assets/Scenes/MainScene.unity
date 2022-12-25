@@ -314,37 +314,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25476553}
   m_CullTransparentMesh: 1
---- !u!1 &33614550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 33614551}
-  m_Layer: 0
-  m_Name: EnemyPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &33614551
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33614550}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1185426584}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &61119335
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,66 +812,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "WASD\t\t\t\t\t\t\uFF1A\t\u79FB\u52D5\n\u79FB\u52D5\u30AD\u30FC(\uFF12\u56DE)\t\t\t\t\uFF1A\t\u30B9\u30C6\u30C3\u30D7\n\u5DE6\u30AF\u30EA\u30C3\u30AF\t\t\t\t\t\uFF1A\t\u901A\u5E38\u653B\u6483\n\n\u30DE\u30A6\u30B9\u30DB\u30A4\u30FC\u30EB\t\uFF1A\u304A\u672D\uFF08\u8D64\u30FB\u9752\uFF09\u3092\u9078\u3076\n\n\u53F3\u30AF\u30EA\u30C3\u30AF\n\uFF08\u8D64\u306E\u304A\u672D\uFF09\uFF1A\u56DE\u8EE2\u5207\u308A\n\uFF08\u9752\u306E\u304A\u672D\uFF09\uFF1A\u30AF\u30EA\u30C3\u30AF\u3057\u305F\u5EA7\u6A19\u306B\n\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u58C1\u3092\u751F\u6210"
---- !u!1 &141602038
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 141602039}
-  - component: {fileID: 141602040}
-  m_Layer: 0
-  m_Name: MiddleBossCreater
-  m_TagString: MiddleBossCreater
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &141602039
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141602038}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1643.5599, y: -902.78296, z: -0.92076945}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1158762919}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &141602040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141602038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e658ee4d566a644aa2933484743d0b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minHp: 25
-  maxHp: 50
-  minIp: 10
-  maxIp: 20
-  normalColor: {fileID: 0}
-  rareColor: {fileID: 0}
-  bossInstance: {fileID: 1398843200}
-  boss: {fileID: 0}
-  bossPos: {x: 0, y: 0, z: 0}
-  PoolObject: {fileID: 1185426582}
-  AttractMid: {fileID: 732783777}
-  findBoss: {fileID: 1398843203}
-  middleBossNumCounter: 0
-  bossNumMaxInField: 5
-  intervalCreate: 30
-  respawnWeight: 010000000100000001000000
 --- !u!1 &159009618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1511,7 @@ RectTransform:
   m_Children:
   - {fileID: 805396542}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2687,7 +2596,7 @@ Transform:
   m_Children:
   - {fileID: 674847067}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &656316062
 GameObject:
@@ -4268,37 +4177,6 @@ RectTransform:
   m_AnchoredPosition: {x: -844.9518, y: -498.1984}
   m_SizeDelta: {x: 230.0965, y: 83.6032}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &863366834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 863366835}
-  m_Layer: 0
-  m_Name: MiddleBossPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &863366835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863366834}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1185426584}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1017164613
 GameObject:
   m_ObjectHideFlags: 0
@@ -4882,6 +4760,57 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -50}
   m_SizeDelta: {x: 564.9021, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1150275754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1150275756}
+  - component: {fileID: 1150275755}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1150275755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150275754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25606c1915d566749850ad06c7b5b8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobEnemy: {fileID: 5337585357348085953, guid: d91583c5d453e0a4089ce1f4b7a61c28, type: 3}
+  midBoss: {fileID: 0}
+  mobTimer: 0
+  midTimer: 0
+  MobCounter: 0
+  MidCounter: 0
+  player: {fileID: 0}
+--- !u!4 &1150275756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150275754}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10, y: 55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1452502709}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158708474
 GameObject:
   m_ObjectHideFlags: 0
@@ -4959,65 +4888,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 728567877}
-  - {fileID: 141602039}
-  - {fileID: 1353459776}
+  - {fileID: 1686404764}
+  - {fileID: 2058146719}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1185426582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1185426584}
-  - component: {fileID: 1185426583}
-  m_Layer: 0
-  m_Name: PoolObject
-  m_TagString: EnemyPool
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1185426583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185426582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7122e647b36a1664a8ea2a92318f805c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiddleBossPool: {fileID: 863366834}
-  EnemyPool: {fileID: 33614550}
-  middleBossPool1: []
-  mobEnemyPool1: []
-  mobEnemyPool2: []
-  mobEnemyPool3: []
-  mobEnemyPool4: []
-  mobEnemyPool5: []
-  LoadingComplete: 0
---- !u!4 &1185426584
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185426582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 33614551}
-  - {fileID: 863366835}
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1257557707
 GameObject:
@@ -5400,65 +5274,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338948883}
   m_CullTransparentMesh: 1
---- !u!1 &1353459775
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1353459776}
-  - component: {fileID: 1353459777}
-  m_Layer: 0
-  m_Name: MobEnemyCreater
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1353459776
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353459775}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1635.1869, y: -960.983, z: -0.92076945}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1158762919}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1353459777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1353459775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38abcf44486418c4189d6b4fa6741b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mobEnemys: 0
-  debugText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  findBoss: {fileID: 1398843203}
-  spawnCount: 30
-  spawnTimer: 1.5
-  Counter: 0
-  RespawnWeight: 0200000002000000010000000200000002000000
-  time: 0
-  offset: 25
-  HEIGHT: 35
-  WIDTH: 35
-  CreateSpeed: 1
 --- !u!1 &1370663183
 GameObject:
   m_ObjectHideFlags: 0
@@ -6081,6 +5896,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444459151}
   m_CullTransparentMesh: 1
+--- !u!1 &1452502707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452502709}
+  - component: {fileID: 1452502708}
+  m_Layer: 0
+  m_Name: PoolObject
+  m_TagString: EnemyPool
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1452502708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452502707}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7122e647b36a1664a8ea2a92318f805c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MiddleBossPool: {fileID: 1690947906}
+  EnemyPool: {fileID: 1150275754}
+  middleBossPool1: []
+  mobEnemyPool1: []
+  mobEnemyPool2: []
+  mobEnemyPool3: []
+  mobEnemyPool4: []
+  mobEnemyPool5: []
+  LoadingComplete: 0
+--- !u!4 &1452502709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452502707}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1150275756}
+  - {fileID: 1690947907}
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1493187028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6694,6 +6564,97 @@ RectTransform:
   m_AnchoredPosition: {x: 705.0261, y: 338.0464}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1686404763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686404764}
+  - component: {fileID: 1686404765}
+  m_Layer: 0
+  m_Name: MiddleBossCreater
+  m_TagString: MiddleBossCreater
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686404764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686404763}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1643.5599, y: -902.78296, z: -0.92076945}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1158762919}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686404765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686404763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e658ee4d566a644aa2933484743d0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHp: 25
+  maxHp: 50
+  minIp: 10
+  maxIp: 20
+  normalColor: {fileID: 0}
+  rareColor: {fileID: 0}
+  bossInstance: {fileID: 1398843200}
+  boss: {fileID: 0}
+  bossPos: {x: 0, y: 0, z: 0}
+  PoolObject: {fileID: 1452502707}
+  AttractMid: {fileID: 732783777}
+  findBoss: {fileID: 1398843203}
+  middleBossNumCounter: 0
+  bossNumMaxInField: 5
+  intervalCreate: 30
+  respawnWeight: 0100000001000000
+--- !u!1 &1690947906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1690947907}
+  m_Layer: 0
+  m_Name: MiddleBossPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1690947907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690947906}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1452502709}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700436642
 GameObject:
   m_ObjectHideFlags: 0
@@ -8331,6 +8292,87 @@ RectTransform:
   m_AnchoredPosition: {x: 190, y: -50}
   m_SizeDelta: {x: 393.2698, y: 100}
   m_Pivot: {x: 0.50000024, y: 0.5}
+--- !u!1 &2058146718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058146719}
+  - component: {fileID: 2058146721}
+  - component: {fileID: 2058146720}
+  m_Layer: 0
+  m_Name: MobEnemyCreater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058146719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058146718}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1635.1869, y: -960.983, z: -0.92076945}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1158762919}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2058146720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058146718}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4d61e1634bac0448a2704826f2e93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobSpriteArr:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MobItemColor:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  enemyRespawnWeight: 
+--- !u!114 &2058146721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058146718}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38abcf44486418c4189d6b4fa6741b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobEnemys: 0
+  findBoss: {fileID: 1398843203}
+  spawnCount: 30
+  spawnTimer: 1.5
+  Counter: 0
+  RespawnWeight: 0200000002000000010000000200000002000000
+  time: 0
+  offset: 25
+  HEIGHT: 35
+  WIDTH: 35
+  CreateSpeed: 1
 --- !u!1 &2061690915
 GameObject:
   m_ObjectHideFlags: 0
