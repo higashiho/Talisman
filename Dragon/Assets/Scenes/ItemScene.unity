@@ -3128,10 +3128,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2243393573469111184, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: objectPool
+      value: 
+      objectReference: {fileID: 1560938791}
     - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: findBoss
       value: 
       objectReference: {fileID: 312412519}
+    - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: bulletShot
+      value: 
+      objectReference: {fileID: 810104318}
+    - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: objectPool
+      value: 
+      objectReference: {fileID: 1560938791}
     - target: {fileID: 2243393573469111190, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: Skills.Array.data[0]
       value: 0
@@ -3140,6 +3152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Players
       objectReference: {fileID: 0}
+    - target: {fileID: 2243393573508983326, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 669136483}
     - target: {fileID: 6890473530996133675, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4003,11 +4019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3363a6929172027438b419b99a82c4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletObj: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
+  objectPool: {fileID: 0}
   playerController: {fileID: 669136483}
   skillController: {fileID: 669136482}
   target: {fileID: 0}
-  objectPool: {fileID: 0}
 --- !u!1 &853346190
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,7 +4062,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853346190}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e658ee4d566a644aa2933484743d0b8, type: 3}
   m_Name: 
@@ -7161,11 +7176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
   shockWave: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
-  bossSkill:
-  - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
-  - {fileID: 5659572085952152628, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
-  - {fileID: 5866518532598467319, guid: 60046c826c0b8e945b0312b7b1474359, type: 3}
-  bossSkillsList: []
   bulletShot: {fileID: 0}
 --- !u!4 &1560938792
 Transform:
@@ -8196,12 +8206,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   MobItemColor:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  enemyRespawnWeight: 
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0.6509804, g: 0, b: 1, a: 1}
+  enemyRespawnWeight: 0200000002000000010000000200000002000000
 --- !u!1 &1894724850
 GameObject:
   m_ObjectHideFlags: 0
