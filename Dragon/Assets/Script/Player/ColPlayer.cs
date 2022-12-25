@@ -5,8 +5,7 @@ using UnityEngine;
 public class ColPlayer : MonoBehaviour
 {
     [SerializeField]
-    private PlayerController playerController;          // スクリプト格納用
-
+    private PlayerController player;
     [SerializeField]
     private ParticleSystem damageEfect;         //パーティクルシステム取得
 
@@ -15,7 +14,7 @@ public class ColPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -28,10 +27,10 @@ public class ColPlayer : MonoBehaviour
     {
         if(col.gameObject.tag == "Enemy")
         {
-            if(!playerController.OnUnrivaled)
+            if(!player.OnUnrivaled)
             {
                 // ノックバックを実施して点滅を開始
-                playerController.OnUnrivaled = true;
+                player.OnUnrivaled = true;
                 knockBack.KnockBackPlayer(col);
                 damageEfect.Play();
             }

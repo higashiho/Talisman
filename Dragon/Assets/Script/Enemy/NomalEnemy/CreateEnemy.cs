@@ -21,8 +21,7 @@ public class CreateEnemy : MonoBehaviour
     private GameObject EnemyPool;   // エネミー用プールアタッチ
     private GameObject boss;        // boss
     private GameObject player;      // player
-    [SerializeField]
-    private Text[] debugText = new Text[5];
+
 
     // スクリプト参照用
     private FactoryEnemy factoryenemy;          // FactoryEnemyスクリプト参照
@@ -54,9 +53,6 @@ public class CreateEnemy : MonoBehaviour
 
     
     public float CreateSpeed = 1;          //生成速度
-    
-    private int count = 0;
-    private int count2 = 0;
     
     // モブ出現確率テーブル
     private List<int> enemyTable = new List<int>();
@@ -104,9 +100,7 @@ public class CreateEnemy : MonoBehaviour
     {
         if(boss != null)
         {
-            
-                count++;
-                debugText[1].text = "time:" + time;
+                
             time += Time.deltaTime;
             if(time > spawnTimer)
             {
@@ -129,7 +123,6 @@ public class CreateEnemy : MonoBehaviour
                 bossCtrl = findBoss.GetBossController();
             }
         }
-        debugText[0].text = "Enemy生成 :" + boss;
     }
 
     // Enemyをフィールドに表示する関数
@@ -142,8 +135,6 @@ public class CreateEnemy : MonoBehaviour
             dispObj = getMobEnemy();     // モブ敵をプールから取ってくる
             
         }while(dispObj == null);
-        count2++;
-                    debugText[2].text = "obj :" + count2;
         dispObj.transform.position = settingMobEnemyPos();  // 座標設定
         dispObj.SetActive(true);
         Counter++;      // フィールドにいるモブの数++
@@ -229,7 +220,7 @@ public class CreateEnemy : MonoBehaviour
         do
         {
             float posX, posY;
-            pos = boss.transform.position;  // playerの座標取得
+            pos = boss.transform.position;  
             posX = Random.Range(pos.x - WIDTH, pos.x + WIDTH);
             posY = Random.Range(pos.y - HEIGHT, pos.y + HEIGHT);
             createPos = new Vector3(posX, posY, 0);

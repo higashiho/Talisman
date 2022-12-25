@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class KnockBack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // ノックバック用関数
     public void KnockBackPlayer(Collision2D col)
     {
         var m_colEnemy = col.gameObject.transform.position;

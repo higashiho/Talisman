@@ -2,46 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordContoroller : MonoBehaviour
+public class SwordContoroller : BaseSword
 {
     
-    /// @breif 剣を振り回すスクリプト
-    /// @note  playerの子のSwordにアタッチ
-    /// @note  右クリックで回転開始
-    /// @note  AttackWaitで攻撃頻度変更可能
-    /// @note　右クリックを押したタイミングのみcorianderとSpriteRendereを
-    /// @note　オンにして表示と当たり判定を行う
-
-    /// 攻撃用変数
-    private float rotAngleZ = 10.0f;        //回転速度
-    private float StopRotation = 15.0f;     //回転ストップ
-    private float startAngleZ = 150.0f;     // 最初の位置に戻す
-    private float waitTime = 0.01f;         // 回転遅延用
-    [HeaderAttribute("攻撃間隔"), SerializeField]
-    private float attackWait;               // 攻撃遅延用
-
-    /// 取得用
-    [SerializeField]
-    private SkillController skillController;        //スクリプト格納用
     [SerializeField]
     private Factory objectPool;                     // オブジェクトプール用コントローラー格納
-    private GameObject shockWaveObj;                // 衝撃波オブジェク
-    [SerializeField, HeaderAttribute("player")]
-    private PlayerController player;                // スプライトレンダラー格納用
-    [HeaderAttribute("SwordのSpriteRendere格納"), SerializeField]
-    private new SpriteRenderer renderer;            // SpriteRendere格納用
-    [HeaderAttribute("SwordのBoxCollider2D格納"), SerializeField]
-    private new BoxCollider2D collider;
+    private BaseSkills shockWaveObj;                // 衝撃波オブジェク
     
     /// 取得系込み変数
     // スキルを使うためのアイテム量
-    private int OnShockSkill = 2;                   
-    public int onshockskill{
-        get { return OnShockSkill ;}
-        set { OnShockSkill = value ;}
-    }
-    //回転中か判断用
-    private bool coroutineBool = false;  
+    private int onShockSkill = 2;         
     public bool CoroutineBool{
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
@@ -80,6 +50,9 @@ public class SwordContoroller : MonoBehaviour
         renderer.enabled = false;
         collider.enabled = false;
         objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+
+        rotAngleZ = 10.0f;
+        startAngleZ = 150.0f;
     }
 
     // Update is called once per frame
@@ -95,7 +68,7 @@ public class SwordContoroller : MonoBehaviour
     private void attack()
     {
         // スキルアイテムがない場合
-        if(skillController.Skills[4] < OnShockSkill)
+        if(skillController.Skills[4] < onShockSkill)
         {
             if (!coroutineBool && Input.GetMouseButtonDown(0))
             {
@@ -109,7 +82,7 @@ public class SwordContoroller : MonoBehaviour
 
             if(!coroutineBool)
             {
-                float m_downSpeed = 0.5f;
+
                 var m_nomalSpeed = player.NomalPlayerSpeed;
                 if(Input.GetMouseButton(0))
                 {
@@ -118,7 +91,7 @@ public class SwordContoroller : MonoBehaviour
                     // Shieldがある場合スピードダウン
                     if(player.OnShield)
                         player.PlayerSpeed
-                        = m_nomalSpeed * m_downSpeed; 
+                        = m_nomalSpeed * Const.CHARGE_SPEED_DOWN; 
                     renderer.enabled = true;
                     onCharge = true;
                 }
@@ -126,9 +99,7 @@ public class SwordContoroller : MonoBehaviour
                 else if(Input.GetMouseButtonUp(0))
                 {
                     nomalAttack();
-                    // 衝撃波出すために必要なため時間
-                    float m_waveTime = 0.5f;
-                    if(onTime > m_waveTime)
+                    if(onTime > Const.CHARGE_TIMER_MAX)
                         shockWave();
                     else onTime = default;
 
@@ -148,21 +119,21 @@ public class SwordContoroller : MonoBehaviour
     // 衝撃波を出す攻撃
     private void shockWave()
     {
-        shockWaveObj = objectPool.Launch(this.transform.position, null, objectPool.GetShockWaveQueue(),objectPool.GetShockWaveobj());
+        shockWaveObj = objectPool.Launch(this.transform.position, objectPool.ShockWaveQueue, objectPool.ShockWaveobj);
 
-        skillController.Skills[4] -= OnShockSkill;
+        skillController.Skills[4] -= onShockSkill;
         
         
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
         // スキルアイテムが４つ以上ないと大きくならないようにする
-        if(onTime >= maxTime && skillController.Skills[4] >= OnShockSkill)
+        if(onTime >= maxTime && skillController.Skills[4] >= onShockSkill)
         {
             shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     
             Vector3 startScale = new Vector3(0.8f, 0.2f,1.0f);      // 最初の大きさ
             shockWaveObj.transform.localScale = startScale;
 
-            skillController.Skills[4] -= OnShockSkill;
+            skillController.Skills[4] -= onShockSkill;
         }
             
 
@@ -176,7 +147,7 @@ public class SwordContoroller : MonoBehaviour
     {
         collider.enabled = true;
         renderer.enabled = true;
-        for (int turn = 0; turn < StopRotation; turn++)
+        for (int turn = 0; turn < stopRotation; turn++)
         {
             transform.Rotate(0, 0, -rotAngleZ);
             yield return new WaitForSeconds(waitTime);

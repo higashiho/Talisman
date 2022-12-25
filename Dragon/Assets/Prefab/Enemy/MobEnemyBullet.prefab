@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0caf68431baf55c43866cfa4edd4a6d4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 21.44, y: 21.084063}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8123549337994771039
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75038e970cb8ea941847f25010b7fc5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMoveSpeed: 4
+  enemyMoveSpeed: 0
   colEnemy: {fileID: 8123549337994771038}
 --- !u!114 &8123549337994771038
 MonoBehaviour:
@@ -140,11 +140,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   efectEnemy: {fileID: 800965925411393824}
-  ENEMY_HP: 1
-  enemyHp: 1
+  ENEMY_HP: 0
+  enemyHp: 0
   hitDeleteName: Enemy
-  rb2D: {fileID: 0}
-  Polygon2D: {fileID: 0}
+  rb2D: {fileID: 8123549337994771039}
+  Polygon2D: {fileID: 554687506091942495}
 --- !u!114 &800965925411393824
 MonoBehaviour:
   m_ObjectHideFlags: 0

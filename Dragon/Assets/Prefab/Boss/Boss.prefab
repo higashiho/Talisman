@@ -15246,13 +15246,12 @@ MonoBehaviour:
   - 175
   - 275
   hp: 0
-  isMidEffect: {fileID: 0}
+  isMidEffect: {fileID: 2031221728}
   attackSkill:
-  - {fileID: 7180258644840889716, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
-  - {fileID: 5659572085952152628, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
-  - {fileID: 5866518532598467319, guid: 60046c826c0b8e945b0312b7b1474359, type: 3}
+  - {fileID: 1714644606254614136, guid: 977979334d532cf478e5e64fe682a94a, type: 3}
+  - {fileID: 5659572085952152627, guid: ef39d32e3c52b524cb308a0a8bedffd5, type: 3}
+  - {fileID: 5866518532598467080, guid: 60046c826c0b8e945b0312b7b1474359, type: 3}
   player: {fileID: 0}
-  colBoss: {fileID: 9060541169768609614}
   randomBossHp: {fileID: 512418799}
   objectPool: {fileID: 0}
 --- !u!114 &9060541169768609614
@@ -15267,9 +15266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129427a618f065343ac24a6e0a105ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossController: {fileID: 9060541169768609610}
   mageEfect: {fileID: 165948983}
-  OnWall: 0
+  boss: {fileID: 9060541169768609610}
 --- !u!114 &512418799
 MonoBehaviour:
   m_ObjectHideFlags: 0

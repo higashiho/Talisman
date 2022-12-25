@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColMeteorite : MonoBehaviour
+public class ColMeteorite : BaseSkills
 {
     
     private GameObject player;                      // プレイヤー格納用
@@ -10,17 +10,15 @@ public class ColMeteorite : MonoBehaviour
 
     [SerializeField]
     private MeteoriteController mteoriteController; // スクリプト格納用
-    [SerializeField]
-    private Factory objectPool;             // オブジェクトプール用コントローラー格納
-    [HeaderAttribute("Meteproteの親オブジェクト")]
-    public GameObject Ring = default;      // Meteproteの親オブジェクト  
+    [HeaderAttribute("Meteproteの親オブジェクト"), SerializeField]
+    private BaseSkills ring = default;      // Meteproteの親オブジェクト  
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerController = player.gameObject.GetComponent<PlayerController>();
 
         // objectPool取得
-        objectPool = GameObject.Find("ObjectPool").GetComponent<Factory>();
+        objectPool = Factory.ObjectPool;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -30,10 +28,10 @@ public class ColMeteorite : MonoBehaviour
             if(!playerController.OnUnrivaled)
             {
                 playerController.OnUnrivaled = true;
-                playerController.Hp -= mteoriteController.Damege;
-                Ring.gameObject.transform.parent = objectPool.gameObject.transform;
+                playerController.Hp -= Const.METEO_DAMAGE;
+                ring.gameObject.transform.parent = objectPool.gameObject.transform;
 
-                objectPool.Collect(null, Ring.gameObject);
+                objectPoolCallBack?.Invoke(objectPool.BossSkillsQueue, ring);
             }
         }
     }

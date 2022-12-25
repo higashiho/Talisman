@@ -23,10 +23,10 @@ public class ColEnemy : MonoBehaviour
     [SerializeField]
     private int ENEMY_HP;                 //敵エネミー体力(定数)
 
-    public int enemyHp;                         // 敵エネミー体力(変数)
+    public int EnemyHp;                         // 敵エネミー体力(変数)
 
     [SerializeField]
-    private string hitDeleteName;               //プレイヤーに当たったら消えるやつの名前
+    private string hitDeleteName;             //プレイヤーに当たったら消えるやつの名前
 
     [SerializeField]
     private Rigidbody2D rb2D;                   //rigidbody2D格納用
@@ -80,7 +80,7 @@ public class ColEnemy : MonoBehaviour
     {
         GetComponent<BoxCollider2D>().enabled = true;
         fadeFlag = false;
-        enemyHp = ENEMY_HP;     // アクティブになる毎にHP初期化
+        //EnemyHp = ENEMY_HP;     // アクティブになる毎にHP初期化
     }
     // Update is called once per frame
     void Update()
@@ -139,11 +139,11 @@ public class ColEnemy : MonoBehaviour
         //プレイヤーの剣攻撃に当たったら消える・アイテム落とす
         if(other.gameObject.tag == "Sword")
         {    
-            enemyHp--;
+            EnemyHp--;
             nockbackflag = true;
             damageEfect.Play();
             
-            if(enemyHp <= 0)
+            if(EnemyHp <= 0)
             {
                 //Destroy(Polygon2D);
                 GetComponent<BoxCollider2D>().enabled = false;

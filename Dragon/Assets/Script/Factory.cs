@@ -7,35 +7,48 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Factory : MonoBehaviour
 {
+    // 生成オブジェクト
     [Header("生成Prefabs")]
     [SerializeField] 
-    private GameObject bullet;                                      // 弾のプレファブ
+    private BaseSkills bullet;                                      // 弾のプレファブ
     [SerializeField]
-    private GameObject shockWave;                                   // 衝撃波のプレファブ 
+    private BaseSkills shockWave;                                   // 衝撃波のプレファブ 
     [SerializeField]
-    private GameObject[] bossSkill = new GameObject[3];             // ボスのスキル 
 
-    public GameObject GetBulletObj() {return bullet;}
-    public GameObject GetShockWaveobj() {return shockWave;}
-    public GameObject[] BossSkill{get {return bossSkill;}} 
+    // 生成オブジェクト取得用関数
+    public BaseSkills BulletObj{ 
+        get {return bullet;}
+    }
+    public BaseSkills ShockWaveobj{
+        get{return shockWave;}
+    } 
 
     
                            
-
-    private Queue<GameObject> bulletQueue;                          // 生成した球を格納するQueue
-    private Queue<GameObject> shockWaveQueue;                       // 生成した衝撃波を格納するQueue  
+    // 生成管理配列
+    private Queue<BaseSkills> bulletQueue;                          // 生成した球を格納するQueue
+    private Queue<BaseSkills> shockWaveQueue;                       // 生成した衝撃波を格納するQueue  
     [SerializeField]                           
-    private List<GameObject> bossSkillsList;
+    private Queue<BaseSkills> bossSkillsQueue;
 
-    public Queue<GameObject> GetBulletQueue() {return bulletQueue;}
-    public Queue<GameObject> GetShockWaveQueue() {return shockWaveQueue;}
-    public List<GameObject> BossSkillsList{get {return bossSkillsList;}}
+    // 配列取得用
+    public Queue<BaseSkills> BulletQueue{
+        get {return bulletQueue;}
+    }
+    public Queue<BaseSkills> ShockWaveQueue{
+        get {return shockWaveQueue;}
+    }
+    public Queue<BaseSkills> BossSkillsQueue{
+        get {return bossSkillsQueue;}
+    }
+
+
     private Vector3 setPos = new Vector3(100.0f, 100.0f, 0);        // 初期位置
 
     [Header("オブジェクト代入時使用用")]
     [SerializeField]
     private BulletShot bulletShot;
-
+    public static Factory ObjectPool;           // ファクトリー取得用
 
     
 
@@ -43,61 +56,39 @@ public class Factory : MonoBehaviour
     void Awake()
     {
         // Queueの初期化
-        bulletQueue = new Queue<GameObject>();
-        shockWaveQueue = new Queue<GameObject>();
-        bulletShot = GameObject.Find("ShotGun").GetComponent<BulletShot>();
+        bulletQueue = new Queue<BaseSkills>();
+        shockWaveQueue = new Queue<BaseSkills>();
+        bossSkillsQueue = new Queue<BaseSkills>();
 
-        // ボスの3種類のスキルを格納
-        for (int i = 0; i < bossSkill.Length; i++)
-        {
-            var newObj = Instantiate(bossSkill[i],setPos, Quaternion.identity,transform);
-            bossSkillsList.Add(newObj);
-            newObj.SetActive(false);
-        }
+        // 取得
+        bulletShot = GameObject.Find("ShotGun").GetComponent<BulletShot>(); 
+        ObjectPool = this;
+        
     }
 
-    // 生成関数　第一引数：座標　第二引数：リストでの生成（Queueでの場合はnullでよい) 
+    // 生成関数　第一引数：座標　
     // 第三引数：Queueでの生成　第四引数：Queueでの場合のInstantiate用オブジェクト
-    public GameObject Launch
-    (Vector3 _pos, GameObject tmpList = null, Queue<GameObject> tmpQueue = null, GameObject obj = null)
+    public BaseSkills Launch
+    (Vector3 _pos, Queue<BaseSkills> tmpQueue = null, BaseSkills obj = null)
     {
-        GameObject tmpObj = null;
+        BaseSkills tmpObj = null;
 
-        // Queueからの取り出し
-        if(tmpList == null)
+    
+        // キューの中身が足りない場合追加で生成
+        if (tmpQueue.Count <= 0) 
         {
-            // キューの中身が足りない場合追加で生成
-            if (tmpQueue.Count <= 0) 
-            {
-                tmpObj = Instantiate(obj, _pos,Quaternion.identity,transform);
-                tmpQueue.Enqueue(tmpObj);
-            }
-            
-
-            // Queueから一つ取り出す
-            tmpObj = tmpQueue.Dequeue();
-        }
-        // Listからの取り出し
-        else if(tmpQueue == null)
-        {
-            tmpObj = tmpList;
-            tmpObj.transform.position = _pos;
+            tmpObj = Instantiate(obj, _pos,Quaternion.identity,transform)
+                        .GetComponent<BaseSkills>();
+            tmpQueue.Enqueue(tmpObj);
+            tmpObj.objectPoolCallBack = Collect;
         }
         
-        // 生成オブジェクトが弾の場合
-        if(tmpObj.tag == "Bullet")
-        {
-            bulletShot.SetBullet(tmpObj);
-            tmpObj.GetComponent<Targeting>().ShowInStage(_pos);
 
-        }
-        // 生成オブジェクトがオブジェクトが衝撃波の場合
-        else if(tmpObj.tag == "ShockWave")
-        {
-            tmpObj.GetComponent<ShockWave>().ShowInStage(_pos);
-            tmpObj.GetComponent<ShockWave>().SetObjectPool(this.GetComponent<Factory>());
-            tmpObj.transform.parent = null;
-        }
+        // Queueから一つ取り出す
+        tmpObj = tmpQueue.Dequeue();
+
+        // 取り出したオブジェクトが何か確認
+        judgObj(tmpObj, _pos);
 
         // 表示
         tmpObj.gameObject.SetActive(true);
@@ -105,15 +96,41 @@ public class Factory : MonoBehaviour
         return tmpObj;
     }
 
-    // 回収処理　第一引数：格納するQueue（Queueでない場合nullでよい） 第二引数：回収されるオブジェクト
-    public void Collect(Queue<GameObject> tmpQueue, GameObject obj)
+    // 生成されるオブジェクトが何か判断
+    private void judgObj(BaseSkills obj,Vector3 _pos)
     {
-        //弾のゲームオブジェクトを非表示
+
+        // 生成オブジェクトが弾の場合
+        if(obj.tag == "Bullet")
+        {
+            bulletShot.SetBullet(obj.gameObject);
+
+        }
+        // 生成オブジェクトがオブジェクトが衝撃波の場合
+        else if(obj.tag == "ShockWave")
+        {
+            obj.GetComponent<ShockWave>().SetObjectPool(this);
+            obj.transform.parent = null;
+        }
+
+        // 座標設定
+        showInStage(_pos, obj);
+    }
+
+    // 回収処理　第一引数：格納するQueue 第二引数：回収されるオブジェクト
+    public void Collect(Queue<BaseSkills> tmpQueue, BaseSkills obj)
+    {
+        //ゲームオブジェクトを非表示
         obj.gameObject.SetActive(false);
         //Queueに格納する場合
         if(tmpQueue != null)
             tmpQueue.Enqueue(obj);
     }
 
+    // 座標設定関数 第一引数：生成する座標 第二引数：生成されるオブジェクト
+    private void showInStage(Vector3 _pos, BaseSkills obj)
+    {
+        obj.transform.position = _pos;
+    }
 
 }

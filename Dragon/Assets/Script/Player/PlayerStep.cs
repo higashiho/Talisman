@@ -8,10 +8,10 @@ public class PlayerStep : MonoBehaviour
     private Rigidbody2D rd2D;
 
     [SerializeField, HeaderAttribute("ステップできるか")]
-    private bool[] onSteps = new bool[4];        // ステップできるか
+    private bool[] onSteps = new bool[Const.STEP_VALUE_MAX];        // ステップできるか
     
     [SerializeField, HeaderAttribute("押す間隔")]
-    private float[] onTimer = new float[4];     // ダブルクリックの間隔
+    private float[] onTimer = new float[Const.STEP_VALUE_MAX];     // ダブルクリックの間隔
     
     [SerializeField, HeaderAttribute("ステップが出せる押し間隔")]
     private float maxTimer;              // 最大待ち時間
@@ -73,13 +73,12 @@ public class PlayerStep : MonoBehaviour
     // ステップのクールタイム
     private void coolTime()
     {
-        float defaultTimer = 10.0f;
         coolTimer -= Time.deltaTime;
 
         if(coolTimer <= 0)
         {
             noStep = false;
-            coolTimer = defaultTimer;
+            coolTimer = Const.STEP_TIMER_MAX;
         }
     }
 
@@ -131,14 +130,13 @@ public class PlayerStep : MonoBehaviour
 
         if(nowStep)
         {
-            float MaxTimer = 0.1f;
             stepTimer -= Time.deltaTime;
 
             if(stepTimer <= 0)
             {
                 rd2D.velocity = Vector3.zero;  
                 nowStep = false;   
-                stepTimer = MaxTimer;   
+                stepTimer = Const.STEP_MAX_TIMER;   
                 noStep = true; 
                 col.enabled = true;
                 bool[] onSteps = {false};

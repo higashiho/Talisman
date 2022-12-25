@@ -7,7 +7,6 @@ public class HitStop : MonoBehaviour
     [SerializeField,HeaderAttribute("遅くする倍率")]
     private float timeScale = 0.5f;
 
-    private float nomalTime = 1.0f;                     // 初期時間
 
     [SerializeField,HeaderAttribute("遅くなる時間")]
     private float slowTime = 0.5f;                      // 遅くする時間
@@ -48,7 +47,7 @@ public class HitStop : MonoBehaviour
     // 時間をもとに戻す処理
     private void SetNomalTime()
     {
-        Time.timeScale = nomalTime;
+        Time.timeScale = Const.NOMAL_TIME;
         onSlowDown = false;
     }
 }

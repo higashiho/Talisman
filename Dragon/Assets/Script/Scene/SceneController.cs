@@ -34,7 +34,9 @@ public class SceneController : MonoBehaviour
         GAMECLEAR,
         GAMEOVER
     } 
-    public static JudgScene SceneJudg;
+    public static JudgScene SceneJudg = default;
+
+    public static SceneController Scene;
 
     /// インスタンス関係
     private static SceneController instance = null;
