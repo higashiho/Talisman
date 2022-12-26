@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5659572085952152627}
   m_Layer: 0
   m_Name: Beam
-  m_TagString: Untagged
+  m_TagString: BossSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9bd0668afd13d409781fc4fdc75828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
   objectPool: {fileID: 0}
+  Player: {fileID: 0}
   scaleUpSpeed: {x: 0, y: 0, z: 8}
   startScale: {x: 2, y: 2, z: 1}
   Damege: 3

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6978494975945648849}
   m_Layer: 0
   m_Name: DamageField
-  m_TagString: Untagged
+  m_TagString: BossSkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704a738ae15813443957d4bb07c1c750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 0}
   Damage: 0
 --- !u!114 &-6978494975945648849
 MonoBehaviour:

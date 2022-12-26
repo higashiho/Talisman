@@ -19,6 +19,7 @@ TagManager:
   - EnemyPool
   - BossInstance
   - Shot
+  - BossSkill
   layers:
   - Default
   - TransparentFX
