@@ -2205,7 +2205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 578480709024597815, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
   shockWave: {fileID: 1367812046978691813, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
-  bulletShot: {fileID: 1158708476}
+  bulletShot: {fileID: 0}
 --- !u!4 &559229134
 Transform:
   m_ObjectHideFlags: 0
@@ -4646,6 +4646,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059690526}
   m_CullTransparentMesh: 1
+--- !u!1 &1087951283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2841260570107853756, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
+  m_PrefabInstance: {fileID: 2243393573907084469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1102628501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4795,7 +4800,7 @@ MonoBehaviour:
   midTimer: 0
   MobCounter: 0
   MidCounter: 0
-  player: {fileID: 1243889218}
+  player: {fileID: 1087951283}
 --- !u!4 &1150275756
 Transform:
   m_ObjectHideFlags: 0
@@ -4893,11 +4898,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1243889218 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2841260570107853756, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
-  m_PrefabInstance: {fileID: 2243393573907084469}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257557707
 GameObject:
   m_ObjectHideFlags: 0
@@ -8348,12 +8348,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   MobItemColor:
-  - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
-  enemyRespawnWeight: 0200000002000000010000000200000002000000
+  - {r: 0, g: 0, b: 0, a: 0}
+  enemyRespawnWeight: 
 --- !u!114 &2058146721
 MonoBehaviour:
   m_ObjectHideFlags: 0
