@@ -4273,7 +4273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -7174,8 +7173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718c8c238854bc14ea7734ffe138fcee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 438996927801807579, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
-  shockWave: {fileID: 8869874226478050482, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+  bullet: {fileID: 578480709024597815, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
+  shockWave: {fileID: 1367812046978691813, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
   bulletShot: {fileID: 0}
 --- !u!4 &1560938792
 Transform:
