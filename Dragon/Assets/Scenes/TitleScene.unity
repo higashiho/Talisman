@@ -5026,6 +5026,7 @@ GameObject:
   - component: {fileID: 59211054}
   - component: {fileID: 59211053}
   - component: {fileID: 59211052}
+  - component: {fileID: 59211055}
   m_Layer: 5
   m_Name: UICamera
   m_TagString: Untagged
@@ -5099,6 +5100,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &59211055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59211051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8b48a1929bd42fc8a74e9281c1f25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CamTransform: {fileID: 59211054}
+  CameraSpeedMultiplier: 1
+  Color: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
+  Size: 1
+  HorizontalSpeed: 0.5
+  VerticalSpeed: 0
+  Density: 1
+  Shader: {fileID: 4800000, guid: 00e888b8dfe2842c1a10e04b2d083b64, type: 3}
 --- !u!1 &134894913
 GameObject:
   m_ObjectHideFlags: 0

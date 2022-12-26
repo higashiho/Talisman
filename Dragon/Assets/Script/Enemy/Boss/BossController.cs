@@ -217,6 +217,7 @@ public class BossController : MonoBehaviour
     // 消えた場合の処理
     void OnDestroy()
     {
-        SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
+        if(SceneController.SceneJudg != SceneController.JudgScene.GAMEOVER)
+            SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
     }
 }
