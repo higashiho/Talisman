@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class JudgmentText : MonoBehaviour
 {
     [SerializeField]
-    private Text judgmentText = null;
+    private Image judgmentImage = null;
+    [SerializeField]    // ゲームクリアか判断後の画像
+    private Sprite[] endSprite = new Sprite[2];
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +26,8 @@ public class JudgmentText : MonoBehaviour
     private void onText()
     {
         if(SceneController.SceneJudg == SceneController.JudgScene.GAMECLEAR)
-            judgmentText.text = "GameClear!!";
+            judgmentImage.sprite = endSprite[0];
         else if(SceneController.SceneJudg == SceneController.JudgScene.GAMEOVER)
-            judgmentText.text = "GameOver...";
+            judgmentImage.sprite = endSprite[1];
     }
 }

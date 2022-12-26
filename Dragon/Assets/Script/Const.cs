@@ -11,6 +11,7 @@ public class Const
     public const int SHOCK_WAVE_ATTACK = 2;             // 衝撃波ダメージ量 
     public const int ROTATE_SWORD_DAMAGE = 2;           // 回転斬りのダメージ
     public const float MAX_SCALE_X = 16.0f ;            // 衝撃波の最大サイズ
+    public const int SHOCK_SKILL = 2;                       // スキルを使うためのアイテム量
     // 以上スキル用定数
 
     // 以下モブエネミー用定数
