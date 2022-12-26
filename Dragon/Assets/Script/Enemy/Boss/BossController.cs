@@ -184,7 +184,7 @@ public class BossController : MonoBehaviour
 
         // ボスが死んだら震える
         
-        if(SceneController.SceneJudg == SceneController.JudgScene.GAMECLEAR)
+        if(SceneController.SceneJudg != SceneController.JudgScene.GAMECLEAR)
         {
             //Judgment = "GameClear";
             SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
@@ -218,6 +218,6 @@ public class BossController : MonoBehaviour
     // 消えた場合の処理
     void OnDestroy()
     {
-        SceneController.SceneJudg = SceneController.JudgScene.GAMEOVER;
+        SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
     }
 }
