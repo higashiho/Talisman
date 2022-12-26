@@ -49,6 +49,7 @@ public class BossController : MonoBehaviour
     
     private float destroyTime = 5.0f;                       // 消えるまでの時間
     private float alpha = 1;                                // 透明度
+    private bool destroyOne = true;                         // 消えるとき用一回だけ処理フラグ
 
     [HeaderAttribute("攻撃スキル"), SerializeField]
     private BaseSkills[] attackSkill = new BaseSkills[3];    // 攻撃スキル
@@ -183,14 +184,12 @@ public class BossController : MonoBehaviour
         alpha -= Time.deltaTime * Const.MAG;
 
         // ボスが死んだら震える
-        
-        if(SceneController.SceneJudg != SceneController.JudgScene.GAMECLEAR)
+        // 座標を一度だけ取得
+        if(destroyOne)
         {
-            //Judgment = "GameClear";
-            SceneController.SceneJudg = SceneController.JudgScene.GAMECLEAR;
+            destroyOne = false;
             pos = this.transform.position;
         }
-
         Destroy(GetComponent<BoxCollider2D>());
         this.transform.position = pos + Random.insideUnitSphere * Const.SYAKE_POWER;
         // 透明度が０になったら削除
