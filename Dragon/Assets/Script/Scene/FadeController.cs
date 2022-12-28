@@ -54,13 +54,11 @@ public class FadeController : MonoBehaviour
         // フェードアウトフラグがtrueのとき
         if (isFadeOut)  
         {
-            // 透明度最大値
-            int m_Maxalpha = 1;
             // 透明度を上げる
             alpha += fadeSpeed;  
             SetColor(alpha);  
             // アルファ値が最大値になるとScene転移する
-            if (alpha >= m_Maxalpha) 
+            if (alpha >= Const.ALPHA_MAX) 
             {
                 isFadeOut = false;
                 isFadeIn = true;

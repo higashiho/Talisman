@@ -68,6 +68,7 @@ public class Const
     // 以下システム用
     public const float NOMAL_TIME = 1.0f;                     // timeScale初期値
     public const float START_WAIT_TIME = 1.0f;                // 遅延時間最大値
+    public const float ALPHA_MAX = 1.0f;                      // 透明度最大値
     // 以上システム用
 }
     
