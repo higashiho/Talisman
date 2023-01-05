@@ -11777,7 +11777,7 @@ MonoBehaviour:
   judgmentImage: {fileID: 1843610150}
   endSprite:
   - {fileID: 21300000, guid: 82f83a96cc51e57428f34283471c8f57, type: 3}
-  - {fileID: 21300000, guid: 8d30f42298c96d048b2fffedb541c5c1, type: 3}
+  - {fileID: 21300000, guid: c2313c70d7d33dc4b81ddb2bcc585e61, type: 3}
   endEfect:
   - {fileID: 1303405222}
   - {fileID: 1084698082}

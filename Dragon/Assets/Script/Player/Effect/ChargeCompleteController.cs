@@ -27,7 +27,7 @@ public class ChargeCompleteController : MonoBehaviour
     private void ChargeCompleteEfect()
     {
         this.transform.position = player.transform.position;
-        if(swordContoroller.OnTime >= swordContoroller.MaxTime)
+        if(swordContoroller.OnTime >= Const.MAX_SHOCKWAVE_TIME)
         {
             chargeCompleteEfect.Play();
         }

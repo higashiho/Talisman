@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DebugBoss : MonoBehaviour
 {
+    // デバック機能実施用
 #if UNITY_EDITOR
     [SerializeField]
     private BossController bossController;          // スクリプト格納用
