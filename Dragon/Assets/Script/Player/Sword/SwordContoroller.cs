@@ -21,12 +21,6 @@ public class SwordContoroller : BaseSword
         get { return onTime ;}
         set { onTime = value ;}
     }
-    // 衝撃波が変わる時間
-    private float maxTime = 5.0f;           
-    public float MaxTime{
-        get{ return maxTime ;}
-        set{ maxTime = value ;}
-    }
     // チャージ中かどうか
     private bool onCharge = false;              
     public bool OnCharge {
@@ -124,7 +118,7 @@ public class SwordContoroller : BaseSword
         
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
         // スキルアイテムが４つ以上ないと大きくならないようにする
-        if(onTime >= maxTime && skillController.Skills[4] >= Const.SHOCK_SKILL)
+        if(onTime >= Const.MAX_SHOCKWAVE_TIME && skillController.Skills[4] >= Const.SHOCK_SKILL)
         {
             shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     

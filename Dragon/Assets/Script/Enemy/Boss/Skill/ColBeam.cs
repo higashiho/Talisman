@@ -29,7 +29,7 @@ public class ColBeam : MonoBehaviour
             {
                 playerController.OnUnrivaled = true;
         
-                playerController.Hp -= beamController.Damege;
+                playerController.Hp -= Const.BEAM_DAMAGE;
                 GetComponent<BoxCollider2D>().enabled = false;
             }
         }
