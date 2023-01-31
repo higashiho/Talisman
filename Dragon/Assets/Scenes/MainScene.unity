@@ -1511,7 +1511,7 @@ RectTransform:
   m_Children:
   - {fileID: 805396542}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2174,53 +2174,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &559229132
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 559229134}
-  - component: {fileID: 559229133}
-  m_Layer: 0
-  m_Name: ObjectPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &559229133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559229132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718c8c238854bc14ea7734ffe138fcee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 578480709024597815, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
-  shockWave: {fileID: 1367812046978691813, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
-  bulletShot: {fileID: 0}
---- !u!4 &559229134
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559229132}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.179101, y: -2.385169, z: 4.001768}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589406238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,7 +2496,7 @@ RectTransform:
   - {fileID: 1333034832}
   - {fileID: 686966558}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2596,7 +2549,7 @@ Transform:
   m_Children:
   - {fileID: 674847067}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &656316062
 GameObject:
@@ -3483,6 +3436,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716027404}
   m_CullTransparentMesh: 1
+--- !u!1 &726880979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726880982}
+  - component: {fileID: 726880981}
+  - component: {fileID: 726880980}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &726880980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726880979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25606c1915d566749850ad06c7b5b8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobEnemy: {fileID: 5337585357348085953, guid: d91583c5d453e0a4089ce1f4b7a61c28, type: 3}
+  midBoss: {fileID: -7673815095409607248, guid: df3d62e96b2f4b94a883acd885b383d7, type: 3}
+  mobTimer: 0
+  midTimer: 0
+  MobCounter: 0
+  MidCounter: 0
+  player: {fileID: 1087951283}
+--- !u!114 &726880981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726880979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718c8c238854bc14ea7734ffe138fcee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 578480709024597815, guid: 7cadfa5f011c2354d826ad237392713b, type: 3}
+  shockWave: {fileID: 1367812046978691813, guid: 5ecc246ec9bdfba409c5003e63abf9de, type: 3}
+  bulletShot: {fileID: 0}
+--- !u!4 &726880982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726880979}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.179101, y: -2.385169, z: 4.001768}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &728567875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3662,8 +3682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a5afbb3f9daef48af489aeab7f5712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetCamera: {fileID: 18878248}
+  Target: {fileID: 0}
+  TargetCamera: {fileID: 18878248}
   icon: {fileID: 1587998967}
   cam: {fileID: 297102149}
 --- !u!222 &732783780
@@ -4765,57 +4785,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -50}
   m_SizeDelta: {x: 564.9021, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1150275754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1150275756}
-  - component: {fileID: 1150275755}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1150275755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150275754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25606c1915d566749850ad06c7b5b8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mobEnemy: {fileID: 5337585357348085953, guid: d91583c5d453e0a4089ce1f4b7a61c28, type: 3}
-  midBoss: {fileID: 0}
-  mobTimer: 0
-  midTimer: 0
-  MobCounter: 0
-  MidCounter: 0
-  player: {fileID: 1087951283}
---- !u!4 &1150275756
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150275754}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10, y: 55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1452502709}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158708474
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,61 +5870,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444459151}
   m_CullTransparentMesh: 1
---- !u!1 &1452502707
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1452502709}
-  - component: {fileID: 1452502708}
-  m_Layer: 0
-  m_Name: PoolObject
-  m_TagString: EnemyPool
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1452502708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452502707}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7122e647b36a1664a8ea2a92318f805c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiddleBossPool: {fileID: 1690947906}
-  EnemyPool: {fileID: 1150275754}
-  middleBossPool1: []
-  mobEnemyPool1: []
-  mobEnemyPool2: []
-  mobEnemyPool3: []
-  mobEnemyPool4: []
-  mobEnemyPool5: []
-  LoadingComplete: 0
---- !u!4 &1452502709
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452502707}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1150275756}
-  - {fileID: 1690947907}
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1493187028
 GameObject:
   m_ObjectHideFlags: 0
@@ -6622,44 +6536,13 @@ MonoBehaviour:
   bossInstance: {fileID: 1398843200}
   boss: {fileID: 0}
   bossPos: {x: 0, y: 0, z: 0}
-  PoolObject: {fileID: 1452502707}
+  PoolObject: {fileID: 0}
   AttractMid: {fileID: 732783777}
   findBoss: {fileID: 1398843203}
   middleBossNumCounter: 0
   bossNumMaxInField: 5
   intervalCreate: 30
   respawnWeight: 0100000001000000
---- !u!1 &1690947906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1690947907}
-  m_Layer: 0
-  m_Name: MiddleBossPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1690947907
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690947906}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1452502709}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700436642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7816,7 +7699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8182610497295190041, guid: 39e38ab8702ba3b45bfe387c038535e7, type: 3}
       propertyPath: m_LocalScale.x
@@ -8341,6 +8224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4d61e1634bac0448a2704826f2e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Factory: {fileID: 0}
   MobSpriteArr:
   - {fileID: 0}
   - {fileID: 0}
@@ -8353,6 +8237,9 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
+  MidBossSpriteArr:
+  - {fileID: 0}
+  - {fileID: 0}
   enemyRespawnWeight: 
 --- !u!114 &2058146721
 MonoBehaviour:
@@ -8637,7 +8524,7 @@ PrefabInstance:
     - target: {fileID: 2243393573446524709, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: objectPool
       value: 
-      objectReference: {fileID: 559229133}
+      objectReference: {fileID: 0}
     - target: {fileID: 2243393573469111173, guid: ed879ecb8e5ab694f89d9f0492e9555f, type: 3}
       propertyPath: m_RootOrder
       value: 8

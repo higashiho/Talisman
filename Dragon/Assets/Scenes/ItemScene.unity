@@ -8211,6 +8211,9 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0.6509804, g: 0, b: 1, a: 1}
+  MidBossSpriteArr:
+  - {fileID: 0}
+  - {fileID: 0}
   enemyRespawnWeight: 0200000002000000010000000200000002000000
 --- !u!1 &1894724850
 GameObject:
@@ -8899,8 +8902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a5afbb3f9daef48af489aeab7f5712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetCamera: {fileID: 1271045183}
+  Target: {fileID: 0}
+  TargetCamera: {fileID: 1271045183}
   icon: {fileID: 2057002971}
   cam: {fileID: 599802959}
 --- !u!222 &2062997115

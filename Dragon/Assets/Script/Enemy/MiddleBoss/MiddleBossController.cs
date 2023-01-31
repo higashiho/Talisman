@@ -66,7 +66,6 @@ public class MiddleBossController : MonoBehaviour
         // スクリプト参照
         colMid = midBoss.GetComponent<ColMiddleBoss>();// 中ボス当たり判定クラス参照
         moveMid = midBoss.GetComponent<MoveMiddleBoss>();// 中ボス融合処理クラス参照
-        factoryEnemy = objectPool.GetComponent<FactoryEnemy>();// エネミーファクトリークラス参照
         itemCtrl = item.GetComponent<MiddleBossItemController>();// アイテム移動クラス参照
         createMiddleBoss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();// 中ボス生成クラスを参照
         textCtrl_Respawn = MidUI.transform.GetChild(0).GetComponent<TextController>();   // 中ボス融合メッセージ表示クラス参照

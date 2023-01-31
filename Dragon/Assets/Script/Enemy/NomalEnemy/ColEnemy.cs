@@ -72,8 +72,6 @@ public class ColEnemy : MonoBehaviour
         createEnemy = mobcreater.GetComponent<CreateEnemy>();
         //rb2D = GetComponent<Rigidbody2D>();
         damageEfect = GetComponentInChildren<ParticleSystem>();
-        EnemyPool = GameObject.Find("PoolObject");
-        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();
         enemyStateCtrl = transform.parent.gameObject.GetComponent<EnemyStateController>();
     }
     void OnEnable()

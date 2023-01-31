@@ -45,7 +45,7 @@ public class ColMiddleBoss : MonoBehaviour
         player = GameObject.FindWithTag("Player");  // プレイヤー取得
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");// 中ボス生成オブジェクト取得
         
-        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();  // ファクトリークラス参照
+       
         midCtrl = parent.GetComponent<MiddleBossController>();  // 中ボスコントローラー取得
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();  // 中ボス生成クラス
     }
