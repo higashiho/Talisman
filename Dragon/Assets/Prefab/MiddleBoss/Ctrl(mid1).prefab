@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4571350755285170314}
   - component: {fileID: 5677048690136653167}
+  - component: {fileID: -7673815095409607248}
   m_Layer: 7
   m_Name: Ctrl(mid1)
   m_TagString: Untagged
@@ -129,8 +130,36 @@ MonoBehaviour:
   DoneMid: 0
   DoneItem: 0
   CreateItem: 0
-  name: 
   state: 0
+--- !u!114 &-7673815095409607248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257605435186984773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95a3f26e6b25564990cfaf02a6520ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Factory: {fileID: 0}
+  MobSpriteArr:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MobItemColor:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  MidBossSpriteArr:
+  - {fileID: 21300000, guid: 6f308bc6de3b13544a1024b84c790de2, type: 3}
+  - {fileID: 21300000, guid: a129e9ae76703f446a4f37de725dbf5b, type: 3}
+  middleBossRespawnWeight: 0100000001000000
 --- !u!1001 &3867282160261139366
 PrefabInstance:
   m_ObjectHideFlags: 0

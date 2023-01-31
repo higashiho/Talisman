@@ -16,7 +16,7 @@ public class ColMiddleBoss : MonoBehaviour
     
 
     [Header("Creatorから値を入れる")]
-    public int Hp;      // 中ボスHP
+    public int Hp = 1;      // 中ボスHP
     
     [HeaderAttribute("Swordのダメージ"), SerializeField]
     private int SWORD_DAMAGE = 1;
@@ -45,7 +45,7 @@ public class ColMiddleBoss : MonoBehaviour
         player = GameObject.FindWithTag("Player");  // プレイヤー取得
         MiddleBossCreater = GameObject.FindWithTag("MiddleBossCreater");// 中ボス生成オブジェクト取得
         
-        factoryenemy = EnemyPool.GetComponent<FactoryEnemy>();  // ファクトリークラス参照
+       
         midCtrl = parent.GetComponent<MiddleBossController>();  // 中ボスコントローラー取得
         createmiddleboss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();  // 中ボス生成クラス
     }

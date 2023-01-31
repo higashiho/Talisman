@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColItem : MonoBehaviour
 {
     [Header("Creatorから値を入れる")]
-    public int Ip;
+    public int Ip = 1;
     
     // ゲームオブジェクト参照
     private GameObject player;

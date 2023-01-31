@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4d61e1634bac0448a2704826f2e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Factory: {fileID: 0}
   MobSpriteArr:
   - {fileID: 21300000, guid: 0caf68431baf55c43866cfa4edd4a6d4, type: 3}
   - {fileID: 21300000, guid: 0e458ef92cb325648b3e94bf466869f2, type: 3}
@@ -99,6 +100,9 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0.6431373, g: 0, b: 1, a: 1}
+  MidBossSpriteArr:
+  - {fileID: 0}
+  - {fileID: 0}
   enemyRespawnWeight: 0200000002000000010000000200000002000000
 --- !u!1001 &331592629277710038
 PrefabInstance:
@@ -162,6 +166,14 @@ PrefabInstance:
     - target: {fileID: 2352975664675093668, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352975664675093669, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352975664675093669, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
+      propertyPath: m_Size.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2352975664675093669, guid: e1c279e06bc965d4ba54d5425096078e, type: 3}
       propertyPath: m_Color.b

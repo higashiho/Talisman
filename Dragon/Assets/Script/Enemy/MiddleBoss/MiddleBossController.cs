@@ -26,12 +26,14 @@ public class MiddleBossController : MonoBehaviour
     private BossController bossCtrl;            // ボスコントローラー参照用
     private FindBoss findBoss;                  // ボス生成されたかを調べるクラス
     private MiddleBossItemController itemCtrl;  // アイテムコントローラー
-    private TextController textCtrl_Marge;      // 中ボス融合メッセージ表示クラス
+    private TextController textCtrl_Respawn;      // 中ボス融合メッセージ表示クラス
+    private JudgeInField judge;                 // 中ボスカメラクラス
 
     public bool Margeable;      // 融合可能フラグ
 
     [HeaderAttribute("融合待機時間"), SerializeField]
     private float margeTime;
+    public string Name;
 
     // 中ボス状態終了フラグ
     public bool DoneMid;        // 中ボス終了  
@@ -40,9 +42,6 @@ public class MiddleBossController : MonoBehaviour
     public bool CreateItem;     // アイテム生成フラグ
 
     private float time;         // 時間計測用
-
-    // [Header("タイプ")]
-    // public string name;
 
     [SerializeField]    
     private MiddleBossState state;
@@ -67,14 +66,14 @@ public class MiddleBossController : MonoBehaviour
         // スクリプト参照
         colMid = midBoss.GetComponent<ColMiddleBoss>();// 中ボス当たり判定クラス参照
         moveMid = midBoss.GetComponent<MoveMiddleBoss>();// 中ボス融合処理クラス参照
-        factoryEnemy = objectPool.GetComponent<FactoryEnemy>();// エネミーファクトリークラス参照
         itemCtrl = item.GetComponent<MiddleBossItemController>();// アイテム移動クラス参照
         createMiddleBoss = MiddleBossCreater.GetComponent<CreateMiddleBoss>();// 中ボス生成クラスを参照
-        textCtrl_Marge = MidUI.transform.GetChild(0).GetComponent<TextController>();   // 中ボス融合メッセージ表示クラス参照
-        
+        textCtrl_Respawn = MidUI.transform.GetChild(0).GetComponent<TextController>();   // 中ボス融合メッセージ表示クラス参照
+        judge = MidUI.transform.GetChild(1).GetComponent<JudgeInField>();   // 中ボスカメラ表示クラス参照
+
         state = MiddleBossState.MIDDLEBOSS; // 初期ステートを中ボスに設定
         // 非アクティブに設定
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     // SetActive(true)はCreateMiddleBossで行っている
@@ -122,10 +121,13 @@ public class MiddleBossController : MonoBehaviour
             // 中ボスの時
             case MiddleBossState.MIDDLEBOSS:
                 midBoss.SetActive(true);    // 中ボスアクティブ化
+                textCtrl_Respawn.DoneInit = true;
                 bossCtrl.IsMiddleBossInField = true;
-                if(name == "normal")
+                judge.enabled = true;
+                judge.Target = this.transform.GetChild(0);
+                if(Name == "normal")
                     this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsNormal", true);
-                if(name == "rare")
+                if(Name == "rare")
                     this.gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("IsRare", true);  
                 time += Time.deltaTime;
 
@@ -159,6 +161,7 @@ public class MiddleBossController : MonoBehaviour
                 
                     time = 0.0f;
                     bossCtrl.IsMiddleBossInField = false;
+                    judge.enabled = false;
                     midBoss.SetActive(false);
                 }
   

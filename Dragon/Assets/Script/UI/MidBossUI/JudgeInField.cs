@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class JudgeInField : MonoBehaviour
 {
     [SerializeField]
-    public Transform target;
+    public Transform Target;
     [SerializeField]
-    public Camera targetCamera;
+    public Camera TargetCamera;
     
     public RawImage icon;
     [SerializeField]
@@ -39,7 +39,7 @@ public class JudgeInField : MonoBehaviour
             canvasRect.height - icon.rectTransform.rect.height
         );
 
-        var viewPort = targetCamera.WorldToViewportPoint(target.position);
+        var viewPort = TargetCamera.WorldToViewportPoint(Target.position);
         if (rect.Contains(viewPort))
         {
             icon.enabled = false;
