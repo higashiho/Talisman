@@ -11,6 +11,7 @@ public class Const
     public const int SHOCK_WAVE_ATTACK = 2;             // 衝撃波ダメージ量 
     public const int ROTATE_SWORD_DAMAGE = 2;           // 回転斬りのダメージ
     public const float MAX_SCALE_X = 16.0f ;            // 衝撃波の最大サイズ
+    public const int SHOCK_SKILL = 2;                       // スキルを使うためのアイテム量
     // 以上スキル用定数
 
     // 以下モブエネミー用定数
@@ -44,17 +45,18 @@ public class Const
 
     // 以上中ボス用定数
     // 以下プレイヤー用
-    public const int MAX_HP = 3;                       // HP最大値
-    public const int HEEL = 2;                         // 回復量
-    public const float MAX_HEEL_TIME = 10.0f;          // シールド回復初期時間保管用  
-    public const float LIMIT_POS_Y = 25.0f;            // y座標限界値      
-    public const float MIN_POS_X = -48.0f;             // 左座標限界値       
-    public const float MAX_POS_X = 385.0f;             // 右座標限界値                     
-    public const float HALF = 0.5f;                   // 閾値取得よう
+    public const int MAX_HP = 3;                        // HP最大値
+    public const int HEEL = 2;                          // 回復量
+    public const float MAX_HEEL_TIME = 10.0f;           // シールド回復初期時間保管用  
+    public const float LIMIT_POS_Y = 25.0f;             // y座標限界値      
+    public const float MIN_POS_X = -48.0f;              // 左座標限界値       
+    public const float MAX_POS_X = 385.0f;              // 右座標限界値                     
+    public const float HALF = 0.5f;                     // 閾値取得用
     public const int STEP_VALUE_MAX = 4;                // ステップ用配列初期値
     public const float STEP_TIMER_MAX = 10.0f;          // ステップクールタイム最大値
     public const float STEP_MAX_TIMER = 0.1f;           // ステップが出るまでの間隔                     
     public const int SKILLS_VALUE_MAX = 5;              // スキル用配列初期値
+    public const float MAX_SHOCKWAVE_TIME = 5.0f;                       // 衝撃波が変わる時間 
 
     // 以上プレイヤー用
 
@@ -72,11 +74,13 @@ public class Const
     public const int METEO_DAMAGE = 3;                  // プレイヤーに当たった時に与えるダメージ  
     public const float CHARGE_SPEED_DOWN = 0.5f;        // 衝撃波チャージ中のスピードダウン
     public const float CHARGE_TIMER_MAX = 0.5f;         // 衝撃波ため時間最大値
+    public const int BEAM_DAMAGE = 3;           // ビームが与えるダメージ
     // 以上ボス用
 
     // 以下システム用
     public const float NOMAL_TIME = 1.0f;                     // timeScale初期値
     public const float START_WAIT_TIME = 1.0f;                // 遅延時間最大値
+    public const float ALPHA_MAX = 1.0f;                      // 透明度最大値
     // 以上システム用
 }
     

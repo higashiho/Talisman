@@ -9,9 +9,7 @@ public class SwordContoroller : BaseSword
     private Factory objectPool;                     // オブジェクトプール用コントローラー格納
     private BaseSkills shockWaveObj;                // 衝撃波オブジェク
     
-    /// 取得系込み変数
-    // スキルを使うためのアイテム量
-    private int onShockSkill = 2;         
+    /// 取得系込み変数  
     public bool CoroutineBool{
         get { return coroutineBool ;}
         set { coroutineBool = value ;}
@@ -22,12 +20,6 @@ public class SwordContoroller : BaseSword
     public float OnTime{
         get { return onTime ;}
         set { onTime = value ;}
-    }
-    // 衝撃波が変わる時間
-    private float maxTime = 5.0f;           
-    public float MaxTime{
-        get{ return maxTime ;}
-        set{ maxTime = value ;}
     }
     // チャージ中かどうか
     private bool onCharge = false;              
@@ -68,7 +60,7 @@ public class SwordContoroller : BaseSword
     private void attack()
     {
         // スキルアイテムがない場合
-        if(skillController.Skills[4] < onShockSkill)
+        if(skillController.Skills[4] < Const.SHOCK_SKILL)
         {
             if (!coroutineBool && Input.GetMouseButtonDown(0))
             {
@@ -121,19 +113,19 @@ public class SwordContoroller : BaseSword
     {
         shockWaveObj = objectPool.Launch(this.transform.position, objectPool.ShockWaveQueue, objectPool.ShockWaveobj);
 
-        skillController.Skills[4] -= onShockSkill;
+        skillController.Skills[4] -= Const.SHOCK_SKILL;
         
         
         // 衝撃波が拡大する時２倍のスキルアイテムを使い拡大する衝撃波を生成
         // スキルアイテムが４つ以上ないと大きくならないようにする
-        if(onTime >= maxTime && skillController.Skills[4] >= onShockSkill)
+        if(onTime >= Const.MAX_SHOCKWAVE_TIME && skillController.Skills[4] >= Const.SHOCK_SKILL)
         {
             shockWaveObj.GetComponent<ShockWave>().SetOnSizeUp(true);
                     
             Vector3 startScale = new Vector3(0.8f, 0.2f,1.0f);      // 最初の大きさ
             shockWaveObj.transform.localScale = startScale;
 
-            skillController.Skills[4] -= onShockSkill;
+            skillController.Skills[4] -= Const.SHOCK_SKILL;
         }
             
 

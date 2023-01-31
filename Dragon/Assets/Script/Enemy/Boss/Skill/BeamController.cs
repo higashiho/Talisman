@@ -15,7 +15,6 @@ public class BeamController : BaseSkills
     [SerializeField]
     private Vector3 startScale;      // 初期の大きさ
 
-    public int Damege = 3;           // playerに与えるダメージ
 
     [SerializeField, HeaderAttribute("消えるまでの時間")]
     private float destroyTime;      // 消えるまでの時間

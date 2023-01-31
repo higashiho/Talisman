@@ -34,7 +34,7 @@ public class ChargeController : MonoBehaviour
             chargeEfect.Play();
         }
         // ショックウェーブが出せるまでチャージできたら    もしくは   左クリックを離したら
-        if(swordContoroller.OnTime >= swordContoroller.MaxTime || Input.GetMouseButtonUp(0))
+        if(swordContoroller.OnTime >= Const.MAX_SHOCKWAVE_TIME || Input.GetMouseButtonUp(0))
             {
                 chargeEfect.Stop();
             }
