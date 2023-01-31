@@ -188,7 +188,7 @@ public class CreateMiddleBoss : MonoBehaviour
         middleBossNumCounter++;     // 出現カウント++
         AttractMid.GetComponent<JudgeInField>().enabled = true; // 中ボスが画面内にいるか判定するクラス(true)
         AttractMid.GetComponent<JudgeInField>().icon.enabled = true;
-        judge.target = dispObj.GetComponent<Transform>();       // 中ボスを追跡カメラのターゲットに入れる
+        //judge.target = dispObj.GetComponent<Transform>();       // 中ボスを追跡カメラのターゲットに入れる
         textCtrl_Respawn.DoneInit = true;   // リスポーンメッセージ表示の初期化完了フラグ(true)
         
     }

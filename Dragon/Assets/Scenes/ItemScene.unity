@@ -1920,7 +1920,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 441165315}
-  - component: {fileID: 441165316}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -1943,25 +1942,6 @@ Transform:
   m_Father: {fileID: 19581977}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &441165316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441165314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25606c1915d566749850ad06c7b5b8b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mobEnemy: {fileID: 5337585357348085953, guid: d91583c5d453e0a4089ce1f4b7a61c28, type: 3}
-  midBoss: {fileID: 0}
-  mobTimer: 0
-  midTimer: 0
-  MobCounter: 0
-  MidCounter: 0
-  player: {fileID: 2032606405}
 --- !u!1 &451017851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7154,6 +7134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1560938792}
   - component: {fileID: 1560938791}
+  - component: {fileID: 1560938793}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -7191,6 +7172,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1560938793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560938790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25606c1915d566749850ad06c7b5b8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobEnemy: {fileID: 5337585357348085953, guid: d91583c5d453e0a4089ce1f4b7a61c28, type: 3}
+  midBoss: {fileID: -7673815095409607248, guid: df3d62e96b2f4b94a883acd885b383d7, type: 3}
+  mobTimer: 0
+  midTimer: 0
+  MobCounter: 0
+  MidCounter: 0
+  player: {fileID: 2032606405}
 --- !u!1 &1649383886
 GameObject:
   m_ObjectHideFlags: 0
@@ -8198,6 +8198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4d61e1634bac0448a2704826f2e93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Factory: {fileID: 0}
   MobSpriteArr:
   - {fileID: 0}
   - {fileID: 0}

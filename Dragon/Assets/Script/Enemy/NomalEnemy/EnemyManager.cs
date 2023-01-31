@@ -12,20 +12,24 @@ public class EnemyManager : BaseEnemy
 {
     [Header("Enemyのタイプ別出現レート"), SerializeField]
     private int[] enemyRespawnWeight;
+    // Enemyのタイプの重みの合計
     private int enemyTotalWeight;
 
     
-
-    private int enemyCaseArraySize;
     // 出現確率テーブル
     private List<int> enemyTable = new List<int>(16);
-        // 確率テーブル作成
+    
+    /// <summary>
+    /// 出現確率テーブル作成
+    /// </summary>
     public void CalcTotalWeight()
     {
         for(int i = 0; i < enemyRespawnWeight.Length; i++)
         {
+            // 重みの合計を求める
             enemyTotalWeight += enemyRespawnWeight[i];
-
+            
+            // 各Enemyの重み分だけ回す
             for(int j = 0; j < enemyRespawnWeight[i]; j++)
             {
                 enemyTable.Add(i);
@@ -33,10 +37,14 @@ public class EnemyManager : BaseEnemy
         }
     }
 
-    // 確率計算関数
+    /// <summary>
+    /// 確率計算関数
+    /// </summary>
+    /// <returns>エネミーのタイプ</returns>
     public int CalcRate()
     {
-        int index = UnityEngine.Random.Range(0,100) % enemyTotalWeight;
+        // 重みの合計で剰余算
+        int index = UnityEngine.Random.Range(0, Const.RANDOM_MAX_NUM) % enemyTotalWeight;
         int result = enemyTable[index];
 
         return result;
@@ -45,31 +53,27 @@ public class EnemyManager : BaseEnemy
     void OnEnable() 
     {
         CalcTotalWeight();
-        // 初期化関数を呼ぶ
-        setAbility();
+        // ステータスを設定
+        SetAbility();
     }
    
-    
-    private void setAbility()
+    /// <summary>
+    /// モブのステータス設定
+    /// </summary>
+    private void SetAbility()
     {
         int index = CalcRate();
         // エネミーステータス設定 
-        //obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = 
         this.transform.GetChild(0).GetComponent<MoveAnimationMobEnemy>().Type = index;
         this.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = MobSpriteArr[index];
         this.transform.GetChild(0).GetComponent<EnemyController>().enemyMoveSpeed = Const.ENEMY_SPEED;
-        this.transform.GetChild(0).GetComponent<MoveAnimationMobEnemy>().Type = index;
         this.transform.GetChild(0).GetComponent<ColEnemy>().EnemyHp = setHp(index);
-        // hp
         
         // エネミーアイテム設定
         this.transform.GetChild(1).GetComponent<SpriteRenderer>().color = MobItemColor[index];
         this.transform.GetChild(1).GetComponent<ItemShade>().ItemMoveSpeed = Const.ENEMY_ITEM_SPEED;
         this.transform.GetChild(1).GetComponent<ItemShade>().ItemNumber = index;
-        
-        // MoveSpeed
-        // EnemyMoveSpeed
-        // Hp
+
     }
 
     // エネミーのHpを判定して返す関数
@@ -85,14 +89,10 @@ public class EnemyManager : BaseEnemy
     
     void OnDisable() 
     {
-        OnFinishedCallBack?.Invoke(this);
+        OnFinishedCallBack?.Invoke(this, Factory.QoolingMobEnemies);
+        Factory.MobCounter--;
     }
-    // 生成座標を決める関数
-    // private Vector3 createPos()
-    // {
-    //     Vector3 pos ;
-    //     return pos;
-    // }
+   
 
 
     

@@ -14,6 +14,7 @@ public class Const
     // 以上スキル用定数
 
     // 以下モブエネミー用定数
+    public const int RANDOM_MAX_NUM = 100;          // ランダム範囲最大値
     public const int MOB_SPAWNMAX = 30;             // 湧き数最大値
     public const float MOB_SPAWNINTERVAL = 1.5f;    // 生成インターバル
     public const float CREATE_OFFSET = 10.0f;       // 生成エリアoffset
@@ -33,6 +34,15 @@ public class Const
     public const int MOB_ENEMY05 = 4;
     // 以上モブエネミー用定数
 
+    // 以下中ボス用定数
+    public const int MID_SPAWNMAX = 1;
+    public const float MID_SPAWNINTERVAL = 30f;
+    public const int NORMAL_HP = 25;
+    public const int RARE_HP = 50;
+    public const int NORMAL_IP = 10;
+    public const int RARE_IP = 20;
+
+    // 以上中ボス用定数
     // 以下プレイヤー用
     public const int MAX_HP = 3;                       // HP最大値
     public const int HEEL = 2;                         // 回復量

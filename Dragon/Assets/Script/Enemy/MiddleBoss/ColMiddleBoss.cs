@@ -16,7 +16,7 @@ public class ColMiddleBoss : MonoBehaviour
     
 
     [Header("Creatorから値を入れる")]
-    public int Hp;      // 中ボスHP
+    public int Hp = 1;      // 中ボスHP
     
     [HeaderAttribute("Swordのダメージ"), SerializeField]
     private int SWORD_DAMAGE = 1;

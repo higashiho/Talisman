@@ -8,37 +8,35 @@ using UnityEngine.Events;
 
 public class FactoryEnemies : MonoBehaviour
 {
-    //[SerializeField]
-    //private Text[] debugText = new Text[5];
+    [Header("生成Prefab")]
+    [SerializeField]    private BaseEnemy mobEnemy;
+    [SerializeField]    private BaseEnemy midBoss;
 
-    // 生成Prefab
-    [Header("モブPrefab"), SerializeField]
-    private BaseEnemy mobEnemy;
-    [Header("中ボスPrefab"), SerializeField]
-    private BaseEnemy midBoss;
+    [Header("生成タイマー")]
+    [SerializeField]    private float mobTimer;
+    [SerializeField]    private float midTimer;
 
-    // タイマー
-    [Header("モブタイマー"), SerializeField]
-    private float mobTimer;
-    [Header("中ボスタイマー"), SerializeField]
-    private float midTimer;
-
-    // オブジェクトカウンター(Active)
-    [Header("出現しているモブの数")]
+    [Header("オブジェクトカウンター")]
     public int MobCounter;
-    [Header("出現している中ボスの数")]
     public int MidCounter;
 
-    private GameObject boss;
-    private BossController bossCtrl;
-    private FindBoss findBoss;
+    private GameObject boss;    // Bossのオブジェクト参照用
+    private BossController bossCtrl;    // Bossのコントローラ取得用
+    private FindBoss findBoss;          // Boss取得用クラス参照用
+
+
     [SerializeField]
-    private GameObject player;
-    // 非アクティブなエネミーを入れておくプール
-    private Queue<BaseEnemy> qoolingMobEnemies = new Queue<BaseEnemy>(16);
-    private Queue<BaseEnemy> qoolingMiddleBoss = new Queue<BaseEnemy>(4);
+    private GameObject player;      // Playerのオブジェクト参照用
+
+    // 非アクティブなEnemyを入れとくプール
+    public Queue<BaseEnemy> QoolingMobEnemies = new Queue<BaseEnemy>(16);
+    public Queue<BaseEnemy> QoolingMiddleBoss = new Queue<BaseEnemy>(4);
     
-    // エネミーの生成座標がプレイヤーとかぶっているか確認する関数
+    /// <summary>
+    /// エネミーの生成座標がPlayerの座標と重なっていないか調べる
+    /// </summary>
+    /// <param name="createPos">エネミーの生成座標</param>
+    /// <returns>true:重なっていない false:重なっている</returns>
     private bool CheckPos(Vector3 createPos)
     {
         bool overBorderX = false;
@@ -58,26 +56,35 @@ public class FactoryEnemies : MonoBehaviour
             return false;
     }
 
+    /// <summary>
+    /// Enemyの生成座標を決める関数
+    /// </summary>
+    /// <returns>生成座標</returns>
     private Vector3 setEnemyPos()
     {
-         Vector3 createPos;
+         Vector3 createPos; // 生成座標保管用
+
         do
         {
             float posX, posY;
             
-            Vector3 pos = boss.transform.position;  
+            Vector3 pos = boss.transform.position;  // Bossの座標取得
+
+            // Bossの周りでランダムに座標を取得
             posX = UnityEngine.Random.Range(pos.x - Const.CREATE_WIDTH, pos.x + Const.CREATE_WIDTH);
             posY = UnityEngine.Random.Range(pos.y - Const.CREATE_HEIGHT, pos.y + Const.CREATE_HEIGHT);
-            createPos = new Vector3(posX, posY, 0);
-            // if(pos.x < bossCtrl.Areas[3])
-            //     spawnTimer = 1;
+            
+            createPos = new Vector3(posX, posY, 0); // 生成座標に設定
+            
         }
         while(CheckPos(createPos));
         
         return createPos;
     }
+
     void Start() 
     {
+        // Boss取得クラス参照
        findBoss = GameObject.FindWithTag("BossInstance").GetComponent<FindBoss>();
     }
     void Update()
@@ -88,13 +95,20 @@ public class FactoryEnemies : MonoBehaviour
             // 毎フレーム時間を数える
             mobTimer += Time.deltaTime;    
             midTimer += Time.deltaTime;
-            //debugText[1].text = "time:" + time;
+
             // モブ生成インターバル
             if(mobTimer > Const.MOB_SPAWNINTERVAL && MobCounter < Const.MOB_SPAWNMAX)
             {
-                objectPool(mobEnemy);  // モブをプールから取り出す
+                objectPool(mobEnemy, QoolingMobEnemies);  // モブをプールから取り出す
                 MobCounter++;
                 mobTimer = 0;
+            }
+            // 中ボス生成インターバル
+            if(midTimer > Const.MID_SPAWNINTERVAL && MidCounter < Const.MID_SPAWNMAX && boss.transform.position.x > bossCtrl.Areas[1])
+            {
+                objectPool(midBoss, QoolingMiddleBoss); // 中ボスをプールから取り出す
+                MidCounter++;
+                midTimer = 0;
             }
             
             
@@ -102,52 +116,59 @@ public class FactoryEnemies : MonoBehaviour
         }
         else
         {
-
+            // Boss取得
             if(findBoss.GetOnFind())
             {
                 boss = findBoss.GetBoss();
                 bossCtrl = findBoss.GetBossController();
             }
         }
-        //debugText[0].text = "Enemy生成 :" + boss;  
     }
 
-    //  プールからオブジェクトを取ってくる関数
-    //  プールの中にオブジェクトがある場合  :   Dequeue
-    //  プールの中が空の場合               :   Instantiate
-    private BaseEnemy objectPool(BaseEnemy obj){
+    /// <summary>
+    /// プールからオブジェクトを取ってくる
+    /// </summary>
+    /// <param name="obj">生成したいオブジェクト</param>
+    /// <param name="pool">探したいプール</param>
+    /// <returns>生成オブジェクト</returns>
+    private BaseEnemy objectPool(BaseEnemy obj, Queue<BaseEnemy> pool){
 
         BaseEnemy temp = default;
 
-        if(qoolingMobEnemies.Count > 0)
-            temp = qoolingMobEnemies.Dequeue();
-
+        // プールの中身があれば取得
+        if(pool.Count > 0)
+            temp = pool.Dequeue();
+        
+        // なければインスタンス化
         else
         {
             temp = Instantiate(obj, this.transform);
         }
+        
+        // 生成座標設定
         temp.transform.position = setEnemyPos();
+        // アクティブ化
         temp.gameObject.SetActive(true);
         return temp;
     }
 
-    // public BaseEnemy Create(BaseEnemy obj)
-    // {
-    //     return ObjectPool(obj);
-    // }
-    
-    public void Finish(BaseEnemy obj)
+    /// <summary>
+    /// オブジェクトをQueueに格納するコールバック
+    /// </summary>
+    /// <param name="obj">格納するオブジェクト</param>
+    /// <param name="pool">プール先のQueue</param>
+    public void Finish(BaseEnemy obj, Queue<BaseEnemy> pool)
     {
+        // 非アクティブ化
         obj.gameObject.SetActive(false);
-        qoolingMobEnemies.Enqueue(obj);
-        MobCounter--;
-        //Debug.Log("A");
+        // プールに格納
+        pool.Enqueue(obj);
     }
 
-    void OnEnable() {
-
+    // コールバックイベントを登録
+    void OnEnable() 
+    {
         BaseEnemy.OnFinishedCallBack += Finish;
-        //BaseEnemy.OnCreateCallBack += ObjectPool;
     }
 
 }

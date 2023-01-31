@@ -52,9 +52,9 @@ public class EnemyStateController : MonoBehaviour
         // プレイヤー検索
         player = GameObject.FindWithTag("Player");
 
-        // オブジェクトプール参照
-        objectPool = GameObject.Find("PoolObject");
-        factoryEnemy = objectPool.GetComponent<FactoryEnemy>();
+        // // オブジェクトプール参照
+        // objectPool = GameObject.Find("PoolObject");
+        // factoryEnemy = objectPool.GetComponent<FactoryEnemy>();
 
         // エネミー生成クラス参照
         mobCreator = GameObject.Find("MobEnemyCreater");
@@ -70,7 +70,6 @@ public class EnemyStateController : MonoBehaviour
         eneCtrl = mobEnemy.GetComponent<EnemyController>();
 
         state = MobEnemyState.MOBENEMY;
-        //gameObject.SetActive(false);
     }
 
     void OnEnable()
@@ -112,6 +111,7 @@ public class EnemyStateController : MonoBehaviour
         {
             // モブ状態
             case MobEnemyState.MOBENEMY:
+                {
                 var color = mobEnemy.GetComponent<SpriteRenderer>().color;
                 color.a = 1.0f;
                 mobEnemy.GetComponent<SpriteRenderer>().color = color;
@@ -131,10 +131,12 @@ public class EnemyStateController : MonoBehaviour
                     mobEnemy.SetActive(false);
                 }
                 break;
+                }
             
             // アイテム状態
             case MobEnemyState.ITEM:
-                item.SetActive(true);   // アイテムアクティブ化
+                {
+                    item.SetActive(true);   // アイテムアクティブ化
                 
                 
                 // プレイヤー追尾
@@ -148,6 +150,7 @@ public class EnemyStateController : MonoBehaviour
                     DoneItem = false;
                 }
                 break;
+                }
 
         }
     }
